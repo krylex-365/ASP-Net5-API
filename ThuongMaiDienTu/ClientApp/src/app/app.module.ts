@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RoleComponent } from './role/role.component';
+import { RoleService } from '../services/role.service';
+import { AccountComponent } from './account/account.component';
+import { AccountService } from '../services/account.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { RoleComponent } from './role/role.component';
     CounterComponent,
     FetchDataComponent,
     RoleComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,10 +32,14 @@ import { RoleComponent } from './role/role.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      {path: 'role', component: RoleComponent },
+      { path: 'role', component: RoleComponent },
+      { path: 'account', component: AccountComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    RoleService,
+    AccountService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

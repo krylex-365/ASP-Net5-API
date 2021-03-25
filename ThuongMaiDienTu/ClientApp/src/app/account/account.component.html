@@ -1,0 +1,25 @@
+<div style="border: 1px solid red">
+  <div>account Component</div>
+  <p *ngIf="!accounts"><em>Loading...</em></p>
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="accounts">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>User Name</th>
+        <th>Passwork</th>
+        <th>Avatar</th>
+        <th>Role Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accounts">
+        <td>{{ account.accountId }}</td>
+        <td>{{ account.userName }}</td>
+        <td>{{ account.password }}</td>
+        <td>{{ account.avatar }}</td>
+        <td>{{ account.roleId }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

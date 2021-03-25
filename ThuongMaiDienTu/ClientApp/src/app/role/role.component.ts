@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Role } from '../../models/role.model';
+import { Component, OnInit } from '@angular/core';
+import { IRole } from '../../models/role.interface';
 import { RoleService } from '../../services/role.service';
 
 @Component({
@@ -8,17 +8,18 @@ import { RoleService } from '../../services/role.service';
     styleUrls: ['./role.component.scss']
 })
 /** role component*/
-export class RoleComponent {
+export class RoleComponent implements OnInit {
   /** role ctor */
-  roles: Role[];
+  roles: Array<IRole>;
 
   constructor(private roleSevice: RoleService) { }
   
   ngOnInit() {
-    this.roleSevice.getRole().subscribe(result => {
-      this.roles = result;
-      console.log(this.roles);
-    });
-    console.log(this.roles);
+    this.roleSevice.getAll().subscribe(
+      result => {
+        this.roles = result;
+        console.log(this.roles);
+      });
+    
   }
 }

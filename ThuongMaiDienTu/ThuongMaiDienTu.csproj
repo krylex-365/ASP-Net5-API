@@ -35,7 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\models\role.model.ts" />
+    <None Remove="ClientApp\src\models\account.interface.ts" />
+    <None Remove="ClientApp\src\models\role.interface.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\app\account\account.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\account.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
