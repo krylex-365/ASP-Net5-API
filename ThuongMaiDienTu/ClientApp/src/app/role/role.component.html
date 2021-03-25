@@ -1,0 +1,16 @@
+<div style="border: 1px solid red">role Component</div>
+<p *ngIf="!role"><em>Loading...</em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="role">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let role of roles">
+      <td>{{ role.RoleId | async }}</td>
+      <td>{{ role.Name | async }}</td>
+    </tr>
+  </tbody>
+</table>
