@@ -31,18 +31,20 @@ namespace TMDT.Controllers
             return context.Roles.Find(id);
         }
         [HttpPost]
-        public string Add(Role role)
+        public ObjectResult Add(Role role)
         {
             Role role1 = context.Roles.Find(role.RoleId);
             if (role1 != null)
             {
-                return "Duplicate primary key";
+                return Problem("Duplicate primary key", null, 400, "Role", "Add");
+                /*return "Duplicate primary key";*/
             }
 
             context.Roles.Add(role);
             context.SaveChanges();
 
-            return "Added";
+            return Ok("Added");
+            /*return "Added";*/
         }
         [HttpPut]
         public string Update(Role role)

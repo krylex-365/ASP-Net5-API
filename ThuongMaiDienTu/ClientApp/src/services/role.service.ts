@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { IRole } from '../models/role.interface';
+import { Role } from '../models/role';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class RoleService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<IRole[]> {
-    return this.http.get<IRole[]>(this.url + 'api/Role');
+  getAll(): Observable<Role[]> {
+    return this.http.get<Role[]>(this.url + 'api/Role');
     /*.pipe(
       map(data => {
         const roles: Array<IRole> = [];
@@ -25,5 +25,14 @@ export class RoleService {
         return roles;
       })
     )*/
+  }
+
+  add(role: Role) {
+    role.account = null;
+    return this.http.post(this.url + 'api/Role', role);
+  }
+
+  delete(id: string) {
+    return this.http.delete(this.url + 'api/Role/' + id);
   }
 }

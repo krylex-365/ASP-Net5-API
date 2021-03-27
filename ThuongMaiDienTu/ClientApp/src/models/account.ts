@@ -1,4 +1,4 @@
-export interface IAccount {
+export class Account {
   accountId: string;
   userName: string;
   password: string;
