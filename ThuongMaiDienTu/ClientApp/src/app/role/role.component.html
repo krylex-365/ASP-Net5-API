@@ -6,15 +6,22 @@
       <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let role of roles">
         <td>{{ role.roleId }}</td>
         <td>{{ role.name}}</td>
+        <td><a href="role" (click)="deleteItem(role.roleId)">Delete</a></td>
       </tr>
     </tbody>
 
   </table>
+  <form #role="ngForm" (ngSubmit)="onSubmit(role.value)" action="../app/role/role.component.html">
+    <input name="roleId" [(ngModel)]="roleId" required />
+    <input name="name" [(ngModel)]="name" required />
+    <button type="submit">Add role</button>
+  </form>
 </div>
 

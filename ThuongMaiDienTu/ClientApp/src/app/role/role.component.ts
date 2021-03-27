@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IRole } from '../../models/role.interface';
+import { Role } from '../../models/role';
 import { RoleService } from '../../services/role.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { RoleService } from '../../services/role.service';
 /** role component*/
 export class RoleComponent implements OnInit {
   /** role ctor */
-  roles: Array<IRole>;
+  roles: Array<Role>;
 
   constructor(private roleSevice: RoleService) { }
   
@@ -20,6 +20,19 @@ export class RoleComponent implements OnInit {
         this.roles = result;
         console.log(this.roles);
       });
-    
+  }
+
+  onSubmit(role: Role) {
+    this.roleSevice.add(role).subscribe(
+      result => console.log(result),
+      error => console.log(error)
+    )
+  }
+
+  deleteItem(id: string) {
+    this.roleSevice.delete(id).subscribe(
+      result => console.log(result),
+      error => console.log(error)
+    )
   }
 }

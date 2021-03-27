@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IAccount } from '../../models/account.interface';
+import { Account } from '../../models/account';
 import { AccountService } from '../../services/account.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AccountService } from '../../services/account.service';
 /** account component*/
 export class AccountComponent implements OnInit {
   /** account ctor */
-  accounts: Array<IAccount>;
+  accounts: Array<Account>;
   constructor(private accountService: AccountService) { }
     ngOnInit(): void {
       this.accountService.getAll().subscribe(result => {
