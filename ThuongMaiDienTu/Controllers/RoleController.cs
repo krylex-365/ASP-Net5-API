@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,15 +10,14 @@ using TMDT.Models;
 
 namespace TMDT.Controllers
 {
+    [Authorize(Roles = "admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
         private readonly ECContext context;
-        private readonly ILogger<RoleController> logger;
-        public RoleController(ILogger<RoleController> logger, ECContext context)
+        public RoleController(ECContext context)
         {
-            this.logger = logger;
             this.context = context;
         }
         [HttpGet]

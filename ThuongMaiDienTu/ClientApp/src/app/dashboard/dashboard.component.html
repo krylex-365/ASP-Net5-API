@@ -1,0 +1,329 @@
+<!--*******************
+        Preloader start
+    ********************-->
+<!--<div id="preloader">
+  <div class="loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+    </svg>
+  </div>
+</div>-->
+<!--*******************
+    Preloader end
+********************-->
+
+
+<div id="main-wrapper">
+
+
+  <!--**********************************
+            Nav header start
+        ***********************************-->
+  <div class="nav-header">
+    <div class="brand-logo">
+      <a href="index.php">
+        <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+        <span class="logo-compact"><img src="images/logo-compact.png" alt=""></span>
+        <span class="brand-title">
+          <img src="images/logo-text.png" alt="">
+        </span>
+      </a>
+    </div>
+  </div>
+  <!--**********************************
+      Nav header end
+  ***********************************-->
+  <!--**********************************
+      Header start
+  ***********************************-->
+  <div class="header">
+    <div class="header-content clearfix">
+      <div class="nav-control">
+        <div class="hamburger">
+          <span class="toggle-icon"><i class="icon-menu"></i></span>
+        </div>
+      </div>
+      <div class="header-right">
+        <ul class="clearfix">
+          <li class="icons dropdown">Hi, <?php echo $info_name?></li>
+          <li class="icons dropdown">
+            <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+              <span class="activity active"></span>
+              <img src="images/user/1.png" height="40" width="40" alt="">
+            </div>
+            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+              <div class="dropdown-content-body">
+                <ul>
+                  <li>
+                    <a href="./profile.php"><i class="icon-user"></i> <span>Profile</span></a>
+                  </li>
+                  <li>
+                    <a href="page-error-404.php">
+                      <i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill gradient-1">3</div>
+                    </a>
+                  </li>
+
+                  <hr class="my-2">
+                  <li>
+                    <a href="page-lock.php"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                  </li>
+                  <li><a href="page-logout.php"><i class="icon-key"></i> <span>Logout</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--**********************************
+      Header end ti-comment-alt
+  ***********************************-->
+  <!--**********************************
+      Sidebar start
+  ***********************************-->
+  <div class="nk-sidebar">
+    <div class="nk-nav-scroll">
+      <ul class="metismenu" id="menu">
+        <li class="nav-label">Dashboard</li>
+        <li>
+          <a href="./index.php">
+            <i class="icon-speedometer menu-icon"></i> <span class="nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-label">Apps</li>
+        <li>
+          <a href="./categories.php">
+            <i class="icon-grid menu-icon"></i> <span class="nav-text">Categories</span>
+          </a>
+        </li>
+        <li>
+          <a href="./sub-categories.php">
+            <i class="icon-tag menu-icon"></i> <span class="nav-text">Sub-Categories</span>
+          </a>
+        </li>
+        <li>
+          <a href="./products.php">
+            <i class="icon-basket menu-icon"></i> <span class="nav-text">Products</span>
+          </a>
+        </li>
+        <li>
+          <a href="./orders.php">
+            <i class="icon-note menu-icon"></i> <span class="nav-text">Orders</span>
+          </a>
+        </li>
+        <li>
+          <a href="./sub-user.php">
+            <i class="icon-people menu-icon"></i> <span class="nav-text">Users</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--**********************************
+      Sidebar end
+  ***********************************-->
+
+
+
+  <div class="content-body">
+    <div class="container-fluid mt-3">
+      <div class="row">
+        <div class="col-lg-3 col-sm-6">
+          <div class="card gradient-1">
+            <div class="card-body">
+              <h3 class="card-title text-white">All Products</h3>
+              <div class="d-inline-block">
+                ?>
+                <h2 class="text-white"></h2>
+                <a href="products.php">
+                  <p class="text-white mb-0">See detail...</p>
+                </a>
+              </div>
+              <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card gradient-2">
+            <div class="card-body">
+              <h3 class="card-title text-white">All Categories</h3>
+              <div class="d-inline-block">
+                <h2 class="text-white"></h2>
+                <a href="categories.php">
+                  <p class="text-white mb-0">See detail...</p>
+                </a>
+              </div>
+              <span class="float-right display-5 opacity-5"><i class="fa fa-th-large"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card gradient-3">
+            <div class="card-body">
+              <h3 class="card-title text-white">All Sub-Categories</h3>
+              <div class="d-inline-block">
+                <h2 class="text-white"></h2>
+                <a href="sub-categories.php">
+                  <p class="text-white mb-0">See detail...</p>
+                </a>
+              </div>
+              <span class="float-right display-5 opacity-5"><i class="fa fa-tags"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card gradient-4">
+            <div class="card-body">
+              <h3 class="card-title text-white">All Customers</h3>
+              <div class="d-inline-block">
+
+                <h2 class="text-white"></h2>
+                <a href="sub-user.php">
+                  <p class="text-white mb-0">See detail...</p>
+                </a>
+              </div>
+              <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h3>New Orders</h3>
+              </div>
+              <div class="table-responsive">
+                <table id="table-order" class="table table-bordered table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th style="width: 10%">Order ID</th>
+                      <th style="width: 20%">Customer Name</th>
+                      <th style="width: 30%">Address</th>
+                      <th style="width: 15%">Buy Date</th>
+                      <th style="width: 15%">Status</th>
+                      <th style="width: 5%">Details</th>
+                      <th style="width: 5%">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table-order-body">
+                    <tr *ngFor="let dashboard of dashboards">
+                      <th>{{dashboard.orderId}}</th>
+                      <td>{{dashboard.customerName}}</td>
+                      <td>{{dashboard.address}}</td>
+                      <td>{{dashboard.buyDate}}</td>
+                      <td>{{dashboard.status}}</td>
+                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $order_id?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $order_id?>"><i class="fa fa-trash-o"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="exampleModalLong<?php echo $order_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle<?php echo $order_id?>" style="color:#7571f9;">Order Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6 style="color:#ea5774;font-weight:500;">Order ID:</h6>
+                      <p> <?php echo $order_id?></p>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 style="color:#ea5774;font-weight:500;">Email:</h6>
+                      <p> saasa</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 style="color:#ea5774;font-weight:500;">Phone Number:</h6>
+                      <p>sasas</p>
+                    </div>
+                    <div class="col-md-12">
+                      <h6 style="color:#ea5774;font-weight:500;">Order Note:</h6>
+                      <p> sasas</p>
+                    </div>
+                    <div class="table-responsive">
+                      <table id="table-detail-<?php echo $order_id?>" class="table table-bordered table-striped table-hover">
+                        <tr>
+                          <th style="width: 26%">Images</th>
+                          <th style="width: 26%">Product</th>
+                          <th style="width: 16%">Price</th>
+                          <th style="width: 16%">Quantity</th>
+                          <th style="width: 16%">Total</th>
+                        </tr>
+                        <tr>
+                          <td><img src="product-img/<?php echo $pro_img?>" width="100%"></td>
+                          <td>sa</td>
+                          <td>sdsd</td>
+                          <td>dsds</td>
+                          <td>dsds</td>
+                        </tr>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th style="color: #ea5774;">Sub Total:</th>
+                          <th style="color: #ea5774;">sasas</th>
+                        </tr>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th style="color: #ea5774;">Shipping:</th>
+                          <th style="color: #ea5774;">$ 5</th>
+                        </tr>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th style="color: #ea5774;">Taxes:</th>
+                          <th style="color: #ea5774;">$ dds</th>
+                        </tr>
+                        <tr>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th style="color: #ea5774;">Total:</th>
+                          <th style="color: #ea5774;">$dsds</th>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="exampleModal<?php echo $order_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="exampleModalLabel<?php echo $order_id?>" style="margin: auto;">Are you sure to delete Order ID: <?php echo $order_id?> ?</h3>
+                </div>
+                <div class="modal-footer" style="margin: auto;">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                  <a href="orders.php?del=<?php echo $order_id?>">
+                    <button type="button" class="btn btn-danger">Yes, delete it !</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">
+      <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,12 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RoleComponent } from './role/role.component';
 import { RoleService } from '../services/role.service';
-import { AccountComponent } from './account/account.component';
+import AccountComponent from './account/account.component';
 import { AccountService } from '../services/account.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from '../services/login.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardService } from '../services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -23,22 +27,28 @@ import { AccountService } from '../services/account.service';
     FetchDataComponent,
     RoleComponent,
     AccountComponent,
+    LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'role', component: RoleComponent },
       { path: 'account', component: AccountComponent },
-    ])
+      { path: 'admin/login', component: LoginComponent },
+      { path: 'dashboard', component: DashboardComponent },
+    ]),
   ],
   providers: [
     RoleService,
     AccountService,
+    LoginService,
+    DashboardService,
   ],
   bootstrap: [AppComponent]
 })

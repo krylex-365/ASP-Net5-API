@@ -8,7 +8,7 @@ import { AccountService } from '../../services/account.service';
     styleUrls: ['./account.component.scss']
 })
 /** account component*/
-export class AccountComponent implements OnInit {
+export default class AccountComponent implements OnInit {
   /** account ctor */
   accounts: Array<Account>;
   constructor(private accountService: AccountService) { }

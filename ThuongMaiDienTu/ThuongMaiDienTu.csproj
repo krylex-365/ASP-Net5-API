@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
@@ -36,12 +37,19 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\models\account.ts" />
+    <None Remove="ClientApp\src\models\Dashboard.ts" />
     <None Remove="ClientApp\src\models\role.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\account\account.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\dashboard\dashboard.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\jwt.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\login\login.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\order\order.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\account.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\dashboard.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\login.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

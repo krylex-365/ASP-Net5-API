@@ -4,4 +4,5 @@ export class Account {
   password: string;
   avatar: string;
   roleId: string;
+  customer: object;
 }

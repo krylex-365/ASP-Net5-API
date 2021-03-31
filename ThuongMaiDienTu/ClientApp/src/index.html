@@ -1,14 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>ThuongMaiDienTu</title>
-    <base href="/" />
+<head>
+  <title>TMDT</title>
+  <base href="/" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  </head>
-  <body>
-    <app-root>Loading...</app-root>
-  </body>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Favicon icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+
+  <link rel="stylesheet" href="plugins/jqueryui/css/jquery-ui-1-12-1.css">
+  <!-- Pignose Calender -->
+  <link href="plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+  <!-- Chartist -->
+  <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+  <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+  <!-- Custom Stylesheet -->
+  <link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+  <link href="plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- Page plugins css -->
+  <link href="plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+  <!-- Color picker plugins css -->
+  <link href="plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+  <!-- Date picker plugins css -->
+  <link href="plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-custom.css" rel="stylesheet">
+  <style>
+    .box {
+      padding: 0;
+    }
+
+      .box select {
+        background-color: #7571f9;
+        color: white;
+        padding: 12px;
+        width: 100%;
+        font-size: 0.875rem;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        -webkit-appearance: button;
+        appearance: button;
+        outline: none;
+      }
+
+      .box:hover::before {
+        color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .box select option {
+        padding: 30px;
+      }
+
+    input[type="checkbox"]:after {
+      border: 1px solid #7571f9 !important;
+      margin: auto !important;
+    }
+
+    #DataTable_filter .form-control {
+      border: 1px solid #7571f9;
+      border-radius: 0.5rem;
+    }
+
+    #DataTable_length .form-control {
+      border: 1px solid #7571f9;
+      border-radius: 0.5rem;
+    }
+
+  </style>
+</head>
+<body>
+  <app-root>Loading...</app-root>
+  
+
+  <script>
+    function checkDel() {
+      if ($("#checkBoxAll").is(":checked")) {
+        $(".chkCheckBoxId").prop("checked", true);
+        $("#btnDel").prop("disabled", false);
+      }
+      else {
+        $(".chkCheckBoxId").prop("checked", false);
+        $("#btnDel").prop("disabled", true);
+      }
+    }
+    function checkSingleDel() {
+      if ($(".chkCheckBoxId").is(":checked")) {
+        $("#btnDel").prop("disabled", false);
+      }
+      else {
+        $("#btnDel").prop("disabled", true);
+      }
+    }
+  </script>
+
+  <script src="plugins/common/common.min.js"></script>
+  <script src="js/custom.min.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/gleek.js"></script>
+  <script src="js/styleSwitcher.js"></script>
+
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="js/js-custom.js"></script>
+
+  <script src="plugins/tables/js/jquery.dataTables.min.js"></script>
+  <script src="plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+  <script src="plugins/moment/moment.js"></script>
+  <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+  <!-- Clock Plugin JavaScript -->
+  <script src="plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+  <!-- Color Picker Plugin JavaScript -->
+  <script src="plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+  <script src="plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+  <script src="plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+  <!-- Date Picker Plugin JavaScript -->
+  <script src="plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <!-- Form Picker Init JavaScript -->
+  <!--<script src="js/plugins-init/form-pickers-init.js"></script>-->
+
+  <!-- jQuery UI library -->
+  <script src="plugins/jqueryui/js/jquery-ui-1-12-1.js"></script>
+
+</body>
+
 </html>
