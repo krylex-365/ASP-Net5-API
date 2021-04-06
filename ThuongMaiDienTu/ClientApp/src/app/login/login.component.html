@@ -2,6 +2,9 @@
     Preloader start
 ********************-->
 <style>
+  .jumbotron {
+    background: #ffffff;
+  }
   .form-group > .form-control {
     padding: 0.375rem 0.75rem !important;
     border: 1px solid #ced4da !important;
@@ -12,35 +15,37 @@
     border: 1px solid #7571f9 !important;
   }
 </style>
-<div >
-  <div id="preloader">
-    <div class="loader">
-      <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-      </svg>
+<div class="jumbotron">
+  <div>
+    <div id="preloader">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+        </svg>
+      </div>
     </div>
-  </div>
-  <!--*******************
-      Preloader end
-  ********************-->
-  <div class="align-top login-form-bg h-100">
-    <div class="container h-100">
-      <div class="row justify-content-center h-100">
-        <div class="col-xl-6">
-          <div class="form-input-content">
-            <div class="card login-form mb-0">
-              <div class="card-body pt-5">
-                <form #account="ngForm" (ngSubmit)="onSubmit(account.value)" class="mt-5 mb-5 form-signin animated shake login-input">
-                  <h3 class="text-center"> Admin Login </h3>
-                  <br>
-                  <div class="form-group">
-                    <input type="text" id="inputUsername" name="userName" [(ngModel)]="userName" class="form-control" placeholder="Enter username..." required autofocus>
-                  </div>
-                  <div class="form-group">
-                    <input type="password" id="inputPassword" name="password" [(ngModel)]="password" class="form-control" placeholder="Enter your password..." required>
-                  </div>
-                  <button routerLink="/dashboard" class="btn btn-lg btn-primary btn-block" type="submit" name="login">Sign In</button>
-                </form>
+    <!--*******************
+        Preloader end
+    ********************-->
+    <div class="align-top login-form-bg h-100">
+      <div class="container h-100">
+        <div class="row justify-content-center h-100">
+          <div class="col-xl-6">
+            <div class="form-input-content">
+              <div class="card login-form mb-0">
+                <div class="card-body pt-5">
+                  <form #account="ngForm" (ngSubmit)="onSubmit(account.value)" class="mt-5 mb-5 form-signin animated shake login-input">
+                    <h3 class="text-center"> Admin Login </h3>
+                    <br>
+                    <div class="form-group">
+                      <input type="text" id="inputUsername" name="userName" [(ngModel)]="userName" class="form-control" placeholder="Enter username..." required autofocus>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" id="inputPassword" name="password" [(ngModel)]="password" class="form-control" placeholder="Enter your password..." required>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Sign In</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

@@ -38,6 +38,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\models\account.ts" />
     <None Remove="ClientApp\src\models\Dashboard.ts" />
+    <None Remove="ClientApp\src\models\login.ts" />
     <None Remove="ClientApp\src\models\role.ts" />
   </ItemGroup>
 
