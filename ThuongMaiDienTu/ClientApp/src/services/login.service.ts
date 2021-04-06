@@ -21,7 +21,16 @@ export class LoginService {
     this.account.avatar = "0";
     this.account.roleId = "0";
     this.account.customer = null;
-    return this.http.post<HttpResponse<Account>>(this.url + 'api/Home', this.account, { observe: 'response' });  
+    return this.http.post<HttpResponse<Account>>(this.url + 'api/Home', this.account, { observe: 'response' });
+    /*result => {
+        console.log(result);
+        if (result.status == 200) {
+          console.log(result.status);
+          this.login = true;
+          console.log(this.login);
+          () => this.router.navigate(['/Role']);
+        }
+      }*/
   }
 
   logout() {
