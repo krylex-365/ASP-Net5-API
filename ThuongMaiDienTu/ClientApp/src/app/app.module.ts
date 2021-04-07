@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { WebFormComponent } from './web-form/web-form.component';
 import { RoleComponent } from './role/role.component';
 import { RoleService } from '../services/role.service';
 import AccountComponent from './account/account.component';
@@ -17,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from '../services/login.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardService } from '../services/dashboard.service';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoriesService } from '../services/categories.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { DashboardService } from '../services/dashboard.service';
     AccountComponent,
     LoginComponent,
     DashboardComponent,
+    WebFormComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,6 +47,7 @@ import { DashboardService } from '../services/dashboard.service';
       { path: 'account', component: AccountComponent },
       { path: 'admin/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'categories', component: CategoriesComponent },
     ]),
   ],
   providers: [
@@ -49,6 +55,7 @@ import { DashboardService } from '../services/dashboard.service';
     AccountService,
     LoginService,
     DashboardService,
+    CategoriesService,
   ],
   bootstrap: [AppComponent]
 })

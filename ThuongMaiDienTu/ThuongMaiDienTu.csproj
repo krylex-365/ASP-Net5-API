@@ -37,17 +37,21 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\models\account.ts" />
+    <None Remove="ClientApp\src\models\categories.ts" />
     <None Remove="ClientApp\src\models\Dashboard.ts" />
     <None Remove="ClientApp\src\models\role.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\account\account.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\categories\categories.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\jwt.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\order\order.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\web-form\web-form.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\account.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\categories.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\dashboard.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\login.service.ts" />
   </ItemGroup>
