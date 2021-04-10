@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from '../../models/Product';
+
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product.service';
 /** product component*/
 export class ProductComponent {
     /** product ctor */
-    constructor() {
+    constructor(private prodcutService: ProductService) {
 
     }
 }
