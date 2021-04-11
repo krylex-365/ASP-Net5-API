@@ -13,6 +13,7 @@ using TMDT.Controllers;
 using TMDT.Models;
 using System.Linq;
 using System.Net.Http;
+using ThuongMaiDienTu.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -26,7 +27,7 @@ namespace WebApplication1.Controllers
             this.context = context;
         }
         [HttpPost]
-        public StatusCodeResult Login(Account account)
+        public User Login(Account account)
         {
             var ac = context.Accounts.ToList().Find(x => x.UserName == account.UserName && x.Password == account.Password);
 
@@ -35,8 +36,8 @@ namespace WebApplication1.Controllers
                 var role = context.Roles.Find(ac.RoleId);
                 var claims = new[]
                 {
-                    new Claim("NhanVienId", ac.AccountId),
-                    new Claim("TaiKhoan", ac.UserName),
+                    new Claim("AccountId", ac.AccountId),
+                    new Claim("UserName", ac.UserName),
                     new Claim(ClaimTypes.Role, role.Name)
                 };
                 var tokenString = GenerateJSONWebToken(claims);
@@ -49,10 +50,18 @@ namespace WebApplication1.Controllers
                 }
                 return Redirect("~/Dashboard/Index");*/
 
-                return new StatusCodeResult(200);
+                return new User()
+                {
+                    Name = ac.UserName,
+                    Token = tokenString,
+                };
                 /*return Ok("Đăng nhập thành công");*/
             }
-            return new StatusCodeResult(400);
+            return new User()
+            {
+                Name = "",
+                Token = "",
+            };
             /*return NotFound("Sai thông tin đăng nhập");*/
         }
 

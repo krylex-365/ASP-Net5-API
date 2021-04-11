@@ -20,4 +20,8 @@ export class DashboardComponent implements OnInit{
         console.log(this.dashboards);
       });
   }
+
+  reload() {
+    this.ngOnInit()
+  }
 }

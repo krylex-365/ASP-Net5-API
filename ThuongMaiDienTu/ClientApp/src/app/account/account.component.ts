@@ -17,5 +17,4 @@ export default class AccountComponent implements OnInit {
         this.accounts = result;
       })
     }
-
 }
