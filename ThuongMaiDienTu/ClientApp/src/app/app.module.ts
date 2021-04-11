@@ -19,6 +19,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardService } from '../services/dashboard.service';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from '../services/product.service';
+import { OrderComponent } from './order/order.component';
+import { OrderService } from '../services/order.service';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { ProductService } from '../services/product.service';
     LoginComponent,
     DashboardComponent,
     ProductComponent,
+    OrderComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +51,8 @@ import { ProductService } from '../services/product.service';
       { path: 'admin/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'product', component: ProductComponent },
+      { path: 'order', component: OrderComponent },
+      { path: 'user', component: UserComponent },
     ]),
   ],
   providers: [
@@ -54,6 +61,7 @@ import { ProductService } from '../services/product.service';
     LoginService,
     DashboardService,
     ProductService,
+    OrderService,
   ],
   bootstrap: [AppComponent]
 })

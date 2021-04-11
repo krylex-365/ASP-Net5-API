@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+﻿import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../environments/environment';
-import { Product } from '../models/product';
+import { Order } from '../models/Order';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class OrderService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Product[]>(this.url + 'api/Product');
+    return this.http.get<Order[]>(this.url + 'api/Order');
   }
 }

@@ -40,7 +40,7 @@
     <None Remove="ClientApp\src\models\account.ts" />
     <None Remove="ClientApp\src\models\Dashboard.ts" />
     <None Remove="ClientApp\src\models\login.ts" />
-    <None Remove="ClientApp\src\models\prodcut.ts" />
+    <None Remove="ClientApp\src\models\order.ts" />
     <None Remove="ClientApp\src\models\product.ts" />
     <None Remove="ClientApp\src\models\role.ts" />
     <None Remove="ClientApp\src\models\user.ts" />
@@ -51,10 +51,13 @@
     <TypeScriptCompile Remove="ClientApp\src\app\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\jwt.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\login\login.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\order - Copy\order.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\order\order.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\product\product.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\account.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\dashboard.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\login.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\order.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\product.service.ts" />
   </ItemGroup>
 

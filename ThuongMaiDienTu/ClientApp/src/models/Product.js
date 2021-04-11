@@ -7,4 +7,4 @@ var Product = /** @class */ (function () {
     return Product;
 }());
 exports.Product = Product;
-//# sourceMappingURL=prodcut.js.map
+//# sourceMappingURL=Product.js.map
