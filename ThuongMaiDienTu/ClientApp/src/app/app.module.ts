@@ -21,10 +21,11 @@ import { ProductComponent } from './product/product.component';
 import { ProductService } from '../services/product.service';
 import { OrderComponent } from './order/order.component';
 import { OrderService } from '../services/order.service';
-import { UserComponent } from './user/user.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesService } from '../services/categories.service';
 import { WebFormComponent } from './web-form/web-form.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { AddproductService } from '../services/addproduct.service';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,9 @@ import { WebFormComponent } from './web-form/web-form.component';
     DashboardComponent,
     ProductComponent,
     OrderComponent,
-    UserComponent,
     WebFormComponent,
     CategoriesComponent,
+    AddproductComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,8 +58,8 @@ import { WebFormComponent } from './web-form/web-form.component';
       { path: 'dashboard', component: DashboardComponent },
       { path: 'product', component: ProductComponent },
       { path: 'order', component: OrderComponent },
-      { path: 'user', component: UserComponent },
       { path: 'categories', component: CategoriesComponent },
+      { path: 'addproduct', component: AddproductComponent },
     ]),
   ],
   providers: [
@@ -69,6 +70,7 @@ import { WebFormComponent } from './web-form/web-form.component';
     ProductService,
     OrderService,
     CategoriesService,
+    AddproductService,
   ],
   bootstrap: [AppComponent]
 })
