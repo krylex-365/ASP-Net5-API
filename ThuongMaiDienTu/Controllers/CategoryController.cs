@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TMDT.Data;
 using TMDT.Models;
@@ -32,52 +34,59 @@ namespace TMDT.Controllers
             return context.Categories.Find(id);
         }
         [HttpPost]
-        public string Add(Category category)
+        public HttpResponseMessage Add(Category category)
         {
-            Category category1 = context.Categories.Find(category.CategoryId);
-            if (category1 != null)
+            //Tu dong tao khoa chinh
+            List<Category> categories = context.Categories.ToList();
+            string key = "0";
+            foreach(Category category1 in categories)
             {
-                return "Duplicate primary key";
+                if(int.Parse(category1.CategoryId) > int.Parse(key))
+                {
+                    key = category1.CategoryId;
+                }
             }
+            key = "" + (int.Parse(key) + 1);
+            category.CategoryId = key;
 
             context.Categories.Add(category);
             context.SaveChanges();
 
-            return "Added";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
         [HttpPut]
-        public string Update(Category category)
+        public HttpResponseMessage Update(Category category)
         {
             Category category1 = context.Categories.Find(category.CategoryId);
             if (category1 == null)
             {
-                return "Update not found";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
             context.Entry(category1).State = EntityState.Detached;
             context.Entry(category).State = EntityState.Modified;
             context.SaveChanges();
 
-            return "Updated";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
         [HttpDelete("{id}")]
-        public string Delete(string id)
+        public HttpResponseMessage Delete(string id)
         {
             Category category = context.Categories.Find(id);
             if (category == null)
             {
-                return "Delete not found";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
             Subcategory subcategory = context.Subcategories.ToList().Find(x => x.CategoryId == id);
             if(subcategory != null)
             {
-                return "Delete foreign key first (Subcategory)";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
             
             context.Entry(category).State = EntityState.Deleted;
             context.SaveChanges();
-            return "Deleted";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }
