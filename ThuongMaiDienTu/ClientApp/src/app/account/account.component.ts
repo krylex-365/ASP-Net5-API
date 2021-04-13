@@ -13,7 +13,7 @@ export default class AccountComponent implements OnInit {
   accounts: Array<Account>;
   constructor(private accountService: AccountService) { }
     ngOnInit(): void {
-      this.accountService.getAll().subscribe(result => {
+      this.accountService.getAccounts().subscribe(result => {
         this.accounts = result;
       })
     }

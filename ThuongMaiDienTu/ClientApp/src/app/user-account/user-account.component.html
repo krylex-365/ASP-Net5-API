@@ -1,0 +1,185 @@
+<!--<?php require_once('inc/top.php');?>
+<?php
+if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
+  $check = $_GET[ 'del' ];
+  $querycheck = "SELECT `role_id` FROM `account` WHERE `account`.`accID` = '$check';";
+  $runcheck = mysqli_query( $conn, $querycheck );
+  if ( mysqli_num_rows( $runcheck ) > 0 ) {
+    $rowcheck = mysqli_fetch_array( $runcheck );
+    $user_per = $rowcheck[ 'role_id' ];
+
+    if ( $user_per == '1' ) {
+    echo "
+<script>alert('Delete user fail! You can't delete Admin account.');window.location='./sub-user.php'</script>";$error = "You can't delete Admin account";
+    } else {
+    $del_query1 = "DELETE FROM `customer` WHERE `customer`.`accountID` = '$check';";
+      $del_query2 = "DELETE FROM `account` WHERE `account`.`accID` = '$check';";
+      //$del_run
+
+      if ( mysqli_query( $conn, $del_query1 ) && mysqli_query( $conn, $del_query2 )) {
+        echo "
+<script>alert('Delete user success! User has been deleted.');window.location='./sub-user.php'</script>";
+      } else {
+        echo "
+<script>alert('Delete user fail! User has not been deleted.');window.location='./sub-user.php'</script>";
+      }
+    }
+  }
+}
+?>-->
+<head>
+  <title>User</title>
+</head>
+
+<!--**********************************
+        Main wrapper start
+    ***********************************-->
+<div id="main-wrapper">
+  <app-web-form></app-web-form>
+  <!--**********************************
+          Content body start
+      ***********************************-->
+  <div class="content-body">
+    <div class="row page-titles mx-0">
+      <div class="col p-md-0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+          <li class="breadcrumb-item active">Users</li>
+        </ol>
+      </div>
+    </div>
+    <div class="container-fluid ">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h3>Users</h3>
+            </div>
+            <a href="user-register.php">
+              <button style="margin-bottom: 20px" class='btn btn-primary'><span style="margin-right: 10px">Add User</span><i class="fa fa-plus"></i></button>
+            </a>
+            <div class="table-responsive">
+              <!--<?php
+              if ( isset( $error ) ) {
+              echo "<span style='color:red;font-size: 15px;'>$error</span>";
+              } else if ( isset( $success ) ) {
+              echo "<span style='color:green;font-size: 15px;'>$success</span>";
+              }
+              //										else{
+              //											echo "<span style='font-size: 15px;'>Messages should be displayed here</span>";
+              //										}
+              ?>-->
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th style="width: 5%;">User ID</th>
+                    <th style="width: 13%;">Name</th>
+                    <th style="width: 13%;">Email</th>
+                    <th style="width: 10%;">Phone</th>
+                    <th style="width: 15%;">Address</th>
+                    <th style="width: 13%;">Username</th>
+                    <th style="width: 13%;">Password</th>
+                    <th style="width: 8%;">Permission</th>
+                    <th style="width: 5%;">Edit</th>
+                    <th style="width: 5%;">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--<?php
+                  $query = "SELECT * FROM `account` LEFT JOIN `role` ON `account`.`role_id` = `role`.`roleID` LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `account`.`accID` asc;";
+                  $run = mysqli_query( $conn, $query );
+                  if ( mysqli_num_rows( $run ) > 0 ) {
+                  while ( $row = mysqli_fetch_array( $run ) ) {
+                  $user_id = $row[ 'accID' ];
+                  $user_name = $row[ 'cusName' ];
+                  $user_email = $row[ 'cusEmail' ];
+                  $user_phone = $row[ 'cusPhoneNumber' ];
+                  $user_address = $row[ 'cusAddress' ];
+                  $user_username = $row[ 'username' ];
+                  $user_password = $row[ 'password' ];
+                  $user_permission = $row[ 'roleName' ];
+                  $user_password = md5($user_password);
+                  ?>-->
+                  <tr>
+                    <td><?php echo $user_id?></td>
+                    <td><?php echo $user_name?></td>
+                    <td><?php echo $user_email?></td>
+                    <td><?php echo $user_phone?></td>
+                    <td><?php echo $user_address?></td>
+                    <td><?php echo $user_username?></td>
+                    <td id="pw<?php echo $user_id?>">******</td>
+                    <!--onClick="showhidepw<?php echo $user_id?>()"-->
+                    <!--<script>
+                    function showhidepw<?php echo $user_id?>() {
+                    var passwork = document.getElementById("pw<?php echo $user_id?>").innerHTML;
+                    if (passwork == ("******")) {
+                    $("#pw<?php echo $user_id?>").html("<?php echo $user_password?>");
+                    }
+                    else {
+                    $("#pw<?php echo $user_id?>").html("******");
+                    }
+                    }
+                    </script>-->
+                    <td><span class="label gradient-5 rounded"><?php echo $user_permission?></span></td>
+                    <td>
+                      <a href="<?php echo 'user-edit.php?edit=$user_id';?>">
+                        <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                      </a>
+                    </td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $user_id ?>"><i class="fa fa-close"></i></button></td>
+                  </tr>
+                  <div class="modal fade" id="exampleModal<?php echo $user_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="exampleModalLabel<?php echo $user_id ?>" style="margin: auto;text-align: center;">
+                            Are you sure to delete<br>
+                            User <?php echo $user_id?>. <?php echo $user_name ?> ?
+                          </h3>
+                        </div>
+                        <div class="modal-footer" style="margin: auto;">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                          <a href="sub-user.php?del=<?php echo $user_id ?>">
+                            <button type="button" class="btn btn-danger">Yes, delete it !</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<?php
+
+                  }
+
+                  } else {
+                  echo "0 results";
+                  }
+                  ?>-->
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #/ container -->
+  </div>
+  <!--**********************************
+          Content body end
+      ***********************************-->
+  <!--**********************************
+          Footer start
+      ***********************************-->
+  <div class="footer">
+    <div class="copyright">
+      <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+    </div>
+  </div>
+  <!--**********************************
+          Footer end
+      ***********************************-->
+</div>
+<!--**********************************
+        Main wrapper end
+    ***********************************-->
+<!--<?php require_once('inc/footer.php');?>-->

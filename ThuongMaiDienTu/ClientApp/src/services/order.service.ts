@@ -11,7 +11,7 @@ export class OrderService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
-  getNewOrders() {
+  getOrders() {
     return this.http.get<Order[]>(this.url + 'api/Order');
   }
 }

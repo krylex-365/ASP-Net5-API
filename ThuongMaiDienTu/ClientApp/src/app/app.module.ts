@@ -21,9 +21,12 @@ import { ProductComponent } from './product/product.component';
 import { ProductService } from '../services/product.service';
 import { OrderComponent } from './order/order.component';
 import { OrderService } from '../services/order.service';
-import { UserComponent } from './user/user.component';
+import { UserAccountComponent } from './user-account/user-account.component';
+import { CustomerService } from '../services/customer.service';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesService } from '../services/categories.service';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { SubcategoriesService } from '../services/subcategories.service';
 import { WebFormComponent } from './web-form/web-form.component';
 
 @NgModule({
@@ -39,9 +42,10 @@ import { WebFormComponent } from './web-form/web-form.component';
     DashboardComponent,
     ProductComponent,
     OrderComponent,
-    UserComponent,
+    UserAccountComponent,
     WebFormComponent,
     CategoriesComponent,
+    SubcategoriesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,10 +59,11 @@ import { WebFormComponent } from './web-form/web-form.component';
       { path: 'account', component: AccountComponent },
       { path: 'admin/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'product', component: ProductComponent },
-      { path: 'order', component: OrderComponent },
-      { path: 'user', component: UserComponent },
+      { path: 'products', component: ProductComponent },
+      { path: 'orders', component: OrderComponent },
+      { path: 'users', component: UserAccountComponent },
       { path: 'categories', component: CategoriesComponent },
+      { path: 'subcategories', component: SubcategoriesComponent },
     ]),
   ],
   providers: [
@@ -69,6 +74,8 @@ import { WebFormComponent } from './web-form/web-form.component';
     ProductService,
     OrderService,
     CategoriesService,
+    CustomerService,
+    SubcategoriesService,
   ],
   bootstrap: [AppComponent]
 })

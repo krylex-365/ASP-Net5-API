@@ -7,5 +7,7 @@ export class Product {
   sale: string;
   status: string;
   quantity: string;
-  subcategoryId: string
+  subcategoryId: string;
+  review: object;
+  orderDetail: object;
 }

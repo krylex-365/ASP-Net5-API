@@ -11,7 +11,7 @@ export class CategoriesService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
-  getNewOrders() {
+  getCategories() {
     return this.http.get<Categories[]>(this.url + 'api/Categories');
     }
 }

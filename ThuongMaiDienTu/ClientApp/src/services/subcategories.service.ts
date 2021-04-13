@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
-import { Product } from '../models/Product';
+import { Subcategories } from '../models/Subcategories';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class SubcategoriesService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get<Product[]>(this.url + 'api/Product');
+  getSubcategories() {
+    return this.http.get<Subcategories[]>(this.url + 'api/Subcategories');
   }
 }
