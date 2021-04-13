@@ -1,4 +1,4 @@
-﻿<!-- <?php require_once('inc/top.php');?>
+<!-- <?php require_once('inc/top.php');?>
 <title>Orders</title>
 <?php
 if ( isset( $_GET[ 'del' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
@@ -32,16 +32,15 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
 
 <body> -->
 <!-- <?php require_once('inc/preload.php');?> -->
-
 <!--**********************************
         Main wrapper start
     ***********************************-->
 <div id="main-wrapper">
   <!-- <?php require_once('inc/web-form.php');?> -->
-  
   <!--**********************************
             Content body start
         ***********************************-->
+  <app-web-form></app-web-form>
   <div class="content-body">
     <div class="row page-titles mx-0">
       <div class="col p-md-0">
@@ -52,7 +51,7 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
       </div>
     </div>
     <!-- row -->
-    
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
@@ -76,42 +75,44 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
                   </thead>
                   <tbody id="table-order-body">
                     <!-- <?php
-                    $query = "SELECT * FROM `order` 
-	LEFT JOIN `account` ON `order`.`u_id` = `account`.`accID` 
-	LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `order`.`order_id` desc;";
-                    $run = mysqli_query( $conn, $query );
-                    if ( mysqli_num_rows( $run ) > 0 ) {
-                      while ( $row = mysqli_fetch_array( $run ) ) {
-                        $order_id = $row[ 'order_id' ];
-                        $cus_id = $row[ 'cusName' ];
-                        $cus_address = $row[ 'cusAddress' ];
-                        $buy_date = $row[ 'buyDate' ];
-                        $order_status = $row[ 'status' ];
-                        ?> -->
+                                      $query = "SELECT * FROM `order`
+                    LEFT JOIN `account` ON `order`.`u_id` = `account`.`accID`
+                    LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `order`.`order_id` desc;";
+                                      $run = mysqli_query( $conn, $query );
+                                      if ( mysqli_num_rows( $run ) > 0 ) {
+                                        while ( $row = mysqli_fetch_array( $run ) ) {
+                                          $order_id = $row[ 'order_id' ];
+                                          $cus_id = $row[ 'cusName' ];
+                                          $cus_address = $row[ 'cusAddress' ];
+                                          $buy_date = $row[ 'buyDate' ];
+                                          $order_status = $row[ 'status' ];
+                                          ?> -->
                     <tr>
                       <td><?php echo $order_id?></td>
                       <td><?php echo $cus_id?></td>
                       <td><?php echo $cus_address?></td>
                       <td><?php echo $buy_date?></td>
-                      <td><a href="orders.php?upstatus=<?php echo $order_id?>&status=<?php echo $order_status?>">
-                        <!-- <?php
-                        if ( $order_status == -1 ) {
+                      <td>
+                        <a href="orders.php?upstatus=<?php echo $order_id?>&status=<?php echo $order_status?>">
+                          <!-- <?php
+                          if ( $order_status == -1 ) {
+                            ?> -->
+                          <button type="button" class="btn btn-info">New Order</button>
+                          <!-- <?php
+                          }
+                          if ( $order_status == 0 ) {
+                            ?> -->
+                          <button type="button" class="btn btn-danger">Delivery</button>
+                          <!-- <?php
+                          }
+                          if ( $order_status == 1 ) {
+                            ?> -->
+                          <button type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
+                          <!-- <?php
+                          }
                           ?> -->
-                        <button type="button" class="btn btn-info">New Order</button>
-                        <!-- <?php
-                        }
-                        if ( $order_status == 0 ) {
-                          ?> -->
-                        <button type="button" class="btn btn-danger">Delivery</button>
-                        <!-- <?php
-                        }
-                        if ( $order_status == 1 ) {
-                          ?> -->
-                        <button type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
-                        <!-- <?php
-                        }
-                        ?> -->
-                        </a></td>
+                        </a>
+                      </td>
                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $order_id?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $order_id?>"><i class="fa fa-trash-o"></i></button></td>
                     </tr>
@@ -127,20 +128,20 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
             </div>
           </div>
           <!-- <?php
-          $query = $query = "SELECT * FROM `order` 
-	LEFT JOIN `account` ON `order`.`u_id` = `account`.`accID` 
-	LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `order`.`order_id` desc;";
-          $run = mysqli_query( $conn, $query );
-          if ( mysqli_num_rows( $run ) > 0 ) {
-            while ( $row = mysqli_fetch_array( $run ) ) {
-              $order_id = $row[ 'order_id' ];
-              $cus_id = $row[ 'cusName' ];
-              $cus_address = $row[ 'cusAddress' ];
-              $buy_date = $row[ 'buyDate' ];
-              $email = $row[ 'cusEmail' ];
-              $phonenumber = $row[ 'cusPhoneNumber' ];
-              $order_note = $row[ 'note' ];
-              ?> -->
+                  $query = $query = "SELECT * FROM `order`
+          LEFT JOIN `account` ON `order`.`u_id` = `account`.`accID`
+          LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `order`.`order_id` desc;";
+                  $run = mysqli_query( $conn, $query );
+                  if ( mysqli_num_rows( $run ) > 0 ) {
+                    while ( $row = mysqli_fetch_array( $run ) ) {
+                      $order_id = $row[ 'order_id' ];
+                      $cus_id = $row[ 'cusName' ];
+                      $cus_address = $row[ 'cusAddress' ];
+                      $buy_date = $row[ 'buyDate' ];
+                      $email = $row[ 'cusEmail' ];
+                      $phonenumber = $row[ 'cusPhoneNumber' ];
+                      $order_note = $row[ 'note' ];
+                      ?> -->
           <div class="modal fade" id="exampleModalLong<?php echo $order_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
@@ -200,7 +201,7 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
                             $pro_total = $pro_quantity * $pro_price;
                             ?> -->
                         <tr>
-                          <td><img src="product-img/<?php echo $pro_img?>" width="100%"></td>
+                          <td><!--<img src="product-img/<?php echo $pro_img?>" width="100%">--></td>
                           <td><?php echo $pro_name?></td>
                           <td>$ <?php echo $pro_price?></td>
                           <td><?php echo $pro_quantity?></td>
@@ -258,8 +259,9 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
                 <div class="modal-footer" style="margin: auto;">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                   <a href="orders.php?del=<?php echo $order_id?>">
-                  <button type="button" class="btn btn-danger">Yes, delete it !</button>
-                  </a> </div>
+                    <button type="button" class="btn btn-danger">Yes, delete it !</button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -272,12 +274,11 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
         </div>
       </div>
     </div>
-    <!-- #/ container --> 
+    <!-- #/ container -->
   </div>
   <!--**********************************
             Content body end
-        ***********************************--> 
-  
+        ***********************************-->
   <!--**********************************
             Footer start
         ***********************************-->
@@ -288,10 +289,9 @@ if ( isset( $_GET[ 'upstatus' ] )and isset( $_SESSION[ 'usernameadmin' ] ) ) {
   </div>
   <!--**********************************
             Footer end
-        ***********************************--> 
+        ***********************************-->
 </div>
 <!--**********************************
         Main wrapper end
     ***********************************-->
-
 <!-- <?php require_once('inc/footer.php');?> -->

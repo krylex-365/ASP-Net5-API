@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product.service';
 /** product component*/
 export class ProductComponent {
     /** product ctor */
-    constructor(private prodcutService: ProductService) {
-
+    constructor() {
+      /*private prodcutService: ProductService*/
     }
 }

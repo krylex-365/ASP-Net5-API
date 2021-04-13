@@ -1,11 +1,11 @@
 export class Product {
-  ProductId: string;
+  productId: string;
   name: string;
-  Price: string;
-  Description: string;
-  Image: string;
-  Sale: string;
-  Status: string;
-  Quantity: string;
-  SubcategoryId: string
+  price: string;
+  description: string;
+  image: string;
+  sale: string;
+  status: string;
+  quantity: string;
+  subcategoryId: string
 }
