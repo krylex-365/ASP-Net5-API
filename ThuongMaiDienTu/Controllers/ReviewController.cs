@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TMDT.Data;
 using TMDT.Models;
@@ -32,66 +34,77 @@ namespace TMDT.Controllers
             return context.Reviews.Find(id);
         }
         [HttpPost]
-        public string Add(Review review)
+        public HttpResponseMessage Add(Review review)
         {
             Review review1 = context.Reviews.Find(review.ReviewId);
             if (review1 != null)
             {
-                return "Duplicate primary key";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Duplicate primary key";
             }
             Customer customer = context.Customers.Find(review.CustomerId);
             if (customer == null)
             {
-                return "CustomerId does not exist";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "CustomerId does not exist";
             }
             Product product = context.Products.Find(review.ProductId);
             if (product == null)
             {
-                return "ProductId does not exist";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "ProductId does not exist";
             }
 
             context.Reviews.Add(review);
             context.SaveChanges();
 
-            return "Added";
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return "Added";
         }
         [HttpPut]
-        public string Update(Review review)
+        public HttpResponseMessage Update(Review review)
         {
             Review review1 = context.Reviews.Find(review.ReviewId);
             if (review1 == null)
             {
-                return "Update not found";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Update not found";
             }
             Customer customer = context.Customers.Find(review.CustomerId);
             if (customer == null)
             {
-                return "CustomerId does not exist";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "CustomerId does not exist";
             }
             Product product = context.Products.Find(review.ProductId);
             if (product == null)
             {
-                return "ProductId does not exist";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "ProductId does not exist";
             }
 
             context.Entry(review1).State = EntityState.Detached;
             context.Entry(review).State = EntityState.Modified;
             context.SaveChanges();
 
-            return "Updated";
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return "Updated";
         }
         [HttpDelete("{id}")]
-        public string Delete(string id)
+        public HttpResponseMessage Delete(string id)
         {
             Review review = context.Reviews.Find(id);
             if (review == null)
             {
-                return "Delete not found";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Delete not found";
             }
 
             context.Entry(review).State = EntityState.Deleted;
             context.SaveChanges();
-            return "Deleted";
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return "Deleted";
         }
     }
 }
