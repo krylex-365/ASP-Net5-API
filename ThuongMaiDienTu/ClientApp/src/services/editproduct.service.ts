@@ -7,15 +7,11 @@ import { Product } from '../models/Product';
 @Injectable({
   providedIn: 'root',
 })
-export class AddproductService {
+export class EditproductService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
-<<<<<<< HEAD
-  getNewOrders() {
-=======
-  getNewProduct() {
->>>>>>> product
+  getEditProduct() {
     return this.http.get<Product[]>(this.url + 'api/Product');
   }
 }
