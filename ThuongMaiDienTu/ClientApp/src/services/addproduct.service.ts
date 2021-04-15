@@ -11,11 +11,7 @@ export class AddproductService {
   url = environment.url;
   constructor(private http: HttpClient) { }
 
-<<<<<<< HEAD
-  getNewOrders() {
-=======
   getNewProduct() {
->>>>>>> product
     return this.http.get<Product[]>(this.url + 'api/Product');
   }
 }

@@ -19,11 +19,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardService } from '../services/dashboard.service';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from '../services/product.service';
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> product
 import { OrderComponent } from './order/order.component';
 import { OrderService } from '../services/order.service';
 import { UserAccountComponent } from './user-account/user-account.component';
@@ -33,14 +28,12 @@ import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { WebFormComponent } from './web-form/web-form.component';
-<<<<<<< HEAD
-=======
 import { EditproductComponent } from './editproduct/editproduct.component';
 import { EditproductService } from '../services/editproduct.service';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { AddproductService } from '../services/addproduct.service';
->>>>>>> Stashed changes
->>>>>>> product
+
+
 
 @NgModule({
   declarations: [
@@ -54,22 +47,14 @@ import { AddproductService } from '../services/addproduct.service';
     LoginComponent,
     DashboardComponent,
     ProductComponent,
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> product
     OrderComponent,
     UserAccountComponent,
     WebFormComponent,
     CategoriesComponent,
     SubcategoriesComponent,
-<<<<<<< HEAD
-=======
     EditproductComponent,
     AddproductComponent,
->>>>>>> Stashed changes
->>>>>>> product
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -83,23 +68,15 @@ import { AddproductService } from '../services/addproduct.service';
       { path: 'account', component: AccountComponent },
       { path: 'admin/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
       { path: 'product', component: ProductComponent },
-=======
->>>>>>> product
       { path: 'products', component: ProductComponent },
       { path: 'orders', component: OrderComponent },
       { path: 'users', component: UserAccountComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'subcategories', component: SubcategoriesComponent },
-<<<<<<< HEAD
-=======
       { path: 'addproducts', component: AddproductComponent },
       { path: 'editproducts', component: EditproductComponent },
->>>>>>> Stashed changes
->>>>>>> product
+
     ]),
   ],
   providers: [
@@ -108,21 +85,13 @@ import { AddproductService } from '../services/addproduct.service';
     LoginService,
     DashboardService,
     ProductService,
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> product
     OrderService,
     CategoriesService,
     CustomerService,
     SubcategoriesService,
-<<<<<<< HEAD
-=======
     AddproductService,
     EditproductService,
->>>>>>> Stashed changes
->>>>>>> product
+
   ],
   bootstrap: [AppComponent]
 })
