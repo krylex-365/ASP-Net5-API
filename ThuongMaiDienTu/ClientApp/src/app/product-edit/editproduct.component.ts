@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Product } from '../../models/Product';
-import { AddproductService } from '../../services/addproduct.service';
+import { EditproductService } from '../../services/productedit.service';
 
 @Component({
   selector: 'app-addproduct',
-  templateUrl: './addproduct.component.html',
-  styleUrls: ['./addproduct.component.css']
+  templateUrl: './editproduct.component.html',
+  styleUrls: ['./editproduct.component.css']
 })
 /** product component*/
-export class AddproductComponent {
+export class EditproductComponent {
   /** product ctor */
   constructor() {
     /*private prodcutService: ProductService*/
