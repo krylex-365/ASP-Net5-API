@@ -28,10 +28,12 @@ import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { WebFormComponent } from './web-form/web-form.component';
-import { EditproductComponent } from './editproduct/editproduct.component';
-import { EditproductService } from '../services/editproduct.service';
-import { AddproductComponent } from './addproduct/addproduct.component';
-import { AddproductService } from '../services/addproduct.service';
+import { EditproductComponent } from './product-edit/editproduct.component';
+import { EditproductService } from '../services/productedit.service';
+import { AddproductComponent } from './product-add/addproduct.component';
+import { AddproductService } from '../services/productadd.service';
+import { AccountProfileComponent } from './account-profile/account-profile.component';
+import { AccountProfileService } from '../services/account-profile.service';
 
 
 
@@ -54,7 +56,7 @@ import { AddproductService } from '../services/addproduct.service';
     SubcategoriesComponent,
     EditproductComponent,
     AddproductComponent,
-
+    AccountProfileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,7 +78,7 @@ import { AddproductService } from '../services/addproduct.service';
       { path: 'subcategories', component: SubcategoriesComponent },
       { path: 'addproducts', component: AddproductComponent },
       { path: 'editproducts', component: EditproductComponent },
-
+      { path: 'accountprofile', component: AccountProfileComponent },
     ]),
   ],
   providers: [
@@ -91,7 +93,7 @@ import { AddproductService } from '../services/addproduct.service';
     SubcategoriesService,
     AddproductService,
     EditproductService,
-
+    AccountProfileService,
   ],
   bootstrap: [AppComponent]
 })
