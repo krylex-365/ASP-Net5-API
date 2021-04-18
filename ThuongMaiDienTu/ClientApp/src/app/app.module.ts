@@ -28,11 +28,17 @@ import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { WebFormComponent } from './web-form/web-form.component';
-
+import { EditproductComponent } from './product-edit/editproduct.component';
+import { EditproductService } from '../services/productedit.service';
+import { AddproductComponent } from './product-add/addproduct.component';
+import { AddproductService } from '../services/productadd.service';
+import { AccountProfileComponent } from './account-profile/account-profile.component';
+import { AccountProfileService } from '../services/account-profile.service';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserAddService } from '../services/user-add.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserEditService } from '../services/user-edit.service';
+
 
 
 
@@ -52,7 +58,10 @@ import { UserEditService } from '../services/user-edit.service';
     UserAccountComponent,
     WebFormComponent,
     CategoriesComponent,
-    SubcategoriesComponent,    
+    SubcategoriesComponent,
+    EditproductComponent,
+    AddproductComponent,
+    AccountProfileComponent,
     UserAddComponent,
     UserEditComponent,
 
@@ -74,7 +83,10 @@ import { UserEditService } from '../services/user-edit.service';
       { path: 'orders', component: OrderComponent },
       { path: 'users', component: UserAccountComponent },
       { path: 'categories', component: CategoriesComponent },
-      { path: 'subcategories', component: SubcategoriesComponent },     
+      { path: 'subcategories', component: SubcategoriesComponent },
+      { path: 'addproducts', component: AddproductComponent },
+      { path: 'editproducts', component: EditproductComponent },
+      { path: 'accountprofile', component: AccountProfileComponent },
       { path: 'user-adds', component: UserAddComponent },
       { path: 'user-edits', component: UserEditComponent },
 
@@ -89,9 +101,13 @@ import { UserEditService } from '../services/user-edit.service';
     OrderService,
     CategoriesService,
     CustomerService,
-    SubcategoriesService,    
+    SubcategoriesService,
+    AddproductService,
+    EditproductService,
+    AccountProfileService,
     UserAddService,
     UserEditService,
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,156 @@
+<!-- <?php require_once('inc/top.php');?>
+<title>Edit Product</title>
+</head>
+
+<body>
+<?php require_once('inc/preload.php');?> -->
+
+<!--**********************************
+        Main wrapper start
+    ***********************************-->
+<div id="main-wrapper">
+    <app-web-form></app-web-form>
+  <!-- <?php require_once('inc/web-form.php');?> -->
+  
+  <!--**********************************
+            Content body start
+        ***********************************-->
+  <div class="content-body">
+    <div class="row page-titles mx-0">
+      <div class="col p-md-0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+          <li class="breadcrumb-item active"><a href="./products.php">Products</a></li>
+          <li class="breadcrumb-item active">Edit Product</li>
+        </ol>
+      </div>
+    </div>
+    <!-- row -->
+    
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h3>Edit Product</h3>
+              </div>
+               <!-- <?php
+					$id = $_GET['id'];
+                    $query = "select * from `product` where pid ='$id'";
+                    $run = mysqli_query( $conn, $query );
+                    if ( mysqli_num_rows( $run ) > 0 ) {
+                      while ( $row = mysqli_fetch_array( $run ) ) {
+                        $pro_id = $row[ 'pid' ];
+                        $pro_name = $row[ 'pname' ];
+                        $pro_price = $row[ 'price' ];
+						$pro_sale = $row[ 'sale' ];
+						$pro_newprice = $row[ 'new_price' ];
+                        $pro_subcate = $row[ 'subcate_id' ];
+                        $pro_des = $row[ 'descr' ];
+                        $pro_image = $row[ 'img' ];
+						
+                        ?> -->
+                    
+                        <form action="./inc/process.php?edit_product=<?php echo $pro_id?>" method="POST" enctype="multipart/form-data">
+                        
+                        	<div class="form-group">
+                        		<label for="category">Product Name:*</label>
+                                	<input type="hidden" value="<?php echo $pro_id?>" class="form-control" name="e-pro-id" required>
+                                	<input type="text" value="<?php echo $pro_name?>" class="form-control" name="e-pro-name" required>
+                            </div>
+                            <div class="form-group">
+                        		<label for="category">Price:*</label>
+                                	
+                                	<input type="text" value="<?php echo $pro_price?>" class="form-control" name="e-pro-price" required>
+                            </div>
+                            <div class="form-group">
+                        		<label for="category">Sale:*</label>
+                                	<input type="number" value="<?php echo $pro_sale?>" class="form-control" name="e-pro-sale" min="0" max="100" required>
+                            </div>
+                            <div class="form-group">
+                        		<label for="category">Subcate:*</label>
+									<div class="box">
+                                		<select name="e-pro-subcate">
+                                            <!-- <?php
+                                            $querysub = "select * from subcategory order by subcate_id asc";
+                                            $runsub = mysqli_query($conn, $querysub);
+                                            if (mysqli_num_rows($runsub) > 0) {
+                                                while ($rowsub = mysqli_fetch_array($runsub)) {
+                                                    $subcat_id = $rowsub['subcate_id'];
+                                                    $subcat_name = $rowsub['subcate_name'];
+													$selected = "";
+													if($subcat_id == $pro_subcate)
+													{
+														$selected = "selected";
+													}
+                                                    ?>
+                                                    <option <?php echo $selected; ?> value="<?php echo $subcat_id ?>"><?php echo $subcat_id ?>. <?php echo $subcat_name ?></option>
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo "No Sub-Categories Found";
+                                            }
+                                            ?> -->
+                                        </select>
+									</div>
+                            </div>
+                            <div class="form-group">
+                        		<label for="category">Description:*</label>
+                                	<input type="text" value="<?php echo $pro_des?>" class="form-control" name="e-pro-des" required>
+                            </div>
+                             <div class="form-group">
+                        		<label for="category">Product Image:*</label>
+								 <!-- <?php
+								 if($pro_image!=""){
+								 ?>
+								 	<div name="old" value="<?php $pro_image?>" style="margin-bottom: 15px;"><img src="product-img/<?php echo $pro_image?>" width="300px"></div>
+								 <?php
+								 }
+						  else{
+							  echo "No Product Image Found";
+						  }
+								 ?> -->
+					<label>If you want change product image. Choose new image here:</label>
+                                	<input type="file" class="form-control" name="image" value="e:xampp/htdocs/product-img/<?php echo $pro_image; ?>" >
+                            </div>
+                            <div class="form-group">
+                        		<input type="submit" value="Edit Product" name="edit-product" class="btn btn-primary">
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <?php
+                  }
+                  } else {
+                    echo "No Product Found";
+                  }
+                  ?> -->
+                    
+              
+              </div>
+            </div>
+          </div>
+	
+  <!--**********************************
+            Content body end
+        ***********************************--> 
+  
+  <!--**********************************
+            Footer start
+        ***********************************-->
+  <div class="footer">
+    <div class="copyright">
+      <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+    </div>
+  </div>
+  <!--**********************************
+            Footer end
+        ***********************************--> 
+</div>
+<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+<!-- <?php require_once('inc/footer.php');?> -->

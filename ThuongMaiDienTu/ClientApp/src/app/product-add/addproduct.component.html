@@ -1,0 +1,116 @@
+
+	<!--<?php require_once('inc/top.php');?>
+<title>Add Product</title>
+
+</head>
+
+<body>-->
+  <!--<?php require_once('inc/preload.php');?>-->
+
+  <!--**********************************
+          Main wrapper start
+      ***********************************-->
+  <div id="main-wrapper">
+    <!--<?php require_once('inc/web-form.php');?>-->
+
+    <!--**********************************
+              Content body start
+          ***********************************-->
+    <app-web-form></app-web-form>
+    <div class="content-body">
+      <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="./products.php">Products</a></li>
+            <li class="breadcrumb-item active">Add Product</li>
+          </ol>
+        </div>
+      </div>
+      <!-- row -->
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h3>Add Product</h3>
+                </div>
+                <form action="./inc/process.php" method="POST" enctype="multipart/form-data">
+
+                  <div class="form-group">
+                    <label for="category">Product Name:*</label>
+                    <input type="text" class="form-control" name="add-pro-names" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Price:*</label>
+                    <input type="text" class="form-control" name="add-pro-price" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Sale:*</label>
+                    <input type="number" class="form-control" name="add-pro-sale" min="0" max="100" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Subcate:*</label>
+                    <div class="box">
+                      <select name="add-pro-subcate">
+                        <!--<?php
+                        $querysub = "select * from subcategory order by subcate_id asc";
+                        $runsub = mysqli_query($conn, $querysub);
+                        if (mysqli_num_rows($runsub) > 0) {
+                        while ($rowsub = mysqli_fetch_array($runsub)) {
+                        $subcat_id = $rowsub['subcate_id'];
+                        $subcat_name = $rowsub['subcate_name'];
+                        ?>-->
+                        <option value="<?php echo $subcat_id ?>"><?php echo $subcat_id ?>. <?php echo $subcat_name ?></option>
+                        <!--<?php
+                        }
+                        } else {
+                        echo "No Sub-Categories Found";
+                        }
+                        ?>-->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Description:*</label>
+                    <input type="text" class="form-control" name="add-pro-des" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="category">Image:*</label>
+                    <input type="file" class="form-control" name="image" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Add Product" name="add-product1" class="btn btn-primary">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  
+  <!--**********************************
+            Content body end
+        ***********************************-->
+  <!--**********************************
+            Footer start
+        ***********************************-->
+  <div class="footer">
+    <div class="copyright">
+      <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+    </div>
+  </div>
+  <!--**********************************
+            Footer end
+        ***********************************-->
+  </div>
+  <!--**********************************
+          Main wrapper end
+      ***********************************-->
+  <!--?php require_once('inc/footer.php');?>-->
