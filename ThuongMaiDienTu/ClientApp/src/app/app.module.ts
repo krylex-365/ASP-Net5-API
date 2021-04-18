@@ -34,6 +34,11 @@ import { AddproductComponent } from './product-add/addproduct.component';
 import { AddproductService } from '../services/productadd.service';
 import { AccountProfileComponent } from './account-profile/account-profile.component';
 import { AccountProfileService } from '../services/account-profile.service';
+import { UserAddComponent } from './user-add/user-add.component';
+import { UserAddService } from '../services/user-add.service';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditService } from '../services/user-edit.service';
+
 
 
 
@@ -57,6 +62,9 @@ import { AccountProfileService } from '../services/account-profile.service';
     EditproductComponent,
     AddproductComponent,
     AccountProfileComponent,
+    UserAddComponent,
+    UserEditComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -79,6 +87,9 @@ import { AccountProfileService } from '../services/account-profile.service';
       { path: 'addproducts', component: AddproductComponent },
       { path: 'editproducts', component: EditproductComponent },
       { path: 'accountprofile', component: AccountProfileComponent },
+      { path: 'user-adds', component: UserAddComponent },
+      { path: 'user-edits', component: UserEditComponent },
+
     ]),
   ],
   providers: [
@@ -94,6 +105,9 @@ import { AccountProfileService } from '../services/account-profile.service';
     AddproductService,
     EditproductService,
     AccountProfileService,
+    UserAddService,
+    UserEditService,
+
   ],
   bootstrap: [AppComponent]
 })

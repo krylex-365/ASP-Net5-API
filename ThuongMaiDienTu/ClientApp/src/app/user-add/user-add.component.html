@@ -1,0 +1,113 @@
+<!--<?php require_once('inc/top.php');?>-->
+<!--<head>
+<title>User Register</title>
+</head>-->
+
+
+  <!--<?php require_once('inc/preload.php');?>-->
+  <!--**********************************
+          Main wrapper start
+      ***********************************-->
+  <div id="main-wrapper">
+   <!-- <?php require_once('inc/web-form.php');?>-->
+
+    <!--**********************************
+              Content body start
+          ***********************************-->
+    <div class="content-body">
+      <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="./sub-user.php">User</a></li>
+            <li class="breadcrumb-item active">Register User</li>
+          </ol>
+        </div>
+      </div>
+      <!-- row -->
+
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h3>Add New Customer</h3>
+                </div>
+                <div class="form-validation">
+                  <form class="form-valide" action="inc/process.php" method="post">
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-yourname">Full Name <span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="text" class="form-control" id="val-yourname" name="yourname" placeholder="Enter full name.." required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="text" class="form-control" id="val-username" name="username" placeholder="Enter a username.." required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email.." required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="password" class="form-control" id="val-password" name="password" placeholder="Choose a safe one.." required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-phoneus">Phone Number<span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="text" class="form-control" id="val-phoneus" name="phone" placeholder="212-999-0000" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-4 col-form-label" for="val-address">Address <span class="text-danger">*</span> </label>
+                      <div class="col-lg-6">
+                        <input type="text" class="form-control" id="val-address" name="address" placeholder="Enter your adress." required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-lg-8 ml-auto">
+                        <button type="submit" class="btn btn-primary" name="add-user" value="Add user">Add User</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #/ container -->
+    </div>
+    <!--**********************************
+              Content body end
+          ***********************************-->
+    <!--**********************************
+              Footer start
+          ***********************************-->
+    <div class="footer">
+      <div class="copyright">
+        <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+      </div>
+    </div>
+    <!--**********************************
+              Footer end
+          ***********************************-->
+  </div>
+  <!--**********************************
+          Main wrapper end
+      ***********************************-->
+  <!--<?php require_once('inc/footer.php');?>-->

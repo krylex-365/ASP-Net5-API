@@ -55,7 +55,7 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
             <div class="card-title">
               <h3>Users</h3>
             </div>
-            <a href="user-register.php">
+            <a href="./user-adds">
               <button style="margin-bottom: 20px" class='btn btn-primary'><span style="margin-right: 10px">Add User</span><i class="fa fa-plus"></i></button>
             </a>
             <div class="table-responsive">
@@ -122,7 +122,7 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
                     </script>-->
                     <td><span class="label gradient-5 rounded"><?php echo $user_permission?></span></td>
                     <td>
-                      <a href="<?php echo 'user-edit.php?edit=$user_id';?>">
+                      <a href="./user-edits">
                         <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
                       </a>
                     </td>
