@@ -28,10 +28,7 @@ import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { WebFormComponent } from './web-form/web-form.component';
-import { EditproductComponent } from './editproduct/editproduct.component';
-import { EditproductService } from '../services/editproduct.service';
-import { AddproductComponent } from './addproduct/addproduct.component';
-import { AddproductService } from '../services/addproduct.service';
+
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserAddService } from '../services/user-add.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
@@ -55,9 +52,7 @@ import { UserEditService } from '../services/user-edit.service';
     UserAccountComponent,
     WebFormComponent,
     CategoriesComponent,
-    SubcategoriesComponent,
-    EditproductComponent,
-    AddproductComponent,
+    SubcategoriesComponent,    
     UserAddComponent,
     UserEditComponent,
 
@@ -79,9 +74,7 @@ import { UserEditService } from '../services/user-edit.service';
       { path: 'orders', component: OrderComponent },
       { path: 'users', component: UserAccountComponent },
       { path: 'categories', component: CategoriesComponent },
-      { path: 'subcategories', component: SubcategoriesComponent },
-      { path: 'addproducts', component: AddproductComponent },
-      { path: 'editproducts', component: EditproductComponent },
+      { path: 'subcategories', component: SubcategoriesComponent },     
       { path: 'user-adds', component: UserAddComponent },
       { path: 'user-edits', component: UserEditComponent },
 
@@ -96,9 +89,7 @@ import { UserEditService } from '../services/user-edit.service';
     OrderService,
     CategoriesService,
     CustomerService,
-    SubcategoriesService,
-    AddproductService,
-    EditproductService,
+    SubcategoriesService,    
     UserAddService,
     UserEditService,
   ],
