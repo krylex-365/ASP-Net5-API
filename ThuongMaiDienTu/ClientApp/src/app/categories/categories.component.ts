@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   categories: Array<Categories>;
   category: Categories;
   categoryUp: Categories; // Dung cho update
+  categoryDel: Categories;
 
   constructor(private categoriesSevice: CategoriesService,
     private router: Router,
@@ -27,6 +28,14 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
+  getCategoryDel(id: string) {
+    this.categories.forEach(cate => {
+      if (cate.categoryId == id) {
+        this.categoryDel = cate;
+      }
+    })
+  }
+
   getCategoryById(id: string) {
     this.categories.forEach(cate => {
       if (cate.categoryId == id) {
@@ -34,6 +43,10 @@ export class CategoriesComponent implements OnInit {
         this.categoryUp = cate;
       }
     })
+  }
+
+  setCategoryUpNull() {
+    this.categoryUp = null;
   }
 
   update(id: string, value: Categories) {

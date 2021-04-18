@@ -52,6 +52,7 @@
                   <input type="text" placeholder="Edit Category Name" class="form-control" name="name" [(ngModel)]="name" value="{{categoryUp.name}}" required>
                 </div>
                 <input type="submit" value="Edit Category" name="edit-category" class="btn btn-primary">
+                <button type="button" class="btn btn-danger" style="float: right;" (click)="setCategoryUpNull()">Cancel</button>
               </form>
             </div>
           </div>
@@ -63,7 +64,7 @@
                 <h3>Categories</h3>
               </div>
               <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover">
+                <table id="DataTable" class="table table-bordered table-striped table-hover zero-configuration">
                   <thead>
                     <tr>
                       <th>Categories ID</th>
@@ -76,8 +77,8 @@
                     <tr *ngFor="let category of categories">
                       <td>{{category.categoryId}}</td>
                       <td>{{category.name}}</td>
-                      <td><a (click)="getCategoryById(category.categoryId)"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                      <td><button type="button" class="btn btn-primary" (click)="delete(category.categoryId)" data-toggle="modal" data-target="#exampleModal<?php echo $cat_id?>"><i class="fa fa-close"></i></button></td>
+                      <td><button type="button" class="btn btn-primary" (click)="getCategoryById(category.categoryId)"><i class="fa fa-pencil"></i></button></td>
+                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getCategoryDel(category.categoryId)"><i class="fa fa-close"></i></button></td>
                     </tr>
                     <!--<?php
                     }
@@ -88,15 +89,15 @@
                     ?>-->
                   </tbody>
                 </table>
-                <div class="modal fade" id="exampleModal<?php echo $cat_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div *ngIf="categoryDel" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLabel<?php echo $cat_id?>" style="margin: auto;text-align: center;">Are you sure to delete<br> Category <?php echo $cat_id?>. <?php echo $cat_name?> ?</h3>
+                        <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Are you sure to delete<br> Category {{categoryDel.categoryId}}. {{categoryDel.name}}?</h3>
                       </div>
                       <div class="modal-footer" style="margin: auto;">
+                        <button type="button" class="btn btn-danger" (click)="delete(categoryDel.categoryId)">Yes, delete it !</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        <a href="categories.php?del=<?php echo $cat_id?>"><button type="button" class="btn btn-danger">Yes, delete it !</button></a>
                       </div>
                     </div>
                   </div>
