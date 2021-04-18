@@ -32,6 +32,10 @@ import { EditproductComponent } from './editproduct/editproduct.component';
 import { EditproductService } from '../services/editproduct.service';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { AddproductService } from '../services/addproduct.service';
+import { UserAddComponent } from './user-add/user-add.component';
+import { UserAddService } from '../services/user-add.service';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditService } from '../services/user-edit.service';
 
 
 
@@ -54,6 +58,8 @@ import { AddproductService } from '../services/addproduct.service';
     SubcategoriesComponent,
     EditproductComponent,
     AddproductComponent,
+    UserAddComponent,
+    UserEditComponent,
 
   ],
   imports: [
@@ -76,6 +82,8 @@ import { AddproductService } from '../services/addproduct.service';
       { path: 'subcategories', component: SubcategoriesComponent },
       { path: 'addproducts', component: AddproductComponent },
       { path: 'editproducts', component: EditproductComponent },
+      { path: 'user-add', component: UserAddComponent },
+      { path: 'user-edit', component: UserEditComponent },
 
     ]),
   ],
@@ -91,7 +99,8 @@ import { AddproductService } from '../services/addproduct.service';
     SubcategoriesService,
     AddproductService,
     EditproductService,
-
+    UserAddService,
+    UserEditService,
   ],
   bootstrap: [AppComponent]
 })
