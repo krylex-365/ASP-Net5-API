@@ -82,8 +82,8 @@ import { UserEditService } from '../services/user-edit.service';
       { path: 'subcategories', component: SubcategoriesComponent },
       { path: 'addproducts', component: AddproductComponent },
       { path: 'editproducts', component: EditproductComponent },
-      { path: 'user-add', component: UserAddComponent },
-      { path: 'user-edit', component: UserEditComponent },
+      { path: 'user-adds', component: UserAddComponent },
+      { path: 'user-edits', component: UserEditComponent },
 
     ]),
   ],
