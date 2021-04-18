@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Customer } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
 import { Account } from '../../models/account';
-import { AccountService } from '../../services/account.service';
+import { UserEditService } from '../../services/user-edit.service';
 
 @Component({
     selector: 'app-user-edit',
