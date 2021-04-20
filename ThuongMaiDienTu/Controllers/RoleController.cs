@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using TMDT.Data;
 using TMDT.Models;
 
@@ -31,52 +33,60 @@ namespace TMDT.Controllers
             return context.Roles.Find(id);
         }
         [HttpPost]
-        public ObjectResult Add(Role role)
+        public HttpResponseMessage Add(Role role)
         {
             Role role1 = context.Roles.Find(role.RoleId);
             if (role1 != null)
             {
-                return Problem("Duplicate primary key", null, 400, "Role", "Add");
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return Problem("Duplicate primary key", null, 400, "Role", "Add");
                 /*return "Duplicate primary key";*/
             }
 
             context.Roles.Add(role);
             context.SaveChanges();
 
-            return Ok("Added");
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return Ok("Added");
             /*return "Added";*/
         }
         [HttpPut]
-        public string Update(Role role)
+        public HttpResponseMessage Update(Role role)
         {
             Role role1 = context.Roles.Find(role.RoleId);
             if (role1 == null)
             {
-                return "Update not found";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Update not found";
             }
 
             context.Entry(role1).State = EntityState.Detached;
             context.Entry(role).State = EntityState.Modified;
             context.SaveChanges();
 
-            return "Updated";
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return "Updated";
         }
         [HttpDelete("{id}")]
-        public string Delete(string id)
+        public HttpResponseMessage Delete(string id)
         {
             Role role1 = context.Roles.Find(id);
             if(role1 == null)
             {
-                return "Delete not found";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Delete not found";
             }
             Account account = context.Accounts.ToList().Find(x => x.RoleId == id);
             if (account != null)
             {
-                return "Delete foreign key first";
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Delete foreign key first";
             }
             context.Entry(role1).State = EntityState.Deleted;
             context.SaveChanges();
-            return "Deleted";
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return "Deleted";
         }
     }
 }

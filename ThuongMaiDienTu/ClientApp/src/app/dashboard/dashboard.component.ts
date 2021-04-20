@@ -11,6 +11,7 @@ import { DashboardService } from '../../services/dashboard.service';
 export class DashboardComponent implements OnInit{
   /** dashboard ctor */
   dashboards: Array<Dashboard>;
+  reload: boolean;
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit{
       });
   }
 
-  reload() {
-    this.ngOnInit()
+  refresh(): void {
+    window.location.reload();
   }
 }

@@ -54,5 +54,9 @@ export class LoginComponent {
   redirectUser() {
     this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'account');
   }
+
+  refresh(): void {
+    window.location.reload();
+  }
       
 }

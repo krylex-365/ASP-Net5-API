@@ -1,4 +1,5 @@
 export class Categories {
-  categoriesId: string;
+  categoryId: string;
   name: string;
+  subcategory: object;
 }
