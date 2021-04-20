@@ -46,10 +46,10 @@
               <div class="card-title">
                 <h4>Edit Category</h4>
               </div>
-              <form #categoryUpdate="ngForm" (ngSubmit)="update(categoryUp.categoryId, categoryUpdate.value)">
+              <form #categoryUpdate="ngForm" (ngSubmit)="update(categoryUp.categoryId, categoryUpdate.value)" >
                 <div class="form-group">
                   <label for="category">Edit Category Name:*</label>
-                  <input type="text" placeholder="Edit Category Name" class="form-control" name="name" [(ngModel)]="name" value="{{categoryUp.name}}" required>
+                  <input type="text" placeholder="Edit Category Name" class="form-control" name="name" [(ngModel)]="nameUp" required>
                 </div>
                 <input type="submit" value="Edit Category" name="edit-category" class="btn btn-primary">
                 <button type="button" class="btn btn-danger" style="float: right;" (click)="setCategoryUpNull()">Cancel</button>

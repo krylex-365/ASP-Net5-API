@@ -16,6 +16,8 @@ export class CategoriesComponent implements OnInit {
   categoryUp: Categories; // Dung cho update
   categoryDel: Categories;
 
+  nameUp = '';
+
   constructor(private categoriesSevice: CategoriesService,
     private router: Router,
     private route: ActivatedRoute  ) { }
@@ -27,6 +29,8 @@ export class CategoriesComponent implements OnInit {
         console.log(this.categories);
       });
   }
+
+
 
   getCategoryDel(id: string) {
     this.categories.forEach(cate => {
@@ -41,6 +45,7 @@ export class CategoriesComponent implements OnInit {
       if (cate.categoryId == id) {
         this.category = cate;
         this.categoryUp = cate;
+        this.nameUp = cate.name;
       }
     })
   }
