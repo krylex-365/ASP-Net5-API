@@ -11,6 +11,9 @@ import { Account } from '../models/account';
 export class UserEditService {    
   url = environment.url;
   constructor(private http: HttpClient) { }
+  getCustomers() {
+    return this.http.get<Customer[]>(this.url + 'api/Customer');
+  }
   getAccounts() {
     return this.http.get<Account[]>(this.url + 'api/Edituser');
   }
