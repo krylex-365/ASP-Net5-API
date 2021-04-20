@@ -38,6 +38,7 @@ import { UserAddComponent } from './user-add/user-add.component';
 import { UserAddService } from '../services/user-add.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserEditService } from '../services/user-edit.service';
+import { IndexComponent } from './truemart/index/index.component';
 
 
 
@@ -64,6 +65,7 @@ import { UserEditService } from '../services/user-edit.service';
     AccountProfileComponent,
     UserAddComponent,
     UserEditComponent,
+    IndexComponent,
 
   ],
   imports: [
@@ -89,6 +91,7 @@ import { UserEditService } from '../services/user-edit.service';
       { path: 'profile', component: AccountProfileComponent },
       { path: 'user-adds', component: UserAddComponent },
       { path: 'user-edits', component: UserEditComponent },
+      { path: 'index', component: IndexComponent },
 
     ]),
   ],
