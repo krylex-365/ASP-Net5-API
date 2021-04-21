@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../../models/account';
 import { Dashboard } from '../../models/Dashboard';
 import { LoginService } from '../../services/login.service';
+import { ReloadService } from '../../services/reload.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent {
 
   constructor(private loginService: LoginService,
     private router: Router,
-    private route: ActivatedRoute  ) { }
+    private route: ActivatedRoute,
+    private reload: ReloadService  ) { }
 
   ngOnInit() {
   }
@@ -48,15 +50,16 @@ export class LoginComponent {
   }
 
   redirectAdmin() {
+    this.reload.reload = "1";
     this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'dashboard');
   }
 
   redirectUser() {
+    this.reload.reload = "1";
     this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'account');
   }
 
   refresh(): void {
     window.location.reload();
   }
-      
 }

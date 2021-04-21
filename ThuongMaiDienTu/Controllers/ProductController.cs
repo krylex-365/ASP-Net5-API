@@ -26,28 +26,42 @@ namespace TMDT.Controllers
         [HttpGet]
         public List<Product> GetList()
         {
-            return context.Products.ToList();
+            List<Product> products = context.Products.ToList().FindAll(pro => pro.Status != "-1");
+            return products;
         }
         [HttpGet("{id}")]
         public Product GetById(string id)
         {
-            return context.Products.Find(id);
+            Product product = context.Products.Find(id);
+            if(product != null && product.Status != "-1")
+            {
+                return product;
+            }
+            return null;
         }
         [HttpPost]
         public HttpResponseMessage Add(Product product)
         {
-            Product product1 = context.Products.Find(product.ProductId);
-            if (product1 != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Duplicate primary key";
-            }
+            
             Subcategory subcategory = context.Subcategories.Find(product.SubcategoryId);
             if (subcategory == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "SubcategoryId does not exist";
             }
+
+            //Tu dong tao khoa chinh
+            List<Product> products = context.Products.ToList();
+            string key = "0";
+            foreach (Product product2 in products)
+            {
+                if (int.Parse(product2.ProductId) > int.Parse(key))
+                {
+                    key = product2.ProductId;
+                }
+            }
+            key = "" + (int.Parse(key) + 1);
+            product.ProductId = key;
 
             context.Products.Add(product);
             context.SaveChanges();
@@ -87,19 +101,11 @@ namespace TMDT.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "Delete not found";
             }
-            Review review = context.Reviews.ToList().Find(x => x.ProductId == id);
-            if (review != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Delete foreign key first (Review)";
-            }
-            OrderDetail orderDetail = context.OrderDetails.ToList().Find(x => x.ProductId == id);
-            if (orderDetail != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Delete foreign key first (OrderDetail)";
-            }
+
+            product.Status = "-1";
+
             context.Entry(product).State = EntityState.Deleted;
+            context.Entry(product).State = EntityState.Modified;
             context.SaveChanges();
 
             return new HttpResponseMessage(HttpStatusCode.OK);

@@ -7,4 +7,4 @@ var Subcategories = /** @class */ (function () {
     return Subcategories;
 }());
 exports.Subcategories = Subcategories;
-//# sourceMappingURL=subcategories.js.map
+//# sourceMappingURL=Subcategories.js.map

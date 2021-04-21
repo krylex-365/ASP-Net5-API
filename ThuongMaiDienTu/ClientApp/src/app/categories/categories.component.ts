@@ -30,8 +30,6 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
-
-
   getCategoryDel(id: string) {
     this.categories.forEach(cate => {
       if (cate.categoryId == id) {

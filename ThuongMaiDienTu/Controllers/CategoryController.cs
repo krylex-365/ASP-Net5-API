@@ -26,12 +26,18 @@ namespace TMDT.Controllers
         [HttpGet]
         public List<Category> GetList()
         {
-            return context.Categories.ToList();
+            List<Category> categories = context.Categories.ToList().FindAll(cat => cat.Status != "-1");
+            return categories;
         }
         [HttpGet("{id}")]
         public Category GetById(string id)
         {
-            return context.Categories.Find(id);
+            Category category = context.Categories.Find(id);
+            if(category != null && category.Status != "-1")
+            {
+                return category;
+            }
+            return null;
         }
         [HttpPost]
         public HttpResponseMessage Add(Category category)
@@ -78,13 +84,19 @@ namespace TMDT.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
-            Subcategory subcategory = context.Subcategories.ToList().Find(x => x.CategoryId == id);
-            if(subcategory != null)
+            List<Subcategory> subcategorys = context.Subcategories.ToList().FindAll(sub => sub.CategoryId == category.CategoryId);
+            foreach(Subcategory subcategory in subcategorys)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                if (subcategory.Status != "-1")
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
             }
-            
+
+            category.Status = "-1";
+
             context.Entry(category).State = EntityState.Deleted;
+            context.Entry(category).State = EntityState.Modified;
             context.SaveChanges();
             return new HttpResponseMessage(HttpStatusCode.OK);
         }

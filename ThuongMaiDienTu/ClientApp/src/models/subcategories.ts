@@ -1,6 +1,7 @@
 export class Subcategories {
-  subcategoriesId: string;
+  subcategoryId: string;
   name: string;
   categoryId: string;
+  status: string;
   product: object;
 }

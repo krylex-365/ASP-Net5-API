@@ -26,12 +26,18 @@ namespace TMDT.Controllers
         [HttpGet]
         public List<Customer> GetList()
         {
-            return context.Customers.ToList();
+            List<Customer> customers = context.Customers.ToList().FindAll(cus => cus.Status != "-1");
+            return customers;
         }
         [HttpGet("{id}")]
         public Customer GetById(string id)
         {
-            return context.Customers.Find(id);
+            Customer customer = context.Customers.Find(id);
+            if(customer != null && customer.Status != "-1")
+            {
+                return customer;
+            }
+            return null;
         }
         [HttpPost]
         public HttpResponseMessage Add(Customer customer)
@@ -87,19 +93,20 @@ namespace TMDT.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "Delete not found";
             }
-            Review review = context.Reviews.ToList().Find(x => x.CustomerId == id);
-            if (review != null)
+
+            Account account = context.Accounts.Find(customer.AccountId);
+
+            if (account != null)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Delete foreign key first (Review)";
+                account.Status = "-1";
+                context.Entry(account).State = EntityState.Deleted;
+                context.Entry(account).State = EntityState.Modified;
             }
-            Order order = context.Orders.ToList().Find(x => x.CustomerId == id);
-            if (order != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Delete foreign key first (Order)";
-            }
+
+            customer.Status = "-1";
             context.Entry(customer).State = EntityState.Deleted;
+            context.Entry(customer).State = EntityState.Modified;
+
             context.SaveChanges();
 
             return new HttpResponseMessage(HttpStatusCode.OK);

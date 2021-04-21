@@ -37,7 +37,8 @@ namespace TMDT.Data
                     UserName = "admin",
                     Password = "123",
                     Avatar = "default.jpg",
-                    RoleId = "1"
+                    RoleId = "1",
+                    Status = "0",
                 },
                 new Account
                 {
@@ -45,7 +46,8 @@ namespace TMDT.Data
                     UserName = "user",
                     Password = "123",
                     Avatar = "default.jpg",
-                    RoleId = "2"
+                    RoleId = "2",
+                    Status = "0",
                 }
             });
 
@@ -60,7 +62,8 @@ namespace TMDT.Data
                     Address = "000/aaa",
                     Birthday = new DateTime(2000,1,1),
                     Sex = "Nam",
-                    AccountId = "1"
+                    AccountId = "1",
+                    Status = "0",
                 }
             });
 
@@ -82,17 +85,20 @@ namespace TMDT.Data
                 new Category
                 {
                     CategoryId = "1",
-                    Name = "Clothes"
+                    Name = "Clothes",
+                    Status = "0",
                 },
                 new Category
                 {
                     CategoryId = "2",
-                    Name = "Ruby"
+                    Name = "Ruby",
+                    Status = "0",
                 },
                 new Category
                 {
                     CategoryId = "3",
-                    Name = "Toys"
+                    Name = "Toys",
+                    Status = "0",
                 }
             });
 
@@ -102,13 +108,15 @@ namespace TMDT.Data
                 {
                     SubcategoryId = "1",
                     Name = "Toys 1",
-                    CategoryId = "3"
+                    CategoryId = "3",
+                    Status = "0",
                 },
                 new Subcategory
                 {
                     SubcategoryId = "4",
                     Name = "Man Clothes 1",
-                    CategoryId = "1"
+                    CategoryId = "1",
+                    Status = "0",
                 }
             });
 

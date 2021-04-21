@@ -26,7 +26,6 @@ import { CustomerService } from '../services/customer.service';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
-import { SubcategoriesService } from '../services/subcategories.service';
 import { WebFormComponent } from './web-form/web-form.component';
 import { EditproductComponent } from './product-edit/editproduct.component';
 import { EditproductService } from '../services/productedit.service';
@@ -39,6 +38,8 @@ import { UserAddService } from '../services/user-add.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserEditService } from '../services/user-edit.service';
 import { IndexComponent } from './truemart/index/index.component';
+import { SubcategoriesService } from '../services/subcategories.service';
+import { ReloadService } from '../services/reload.service';
 
 
 
@@ -80,14 +81,14 @@ import { IndexComponent } from './truemart/index/index.component';
       { path: 'account', component: AccountComponent },
       { path: 'admin/login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'product', component: ProductComponent },
       { path: 'products', component: ProductComponent },
+      { path: 'product', component: ProductComponent },
       { path: 'orders', component: OrderComponent },
       { path: 'users', component: UserAccountComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'subcategories', component: SubcategoriesComponent },
-      { path: 'addproducts', component: AddproductComponent },
-      { path: 'editproducts', component: EditproductComponent },
+      { path: 'addproduct', component: AddproductComponent },
+      { path: 'editproduct/:id', component: EditproductComponent },
       { path: 'profile', component: AccountProfileComponent },
       { path: 'user-adds', component: UserAddComponent },
       { path: 'user-edits', component: UserEditComponent },
@@ -101,16 +102,16 @@ import { IndexComponent } from './truemart/index/index.component';
     LoginService,
     DashboardService,
     ProductService,
+    SubcategoriesService,
     OrderService,
     CategoriesService,
     CustomerService,
-    SubcategoriesService,
     AddproductService,
     EditproductService,
     AccountProfileService,
     UserAddService,
     UserEditService,
-
+    ReloadService,
   ],
   bootstrap: [AppComponent]
 })

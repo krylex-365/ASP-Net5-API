@@ -26,12 +26,18 @@ namespace TMDT.Controllers
         [HttpGet]
         public List<Subcategory> GetList()
         {
-            return context.Subcategories.ToList();
+            List<Subcategory> subcategories = context.Subcategories.ToList().FindAll(sub => sub.Status != "-1");
+            return subcategories;
         }
         [HttpGet("{id}")]
         public Subcategory GetById(string id)
         {
-            return context.Subcategories.Find(id);
+            Subcategory subcategory = context.Subcategories.Find(id);
+            if(subcategory != null && subcategory.Status != "-1")
+            {
+                return subcategory;
+            }
+            return null;
         }
         [HttpPost]
         public HttpResponseMessage Add(Subcategory subcategory)
@@ -87,14 +93,20 @@ namespace TMDT.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "Delete not found";
             }
-            Product product = context.Products.ToList().Find(x => x.SubcategoryId == id);
-            if (product != null)
+
+            List<Product> products = context.Products.ToList().FindAll(pro => pro.SubcategoryId == subcategory.SubcategoryId);
+            foreach (Product product in products)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Delete foreign key first (Product)";
+                if (product.Status != "-1")
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
             }
 
+            subcategory.Status = "-1";
+
             context.Entry(subcategory).State = EntityState.Deleted;
+            context.Entry(subcategory).State = EntityState.Modified;
             context.SaveChanges();
 
             return new HttpResponseMessage(HttpStatusCode.OK);

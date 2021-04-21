@@ -34,7 +34,7 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
     <div class="row page-titles mx-0">
       <div class="col p-md-0">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
           <li class="breadcrumb-item active">Products</li>
         </ol>
       </div>
@@ -49,7 +49,7 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
               <div class="card-title">
                 <h3>Products</h3>
               </div>
-				<a href="./addproducts"><button style="margin-bottom: 20px" class='btn btn-primary'><span style="margin-right: 10px">Add Product</span><i class="fa fa-plus"></i></button></a>
+				<a href="./addproduct"><button style="margin-bottom: 20px" class='btn btn-primary'><span style="margin-right: 10px">Add Product</span><i class="fa fa-plus"></i></button></a>
               <div class="table-responsive">
                 <table id="table-order" class="table table-bordered table-striped table-hover">
                   <thead>
@@ -59,62 +59,50 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
                       <th style="width:10%">Price</th>
                       <th style="width:5%">Sale</th>
                       <th style="width:10%">New Price</th>
+                      <th style="width:5%">Quantity</th>
                       <th style="width:10%">Sub-category ID</th>
                       <th style="width:20%">Description</th>
-                      <th style="width:15%">Image</th>
+                      <th style="width:10%">Image</th>
                       <th style="width:5%">Edit</th>
                       <th style="width:5%">Delete</th>
                     </tr>
                   </thead>
                   <tbody id="table-order-body">
+                    <tr *ngFor="let product of products">
+                      <td>{{product.productId}}</td>
+                      <td>{{product.name}}</td>
+                      <td>{{product.price}}</td>
+                      <td>{{product.sale}}%</td>
+                      <td>{{1*product.price - (1*product.price*30/100)}}</td>
+                      <td>{{product.quantity}}</td>
+                      <td>{{product.subcategoryId}}</td>
+                      <td><p>{{product.description}}</p></td>
+                      <td><img src="images/products/{{product.image}}" alt="" style="width:80%" /></td>
+                      <td><a href="./editproduct/{{product.productId}}"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $pro_id?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a></td>
+                      <td><button type="button" (click)="setDelProductId(product.productId)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o"></i></button></td>
+                    </tr>
+                    <div *ngIf="delProductId" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel<?php echo $pro_id?>" style="margin: auto;">Are you sure to delete Product ID: {{delProductId}}</h3>
+                          </div>
+                          <div class="modal-footer" style="margin: auto;">
+                            <button type="button" (click)="noDelete()" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            <a>
+                              <button type="button" (click)="delete()" class="btn btn-danger">Yes, delete it !</button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <!-- <?php
-                    $query = "select * from `product` where `product`.`status_pro` = 1 order by pid asc";
-                    $run = mysqli_query( $conn, $query );
-                    if ( mysqli_num_rows( $run ) > 0 ) {
-                      while ( $row = mysqli_fetch_array( $run ) ) {
-                        $pro_id = $row[ 'pid' ];
-                        $pro_name = $row[ 'pname' ];
-                        $pro_price = $row[ 'price' ];
-						$pro_sale = $row[ 'sale' ];
-						$pro_newprice = $row[ 'new_price' ];
-                        $pro_subcate = $row[ 'subcate_id' ];
-                        $pro_des = $row[ 'descr' ];
-                        $pro_image = $row[ 'img' ];
-                        ?>  -->
-                        <tr>
-						  <td><?php echo $pro_id?></td>
-						  <td><?php echo $pro_name?></td>
-						  <td>$<?php echo $pro_price?></td>
-						  <td><?php echo $pro_sale?>%</td>
-						  <td>$<?php echo $pro_newprice?></td>
-						  <td><?php echo $pro_subcate?></td>
-						  <td><p><?php echo $pro_des?></p></td>
-						   <td><!--<img src="./product-img/<?php echo $pro_image; ?>" alt="" style="width:100%"/>--></td> 
-						  <td><a href="./editproducts"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $pro_id?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a></td>
-						  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $pro_id?>"><i class="fa fa-trash-o"></i></button></td>
-						</tr>	
-					  <div class="modal fade" id="exampleModal<?php echo $pro_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-						  <div class="modal-content">
-							<div class="modal-header">
-							  <h3 class="modal-title" id="exampleModalLabel<?php echo $pro_id?>" style="margin: auto;">Are you sure to delete Product ID: <?php echo $pro_id?> ?</h3>
-							</div>
-							<div class="modal-footer" style="margin: auto;">
-							  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-							  <a href="products.php?del=<?php echo $pro_id?>">
-							  <button type="button" class="btn btn-danger">Yes, delete it !</button>
-							  </a> 
-							</div>
-						  </div>
-						</div>
-					  </div>
-					  <!-- <?php
-					  }
-                  } else {
-                    echo "No Products Found";
-                  }
-                  ?> -->
-                    </tbody>
+  }
+        } else {
+          echo "No Products Found";
+        }
+        ?> -->
+                  </tbody>
                 </table>
               </div>
             </div>

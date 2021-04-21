@@ -26,12 +26,18 @@ namespace TMDT.Controllers
         [HttpGet]
         public List<Account> GetList()
         {
-            return context.Accounts.ToList();
+            List<Account> accounts = context.Accounts.ToList().FindAll(acc => acc.Status != "-1");
+            return accounts;
         }
         [HttpGet("{id}")]
         public Account GetById(string id)
         {
-            return context.Accounts.Find(id);
+            Account account = context.Accounts.Find(id);
+            if(account != null && account.Status != "-1")
+            {
+                return account;
+            }
+            return null;
         }
         [HttpPost]
         public HttpResponseMessage Add(Account account)

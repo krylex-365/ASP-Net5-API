@@ -17,6 +17,7 @@ namespace TMDT.Models
         public string Password { get; set; }
         [Required]
         public string Avatar { get; set; }
+        public string Status { get; set; }
 
         //Foreign key----
         [Required]

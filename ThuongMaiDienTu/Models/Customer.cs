@@ -23,6 +23,7 @@ namespace TMDT.Models
         public DateTime Birthday { get; set; }
         [Required]
         public string Sex { get; set; }
+        public string Status { get; set; }
 
         //Foreign key----
         [Required]

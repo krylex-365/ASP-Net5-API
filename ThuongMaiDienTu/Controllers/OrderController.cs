@@ -26,12 +26,18 @@ namespace TMDT.Controllers
         [HttpGet]
         public List<Order> GetList()
         {
-            return context.Orders.ToList();
+            List<Order> orders = context.Orders.ToList().FindAll(ord => ord.Status != "-1");
+            return orders;
         }
         [HttpGet("{id}")]
         public Order GetById(string id)
         {
-            return context.Orders.Find(id);
+            Order order = context.Orders.Find(id);
+            if(order != null && order.Status != "-1")
+            {
+                return order;
+            }
+            return null;        
         }
         [HttpPost]
         public HttpResponseMessage Add(Order order)
@@ -87,13 +93,11 @@ namespace TMDT.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "Delete not found";
             }
-            OrderDetail orderDetail = context.OrderDetails.ToList().Find(x => x.OrderId == id);
-            if (orderDetail != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Delete foreign key first (OrderDetail)";
-            }
+
+            order.Status = "-1";
+
             context.Entry(order).State = EntityState.Deleted;
+            context.Entry(order).State = EntityState.Modified;
             context.SaveChanges();
 
             return new HttpResponseMessage(HttpStatusCode.OK);

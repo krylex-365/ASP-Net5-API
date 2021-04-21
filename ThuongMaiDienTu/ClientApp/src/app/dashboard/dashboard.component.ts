@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dashboard } from '../../models/Dashboard';
 import { DashboardService } from '../../services/dashboard.service';
+import { ReloadService } from '../../services/reload.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,8 +12,9 @@ import { DashboardService } from '../../services/dashboard.service';
 export class DashboardComponent implements OnInit{
   /** dashboard ctor */
   dashboards: Array<Dashboard>;
-  reload: boolean;
-  constructor(private dashboardService: DashboardService) { }
+
+  constructor(private dashboardService: DashboardService,
+    private reload: ReloadService  ) { }
 
   ngOnInit() {
     this.dashboardService.getNewOrders().subscribe(
@@ -20,9 +22,6 @@ export class DashboardComponent implements OnInit{
         this.dashboards = result;
         console.log(this.dashboards);
       });
-  }
-
-  refresh(): void {
-    window.location.reload();
+    this.reload.refresh();
   }
 }

@@ -65,6 +65,7 @@
     <TypeScriptCompile Remove="ClientApp\src\services\login.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\order.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\product.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\reload.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\subcategories.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\user-account.service.ts" />
   </ItemGroup>

@@ -12,6 +12,6 @@ export class SubcategoriesService {
   constructor(private http: HttpClient) { }
 
   getSubcategories() {
-    return this.http.get<Subcategories[]>(this.url + 'api/Subcategories');
+    return this.http.get<Subcategories[]>(this.url + 'api/Subcategory');
   }
 }

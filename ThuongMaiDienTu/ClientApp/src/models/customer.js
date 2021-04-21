@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserAccount = void 0;
-var UserAccount = /** @class */ (function () {
-    function UserAccount() {
+exports.Customer = void 0;
+var Customer = /** @class */ (function () {
+    function Customer() {
     }
-    return UserAccount;
+    return Customer;
 }());
-exports.UserAccount = UserAccount;
-//# sourceMappingURL=user-account.js.map
+exports.Customer = Customer;
+//# sourceMappingURL=customer.js.map

@@ -7,6 +7,7 @@ export class Customer {
   birthday: Date;
   sex: string;
   accountId: string;
+  status: string;
   review: object;
   order: object;
 }

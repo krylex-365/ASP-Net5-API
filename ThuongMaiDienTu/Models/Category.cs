@@ -13,6 +13,7 @@ namespace TMDT.Models
         public string CategoryId { get; set; }
         [Required]
         public string Name { get; set; }
+        public string Status { get; set; }
 
         //----
         public ICollection<Subcategory> Subcategory { get; set; }

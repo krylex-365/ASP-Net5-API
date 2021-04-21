@@ -14,6 +14,7 @@ namespace TMDT.Models
         public string SubcategoryId { get; set; }
         [Required]
         public string Name { get; set; }
+        public string Status { get; set; }
 
         //Foreign key----
         [Required]
