@@ -90,8 +90,8 @@ import { ReloadService } from '../services/reload.service';
       { path: 'addproduct', component: AddproductComponent },
       { path: 'editproduct/:id', component: EditproductComponent },
       { path: 'profile', component: AccountProfileComponent },
-      { path: 'user-adds', component: UserAddComponent },
-      { path: 'user-edits', component: UserEditComponent },
+      { path: 'user-add', component: UserAddComponent },
+      { path: 'user-edit', component: UserEditComponent },
       { path: 'index', component: IndexComponent },
 
     ]),

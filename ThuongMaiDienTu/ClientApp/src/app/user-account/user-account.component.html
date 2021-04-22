@@ -43,7 +43,7 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
     <div class="row page-titles mx-0">
       <div class="col p-md-0">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
           <li class="breadcrumb-item active">Users</li>
         </ol>
       </div>
@@ -55,80 +55,136 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
             <div class="card-title">
               <h3>Users</h3>
             </div>
-            <a href="./user-adds">
+            <a href="./user-add">
               <button style="margin-bottom: 20px" class='btn btn-primary'><span style="margin-right: 10px">Add User</span><i class="fa fa-plus"></i></button>
             </a>
             <div class="table-responsive">
               <!--<?php
-              if ( isset( $error ) ) {
-              echo "<span style='color:red;font-size: 15px;'>$error</span>";
-              } else if ( isset( $success ) ) {
-              echo "<span style='color:green;font-size: 15px;'>$success</span>";
-              }
-              //										else{
-              //											echo "<span style='font-size: 15px;'>Messages should be displayed here</span>";
-              //										}
-              ?>-->
+    if ( isset( $error ) ) {
+    echo "<span style='color:red;font-size: 15px;'>$error</span>";
+    } else if ( isset( $success ) ) {
+    echo "<span style='color:green;font-size: 15px;'>$success</span>";
+    }
+    //										else{
+    //											echo "<span style='font-size: 15px;'>Messages should be displayed here</span>";
+    //										}
+    ?>-->
               <table class="table table-bordered table-striped table-hover">
                 <thead>
                   <tr>
-                    <th style="width: 5%;">User ID</th>
-                    <th style="width: 13%;">Name</th>
-                    <th style="width: 13%;">Email</th>
-                    <th style="width: 10%;">Phone</th>
-                    <th style="width: 15%;">Address</th>
-                    <th style="width: 13%;">Username</th>
-                    <th style="width: 13%;">Password</th>
-                    <th style="width: 8%;">Permission</th>
-                    <th style="width: 5%;">Edit</th>
-                    <th style="width: 5%;">Delete</th>
+                    <th style="width:10%;" class="th-center-bold">User ID</th>
+                    <th style="width:15%;" class="th-center-bold">Name</th>
+                    <th style="width:15%;" class="th-center-bold">Birthday</th>
+                    <th style="width:15%;" class="th-center-bold">Sex</th>
+                    <th style="width:15%;" class="th-center-bold">Address</th>
+                    <th style="width:15%;" class="th-center-bold">Username</th>
+                    <th style="width:5%;" class="th-center-bold">Details</th>
+                    <th style="width:5%;" class="th-center-bold">Edit</th>
+                    <th style="width:5%;" class="th-center-bold">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!--<?php
-                  $query = "SELECT * FROM `account` LEFT JOIN `role` ON `account`.`role_id` = `role`.`roleID` LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `account`.`accID` asc;";
-                  $run = mysqli_query( $conn, $query );
-                  if ( mysqli_num_rows( $run ) > 0 ) {
-                  while ( $row = mysqli_fetch_array( $run ) ) {
-                  $user_id = $row[ 'accID' ];
-                  $user_name = $row[ 'cusName' ];
-                  $user_email = $row[ 'cusEmail' ];
-                  $user_phone = $row[ 'cusPhoneNumber' ];
-                  $user_address = $row[ 'cusAddress' ];
-                  $user_username = $row[ 'username' ];
-                  $user_password = $row[ 'password' ];
-                  $user_permission = $row[ 'roleName' ];
-                  $user_password = md5($user_password);
-                  ?>-->
+        $query = "SELECT * FROM `account` LEFT JOIN `role` ON `account`.`role_id` = `role`.`roleID` LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `account`.`accID` asc;";
+        $run = mysqli_query( $conn, $query );
+        if ( mysqli_num_rows( $run ) > 0 ) {
+        while ( $row = mysqli_fetch_array( $run ) ) {
+        $user_id = $row[ 'accID' ];
+        $user_name = $row[ 'cusName' ];
+        $user_email = $row[ 'cusEmail' ];
+        $user_phone = $row[ 'cusPhoneNumber' ];
+        $user_address = $row[ 'cusAddress' ];
+        $user_username = $row[ 'username' ];
+        $user_password = $row[ 'password' ];
+        $user_permission = $row[ 'roleName' ];
+        $user_password = md5($user_password);
+        ?>-->
                   <tr>
                     <td><?php echo $user_id?></td>
                     <td><?php echo $user_name?></td>
-                    <td><?php echo $user_email?></td>
-                    <td><?php echo $user_phone?></td>
+                    <td><?php echo $user_birthday?></td>
+                    <td><?php echo $user_sex?></td>
                     <td><?php echo $user_address?></td>
                     <td><?php echo $user_username?></td>
-                    <td id="pw<?php echo $user_id?>">******</td>
                     <!--onClick="showhidepw<?php echo $user_id?>()"-->
                     <!--<script>
-                    function showhidepw<?php echo $user_id?>() {
-                    var passwork = document.getElementById("pw<?php echo $user_id?>").innerHTML;
-                    if (passwork == ("******")) {
-                    $("#pw<?php echo $user_id?>").html("<?php echo $user_password?>");
-                    }
-                    else {
-                    $("#pw<?php echo $user_id?>").html("******");
-                    }
-                    }
-                    </script>-->
-                    <td><span class="label gradient-5 rounded"><?php echo $user_permission?></span></td>
-                    <td>
-                      <a href="./user-edits">
-                        <button class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                      </a>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $user_id ?>"><i class="fa fa-close"></i></button></td>
+          function showhidepw<?php echo $user_id?>() {
+          var passwork = document.getElementById("pw<?php echo $user_id?>").innerHTML;
+          if (passwork == ("******")) {
+          $("#pw<?php echo $user_id?>").html("<?php echo $user_password?>");
+          }
+          else {
+          $("#pw<?php echo $user_id?>").html("******");
+          }
+          }
+          </script>-->
+                    <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDetails"><i class="fa fa-info"></i></button></td>
+                    <td><a href="./user-edit"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-close"></i></button></td>
                   </tr>
-                  <div class="modal fade" id="exampleModal<?php echo $user_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade bd-example-modal-lg" id="exampleModalDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">User Information</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-4"><img src="./images/users/1.jpg" alt="" style="width:100%;"></div>
+                            <div class="col-md-8">
+                              <div class="row">
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">User ID:</h6>
+                                  <p> User ID </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Name:</h6>
+                                  <p> Name.TenNhanVien </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Birthday:</h6>
+                                  <p> Birthday </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Sex:</h6>
+                                  <p> Sex </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Phone Number:</h6>
+                                  <p>Phone </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Email:</h6>
+                                  <p> Email </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Address:</h6>
+                                  <p> Address </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Permission:</h6>
+                                  <p> Permission </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Username:</h6>
+                                  <p> Username </p>
+                                </div>
+                                <div class="col-md-6" style="margin-bottom: 10px">
+                                  <h6 style="color:#ea5774;font-weight:500;">Password:</h6>
+                                  <p> Password </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -148,12 +204,12 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
                   </div>
                   <!--<?php
 
-                  }
+        }
 
-                  } else {
-                  echo "0 results";
-                  }
-                  ?>-->
+        } else {
+        echo "0 results";
+        }
+        ?>-->
                 </tbody>
 
               </table>

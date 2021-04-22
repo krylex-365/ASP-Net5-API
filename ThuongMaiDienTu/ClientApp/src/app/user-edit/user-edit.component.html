@@ -8,117 +8,168 @@
   <!--**********************************
           Main wrapper start
       ***********************************-->
-  <div id="main-wrapper">
+<div id="main-wrapper">
   <!--  <?php require_once('inc/web-form.php');?>-->
-
-    <!--**********************************
-              Content body start
-          ***********************************-->
-    <div class="content-body">
-      <div class="row page-titles mx-0">
-        <div class="col p-md-0">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="./sub-user.php">User</a></li>
-            <li class="breadcrumb-item active">Edit User</li>
-          </ol>
-        </div>
+  <app-web-form></app-web-form>
+  <!--**********************************
+            Content body start
+        ***********************************-->
+  <div class="content-body">
+    <div class="row page-titles mx-0">
+      <div class="col p-md-0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active"><a href="./users">Users</a></li>
+          <li class="breadcrumb-item active">Edit User</li>
+        </ol>
       </div>
-      <!-- row -->
+    </div>
+    <!-- row -->
 
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="card-title">
-                  <h3>Edit User Information</h3>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <a href="./users"><button class="btn btn-primary" style="float:left;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                 </div>
-                <div class="form-validation">
-                  <form class="form-valide" action="inc/process.php" method="post">
-                   <!-- <?php
-                    $edit = $_GET[ 'edit' ];
-                    $query = "SELECT * FROM account INNER JOIN customer ON customer.accountID=account.accID WHERE accID=$edit";
-                    $run = mysqli_query( $conn, $query );
-                    $row = mysqli_fetch_array( $run );
-                    $user_name= $row['cusName'];
-                    $user_username = $row[ 'username' ];
-                    $user_password = $row[ 'password' ];
-                    $user_email = $row[ 'cusEmail' ];
-                    $user_phone = $row[ 'cusPhoneNumber' ];
-                    $user_address = $row['cusAddress'];
-                    ?>-->
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-yourname">Full Name <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="text" class="form-control" id="val-yourname" name="yourname" placeholder="Enter full name.." value="<?php echo $info_name;?>" required>
+              </div>
+              <div class="form-validation">
+                <form method="post">
+                  <div class="row">
+                    <div class="col-lg-12 mb-3"><h2>Edit User Information</h2></div>
+                    <div class="col-lg-3">
+                      <div class="input-group">
+                        <div class="form-file">
+                          <input type="file" class="inputfile" name="HinhAnh" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
+                          <label for="your_picture">
+                            <figure>
+                              <img src="./images/user/form-user.png" alt="" class="your_picture_image">
+                            </figure>
+                            <span class="file-button">Pick Avatar</span>
+                          </label>
+                        </div>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-phoneus">Phone Number <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="text" class="form-control" id="val-phoneus" name="phone" placeholder="212-999-0000" value="<?php echo $user_phone;?>" required>
+                    <div class="col-lg-9">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="name">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter full name..." value="Nguyen Van B" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="address">Address <span class="text-danger">*</span></label>
+                            <input type="text" name="address" class="form-control" placeholder="Enter address..." value="54 ABC, DEF" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <script>
+                            $(function () {
+                              $("#datepickerBirthday").datepicker();
+                            });
+                          </script>
+                          <div class="form-group">
+                            <label for="birthday">Birthday <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="sex">Sex <span class="text-danger">*</span></label>
+                            <select class="form-control" name="sex" required>
+                              <option value="">-- Choose Sex --</option>
+                              <option value="0">Female</option>
+                              <option value="1">Male</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                            <input type="text" name="phone" class="form-control" placeholder="Enter phone number..." value="0909090909" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="mail">Email <span class="text-danger">*</span></label>
+                            <input type="text" name="email" class="form-control" placeholder="Enter E-mail..." value="user1@gmail.com" required>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email.." value="<?php echo $user_email;?>" required>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12"><h2>Edit Account Information</h2></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="permission">Permission <span class="text-danger">*</span></label>
+                            <select class="form-control" name="permission" required>
+                              <option value="">-- Choose Permission --</option>
+                              <option value="1">Admin</option>
+                              <option value="2">Customer</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="username">Username <span class="text-danger">*</span></label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter a username..." value="user1" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="password">Password <span class="text-danger">*</span></label>
+                            <input type="password" name="password" class="form-control" placeholder="Choose a safe one.." required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="confirm-password">Confirm Password <span class="text-danger">*</span></label>
+                            <input type="password" name="confirm-password" class="form-control" placeholder="..and confirm it!" required>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-address">Address <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="text" class="form-control" id="val-address" name="address" placeholder="Enter your address." value="<?php echo $user_address;?>" required>
-                      </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-lg-12 td-center">
+                      <button type="submit" class="btn btn-primary">Edit User</button>
                     </div>
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="text" class="form-control" id="val-username" name="username" placeholder="Enter a username.." value="<?php echo $user_username;?>" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="password" class="form-control" id="val-password" name="password" placeholder="Enter new password" value="<?php echo $user_password;?>" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span> </label>
-                      <div class="col-lg-6">
-                        <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="Repeat the password" value="<?php echo $user_password;?>" required>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-lg-8 ml-auto">
-                        <button type="submit" class="btn btn-primary" name="edit-user" value="<?php echo $edit;?>">Edit User</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- #/ container -->
     </div>
-    <!--**********************************
-              Content body end
-          ***********************************-->
-    <!--**********************************
-              Footer start
-          ***********************************-->
-    <div class="footer">
-      <div class="copyright">
-        <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-      </div>
-    </div>
-    <!--**********************************
-              Footer end
-          ***********************************-->
+    <!-- #/ container -->
   </div>
+  <!--**********************************
+            Content body end
+        ***********************************-->
+  <!--**********************************
+            Footer start
+        ***********************************-->
+  <div class="footer">
+    <div class="copyright">
+      <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+    </div>
+  </div>
+  <!--**********************************
+            Footer end
+        ***********************************-->
+</div>
   <!--**********************************
           Main wrapper end
       ***********************************-->
