@@ -1,0 +1,314 @@
+
+<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]--> 
+
+<!-- Main Wrapper Start Here -->
+<div class="wrapper">
+  <!-- <?php require_once('inc/header.php');?> -->
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-area mt-30">
+    <div class="container">
+      <div class="breadcrumb">
+        <ul class="d-flex align-items-center">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li class="active"><a href="product.php">Products</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Breadcrumb End --> 
+  <!-- Product Thumbnail Start -->
+  <div class="main-product-thumbnail ptb-100 ptb-sm-60">
+    <div class="container">
+      <!-- <?php
+      $id = $_GET[ 'id' ];
+      $query = "select * from `product` where pid ='$id'";
+      $run = mysqli_query( $conn, $query );
+      if ( mysqli_num_rows( $run ) > 0 ) {
+        while ( $row = mysqli_fetch_array( $run ) ) {
+          $pro_id = $row[ 'pid' ];
+          $pro_name = $row[ 'pname' ];
+          $pro_sale = $row[ 'sale' ];
+          $pro_price = $row[ 'price' ];
+          $pro_newprice = $row[ 'new_price' ];
+          $pro_subcate = $row[ 'subcate_id' ];
+          $pro_des = $row[ 'descr' ];
+          $pro_image = $row[ 'img' ];
+          ?> -->
+      <form action='cart_process.php?action=add&id=" . $pro_id . "' method='POST'>
+        <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
+        <div class="thumb-bg">
+          <div class="row"> 
+            <!-- Main Thumbnail Image Start -->
+            <div class="col-lg-5 mb-all-40"> 
+              <!-- Thumbnail Large Image start -->
+              <div class="tab-content">
+                <div id="thumb1" class="tab-pane fade show active"> <a data-fancybox="images" href="admin/product-img/<?php echo $pro_image ?>"><img src="admin/product-img/<?php echo $pro_image ?>" alt="product-view"></a> </div>
+              </div>
+              <!-- Thumbnail Large Image End --> 
+              <!-- Thumbnail Image End --> 
+            </div>
+            <!-- Thumbnail Description Start -->
+            <div class="col-lg-7">
+              <div class="thubnail-desc fix">
+                <h3 class="product-header"><?php echo $pro_name ?></h3>
+                <div class="rating-summary fix mtb-10">
+                  <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
+                  <div class="rating-feedback"> <a href="#">(1 review)</a> <a href="#">add to your review</a> </div>
+                </div>
+                <div class="pro-price mtb-30">
+                  <p class="d-flex align-items-center">
+                    <!-- <?php
+                    if ( $pro_sale > 0 ) {
+                      ?> -->
+                    <span class="prev-price">$<?php echo $pro_price ?></span> <span class="price">$<?php echo $pro_newprice?></span> <span class="saving-price">save <?php echo $pro_sale ?>%</span>
+                    <!-- <?php
+                    } else {
+                      ?> -->
+                    <span class="price">$<?php echo $pro_newprice?></span>
+                    <!-- <?php
+                    }
+                    ?> -->
+                  </p>
+                </div>
+                <p class="mb-20 pro-desc-details"><?php echo $pro_des ?></p>
+                <div class="box-quantity d-flex hot-product2">
+                  <input type="hidden" name="pro_qty" value="1">
+                  <div class="pro-actions">
+                    <div class="actions-primary">
+                      <input type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
+                    </div>
+                  </div>
+                </div>
+                <div class="socila-sharing mt-25">
+                  <ul class="d-flex">
+                    <li>share</li>
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Thumbnail Description End --> 
+          </div>
+          <!-- Row End --> 
+        </div>
+      </form>
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Product Thumbnail End --> 
+  <!-- Product Thumbnail Description Start -->
+  <div class="thumnail-desc pb-100 pb-sm-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <ul class="main-thumb-desc nav tabs-area" role="tablist">
+            <li><a class="active" data-toggle="tab" href="#dtail">Product Details</a></li>
+            <li><a data-toggle="tab" href="#review">Reviews</a></li>
+          </ul>
+          <!-- Product Thumbnail Tab Content Start -->
+          <div class="tab-content thumb-content border-default">
+            <div id="dtail" class="tab-pane fade show active">
+              <p><?php echo $pro_des?></p>
+            </div>
+            <div id="review" class="tab-pane fade"> 
+              <!-- Reviews Start -->
+              <div class="review border-default universal-padding">
+                <div class="group-title">
+                  <h2>customer review</h2>
+                </div>
+                <h4 class="review-mini-title">Truemart</h4>
+                <ul class="review-list">
+                  <!-- Single Review List Start -->
+                  <li> <span>Quality</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+                    <label>Truemart</label>
+                  </li>
+                  <!-- Single Review List End --> 
+                  <!-- Single Review List Start -->
+                  <li> <span>Price</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+                    <label>Review by <a href="https://themeforest.net/user/hastech">Truemart</a></label>
+                  </li>
+                  <!-- Single Review List End --> 
+                  <!-- Single Review List Start -->
+                  <li> <span>Value</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
+                    <label>Posted on 7/20/18</label>
+                  </li>
+                  <!-- Single Review List End -->
+                </ul>
+              </div>
+              <!-- Reviews End --> 
+              <!-- Reviews Start -->
+              <div class="review border-default universal-padding mt-30">
+                <h2 class="review-title mb-30">You're reviewing: <br>
+                  <span><?php echo $pro_name?></span></h2>
+                <p class="review-mini-title">your rating</p>
+                <ul class="review-list">
+                  <!-- Single Review List Start -->
+                  <li> <span>Quality</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </li>
+                  <!-- Single Review List End --> 
+                  <!-- Single Review List Start -->
+                  <li> <span>Price</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </li>
+                  <!-- Single Review List End --> 
+                  <!-- Single Review List Start -->
+                  <li> <span>Value</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </li>
+                  <!-- Single Review List End -->
+                </ul>
+                <!-- Reviews Field Start -->
+                <div class="riview-field mt-40">
+                  <div class="form-group">
+                    <label class="req" for="sure-name">Nickname</label>
+                    <input type="text" class="form-control" id="sure-name" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="req" for="subject">Summary</label>
+                    <input type="text" class="form-control" id="subject" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="req" for="comments">Review</label>
+                    <textarea class="form-control" rows="5" id="comments" required></textarea>
+                  </div>
+                  <button class="customer-btn" onClick="submit_review()">Submit Review</button>
+                  <!-- <script>
+					function submit_review() {
+						alert("Thank for your review.");
+						window.location="./product.php?id=" + <?php echo $pro_id?> + "";
+					}
+					</script>  -->
+                </div>
+                <!-- Reviews Field Start --> 
+              </div>
+              <!-- Reviews End --> 
+            </div>
+          </div>
+          <!-- Product Thumbnail Tab Content End --> 
+        </div>
+      </div>
+      <!-- Row End --> 
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- <?php
+  }
+  } else {
+    echo "No Product Found";
+  }
+  ?> -->
+  <!-- Product Thumbnail Description End --> 
+  <!-- Realted Products Start Here -->
+  <div class="hot-deal-products off-white-bg pt-100 pb-90 pt-sm-60 pb-sm-50">
+    <div class="container"> 
+      <!-- Product Title Start -->
+      <div class="post-title pb-30">
+        <h2>Realted Products</h2>
+      </div>
+      <!-- Product Title End --> 
+      <!-- Hot Deal Product Activation Start -->
+      
+      <div class="hot-deal-active owl-carousel"> 
+        <!-- Single Product Start .................................................... -->
+        <!-- <?php
+        $id = $_GET[ 'id' ];
+        $sqlDetail = "select * from `product` where pid ='$id'";
+        $resultRow = mysqli_query( $conn, $sqlDetail );
+        $row = mysqli_fetch_row( $resultRow );
+        $query1 = "SELECT * FROM `product` WHERE subcate_id = $row[5] and pid!= $id order by rand() limit 20";
+        $resultOther = mysqli_query( $conn, $query1 );
+        while ( $rowOther = mysqli_fetch_array( $resultOther ) ) {
+          $pro_id = $rowOther[ 'pid' ];
+          $pro_name = $rowOther[ 'pname' ];
+          $pro_price = $rowOther[ 'price' ];
+          $pro_sale = $rowOther[ 'sale' ];
+          $pro_newprice = $rowOther[ 'new_price' ];
+          $pro_des = $rowOther[ 'descr' ];
+          $pro_img = $rowOther[ 'img' ];
+          ?> -->
+        <form action="cart_process.php?action=add&id=<?php echo $pro_id?>" method="POST">
+          <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
+          <div class="single-product"> 
+            <!-- Product Image Start -->
+            <div class="pro-img"> <a href="product.php?id=<?php echo $pro_id?>"> <img class="primary-img" src="admin/product-img/<?php echo $pro_img ?>" alt="single-product"> <img class="secondary-img" src="admin/product-img/<?php echo $pro_img ?>" alt="single-product"> </a> <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a> </div>
+            <!-- Product Image End --> 
+            <!-- Product Content Start -->
+            <div class="pro-content">
+              <div class="pro-info">
+                <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
+                <h4><a href="product.php?id=<?php echo $pro_id?>"><?php echo $pro_name?></a></h4>
+                <!-- <?php
+                if ( $pro_sale > 0 ) {
+                  ?> -->
+                <p><span class="price">$<?php echo $pro_newprice?></span><del class="prev-price">$<?php echo $pro_price?></del></p>
+                <div class="label-product l_sale"><?php echo $pro_sale?><span class="symbol-percent">%</span></div>
+                <!-- <?php
+                } else {
+                  ?> -->
+                <p><span class="price">$<?php echo $pro_newprice?></span></p>
+                <!-- <?php
+                }
+                ?> -->
+              </div>
+              <div class="pro-actions">
+                <div class="actions-primary">
+                  <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Single Product End --> 
+        <!-- Single Product Start -->
+        <!-- <?php }?> -->
+        <!-- Hot Deal Product Active End --> 
+        <!-- Single Product Start --> 
+      </div>
+      <!-- Product Content End --> 
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Realated Products End Here --> 
+  <!-- Support Area Start Here -->
+  <div class="support-area bdr-top">
+    <div class="container">
+      <div class="d-flex flex-wrap text-center">
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-gift"></i> </div>
+          <div class="support-desc">
+            <h6>Great Value</h6>
+            <span>Nunc id ante quis tellus faucibus dictum in eget.</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-rocket" ></i> </div>
+          <div class="support-desc">
+            <h6>Worlwide Delivery</h6>
+            <span>Quisque posuere enim augue, in rhoncus diam dictum non</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-lock"></i> </div>
+          <div class="support-desc">
+            <h6>Safe Payment</h6>
+            <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-enter-down"></i> </div>
+          <div class="support-desc">
+            <h6>Shop Confidence</h6>
+            <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-users"></i> </div>
+          <div class="support-desc">
+            <h6>24/7 Help Center</h6>
+            <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span> </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Support Area End Here -->
+  
+  <!-- <?php require_once('inc/footer.php');?> -->
