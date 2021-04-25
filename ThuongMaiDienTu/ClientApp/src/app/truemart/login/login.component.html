@@ -1,0 +1,176 @@
+<!--<?php
+require_once('inc/top.php');
+session_start();
+if(isset($_SESSION['username'])){
+  echo "
+<script>alert('You already logining.');window.history.back();</script>";
+}
+
+else if(isset($_POST['login'])){
+  $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+  $username = htmlentities($username);
+  $password = htmlentities($password);
+
+  $check_query = "select * from account ac left join customer c on accID = accountID where username = '$username'";
+  $check_run = mysqli_query($conn, $check_query);
+  if(mysqli_num_rows($check_run) >0){
+    $row = mysqli_fetch_array($check_run);
+    $db_username = $row['username'];
+    $db_password = $row['password'];
+        $db_cusname = $row['cusName'];
+        $db_avatar= $row['avatar'];
+        $db_id= $row['accID'];
+    //$new_password = crypt($password,$db_password);
+    if($username == $db_username && $password == $db_password){
+      //echo "good";
+            $_SESSION['accID'] = $db_id;
+            $_SESSION['username'] = $db_username;
+            $_SESSION['cusName'] =$db_cusname;
+            $_SESSION['avatar'] =$db_avatar;
+      //header('location: index.php');
+      echo "
+<script>alert('Login success! Hello ".$db_cusname.". Welcome you back.');window.location='./index.php'</script>";
+    }
+    else{
+      $error = "Incorred Username or Password";
+    }
+  }
+  else{
+    $error = "Incorred Username or Password";
+  }
+}
+?>
+
+<title>Log-in || Truemart Responsive Html5 Ecommerce Template</title>
+</head>-->
+<!--<body>-->
+
+  <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+  <!-- Main Wrapper Start Here -->
+  <div class="wrapper">
+    <!-- <?php require_once('inc/header.php');?>-->
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-area mt-30">
+      <div class="container">
+        <div class="breadcrumb">
+          <ul class="d-flex align-items-center">
+            <li><a href="index.php">Home</a></li>
+            <li class="active"><a href="login">Login</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- LogIn Page Start -->
+    <div class="log-in ptb-100 ptb-sm-60">
+      <div class="container">
+        <div class="row">
+          <!-- New Customer Start -->
+          <div class="col-md-6">
+            <div class="well mb-sm-30">
+              <div class="new-customer">
+                <h3 class="custom-title">new customer</h3>
+                <p class="mtb-10"><strong>Register</strong></p>
+                <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made</p>
+                <a class="customer-btn" href="register.php">continue</a>
+              </div>
+            </div>
+          </div>
+          <!-- New Customer End -->
+          <!-- Returning Customer Start -->
+          <div class="col-md-6">
+            <div class="well">
+              <div class="return-customer">
+                <h3 class="mb-10 custom-title">returning customer</h3>
+                <h6 class="mb-10">
+                  <!-- <?php
+                   if(isset($error)){
+                   echo "<span style='color:red;'>$error</span>";
+                   }
+                   ?>-->
+                </h6>
+                <form action="#" method="post">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Enter your username..." id="input-username" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password" id="input-password" class="form-control">
+                  </div>
+                  <p class="lost-password"><a href="forgot-password.php">Forgot password?</a></p>
+                  <input type="submit" name="login" value="Login" class="return-customer-btn">
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Returning Customer End -->
+        </div>
+        <!-- Row End -->
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- LogIn Page End -->
+    <!-- Support Area Start Here -->
+    <div class="support-area bdr-top">
+      <div class="container">
+        <div class="d-flex flex-wrap text-center">
+          <div class="single-support">
+            <div class="support-icon">
+              <i class="lnr lnr-gift"></i>
+            </div>
+            <div class="support-desc">
+              <h6>Great Value</h6>
+              <span>Nunc id ante quis tellus faucibus dictum in eget.</span>
+            </div>
+          </div>
+          <div class="single-support">
+            <div class="support-icon">
+              <i class="lnr lnr-rocket"></i>
+            </div>
+            <div class="support-desc">
+              <h6>Worlwide Delivery</h6>
+              <span>Quisque posuere enim augue, in rhoncus diam dictum non</span>
+            </div>
+          </div>
+          <div class="single-support">
+            <div class="support-icon">
+              <i class="lnr lnr-lock"></i>
+            </div>
+            <div class="support-desc">
+              <h6>Safe Payment</h6>
+              <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span>
+            </div>
+          </div>
+          <div class="single-support">
+            <div class="support-icon">
+              <i class="lnr lnr-enter-down"></i>
+            </div>
+            <div class="support-desc">
+              <h6>Shop Confidence</h6>
+              <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span>
+            </div>
+          </div>
+          <div class="single-support">
+            <div class="support-icon">
+              <i class="lnr lnr-users"></i>
+            </div>
+            <div class="support-desc">
+              <h6>24/7 Help Center</h6>
+              <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Support Area End Here -->
+    <!-- <?php require_once('inc/footer.php');?>-->
+
+<!--</body>-->
+<!--</html>-->

@@ -43,6 +43,9 @@ import { ReloadService } from '../services/reload.service';
 import { ProductShopComponent } from './truemart/product/product.component';
 import { ProductShopService } from '../services/productshop.service';
 import { ShopComponent } from './truemart/shop/shop.component';
+/*import { LoginComponent } from './truemart/login/login.component';*/
+import { ProfileComponent } from './truemart/profile/profile.component';
+import { UserProfileService } from '../services/user-profile.service';
 
 
 @NgModule({
@@ -70,6 +73,7 @@ import { ShopComponent } from './truemart/shop/shop.component';
     IndexComponent,
     ProductShopComponent,
     ShopComponent,
+    ProfileComponent,
 
   ],
   imports: [
@@ -96,7 +100,8 @@ import { ShopComponent } from './truemart/shop/shop.component';
       { path: 'user-edit', component: UserEditComponent },
       { path: 'index', component: IndexComponent },
       { path: 'productshop', component: ProductShopComponent },
-      { path: 'shop', component:ShopComponent },
+      { path: 'shop', component: ShopComponent },
+      { path: 'user-profile', component: ProfileComponent},
 
     ]),
   ],
@@ -117,6 +122,8 @@ import { ShopComponent } from './truemart/shop/shop.component';
     UserEditService,
     ReloadService,
     ProductShopService,
+    UserProfileService,
+
   ],
   bootstrap: [AppComponent]
 })
