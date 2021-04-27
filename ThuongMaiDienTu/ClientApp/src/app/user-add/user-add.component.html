@@ -38,13 +38,13 @@
                 </div>
               </div>
               <div class="form-validation">
-                <form method="post">
+                <form #userAdd="ngForm" (ngSubmit)="add(userAdd.value)">
                   <div class="row">
                     <div class="col-lg-12 mb-3"><h2>User Information</h2></div>
                     <div class="col-lg-3">
                       <div class="input-group">
                         <div class="form-file">
-                          <input type="file" class="inputfile" name="HinhAnh" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
+                          <input type="file" class="inputfile" name="avatar" [(ngModel)]="avatar" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
                           <label for="your_picture">
                             <figure>
                               <img src="./images/user/form-user.png" alt="" class="your_picture_image">
@@ -59,13 +59,13 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter full name..." required>
+                            <input type="text" name="name" [(ngModel)]="name" class="form-control" placeholder="Enter full name..." required>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="address">Address <span class="text-danger">*</span></label>
-                            <input type="text" name="address" class="form-control" placeholder="Enter address..." required>
+                            <input type="text" name="address" [(ngModel)]="address" class="form-control" placeholder="Enter address..." required>
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -77,30 +77,30 @@
                           <div class="form-group">
                             <label for="birthday">Birthday <span class="text-danger">*</span></label>
                             <div class="input-group">
-                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" [(ngModel)]="birthday" placeholder="yyyy-mm-dd" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
                             </div>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="sex">Sex <span class="text-danger">*</span></label>
-                            <select class="form-control" name="sex" required>
+                            <select class="form-control" name="sex" [(ngModel)]="sex" required>
                               <option value="">-- Choose Sex --</option>
-                              <option value="0">Female</option>
-                              <option value="1">Male</option>
+                              <option value="Nam">Nam</option>
+                              <option value="Nữ">Nữ</option>
                             </select>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="phone">Phone Number <span class="text-danger">*</span></label>
-                            <input type="text" name="phone" class="form-control" placeholder="Enter phone number..." required>
+                            <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber" class="form-control" placeholder="Enter phone number..." required>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="mail">Email <span class="text-danger">*</span></label>
-                            <input type="text" name="email" class="form-control" placeholder="Enter E-mail..." required>
+                            <input type="text" name="mail" [(ngModel)]="mail" class="form-control" placeholder="Enter E-mail..." required>
                           </div>
                         </div>
                       </div>
@@ -114,7 +114,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="permission">Permission <span class="text-danger">*</span></label>
-                            <select class="form-control" name="permission" required>
+                            <select class="form-control" name="roleId" [(ngModel)]="roleId" required>
                               <option value="">-- Choose Permission --</option>
                               <option value="1">Admin</option>
                               <option value="2">Customer</option>
@@ -124,13 +124,13 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="username">Username <span class="text-danger">*</span></label>
-                            <input type="text" name="username" class="form-control" placeholder="Enter a username..." required>
+                            <input type="text" name="userName" [(ngModel)]="userName" class="form-control" placeholder="Enter a username..." required>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="password">Password <span class="text-danger">*</span></label>
-                            <input type="password" name="password" class="form-control" placeholder="Choose a safe one.." required>
+                            <input type="password" name="password" [(ngModel)]="password" class="form-control" placeholder="Choose a safe one.." required>
                           </div>
                         </div>
                         <div class="col-md-6">

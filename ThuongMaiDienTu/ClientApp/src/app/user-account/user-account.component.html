@@ -84,45 +84,19 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
                   </tr>
                 </thead>
                 <tbody>
-                  <!--<?php
-        $query = "SELECT * FROM `account` LEFT JOIN `role` ON `account`.`role_id` = `role`.`roleID` LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` ORDER BY `account`.`accID` asc;";
-        $run = mysqli_query( $conn, $query );
-        if ( mysqli_num_rows( $run ) > 0 ) {
-        while ( $row = mysqli_fetch_array( $run ) ) {
-        $user_id = $row[ 'accID' ];
-        $user_name = $row[ 'cusName' ];
-        $user_email = $row[ 'cusEmail' ];
-        $user_phone = $row[ 'cusPhoneNumber' ];
-        $user_address = $row[ 'cusAddress' ];
-        $user_username = $row[ 'username' ];
-        $user_password = $row[ 'password' ];
-        $user_permission = $row[ 'roleName' ];
-        $user_password = md5($user_password);
-        ?>-->
-                  <tr>
-                    <td><?php echo $user_id?></td>
-                    <td><?php echo $user_name?></td>
-                    <td><?php echo $user_birthday?></td>
-                    <td><?php echo $user_sex?></td>
-                    <td><?php echo $user_address?></td>
-                    <td><?php echo $user_username?></td>
-                    <!--onClick="showhidepw<?php echo $user_id?>()"-->
-                    <!--<script>
-          function showhidepw<?php echo $user_id?>() {
-          var passwork = document.getElementById("pw<?php echo $user_id?>").innerHTML;
-          if (passwork == ("******")) {
-          $("#pw<?php echo $user_id?>").html("<?php echo $user_password?>");
-          }
-          else {
-          $("#pw<?php echo $user_id?>").html("******");
-          }
-          }
-          </script>-->
-                    <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDetails"><i class="fa fa-info"></i></button></td>
+                  <tr *ngFor="let cus of customers">
+                    <td>{{cus.customerId}}</td>
+                    <td>{{cus.name}}</td>
+                    <td>{{cus.birthday}}</td>
+                    <td>{{cus.sex}}</td>
+                    <td>{{cus.address}}</td>
+                    {{getUserName(cus.customerId)}}
+                    <td>{{userName}}</td>
+                    <td class="td-center"><button type="button" (click)="detail(cus.customerId)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDetails"><i class="fa fa-info"></i></button></td>
                     <td><a href="./user-edit"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-close"></i></button></td>
                   </tr>
-                  <div class="modal fade bd-example-modal-lg" id="exampleModalDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div *ngIf="customer" class="modal fade bd-example-modal-lg" id="exampleModalDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -131,48 +105,49 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
                         </div>
                         <div class="modal-body">
                           <div class="row">
-                            <div class="col-md-4"><img src="./images/users/1.jpg" alt="" style="width:100%;"></div>
+                            <div class="col-md-4"><img src="./images/users/{{account.avatar}}" alt="" style="width:100%;"></div>
                             <div class="col-md-8">
                               <div class="row">
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">User ID:</h6>
-                                  <p> User ID </p>
+                                  <p> {{customer.customerId}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Name:</h6>
-                                  <p> Name.TenNhanVien </p>
+                                  <p> {{customer.name}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Birthday:</h6>
-                                  <p> Birthday </p>
+                                  <p> {{customer.birthday}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Sex:</h6>
-                                  <p> Sex </p>
+                                  <p> {{customer.sex}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Phone Number:</h6>
-                                  <p>Phone </p>
+                                  <p> {{customer.phoneNumber}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Email:</h6>
-                                  <p> Email </p>
+                                  <p> {{customer.mail}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Address:</h6>
-                                  <p> Address </p>
+                                  <p> {{customer.address}} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Permission:</h6>
-                                  <p> Permission </p>
+                                  {{getRoleName(account.roleId)}}
+                                  <p> {{roleName }} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Username:</h6>
-                                  <p> Username </p>
+                                  <p> {{account.userName }} </p>
                                 </div>
                                 <div class="col-md-6" style="margin-bottom: 10px">
                                   <h6 style="color:#ea5774;font-weight:500;">Password:</h6>
-                                  <p> Password </p>
+                                  <p> {{account.password }} </p>
                                 </div>
                               </div>
                             </div>

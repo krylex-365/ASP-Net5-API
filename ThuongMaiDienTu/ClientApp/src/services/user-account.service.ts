@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
@@ -17,5 +17,13 @@ export class UserAccountService {
   }
   getAccounts() {
     return this.http.get<Account[]>(this.url + 'api/Account');
+  }
+
+  addCustomers(customer: Customer) {
+    return this.http.post<HttpResponse<Customer>>(this.url + 'api/Customer', customer, { observe: 'response' });
+  }
+
+  addAccounts(account: Account) {
+    return this.http.post<HttpResponse<Account>>(this.url + 'api/Customer', account, { observe: 'response' });
   }
 }
