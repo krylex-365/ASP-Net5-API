@@ -68,6 +68,7 @@
     <TypeScriptCompile Remove="ClientApp\src\services\reload.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\subcategories.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\user-account.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\user-profile.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

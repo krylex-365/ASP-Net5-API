@@ -1,0 +1,460 @@
+<!-- <?php
+require_once( 'inc/top.php' );
+session_start();
+?>
+<title>Shop || Truemart Responsive Html5 Ecommerce Template</title>
+</head><body> -->
+<!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]--> 
+
+<!-- Main Wrapper Start Here -->
+<div class="wrapper">
+  <!-- <?php require_once('inc/header.php');?> -->
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-area mt-30">
+    <div class="container">
+      <div class="breadcrumb">
+        <ul class="d-flex align-items-center">
+          <li><a href="index.php">Home</a></li>
+          <li class="active"><a href="product.php">Shop</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Breadcrumb End --> 
+  <!-- Shop Page Start -->
+  <div class="main-shop-page pt-100 pb-100 ptb-sm-60">
+    <div class="container"> 
+      <!-- Row End -->
+      <div class="row"> 
+        <!-- Sidebar Shopping Option Start -->
+        <div class="col-lg-3 order-2 order-lg-1">
+          <div class="sidebar"> 
+            <!-- Sidebar Categorie Start -->
+            <div class="electronics mb-40">
+              <h3 class="sidebar-title">Categories</h3>
+              <div id="shop-cate-toggle" class="category-menu sidebar-menu sidbar-style">
+                <ul>
+                  <!-- <?php
+                  #img/vertical-menu/8.png, img/vertical-menu/10.png, img/vertical-menu/5.png, img/vertical-menu/7.png
+                  $querycat = "select * from category order by ID asc;";
+                  $runcat = mysqli_query( $conn, $querycat );
+                  if ( mysqli_num_rows( $runcat ) > 0 ) {
+                    while ( $rowcat = mysqli_fetch_array( $runcat ) ) {
+                      $cat_id = $rowcat[ 'ID' ];
+                      $cat_name = $rowcat[ 'cate_name' ];
+                      ?> -->
+                  <li class="has-sub"><a href="shop.php?cat=<?php echo $cat_id?>"><?php echo $cat_name?></a>
+                    <!-- <?php
+                    $queryscat = "select * from subcategory where cate_id = '$cat_id' order by subcate_id asc;";
+                    $runscat = mysqli_query( $conn, $queryscat );
+                    if ( mysqli_num_rows( $runscat ) > 0 ) {
+                      echo "<ul class='category-sub'>";
+                      while ( $rowscat = mysqli_fetch_array( $runscat ) ) {
+                        $cat_id = $rowscat[ 'cate_id' ];
+                        $subcat_id = $rowscat[ 'subcate_id' ];
+                        $subcat_name = $rowscat[ 'subcate_name' ];
+                        echo "<li><a href='shop.php?subcat=$subcat_id'>$subcat_name</a></li>";
+                      }
+                      echo "</ul>";
+
+                    }
+                    ?> -->
+                  </li>
+                  <!-- <?php
+                  }
+                  } else {
+                    echo "No Categories Found";
+                  }
+                  ?> -->
+                </ul>
+              </div>
+              <!-- category-menu-end --> 
+            </div>
+            <!-- Sidebar Categorie End --> 
+            <!-- Price Filter Options Start -->
+            <div class="search-filter mb-40">
+              <h3 class="sidebar-title">filter by price</h3>
+              <form action="#" class="sidbar-style">
+                <div id="slider-range"></div>
+                <input type="text" id="amount" class="amount-range" readonly>
+              </form>
+            </div>
+            <!-- Price Filter Options End --> 
+            <!-- Single Banner Start -->
+            <div class="col-img"> <a href="shop.php"><img src="img/banner/banner-sidebar.jpg" alt="slider-banner"></a> </div>
+            <!-- Single Banner End --> 
+          </div>
+        </div>
+        <!-- Sidebar Shopping Option End --> 
+        <!-- Product Categorie List Start -->
+        <div class="col-lg-9 order-1 order-lg-2"> 
+          <!-- Grid & List View Start -->
+          <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
+            <div class="grid-list-view  mb-sm-15">
+              <ul class="nav tabs-area d-flex align-items-center">
+                <li><a class="active" data-toggle="tab" href="#grid-view"><i class="fa fa-th"></i></a></li>
+              </ul>
+            </div>
+            <!-- Toolbar Short Area Start -->
+            <div class="main-toolbar-sorter clearfix">
+              <div class="toolbar-sorter d-flex align-items-center">
+                <label>Sort By:</label>
+                <select class="sorter wide">
+                  <option value="Position">Relevance</option>
+                  <option value="Product Name">Neme, A to Z</option>
+                  <option value="Product Name">Neme, Z to A</option>
+                  <option value="Price">Price low to heigh</option>
+                  <option value="Price" selected>Price heigh to low</option>
+                </select>
+              </div>
+            </div>
+            <!-- Toolbar Short Area End --> 
+            <!-- Toolbar Short Area Start -->
+            <div class="main-toolbar-sorter clearfix">
+              <div class="toolbar-sorter d-flex align-items-center">
+                <label>Show:</label>
+                <select class="sorter wide">
+                  <option value="12">12</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="75">75</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
+            <!-- Toolbar Short Area End --> 
+          </div>
+          <!-- Grid & List View End -->
+          <div class="main-categorie mb-all-40"> 
+            <!-- Grid & List Main Area End -->
+            <div class="tab-content fix">
+              <div id="grid-view" class="tab-pane fade show active">
+                <div class="row">
+                  <!-- <?php
+                  $cat_id_pro = null;
+                  $subcat_id_pro = null;
+                  $query_pro = "SELECT `product`.*, `subcategory`.*, `category`.* FROM `product` LEFT JOIN `subcategory` ON `product`.`subcate_id` = `subcategory`.`subcate_id` LEFT JOIN `category` ON `subcategory`.`cate_id` = `category`.`ID` WHERE `product`.`status_pro` = 1";
+                  if ( isset( $_GET[ 'cat' ] ) ) {
+                    $cat_id_pro = $_GET[ 'cat' ];
+                    $query_pro .= " AND `category`.`ID` = '$cat_id_pro'";
+                  }
+                  if ( isset( $_GET[ 'subcat' ] ) ) {
+                    $subcat_id_pro = $_GET[ 'subcat' ];
+                    $query_pro .= " AND `subcategory`.`subcate_id` = '$subcat_id_pro'";
+                  }
+                  $query_last_pro = "SELECT `product`.`pid` FROM `product` ORDER BY `product`.`pid` DESC LIMIT 1";
+                  $run_last_pro = mysqli_query( $conn, $query_last_pro );
+                  $row_last_pro = mysqli_fetch_array( $run_last_pro );
+                  $pro_last_id = $row_last_pro[ 'pid' ];
+                  $runpro = mysqli_query( $conn, $query_pro );
+                  $current_page = isset( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 1;
+                  $count = mysqli_num_rows( $runpro );
+                  $total_page = ceil( $count / 9 );
+                  if ( $current_page > $total_page ) {
+                    $current_page = $total_page;
+                  } else if ( $current_page < 1 ) {
+                    $current_page = 1;
+                  }
+                  $limit = 9;
+                  $start = ( $current_page - 1 ) * $limit;
+                  $query_pro .= " limit $start,$limit";
+                  $runpro = mysqli_query( $conn, $query_pro );
+                  if ( mysqli_num_rows( $runpro ) > 0 ) 
+					  $pro_in_page = 0;
+                    while ( $rowpro = mysqli_fetch_array( $runpro ) ) 
+                      $pro_id = $rowpro[ 'pid' ];
+                      $pro_name = $rowpro[ 'pname' ];
+                      $pro_price = $rowpro[ 'price' ];
+                      $pro_sale = $rowpro[ 'sale' ];
+                      $pro_newprice = $rowpro[ 'new_price' ];
+                      $pro_des = $rowpro[ 'descr' ];
+                      $pro_img = $rowpro[ 'img' ];
+						$pro_in_page++;
+                      ?> -->
+                  <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                    <div class="single-product">
+                      <form action="cart_process.php?action=add&id=<?php echo $pro_id?>" method="POST">
+                        <!-- Product Image Start -->
+                        <div class="pro-img"> <a href="product.php?id=<?php echo $pro_id?>"> <img class="primary-img" src="./admin/product-img/<?php echo $pro_img?>" alt="single-product"> <img class="secondary-img" src="./admin/product-img/<?php echo $pro_img?>" alt="single-product"> </a> <a href="#" class="quick_view" data-toggle="modal" data-target="#proModal-<?php echo $pro_id ?>" title="Quick View"><i class="lnr lnr-magnifier"></i></a> </div>
+                        <!-- Product Image End --> 
+                        <!-- Product Content Start -->
+                        <div class="pro-content">
+                          <div class="pro-info">
+                            <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
+                            <h4><a href="product.php?id=<?php echo $pro_id?>"><?php echo $pro_name?></a></h4>
+                            <!-- <?php
+                            if ( $pro_sale > 0 ) {
+                              ?> -->
+                            <p><span class="price">$<?php echo $pro_newprice?></span><del class="prev-price">$<?php echo $pro_price?></del></p>
+                            <div class="label-product l_sale"><?php echo $pro_sale?><span class="symbol-percent">%</span></div>
+                            <!-- <?php
+                            } else {
+                              ?> -->
+                            <p><span class="price">$<?php echo $pro_newprice?></span></p>
+                            <!-- <?php
+                            }
+                            ?> -->
+                          </div>
+                          <div class="pro-actions">
+                            <div class="actions-primary">
+                              <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Product Content End -->
+                        <!-- <?php
+                        if ( ( $pro_last_id - 10 ) <= ( $pro_id ) && ( $pro_id ) <= ( $pro_last_id ) ) {
+                          echo "<span class='sticker-new'>new</span>";
+                        }
+                        ?> -->
+                      </form>
+                    </div>
+                  </div>
+                  <!-- <?php
+                  }
+                  } else {
+                    echo "<div class='col-lg-4 col-md-4 col-sm-6 col-6'><span style='color:red;'>No Products Found</span></div>";
+                  }
+                  ?> -->
+                </div>
+                <!-- Row End --> 
+              </div>
+              <div class="pro-pagination">
+                <ul class="blog-pagination">
+                  <!-- <?php
+                  if ( isset( $_GET[ 'cat' ] ) ) {
+                    if ( $current_page > 1 && $total_page > 1 ) {
+                      echo '<li>
+                                <a href="shop.php?cat=' . $cat_id_pro . '&page=' . ( $current_page - 1 ) . '" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>';
+                    }
+                    for ( $i = 1; $i <= $total_page; $i++ ) {
+                      if ( $i == $current_page )
+                        echo '<li class="active"><a href="shop.php?cat=' . $cat_id_pro . '&page=' . ( $current_page ) . '">' . $i . '</a></li>';
+                      else
+                        echo '<li><a href="shop.php?cat=' . $cat_id_pro . '&page=' . $i . '">' . $i . '</a></li>';
+                    }
+                    if ( $current_page < $total_page && $total_page > 1 ) {
+                      echo '<li>
+                                <a href="shop.php?cat=' . $cat_id_pro . '&page=' . ( $current_page + 1 ) . '" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>';
+                    }
+                  } else if ( isset( $_GET[ 'subcat' ] ) ) {
+                    if ( $current_page > 1 && $total_page > 1 ) {
+                      echo '<li>
+                                <a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . ( $current_page - 1 ) . '" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>';
+                    }
+                    for ( $i = 1; $i <= $total_page; $i++ ) {
+                      if ( $i == $current_page )
+                        echo '<li class="active"><a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . ( $current_page ) . '">' . $i . '</a></li>';
+                      else
+                        echo '<li><a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . $i . '">' . $i . '</a></li>';
+                    }
+                    if ( $current_page < $total_page && $total_page > 1 ) {
+                      echo '<li>
+                                <a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . ( $current_page + 1 ) . '" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>';
+                    }
+                  } else {
+                    if ( $current_page > 1 && $total_page > 1 ) {
+                      echo '<li>
+                                <a href="shop.php?page=' . ( $current_page - 1 ) . '" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>';
+                    }
+                    for ( $i = 1; $i <= $total_page; $i++ ) {
+                      if ( $i == $current_page )
+                        echo '<li class="active"><a href="shop.php?page=' . ( $current_page ) . '">' . $i . '</a></li>';
+                      else
+                        echo '<li><a href="shop.php?page=' . $i . '">' . $i . '</a></li>';
+                    }
+                    if ( $current_page < $total_page && $total_page > 1 ) {
+                      echo '<li>
+                                <a href="shop.php?page=' . ( $current_page + 1 ) . '" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>';
+                    }
+                  }
+                  ?> -->
+                </ul>
+                <div class="product-pagination"> <span class="grid-item-list">Showing <?php echo $start+1?> to <?php echo $start+$pro_in_page?> of <?php echo $count?> (<?php echo $i-1?> Pages)</span> </div>
+              </div>
+              <!-- Product Pagination Info --> 
+            </div>
+            <!-- Grid & List Main Area End --> 
+          </div>
+        </div>
+        <!-- product Categorie List End --> 
+      </div>
+      <!-- Row End --> 
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Shop Page End --> 
+  <!-- Support Area Start Here -->
+  <div class="support-area bdr-top">
+    <div class="container">
+      <div class="d-flex flex-wrap text-center">
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-gift"></i> </div>
+          <div class="support-desc">
+            <h6>Great Value</h6>
+            <span>Nunc id ante quis tellus faucibus dictum in eget.</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-rocket" ></i> </div>
+          <div class="support-desc">
+            <h6>Worlwide Delivery</h6>
+            <span>Quisque posuere enim augue, in rhoncus diam dictum non</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-lock"></i> </div>
+          <div class="support-desc">
+            <h6>Safe Payment</h6>
+            <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-enter-down"></i> </div>
+          <div class="support-desc">
+            <h6>Shop Confidence</h6>
+            <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span> </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-users"></i> </div>
+          <div class="support-desc">
+            <h6>24/7 Help Center</h6>
+            <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span> </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Support Area End Here -->
+  <!-- <?php
+  $query = "SELECT `product`.*, `subcategory`.*, `category`.* FROM `product` LEFT JOIN `subcategory` ON `product`.`subcate_id` = `subcategory`.`subcate_id` LEFT JOIN `category` ON `subcategory`.`cate_id` = `category`.`ID` WHERE `product`.`status_pro` = 1";
+  if ( isset( $_GET[ 'cat' ] ) ) {
+    $cat_id_pro = $_GET[ 'cat' ];
+    $query .= " AND `category`.`ID` = '$cat_id_pro'";
+  }
+  if ( isset( $_GET[ 'subcat' ] ) ) {
+    $subcat_id_pro = $_GET[ 'subcat' ];
+    $query .= " AND `subcategory`.`subcate_id` = '$subcat_id_pro'";
+  }
+  $run = mysqli_query( $conn, $query );
+  if ( mysqli_num_rows( $run ) > 0 ) {}
+    while ( $row = mysqli_fetch_array( $run ) ) {}
+      $pro_id = $row[ 'pid' ];
+      $pro_name = $row[ 'pname' ];
+      $pro_sale = $row[ 'sale' ];
+      $pro_price = $row[ 'price' ];
+      $pro_newprice = $row[ 'new_price' ];
+      $pro_des = $row[ 'descr' ];
+      $pro_image = $row[ 'img' ];
+      ?> -->
+  <!-- Quick View Content Start -->
+  <div class="main-product-thumbnail quick-thumb-content">
+    <div class="container"> 
+      <!-- The Modal -->
+      <div class="modal fade" id="proModal-?php echo $pro_id ?>">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content"> 
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="row"> 
+                <!-- Main Thumbnail Image Start -->
+                <div class="col-lg-5 col-md-6 col-sm-5"> 
+                  <!-- Thumbnail Large Image start -->
+                  <div class="tab-content">
+                    <div id="thumb-<?php echo $pro_name ?>" class="tab-pane fade show active"> <a data-fancybox="images" href="admin/product-img/<?php echo $pro_image ?>"><img src="admin/product-img/<?php echo $pro_image ?>" alt="product-view"></a> </div>
+                  </div>
+                  <!-- Thumbnail Large Image End --> 
+                </div>
+                <!-- Main Thumbnail Image End --> 
+                <!-- Thumbnail Description Start -->
+                <div class="col-lg-7 col-md-6 col-sm-7">
+                  <div class="thubnail-desc fix mt-sm-40">
+                    <h3 class="product-header"><?php echo $pro_name ?></h3>
+                    <div class="pro-price mtb-30">
+                      <p class="d-flex align-items-center">
+                        <!-- <?php
+                        if ( $pro_sale > 0 ) {}
+                          ?> -->
+                        <span class="prev-price">$<?php echo $pro_price ?></span> <span class="price">$<?php echo $pro_newprice?></span> <span class="saving-price">save <?php echo $pro_sale ?>%</span>
+                        <!-- <?php
+                        } else {}
+                          ?> -->
+                        <span class="price">$<?php echo $pro_newprice?></span>
+                        <!-- <?php
+                        }
+                        ?> -->
+                      </p>
+                    </div>
+                    <p class="mb-20 pro-desc-details"><?php echo $pro_des ?></p>
+                    <div class="box-quantity d-flex hot-product2">
+                      <form action='cart_process.php?action=add&id=" . $pro_id . "' method='POST'>
+                        <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
+                        <input type="hidden" name="pro_qty" value="1">
+                        <div class="pro-actions">
+                          <div class="actions-primary">
+                            <input type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Thumbnail Description End --> 
+              </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="custom-footer">
+              <div class="socila-sharing">
+                <ul class="d-flex">
+                  <li>share</li>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Quick View Content End -->
+  <!-- <?php
+  }
+  } else {
+    echo "No Product Found";
+  }
+  ?> -->
+  <!-- Footer Area Start Here -->
+  <!-- <?php require_once('inc/footer.php');?>
+</body>
+</html> -->
