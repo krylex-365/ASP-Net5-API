@@ -43,7 +43,7 @@ import { ReloadService } from '../services/reload.service';
 import { ProductShopComponent } from './truemart/product/product.component';
 import { ProductShopService } from '../services/productshop.service';
 import { ShopComponent } from './truemart/shop/shop.component';
-/*import { LoginComponent } from './truemart/login/login.component';*/
+import { LoginTruemartComponent } from './truemart/login/login.component';
 import { ProfileComponent } from './truemart/profile/profile.component';
 import { UserProfileService } from '../services/user-profile.service';
 
@@ -74,6 +74,7 @@ import { UserProfileService } from '../services/user-profile.service';
     ProductShopComponent,
     ShopComponent,
     ProfileComponent,
+    LoginTruemartComponent,
 
   ],
   imports: [

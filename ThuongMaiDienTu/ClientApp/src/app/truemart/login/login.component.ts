@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./login.component.scss']
 })
 /** login component*/
-export class LoginComponent {
+export class LoginTruemartComponent {
     /** login ctor */
   constructor() { }
   ngOnInit() { }
