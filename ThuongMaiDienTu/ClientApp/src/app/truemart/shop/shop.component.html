@@ -6,11 +6,11 @@ session_start();
 </head><body> -->
 <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]--> 
-
+    <![endif]-->
 <!-- Main Wrapper Start Here -->
 <div class="wrapper">
   <!-- <?php require_once('inc/header.php');?> -->
+  <app-truemart-form></app-truemart-form>
   <!-- Breadcrumb Start -->
   <div class="breadcrumb-area mt-30">
     <div class="container">
@@ -21,17 +21,17 @@ session_start();
         </ul>
       </div>
     </div>
-    <!-- Container End --> 
+    <!-- Container End -->
   </div>
-  <!-- Breadcrumb End --> 
+  <!-- Breadcrumb End -->
   <!-- Shop Page Start -->
   <div class="main-shop-page pt-100 pb-100 ptb-sm-60">
-    <div class="container"> 
+    <div class="container">
       <!-- Row End -->
-      <div class="row"> 
+      <div class="row">
         <!-- Sidebar Shopping Option Start -->
         <div class="col-lg-3 order-2 order-lg-1">
-          <div class="sidebar"> 
+          <div class="sidebar">
             <!-- Sidebar Categorie Start -->
             <div class="electronics mb-40">
               <h3 class="sidebar-title">Categories</h3>
@@ -46,7 +46,8 @@ session_start();
                       $cat_id = $rowcat[ 'ID' ];
                       $cat_name = $rowcat[ 'cate_name' ];
                       ?> -->
-                  <li class="has-sub"><a href="shop.php?cat=<?php echo $cat_id?>"><?php echo $cat_name?></a>
+                  <li class="has-sub">
+                    <a href="shop.php?cat=<?php echo $cat_id?>"><?php echo $cat_name?></a>
                     <!-- <?php
                     $queryscat = "select * from subcategory where cate_id = '$cat_id' order by subcate_id asc;";
                     $runscat = mysqli_query( $conn, $queryscat );
@@ -71,9 +72,9 @@ session_start();
                   ?> -->
                 </ul>
               </div>
-              <!-- category-menu-end --> 
+              <!-- category-menu-end -->
             </div>
-            <!-- Sidebar Categorie End --> 
+            <!-- Sidebar Categorie End -->
             <!-- Price Filter Options Start -->
             <div class="search-filter mb-40">
               <h3 class="sidebar-title">filter by price</h3>
@@ -82,15 +83,15 @@ session_start();
                 <input type="text" id="amount" class="amount-range" readonly>
               </form>
             </div>
-            <!-- Price Filter Options End --> 
+            <!-- Price Filter Options End -->
             <!-- Single Banner Start -->
-            <div class="col-img"> <a href="shop.php"><img src="img/banner/banner-sidebar.jpg" alt="slider-banner"></a> </div>
-            <!-- Single Banner End --> 
+            <div class="col-img"> <a href="shop.php"><img src="truemart/img/banner/banner-sidebar.jpg" alt="slider-banner"></a> </div>
+            <!-- Single Banner End -->
           </div>
         </div>
-        <!-- Sidebar Shopping Option End --> 
+        <!-- Sidebar Shopping Option End -->
         <!-- Product Categorie List Start -->
-        <div class="col-lg-9 order-1 order-lg-2"> 
+        <div class="col-lg-9 order-1 order-lg-2">
           <!-- Grid & List View Start -->
           <div class="grid-list-top border-default universal-padding d-md-flex justify-content-md-between align-items-center mb-30">
             <div class="grid-list-view  mb-sm-15">
@@ -111,7 +112,7 @@ session_start();
                 </select>
               </div>
             </div>
-            <!-- Toolbar Short Area End --> 
+            <!-- Toolbar Short Area End -->
             <!-- Toolbar Short Area Start -->
             <div class="main-toolbar-sorter clearfix">
               <div class="toolbar-sorter d-flex align-items-center">
@@ -125,61 +126,61 @@ session_start();
                 </select>
               </div>
             </div>
-            <!-- Toolbar Short Area End --> 
+            <!-- Toolbar Short Area End -->
           </div>
           <!-- Grid & List View End -->
-          <div class="main-categorie mb-all-40"> 
+          <div class="main-categorie mb-all-40">
             <!-- Grid & List Main Area End -->
             <div class="tab-content fix">
               <div id="grid-view" class="tab-pane fade show active">
                 <div class="row">
                   <!-- <?php
-                  $cat_id_pro = null;
-                  $subcat_id_pro = null;
-                  $query_pro = "SELECT `product`.*, `subcategory`.*, `category`.* FROM `product` LEFT JOIN `subcategory` ON `product`.`subcate_id` = `subcategory`.`subcate_id` LEFT JOIN `category` ON `subcategory`.`cate_id` = `category`.`ID` WHERE `product`.`status_pro` = 1";
-                  if ( isset( $_GET[ 'cat' ] ) ) {
-                    $cat_id_pro = $_GET[ 'cat' ];
-                    $query_pro .= " AND `category`.`ID` = '$cat_id_pro'";
-                  }
-                  if ( isset( $_GET[ 'subcat' ] ) ) {
-                    $subcat_id_pro = $_GET[ 'subcat' ];
-                    $query_pro .= " AND `subcategory`.`subcate_id` = '$subcat_id_pro'";
-                  }
-                  $query_last_pro = "SELECT `product`.`pid` FROM `product` ORDER BY `product`.`pid` DESC LIMIT 1";
-                  $run_last_pro = mysqli_query( $conn, $query_last_pro );
-                  $row_last_pro = mysqli_fetch_array( $run_last_pro );
-                  $pro_last_id = $row_last_pro[ 'pid' ];
-                  $runpro = mysqli_query( $conn, $query_pro );
-                  $current_page = isset( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 1;
-                  $count = mysqli_num_rows( $runpro );
-                  $total_page = ceil( $count / 9 );
-                  if ( $current_page > $total_page ) {
-                    $current_page = $total_page;
-                  } else if ( $current_page < 1 ) {
-                    $current_page = 1;
-                  }
-                  $limit = 9;
-                  $start = ( $current_page - 1 ) * $limit;
-                  $query_pro .= " limit $start,$limit";
-                  $runpro = mysqli_query( $conn, $query_pro );
-                  if ( mysqli_num_rows( $runpro ) > 0 ) 
-					  $pro_in_page = 0;
-                    while ( $rowpro = mysqli_fetch_array( $runpro ) ) 
-                      $pro_id = $rowpro[ 'pid' ];
-                      $pro_name = $rowpro[ 'pname' ];
-                      $pro_price = $rowpro[ 'price' ];
-                      $pro_sale = $rowpro[ 'sale' ];
-                      $pro_newprice = $rowpro[ 'new_price' ];
-                      $pro_des = $rowpro[ 'descr' ];
-                      $pro_img = $rowpro[ 'img' ];
-						$pro_in_page++;
-                      ?> -->
+                        $cat_id_pro = null;
+                        $subcat_id_pro = null;
+                        $query_pro = "SELECT `product`.*, `subcategory`.*, `category`.* FROM `product` LEFT JOIN `subcategory` ON `product`.`subcate_id` = `subcategory`.`subcate_id` LEFT JOIN `category` ON `subcategory`.`cate_id` = `category`.`ID` WHERE `product`.`status_pro` = 1";
+                        if ( isset( $_GET[ 'cat' ] ) ) {
+                          $cat_id_pro = $_GET[ 'cat' ];
+                          $query_pro .= " AND `category`.`ID` = '$cat_id_pro'";
+                        }
+                        if ( isset( $_GET[ 'subcat' ] ) ) {
+                          $subcat_id_pro = $_GET[ 'subcat' ];
+                          $query_pro .= " AND `subcategory`.`subcate_id` = '$subcat_id_pro'";
+                        }
+                        $query_last_pro = "SELECT `product`.`pid` FROM `product` ORDER BY `product`.`pid` DESC LIMIT 1";
+                        $run_last_pro = mysqli_query( $conn, $query_last_pro );
+                        $row_last_pro = mysqli_fetch_array( $run_last_pro );
+                        $pro_last_id = $row_last_pro[ 'pid' ];
+                        $runpro = mysqli_query( $conn, $query_pro );
+                        $current_page = isset( $_GET[ 'page' ] ) ? $_GET[ 'page' ] : 1;
+                        $count = mysqli_num_rows( $runpro );
+                        $total_page = ceil( $count / 9 );
+                        if ( $current_page > $total_page ) {
+                          $current_page = $total_page;
+                        } else if ( $current_page < 1 ) {
+                          $current_page = 1;
+                        }
+                        $limit = 9;
+                        $start = ( $current_page - 1 ) * $limit;
+                        $query_pro .= " limit $start,$limit";
+                        $runpro = mysqli_query( $conn, $query_pro );
+                        if ( mysqli_num_rows( $runpro ) > 0 )
+                  $pro_in_page = 0;
+                          while ( $rowpro = mysqli_fetch_array( $runpro ) )
+                            $pro_id = $rowpro[ 'pid' ];
+                            $pro_name = $rowpro[ 'pname' ];
+                            $pro_price = $rowpro[ 'price' ];
+                            $pro_sale = $rowpro[ 'sale' ];
+                            $pro_newprice = $rowpro[ 'new_price' ];
+                            $pro_des = $rowpro[ 'descr' ];
+                            $pro_img = $rowpro[ 'img' ];
+                  $pro_in_page++;
+                            ?> -->
                   <div class="col-lg-4 col-md-4 col-sm-6 col-6">
                     <div class="single-product">
                       <form action="cart_process.php?action=add&id=<?php echo $pro_id?>" method="POST">
                         <!-- Product Image Start -->
-                        <div class="pro-img"> <a href="product.php?id=<?php echo $pro_id?>"> <img class="primary-img" src="./admin/product-img/<?php echo $pro_img?>" alt="single-product"> <img class="secondary-img" src="./admin/product-img/<?php echo $pro_img?>" alt="single-product"> </a> <a href="#" class="quick_view" data-toggle="modal" data-target="#proModal-<?php echo $pro_id ?>" title="Quick View"><i class="lnr lnr-magnifier"></i></a> </div>
-                        <!-- Product Image End --> 
+                        <div class="pro-img"> <!--<a href="product.php?id=<?php echo $pro_id?>"> <img class="primary-img" src="./admin/product-img/<?php echo $pro_img?>" alt="single-product"> <img class="secondary-img" src="./admin/product-img/<?php echo $pro_img?>" alt="single-product"> </a> <a href="#" class="quick_view" data-toggle="modal" data-target="#proModal-<?php echo $pro_id ?>" title="Quick View"><i class="lnr lnr-magnifier"></i></a>--> </div>
+                        <!-- Product Image End -->
                         <!-- Product Content Start -->
                         <div class="pro-content">
                           <div class="pro-info">
@@ -220,7 +221,7 @@ session_start();
                   }
                   ?> -->
                 </div>
-                <!-- Row End --> 
+                <!-- Row End -->
               </div>
               <div class="pro-pagination">
                 <ul class="blog-pagination">
@@ -299,18 +300,18 @@ session_start();
                 </ul>
                 <div class="product-pagination"> <span class="grid-item-list">Showing <?php echo $start+1?> to <?php echo $start+$pro_in_page?> of <?php echo $count?> (<?php echo $i-1?> Pages)</span> </div>
               </div>
-              <!-- Product Pagination Info --> 
+              <!-- Product Pagination Info -->
             </div>
-            <!-- Grid & List Main Area End --> 
+            <!-- Grid & List Main Area End -->
           </div>
         </div>
-        <!-- product Categorie List End --> 
+        <!-- product Categorie List End -->
       </div>
-      <!-- Row End --> 
+      <!-- Row End -->
     </div>
-    <!-- Container End --> 
+    <!-- Container End -->
   </div>
-  <!-- Shop Page End --> 
+  <!-- Shop Page End -->
   <!-- Support Area Start Here -->
   <div class="support-area bdr-top">
     <div class="container">
@@ -319,35 +320,40 @@ session_start();
           <div class="support-icon"> <i class="lnr lnr-gift"></i> </div>
           <div class="support-desc">
             <h6>Great Value</h6>
-            <span>Nunc id ante quis tellus faucibus dictum in eget.</span> </div>
+            <span>Nunc id ante quis tellus faucibus dictum in eget.</span>
+          </div>
         </div>
         <div class="single-support">
-          <div class="support-icon"> <i class="lnr lnr-rocket" ></i> </div>
+          <div class="support-icon"> <i class="lnr lnr-rocket"></i> </div>
           <div class="support-desc">
             <h6>Worlwide Delivery</h6>
-            <span>Quisque posuere enim augue, in rhoncus diam dictum non</span> </div>
+            <span>Quisque posuere enim augue, in rhoncus diam dictum non</span>
+          </div>
         </div>
         <div class="single-support">
           <div class="support-icon"> <i class="lnr lnr-lock"></i> </div>
           <div class="support-desc">
             <h6>Safe Payment</h6>
-            <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span> </div>
+            <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span>
+          </div>
         </div>
         <div class="single-support">
           <div class="support-icon"> <i class="lnr lnr-enter-down"></i> </div>
           <div class="support-desc">
             <h6>Shop Confidence</h6>
-            <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span> </div>
+            <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span>
+          </div>
         </div>
         <div class="single-support">
           <div class="support-icon"> <i class="lnr lnr-users"></i> </div>
           <div class="support-desc">
             <h6>24/7 Help Center</h6>
-            <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span> </div>
+            <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Container End --> 
+    <!-- Container End -->
   </div>
   <!-- Support Area End Here -->
   <!-- <?php
@@ -373,27 +379,27 @@ session_start();
       ?> -->
   <!-- Quick View Content Start -->
   <div class="main-product-thumbnail quick-thumb-content">
-    <div class="container"> 
+    <div class="container">
       <!-- The Modal -->
       <div class="modal fade" id="proModal-?php echo $pro_id ?>">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-          <div class="modal-content"> 
+          <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-              <div class="row"> 
+              <div class="row">
                 <!-- Main Thumbnail Image Start -->
-                <div class="col-lg-5 col-md-6 col-sm-5"> 
+                <div class="col-lg-5 col-md-6 col-sm-5">
                   <!-- Thumbnail Large Image start -->
                   <div class="tab-content">
-                    <div id="thumb-<?php echo $pro_name ?>" class="tab-pane fade show active"> <a data-fancybox="images" href="admin/product-img/<?php echo $pro_image ?>"><img src="admin/product-img/<?php echo $pro_image ?>" alt="product-view"></a> </div>
+                    <div id="thumb-<?php echo $pro_name ?>" class="tab-pane fade show active"> <!--<a data-fancybox="images" href="admin/product-img/<?php echo $pro_image ?>"><img src="admin/product-img/<?php echo $pro_image ?>" alt="product-view"></a>--> </div>
                   </div>
-                  <!-- Thumbnail Large Image End --> 
+                  <!-- Thumbnail Large Image End -->
                 </div>
-                <!-- Main Thumbnail Image End --> 
+                <!-- Main Thumbnail Image End -->
                 <!-- Thumbnail Description Start -->
                 <div class="col-lg-7 col-md-6 col-sm-7">
                   <div class="thubnail-desc fix mt-sm-40">
@@ -427,7 +433,7 @@ session_start();
                     </div>
                   </div>
                 </div>
-                <!-- Thumbnail Description End --> 
+                <!-- Thumbnail Description End -->
               </div>
             </div>
             <!-- Modal footer -->
@@ -456,5 +462,152 @@ session_start();
   ?> -->
   <!-- Footer Area Start Here -->
   <!-- <?php require_once('inc/footer.php');?>
-</body>
-</html> -->
+  </body>
+  </html> -->
+  <!-- Footer Area Start Here -->
+  <footer class="off-white-bg2 pt-95 bdr-top pt-sm-55">
+    <!-- Footer Top Start -->
+    <div class="footer-top">
+      <div class="container">
+        <!-- Signup Newsletter Start -->
+        <div class="row mb-60">
+          <div class="col-xl-7 col-lg-7 ml-auto mr-auto col-md-8">
+            <div class="news-desc text-center mb-30">
+              <h3>Sign Up For Newsletters</h3>
+              <p>Be the First to Know. Sign up for newsletter today</p>
+            </div>
+            <div class="newsletter-box">
+              <form action="#">
+                <input class="subscribe" placeholder="your email address" name="email" id="subscribe" type="text">
+                <button type="submit" class="submit">subscribe!</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Signup-Newsletter End -->
+        <div class="row">
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Information</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="#">Delivery Information</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="contact.html">Terms & Conditions</a></li>
+                  <li><a href="login.html">FAQs</a></li>
+                  <li><a href="login.html">Return Policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Customer Service</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="wishlist.html">Wish List</a></li>
+                  <li><a href="#">Site Map</a></li>
+                  <li><a href="#">Gift Certificates</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Extras</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="#">Newsletter</a></li>
+                  <li><a href="#">Brands</a></li>
+                  <li><a href="#">Gift Certificates</a></li>
+                  <li><a href="#">Affiliate</a></li>
+                  <li><a href="#">Specials</a></li>
+                  <li><a href="#">Site Map</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">My Account</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">My Account</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="wishlist.html">Wish List</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">My Account</h3>
+              <div class="footer-content">
+                <ul class="footer-list address-content">
+                  <li><i class="lnr lnr-map-marker"></i> Address: 169-C, Technohub, Dubai Silicon Oasis.</li>
+                  <li><i class="lnr lnr-envelope"></i><a href="#"> mail Us: Support@truemart.com </a></li>
+                  <li>
+                    <i class="lnr lnr-phone-handset"></i> Phone: (+800) 123 456 789)
+                  </li>
+                </ul>
+                <div class="payment mt-25 bdr-top pt-30">
+                  <a href="#"><img class="img" src="truemart/img/payment/1.png" alt="payment-image"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+        </div>
+        <!-- Row End -->
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Top End -->
+    <!-- Footer Middle Start -->
+    <div class="footer-middle text-center">
+      <div class="container">
+        <div class="footer-middle-content pt-20 pb-30">
+          <ul class="social-footer">
+            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><img src="truemart/img/icon/social-img1.png" alt="google play"></a></li>
+            <li><a href="#"><img src="truemart/img/icon/social-img2.png" alt="app store"></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Middle End -->
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom pb-30">
+      <div class="container">
+
+        <div class="copyright-text text-center">
+          <p>Copyright © 2018 <a target="_blank" href="#">Truemart</a> All Rights Reserved.</p>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Bottom End -->
+  </footer>
+  <!-- Footer Area End Here -->
+</div>
+<!-- Main Wrapper End Here -->

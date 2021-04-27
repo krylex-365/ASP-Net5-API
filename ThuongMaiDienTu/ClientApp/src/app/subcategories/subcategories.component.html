@@ -49,32 +49,18 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
               <div class="card-title">
                 <h4>Add Sub-Category</h4>
               </div>
-              <form action="inc/process.php" method="post">
+              <form #subcategoryAdd="ngForm" (ngSubmit)="add(subcategoryAdd.value)" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="category">Category Name:*</label>
                   <div class="box">
-                    <select name="categories">
-                      <!--<?php
-                      $query = "select * from category order by ID asc";
-                      $run = mysqli_query($conn, $query);
-                      if (mysqli_num_rows($run) > 0) {
-                      while ($row = mysqli_fetch_array($run)) {
-                      $cat_id = $row['ID'];
-                      $cat_name = $row['cate_name'];
-                      ?>-->
-                      <option value="<?php echo $cat_id ?>"><?php echo $cat_id ?>. <?php echo $cat_name ?></option>
-                      <!--<?php
-                      }
-                      } else {
-                      echo "No Categories Found";
-                      }
-                      ?>-->
+                    <select name="categoryId" [(ngModel)]="categoryId">
+                      <option *ngFor="let category of categories" value={{category.categoryId}}>{{category.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group" style="background-color: transparent">
                   <label for="subcategory">Sub-Category Name:*</label>
-                  <input type="text" placeholder="Sub-Category Name" class="form-control" name="subcat-name" required>
+                  <input type="text" placeholder="Sub-Category Name" class="form-control" name="name" [(ngModel)]="name" required>
                 </div>
                 <input type="submit" value="Add Sub-Category" name="add-subcategory" class="btn btn-primary">
               </form>
@@ -91,37 +77,37 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
           $edit_catid = $row_edit_id['cate_id'];
           $edit_subname = $row_edit_id['subcate_name'];
           ?>-->
-          <div class="card">
+          <div *ngIf="subcategoryUp" class="card">
             <div class="card-body">
               <div class="card-title">
                 <h4>Edit Sub-Category</h4>
               </div>
-              <form action="inc/process.php?edit_subcategory=<?php echo $subcat_id ?>" method="post">
+              <form #categoryUpdate="ngForm" (ngSubmit)="update(subcategoryUp.subcategoryId, subcategoryUpdate.value)">
                 <div class="form-group">
                   <label for="category">Edit Category Name:*</label>
                   <div class="box">
                     <select name="editcategories">
                       <!--<?php
-                      $queryedit = "select * from category order by ID asc";
-                      $runedit = mysqli_query($conn, $queryedit);
-                      if (mysqli_num_rows($runedit) > 0) {
-                      while ($rowedit = mysqli_fetch_array($runedit)) {
-                      $edit_cat_id = $rowedit['ID'];
-                      $edit_cat_name = $rowedit['cate_name'];
-                      $selected = "";
-                      if($edit_cat_id == $edit_catid)
-                      {
-                      $selected = "selected";
-                      }
-                      ?>-->
+        $queryedit = "select * from category order by ID asc";
+        $runedit = mysqli_query($conn, $queryedit);
+        if (mysqli_num_rows($runedit) > 0) {
+        while ($rowedit = mysqli_fetch_array($runedit)) {
+        $edit_cat_id = $rowedit['ID'];
+        $edit_cat_name = $rowedit['cate_name'];
+        $selected = "";
+        if($edit_cat_id == $edit_catid)
+        {
+        $selected = "selected";
+        }
+        ?>-->
                       <!--<option <?php echo $selected; ?> value="<?php echo $edit_cat_id ?>"><?php echo $edit_cat_id ?>. <?php echo $edit_cat_name ?></option>-->
                       <option value="<?php echo $cat_id ?>"><?php echo $cat_id ?>. <?php echo $cat_name ?></option>
                       <!--<?php
-                      }
-                      } else {
-                      echo "No Categories Found";
-                      }
-                      ?>-->
+        }
+        } else {
+        echo "No Categories Found";
+        }
+        ?>-->
                     </select>
                   </div>
                 </div>
@@ -130,6 +116,7 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
                   <input type="text" placeholder="Edit Sub-Category Name" class="form-control" name="edit-subcat-name" value="<?php echo $edit_subname; ?>" required>
                 </div>
                 <input type="submit" value="Edit Sub-Category" name="edit-subcategory" class="btn btn-primary">
+                <button type="button" class="btn btn-danger" style="float: right;" (click)="setCategoryUpNull()">Cancel</button>
               </form>
             </div>
           </div>
@@ -156,47 +143,28 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
                     </tr>
                   </thead>
                   <tbody>
-                    <!--<?php
-                    $query = "select * from subcategory order by cate_id asc";
-                    $run = mysqli_query($conn, $query);
-                    if (mysqli_num_rows($run) > 0) {
-                    while ($row = mysqli_fetch_array($run)) {
-                    $cat_id = $row['cate_id'];
-                    $subcat_id = $row['subcate_id'];
-                    $subcat_name = $row['subcate_name'];
-                    ?>-->
-                    <tr>
-                      <td><?php echo $cat_id ?></td>
-                      <td><?php echo $subcat_id ?></td>
-                      <td><?php echo $subcat_name ?></td>
-                      <td>
-                        <a href="sub-categories.php?edit=<?php echo $subcat_id ?>">
-                          <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                        </a>
-                      </td>
-                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $subcat_id ?>"><i class="fa fa-close"></i></button></td>
+                    <tr *ngFor="let subcategory of subcategories">
+                      <td>{{subcategory.categoryId}}</td>
+                      <td>{{subcategory.subcategoryId}}</td>
+                      <td>{{subcategory.name}}</td>
+                      <td><button type="button" class="btn btn-primary" (click)="getSubcategoryById(subcategory.subcategoryId)"><i class="fa fa-pencil"></i></button></td>
+                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getSubcategoryDel(subcategory.subcategoryId)"><i class="fa fa-close"></i></button></td>
                     </tr>
-                    <div class="modal fade" id="exampleModal<?php echo $subcat_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLabel<?php echo $subcat_id ?>" style="margin: auto;text-align: center;">Are you sure to delete<br> Sub-Category <?php echo $subcat_id?>. <?php echo $subcat_name ?> ?</h3>
-                          </div>
-                          <div class="modal-footer" style="margin: auto;">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                            <a href="sub-categories.php?del=<?php echo $subcat_id ?>"><button type="button" class="btn btn-danger">Yes, delete it !</button></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--<?php
-                    }
-                    } else {
-                    echo "No Sub-Categories Found";
-                    }
-                    ?>-->
                   </tbody>
                 </table>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Are you sure to delete<br> Sub-Category {{subcategoryDel.subcategoryId}}. {{subcategoryDel.name}} ?</h3>
+                      </div>
+                      <div class="modal-footer" style="margin: auto;">
+                        <button type="button" class="btn btn-danger" (click)="delete(subcategoryDel.subcategoryId)">Yes, delete it !</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

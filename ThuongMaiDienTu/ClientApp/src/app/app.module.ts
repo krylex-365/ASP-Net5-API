@@ -40,12 +40,13 @@ import { UserEditService } from '../services/user-edit.service';
 import { IndexComponent } from './truemart/index/index.component';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { ReloadService } from '../services/reload.service';
+import { TruemartFormComponent } from './truemart/truemart-form/truemart-form.component';
 import { ProductShopComponent } from './truemart/product/product.component';
 import { ProductShopService } from '../services/productshop.service';
 import { ShopComponent } from './truemart/shop/shop.component';
-import { LoginTruemartComponent } from './truemart/login/login.component';
+/*import { LoginTruemartComponent } from './truemart/login/login.component';
 import { ProfileComponent } from './truemart/profile/profile.component';
-import { UserProfileService } from '../services/user-profile.service';
+import { UserProfileService } from '../services/user-profile.service';*/
 
 
 @NgModule({
@@ -71,10 +72,11 @@ import { UserProfileService } from '../services/user-profile.service';
     UserAddComponent,
     UserEditComponent,
     IndexComponent,
+    TruemartFormComponent,
     ProductShopComponent,
     ShopComponent,
-    ProfileComponent,
-    LoginTruemartComponent,
+    /*ProfileComponent,
+    LoginTruemartComponent,*/
 
   ],
   imports: [
@@ -102,7 +104,7 @@ import { UserProfileService } from '../services/user-profile.service';
       { path: 'index', component: IndexComponent },
       { path: 'productshop', component: ProductShopComponent },
       { path: 'shop', component: ShopComponent },
-      { path: 'user-profile', component: ProfileComponent},
+      /*{ path: 'user-profile', component: ProfileComponent},*/
 
     ]),
   ],
@@ -123,7 +125,7 @@ import { UserProfileService } from '../services/user-profile.service';
     UserEditService,
     ReloadService,
     ProductShopService,
-    UserProfileService,
+    /*UserProfileService,*/
 
   ],
   bootstrap: [AppComponent]
