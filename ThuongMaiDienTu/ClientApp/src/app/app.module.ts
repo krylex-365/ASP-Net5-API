@@ -70,11 +70,11 @@ import { UserProfileService } from '../services/user-profile.service';
     AccountProfileComponent,
     UserAddComponent,
     UserEditComponent,
-    IndexComponent,
+    /*IndexComponent,
     ProductShopComponent,
     ShopComponent,
     ProfileComponent,
-    LoginTruemartComponent,
+    LoginTruemartComponent,*/
 
   ],
   imports: [
@@ -99,10 +99,10 @@ import { UserProfileService } from '../services/user-profile.service';
       { path: 'profile', component: AccountProfileComponent },
       { path: 'user-add', component: UserAddComponent },
       { path: 'user-edit', component: UserEditComponent },
-      { path: 'index', component: IndexComponent },
+      /*{ path: 'index', component: IndexComponent },
       { path: 'productshop', component: ProductShopComponent },
       { path: 'shop', component: ShopComponent },
-      { path: 'user-profile', component: ProfileComponent},
+      { path: 'user-profile', component: ProfileComponent},*/
 
     ]),
   ],
@@ -122,8 +122,8 @@ import { UserProfileService } from '../services/user-profile.service';
     UserAddService,
     UserEditService,
     ReloadService,
-    ProductShopService,
-    UserProfileService,
+    //ProductShopService,
+    //UserProfileService,
 
   ],
   bootstrap: [AppComponent]
