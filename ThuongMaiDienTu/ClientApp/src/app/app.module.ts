@@ -104,6 +104,7 @@ import { UserProfileService } from '../services/user-profile.service';*/
       { path: 'index', component: IndexComponent },
       { path: 'productshop', component: ProductShopComponent },
       { path: 'shop', component: ShopComponent },
+      { path: 'shop/:id', component: ShopComponent },
       /*{ path: 'user-profile', component: ProfileComponent},*/
 
     ]),

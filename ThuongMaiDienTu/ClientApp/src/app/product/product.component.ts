@@ -15,14 +15,14 @@ export class ProductComponent implements OnInit {
   products: Array<Product>;
   delProductId: string;
 
-  constructor(private prodcutService: ProductService,
+  constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
     private reload: ReloadService  ) {
   }
 
   ngOnInit() {
-    this.prodcutService.getProducts().subscribe(
+    this.productService.getProducts().subscribe(
       result => {
         this.products = result;
         console.log(this.products);
@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
   }
 
   delete() {
-    this.prodcutService.delete(this.delProductId).subscribe(
+    this.productService.delete(this.delProductId).subscribe(
       result => {
         console.log(result);
         if (result.status == 200) {

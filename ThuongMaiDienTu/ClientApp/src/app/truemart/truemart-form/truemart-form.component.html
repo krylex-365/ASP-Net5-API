@@ -49,7 +49,7 @@
                   $subcat_id = $rowscat[ 'subcate_id' ];
                   $subcat_name = $rowscat[ 'subcate_name' ];
                   echo "-->
-                  <option value='$subcat_id'>$subcat_name</option><!--";
+                  <option *ngFor="let subc of subcategories" value='{{subc.subcategoryId}}'>{{subc.name}}</option><!--";
                   }
                   }
                   ?>-->
@@ -308,43 +308,15 @@
     <div class="vertical-menu mt-30">
       <span class="categorie-title mobile-categorei-menu">Shop by Categories </span>
       <nav>
-        <div id="cate-mobile-toggle" class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list menu-hidden ">
+        <div id="cate-mobile-toggle" class="category-menu sidebar-menu sidbar-style mobile-categorei-menu-list">
           <ul>
-            <!--<?php
-            #img/vertical-menu/8.png, img/vertical-menu/10.png, img/vertical-menu/5.png, img/vertical-menu/7.png
-            $querycat = "select * from category order by ID asc;";
-            $runcat = mysqli_query( $conn, $querycat );
-            if ( mysqli_num_rows( $runcat ) > 0 ) {
-            while ( $rowcat = mysqli_fetch_array( $runcat ) ) {
-            $cat_id = $rowcat[ 'ID' ];
-            $cat_name = $rowcat[ 'cate_name' ];
-            ?>-->
-            <li class="has-sub">
-              <a href="shop.php?cat=<?php echo $cat_id?>"><?php echo $cat_name?></a>
-              <!--<?php
-              $queryscat = "select * from subcategory where cate_id = '$cat_id' order by subcate_id asc;";
-              $runscat = mysqli_query( $conn, $queryscat );
-              if ( mysqli_num_rows( $runscat ) > 0 ) {
-              echo "--><ul class='category-sub'>
-                <!--";
-                while ( $rowscat = mysqli_fetch_array( $runscat ) ) {
-                $cat_id = $rowscat[ 'cate_id' ];
-                $subcat_id = $rowscat[ 'subcate_id' ];
-                $subcat_name = $rowscat[ 'subcate_name' ];
-                echo "-->
-                <li><a href='shop.php?subcat=$subcat_id'>$subcat_name</a></li><!--";
-                }
-                echo "-->
-              </ul><!--";
-              }
-              ?>-->
+            <li class="has-sub" *ngFor="let cate of categories">
+              <a href="shop.php?cat=<?php echo $cat_id?>">{{cate.name}}</a>
+              <ul class='category-sub'>
+                {{getSubcategoriesByCategoryId(cate.id)}}
+                <li *ngFor="let subcate of subcates"><a href='shop.php?subcat=$subcat_id'>{{subcate.name}}</a></li>
+              </ul>
             </li>
-            <!--<?php
-            }
-            } else {
-            echo "No Categories Found";
-            }
-            ?>-->
           </ul>
         </div>
         <!-- category-menu-end -->
