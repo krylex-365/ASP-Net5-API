@@ -52,7 +52,7 @@
                   <label for="category">Subcate:*</label>
                   <div class="box">
                     <select name="subcategoryId" [(ngModel)]="subcategoryId">
-                      <option *ngFor="let subcategory of subcategories" value={{subcategory.subcategoryId}}>{{subcategory.name}}</option>
+                      <option *ngFor="let subcategory of subcategories" value={{subcategory.subcategoryId}} style="color:black;">{{subcategory.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -60,9 +60,9 @@
                   <label for="category">Status:*</label>
                   <div class="box">
                     <select name="status" [(ngModel)]="status">
-                      <option value="0">Saling</option>
-                      <option value="1">New</option>
-                      <option value="2">Hot</option>
+                      <option value="0" style="color:black;">Saling</option>
+                      <option value="1" style="color:black;">New</option>
+                      <option value="2" style="color:black;">Hot</option>
                     </select>
                   </div>
                 </div>

@@ -54,7 +54,7 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
                   <label for="category">Category Name:*</label>
                   <div class="box">
                     <select name="categoryId" [(ngModel)]="categoryId">
-                      <option *ngFor="let category of categories" value={{category.categoryId}}>{{category.name}}</option>
+                      <option *ngFor="let category of categories" value={{category.categoryId}} style="color:black;">{{category.name}}</option>
                     </select>
                   </div>
                 </div>
