@@ -166,14 +166,14 @@
                           </span>
                         </li>
                       </ul>
-                      <div class="cart-actions text-center"> <a class="cart-checkout" href="cart.php">Checkout</a> </div>
+                      <div class="cart-actions text-center"> <a class="cart-checkout" href="#">Checkout</a> </div>
                     </div>
                     <!-- Cart Footer Inner End -->
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="./user-profile.php">
+                <a href="#">
                   <i class="lnr lnr-user"></i> <span class="my-cart">
                     <!--<?php
                     if ( isset( $_SESSION[ 'username' ] ) ) {
@@ -194,8 +194,8 @@
                   <!--<?php
                   if ( isset( $_SESSION[ 'username' ] ) ) {
                   ?>-->
-                  <li><a href="user-profile.php">Profile</a></li>
-                  <li><a href="logout.php">Logout</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Logout</a></li>
                   <!--<?php
                   } else {
                   ?>-->
@@ -312,9 +312,9 @@
           <ul>
             <li class="has-sub" *ngFor="let cate of categories">
               <a href="shop.php?cat=<?php echo $cat_id?>">{{cate.name}}</a>
-              <ul class='category-sub'>
+              <ul class="category-sub">
                 {{getSubcategoriesByCategoryId(cate.id)}}
-                <li *ngFor="let subcate of subcates"><a href='shop.php?subcat=$subcat_id'>{{subcate.name}}</a></li>
+                <li *ngFor="let subcate of subcates"><a href="#">{{subcate.name}}</a></li>
               </ul>
             </li>
           </ul>
@@ -335,49 +335,13 @@
         <div class="vertical-menu mb-all-30">
           <nav>
             <ul class="vertical-menu-list">
-              <!--<?php
-              #img/vertical-menu/8.png, img/vertical-menu/10.png, img/vertical-menu/5.png, img/vertical-menu/7.png
-              $querycat = "select * from category order by ID asc;";
-              $runcat = mysqli_query( $conn, $querycat );
-              if ( mysqli_num_rows( $runcat ) > 0 ) {
-              $i = 1;
-              while ( $rowcat = mysqli_fetch_array( $runcat ) ) {
-              $cat_id = $rowcat[ 'ID' ];
-              $cat_name = $rowcat[ 'cate_name' ];
-              ?>-->
-              <li id="category<?php echo $cat_id?>" class="" *ngFor="let cate of categories">
-                <a href="shop.php?cat=<?php echo $cat_id?>"><span><!--<img src="truemart/img/vertical-menu/<?php echo $i?>.png" alt="menu-icon">--></span>{{cate.name}}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                <!--<?php
-  $queryscat = "select * from subcategory where cate_id = '$cat_id' order by subcate_id asc;";
-  $runscat = mysqli_query( $conn, $queryscat );
-  if ( mysqli_num_rows( $runscat ) > 0 ) {
-
-  echo "-->
+              <li *ngFor="let cate of categories">
+                <a href="#"><span><!--<img src="truemart/img/vertical-menu/<?php echo $i?>.png" alt="menu-icon">--></span>{{cate.name}}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 {{getSubcategoriesByCategoryId(cate.id)}}
-                <ul id='listsubcat" . $cat_id . "' class='ht-dropdown mega-child'>
-                  <!--";
-    while ( $rowscat = mysqli_fetch_array( $runscat ) ) {
-    $cat_id = $rowscat[ 'cate_id' ];
-    $subcat_id = $rowscat[ 'subcate_id' ];
-    $subcat_name = $rowscat[ 'subcate_name' ];
-    echo "-->
-                  <li id='subcat" . $subcat_id . "' *ngFor="let subcate of subcates"><a href='shop.php?subcat=$subcat_id'>{{subcate.name}}</a></li>
-                  <!--";
-    }
-    echo "-->
+                <ul class="ht-dropdown mega-child">
+                  <li *ngFor="let subcate of subcates"><a href="#">{{subcate.name}}</a></li>
                 </ul>
-                <!--";
-  }
-  ?>-->
               </li>
-              <!--<?php
-              $i++;
-              }
-              } else {
-              echo "No Categories Found";
-              }
-              ?>-->
-              <!-- More Categoies End -->
             </ul>
           </nav>
         </div>
