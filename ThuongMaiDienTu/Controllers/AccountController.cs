@@ -42,18 +42,25 @@ namespace TMDT.Controllers
         [HttpPost]
         public HttpResponseMessage Add(Account account)
         {
-            Account account1 = context.Accounts.Find(account.AccountId);
-            if (account1 != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                /*return "Duplicate primary key";*/
-            }
             Role role = context.Roles.Find(account.RoleId);
             if(role == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 /*return "RoleId does not exist";*/
             }
+
+            //Tu dong tao khoa chinh
+            List<Account> accounts = context.Accounts.ToList();
+            string key = "0";
+            foreach (Account account1 in accounts)
+            {
+                if (int.Parse(account1.AccountId) > int.Parse(key))
+                {
+                    key = account1.AccountId;
+                }
+            }
+            key = "" + (int.Parse(key) + 1);
+            account.AccountId = key;
 
             context.Accounts.Add(account);
             context.SaveChanges();

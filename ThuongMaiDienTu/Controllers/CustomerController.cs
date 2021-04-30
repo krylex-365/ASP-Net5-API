@@ -42,18 +42,25 @@ namespace TMDT.Controllers
         [HttpPost]
         public HttpResponseMessage Add(Customer customer)
         {
-            Customer customer1 = context.Customers.Find(customer.AccountId);
-            if (customer1 != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                /*return "Duplicate primary key";*/
-            }
             Account account = context.Accounts.Find(customer.AccountId);
             if (account == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 /*return "AccountId does not exist";*/
             }
+
+            //Tu dong tao khoa chinh
+            List<Customer> customers = context.Customers.ToList();
+            string key = "0";
+            foreach (Customer customer1 in customers)
+            {
+                if (int.Parse(customer1.CustomerId) > int.Parse(key))
+                {
+                    key = customer1.CustomerId;
+                }
+            }
+            key = "" + (int.Parse(key) + 1);
+            customer.CustomerId = key;
 
             context.Customers.Add(customer);
             context.SaveChanges();

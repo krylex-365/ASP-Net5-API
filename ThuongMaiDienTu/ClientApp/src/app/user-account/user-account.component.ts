@@ -5,6 +5,7 @@ import { Account } from '../../models/account';
 import { AccountService } from '../../services/account.service';
 import { RoleService } from '../../services/role.service';
 import { Role } from '../../models/role';
+import { ReloadService } from '../../services/reload.service';
 
 @Component({
     selector: 'app-user-account',
@@ -21,10 +22,13 @@ export class UserAccountComponent implements OnInit{
   roleName: string;
   customer: Customer;
   account: Account;
+  deleteId: string;
+  deleteName: string;
 
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
-    private roleService: RoleService  ) {
+    private roleService: RoleService,
+    private reload: ReloadService) {
 
   }
 
@@ -45,6 +49,7 @@ export class UserAccountComponent implements OnInit{
         this.customers = result;
         console.log(this.customers);
       });
+    this.reload.refresh();
   }
 
   getUserName(id: string) {
@@ -74,5 +79,29 @@ export class UserAccountComponent implements OnInit{
         this.customer = cus;
       }
     })
+  }
+
+  setDeleteId(id: string, name: string) {
+    this.deleteId = id;
+    this.deleteName = name;
+  }
+
+  setNoDel() {
+    this.deleteId = null;
+    this.deleteName = null;
+  }
+
+  async delete() {
+    await this.customerService.delete(this.deleteId).subscribe(
+      result => {
+        console.log(result);
+        if (result.status == 200) {
+          this.refresh();
+        }
+      });
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

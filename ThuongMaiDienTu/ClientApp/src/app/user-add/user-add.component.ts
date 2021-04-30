@@ -5,6 +5,8 @@ import { Account } from '../../models/account';
 import { UserAddService } from '../../services/user-add.service';
 import { AccountService } from '../../services/account.service';
 import { RoleService } from '../../services/role.service';
+import { ReloadService } from '../../services/reload.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-user-add',
@@ -18,19 +20,24 @@ export class UserAddComponent implements OnInit{
   roleId: string;
   account: Account;
   customer: Customer;
+  bool: boolean;
 
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
-    private roleService: RoleService) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private reload: ReloadService) { }
 
   ngOnInit() {
     this.sex = "";
     this.roleId = "";
   }
 
-  add(value) {
+  async add(value) {
+    this.account = new Account;
+    this.customer = new Customer;
     console.log(value);
-    this.account.accountId = "1" //C# xử lý
+    this.account.accountId = "1"; //C# xử lý
     if (value.avatar) {
       this.account.avatar = value.avatar.substr(value.avatar.lastIndexOf("\\") + 1);
     } else {
@@ -52,5 +59,32 @@ export class UserAddComponent implements OnInit{
     this.customer.review = null;
     this.customer.sex = value.sex;
     this.customer.status = "1";
+
+    this.bool = true;
+    
+    await this.accountService.add(this.account).subscribe(
+      result => {
+        console.log(result);
+        if (result.status == 200) {
+          this.bool = false;
+        }
+      });
+
+    this.customerService.add(this.customer).subscribe(
+      result => {
+        console.log(result);
+        if (result.status != 200) {
+          this.bool = false;
+        }
+      });
+
+    if (this.bool) {
+      this.redirectUsers();
+    }
+  }
+
+  redirectUsers() {
+    this.reload.reload = "1";
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'users');
   }
 }

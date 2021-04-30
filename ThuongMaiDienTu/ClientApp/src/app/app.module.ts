@@ -98,7 +98,7 @@ import { UserProfileService } from '../services/user-profile.service';
       { path: 'editproduct/:id', component: EditproductComponent },
       { path: 'profile', component: AccountProfileComponent },
       { path: 'user-add', component: UserAddComponent },
-      { path: 'user-edit', component: UserEditComponent },
+      { path: 'user-edit/:id', component: UserEditComponent },
       /*{ path: 'index', component: IndexComponent },
       { path: 'productshop', component: ProductShopComponent },
       { path: 'shop', component: ShopComponent },
