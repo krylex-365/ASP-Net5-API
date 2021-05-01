@@ -1,1 +1,180 @@
-﻿<div style="border: 1px solid red">truemart-form Component</div>
+<!-- Banner Popup Start -->
+<div class="popup_banner">
+  <span class="popup_off_banner">×</span>
+  <div class="banner_popup_area"> <img src="truemart/img/banner/pop-banner.jpg" alt=""> </div>
+</div>
+<!-- Banner Popup End -->
+<!-- Main Header Area Start Here -->
+<header>
+  <!-- Header Middle Start Here -->
+  <div class="header-middle ptb-15">
+    <div class="container">
+      <div class="row align-items-center no-gutters">
+        <div class="col-lg-3 col-md-12">
+          <div class="logo mb-all-30"> <a href="index.php"><img src="truemart/img/logo/logo.png" alt="logo-image"></a> </div>
+        </div>
+        <!-- Categorie Search Box Start Here -->
+        <div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
+          <div class="categorie-search-box">
+            <form action="search-product.php" method="get">
+              <div class="form-group">
+                <select class="bootstrap-select" name="poscats">
+                  <option value="0">All sub-categories</option>
+                  <option *ngFor="let subc of subcategories" value='{{subc.subcategoryId}}'>{{subc.name}}</option>
+                </select>
+              </div>
+              <style>
+                .ui-menu .ui-menu-item-wrapper {
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 30px;
+                }
+                .ui-widget-content .ui-state-active,
+                .ui-widget-header .ui-state-active:hover {
+                  border: 1px solid #212121 !important;
+                  background: #e62e04 !important;
+                }
+                .ui-menu .ui-menu-item {
+                  background: #fff !important;
+                }
+              </style>
+              <input type="text" name="search" placeholder="I’m shopping for..." id="searchproduct">
+              <button type="submit" name="search-product"><i class="lnr lnr-magnifier"></i></button>
+            </form>
+          </div>
+        </div>
+        <!-- Categorie Search Box End Here -->
+        <!-- Cart Box Start Here -->
+        <div class="col-lg-4 col-md-12">
+          <div class="cart-box mt-all-30">
+            <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
+              <li>
+                <a href="#">
+                  <i class="lnr lnr-cart"></i><span class="my-cart"><span class="total-pro">1</span><span>cart</span>
+                  </span>
+                </a>
+                <ul class="ht-dropdown cart-box-width">
+                  <li>
+                    <!-- Cart Box Start -->
+                    <div class="single-cart-box">
+                      <form action="#" method="POST">
+                        <div class="cart-img"> <a href="#>"><img src="../product-img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="cart-image"></a> <span class="pro-quantity">1X</span> </div>
+                        <div class="cart-content">
+                          <h6><a href="#">Product 1</a></h6>
+                          <span class="cart-price">$ 20</span>
+                        </div>
+                        <button class="btn del-icone" type="submit" name="remove" style="padding: 0px;"><i class="ion-close"></i></button>
+                      </form>
+                    </div>
+                    <!-- Cart Footer Inner Start -->
+                    <div class="cart-footer">
+                      <ul class="price-content">
+                        <li>
+                          Subtotal ($)<span class="amount" id="cart-subtotal">
+                            <!--<?php if(isset($_SESSION['cart'])){echo $totalprice;}else{ echo "0";} ?>-->
+                          </span>
+                        </li>
+                        <li>
+                          Taxes ($)<span class="amount" id="vat">
+                            <!--<?php if(isset($_SESSION['cart'])){echo $VAT;}else{ echo "0";} ?>-->
+                          </span>
+                        </li>
+                        <li>
+                          Total ($)<span class="amount" id="cart-total">
+                            <!--<?php if(isset($_SESSION['cart'])){echo $carttotal;}else{ echo "0";} ?>-->
+                          </span>
+                        </li>
+                      </ul>
+                      <div class="cart-actions text-center"> <a class="cart-checkout" href="#">Checkout</a> </div>
+                    </div>
+                    <!-- Cart Footer Inner End -->
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="lnr lnr-user"></i> <span class="my-cart">
+                    <!--<span>Hello, </span><span><strong><?php echo $name?></strong></span>-->
+                    <span> <strong>Login</strong> Or</span><span><strong> Register</strong></span>
+                  </span>
+                </a>
+                <ul class="ht-dropdown user-dropdown">
+                  <!--<?php
+                  if ( isset( $_SESSION[ 'username' ] ) ) {
+                  ?>-->
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Logout</a></li>
+                  <!--<?php
+                  } else {
+                  ?>-->
+                  <li><a href="login.php">Login</a></li>
+                  <li><a href="register.php">Register</a></li>
+                  <!--<?php
+                  }
+                  ?>-->
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Cart Box End Here -->
+      </div>
+      <!-- Row End -->
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Header Middle End Here -->
+  <!-- Header Bottom Start Here -->
+  <div class="header-bottom  header-sticky">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-3 col-lg-4 col-md-6 vertical-menu d-none d-lg-block">
+          <span class="categorie-title" onclick="hide()">Shop by Categories</span>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-12 ">
+          <nav class="d-none d-lg-block">
+            <ul class="header-bottom-list d-flex">
+              <li class="active"><a href="#">Home</a> </li>
+              <li><a href="#">Shop</a></li>
+              <li><a href="#">Cart</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- Row End -->
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Header Bottom End Here -->
+</header>
+<!-- Main Header Area End Here -->
+<!-- Categorie Menu & Slider Area Start Here -->
+<div class="main-page-banner off-white-bg home-3">
+  <div class="container">
+    <div class="row">
+      <!-- Vertical Menu Start Here -->
+      <div class="col-xl-3 col-lg-4 d-none d-lg-block">
+        <div class="vertical-menu mb-all-30">
+          <nav>
+            <ul class="vertical-menu-list" id="test">
+              <li *ngFor="let cate of categories">
+                <a href="#"><span></span>{{cate.name}}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <ul class="ht-dropdown mega-child">
+                  <li><a href="#">A B C</a></li>
+                  <li><a href="#">A B C</a></li>
+                  <li><a href="#">A B C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- Vertical Menu End Here -->
+    </div>
+    <!-- Row End -->
+  </div>
+  <!-- Container End -->
+</div>
+<!-- Categorie Menu & Slider Area End Here --> 

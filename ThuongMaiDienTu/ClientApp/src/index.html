@@ -26,6 +26,36 @@
   <link href="plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-custom.css" rel="stylesheet">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="truemart/img/favicon.ico">
+  <!-- Fontawesome css -->
+  <link rel="stylesheet" href="truemart/css/font-awesome.min.css">
+  <!-- Ionicons css -->
+  <link rel="stylesheet" href="truemart/css/ionicons.min.css">
+  <!-- linearicons css -->
+  <link rel="stylesheet" href="truemart/css/linearicons.css">
+  <!-- Nice select css -->
+  <link rel="stylesheet" href="truemart/css/nice-select.css">
+  <!-- Jquery fancybox css -->
+  <link rel="stylesheet" href="truemart/css/jquery.fancybox.css">
+  <!-- Jquery ui price slider css -->
+  <link rel="stylesheet" href="truemart/css/jquery-ui.min.css">
+  <!-- Meanmenu css -->
+  <link rel="stylesheet" href="truemart/css/meanmenu.min.css">
+  <!-- Nivo slider css -->
+  <link rel="stylesheet" href="truemart/css/nivo-slider.css">
+  <!-- Owl carousel css -->
+  <link rel="stylesheet" href="truemart/css/owl.carousel.min.css">
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="truemart/css/bootstrap.min.css">
+  <!-- Custom css -->
+  <link rel="stylesheet" href="truemart/css/default.css">
+  <!-- Main css -->
+  <link rel="stylesheet" href="truemart/style.css">
+  <!-- Responsive css -->
+  <link rel="stylesheet" href="truemart/css/responsive.css">
+
   <style>
     .box {
       padding: 0;
@@ -67,6 +97,55 @@
       border-radius: 0.5rem;
     }
 
+    .actions-primary > input {
+      background: #eeeeee none repeat scroll 0 0;
+      border: 1px solid #cbcbcb;
+      border-radius: 3px;
+      color: #333333;
+      height: 40px;
+      line-height: 40px;
+      position: relative;
+      text-align: center;
+      -webkit-transition: all 400ms ease-in 0s;
+      -ms-transition: all 400ms ease-in 0s;
+      -transition: all 400ms ease-in 0s;
+      transition: all 400ms ease-in 0s;
+      width: 100%;
+      margin: 0 0 10px;
+      font-weight: 700;
+      display: block;
+      font-family: "Lato", sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+      .actions-primary > input:hover {
+        background: #e62e04;
+        color: #fff;
+        border-color: #e62e04;
+      }
+
+    .list-group-item.active {
+      background-color: #e62e04 !important;
+      border-color: #e62e04 !important;
+    }
+
+    
+
+    .box-quantity.hot-product2 .actions-primary input {
+      background: #363f4d none repeat scroll 0 0;
+      border-color: #363f4d;
+      color: #fff;
+      height: 43px;
+      margin-bottom: 0;
+      margin-right: 10px;
+      width: 150px;
+    }
+
+      .box-quantity.hot-product2 .actions-primary input:hover {
+        background: #e62e04 none repeat scroll 0 0;
+        border-color: #e62e04;
+      }
   </style>
 </head>
 <body>
@@ -121,7 +200,74 @@
   <!--<script src="plugins/jquery/jquery-1-12-4.js"></script>-->
   <!-- jQuery UI library -->
   <script src="plugins/jqueryui/js/jquery-ui-1-12-1.js"></script>
+  <!-- Main activaion js -->
+  <script src="truemart/js/main.js"></script>
 
+  <!-- Modernizer js -->
+  <script src="truemart/js/vendor/modernizr-3.5.0.min.js"></script>
+  <!-- Countdown js -->
+  <script src="truemart/js/jquery.countdown.min.js"></script>
+  <!-- Mobile menu js -->
+  <script src="truemart/js/jquery.meanmenu.min.js"></script>
+  <!-- ScrollUp js -->
+  <script src="truemart/js/jquery.scrollUp.js"></script>
+  <!-- Nivo slider js -->
+  <script src="truemart/js/jquery.nivo.slider.js"></script>
+  <!-- Fancybox js -->
+  <script src="truemart/js/jquery.fancybox.min.js"></script>
+  <!-- Jquery nice select js -->
+  <script src="truemart/js/jquery.nice-select.min.js"></script>
+  <!-- Jquery ui price slider js -->
+  <!--<script src="truemart/js/jquery-ui.min.js"></script>-->
+  <!-- Owl carousel -->
+  <script src="truemart/js/owl.carousel.min.js"></script>
+  <!-- Bootstrap popper js -->
+  <script src="truemart/js/popper.min.js"></script>
+  <!-- Bootstrap js -->
+  <script src="truemart/js/bootstrap.min.js"></script>
+  <!-- Plugin js -->
+  <script src="truemart/js/plugins.js"></script>
+  <script>
+    $(function () {
+      $("#searchproduct").autocomplete({
+        source: "admin/search.php",
+        minLength: 1,
+        select: function (event, ui) {
+          event.preventDefault();
+          var pro_id = ui.item.id;
+          window.location = "./product.php?id=" + pro_id + "";
+        }
+      });
+    });
+  </script>
+
+  <script>
+    function hide() {
+      var object = document.getElementById('test');
+      if (object.style.display == "none") {
+        object.style.display = "block";
+      }
+      else {
+        object.style.display = "none";
+      }
+
+    }
+    function categoriesShow(event) {
+      var element = $(event.target).parent('li');
+      if (element.hasClass('open')) {
+        element.removeClass('open');
+        element.find('li').removeClass('open');
+        element.find('ul').slideUp();
+      } else {
+        element.addClass('open');
+        element.children('ul').slideDown();
+        element.siblings('li').children('ul').slideUp();
+        element.siblings('li').removeClass('open');
+        element.siblings('li').find('li').removeClass('open');
+        element.siblings('li').find('ul').slideUp();
+      }
+    }
+  </script>
 </body>
 
 </html>

@@ -42,12 +42,19 @@ namespace TMDT.Controllers
         [HttpPost]
         public HttpResponseMessage Add(Subcategory subcategory)
         {
-            Subcategory subcategory1 = context.Subcategories.Find(subcategory.SubcategoryId);
-            if (subcategory1 != null)
+            //Tu dong tao khoa chinh
+            List<Subcategory> subcategories = context.Subcategories.ToList();
+            string key = "0";
+            foreach (Subcategory subcategory2 in subcategories)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Duplicate primary key";
+                if (int.Parse(subcategory2.SubcategoryId) > int.Parse(key))
+                {
+                    key = subcategory2.SubcategoryId;
+                }
             }
+            key = "" + (int.Parse(key) + 1);
+            subcategory.SubcategoryId = key;
+
             Category category = context.Categories.Find(subcategory.CategoryId);
             if (category == null)
             {
