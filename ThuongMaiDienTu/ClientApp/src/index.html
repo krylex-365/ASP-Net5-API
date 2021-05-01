@@ -130,10 +130,7 @@
       border-color: #e62e04 !important;
     }
 
-    .btn-primary {
-      background-color: #e62e04 !important;
-      border-color: #e62e04 !important;
-    }
+    
 
     .box-quantity.hot-product2 .actions-primary input {
       background: #363f4d none repeat scroll 0 0;
@@ -203,6 +200,8 @@
   <!--<script src="plugins/jquery/jquery-1-12-4.js"></script>-->
   <!-- jQuery UI library -->
   <script src="plugins/jqueryui/js/jquery-ui-1-12-1.js"></script>
+  <!-- Main activaion js -->
+  <script src="truemart/js/main.js"></script>
 
   <!-- Modernizer js -->
   <script src="truemart/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -219,7 +218,7 @@
   <!-- Jquery nice select js -->
   <script src="truemart/js/jquery.nice-select.min.js"></script>
   <!-- Jquery ui price slider js -->
-  <script src="truemart/js/jquery-ui.min.js"></script>
+  <!--<script src="truemart/js/jquery-ui.min.js"></script>-->
   <!-- Owl carousel -->
   <script src="truemart/js/owl.carousel.min.js"></script>
   <!-- Bootstrap popper js -->
@@ -228,8 +227,6 @@
   <script src="truemart/js/bootstrap.min.js"></script>
   <!-- Plugin js -->
   <script src="truemart/js/plugins.js"></script>
-  <!-- Main activaion js -->
-  <script src="truemart/js/main.js"></script>
   <script>
     $(function () {
       $("#searchproduct").autocomplete({
@@ -242,6 +239,34 @@
         }
       });
     });
+  </script>
+
+  <script>
+    function hide() {
+      var object = document.getElementById('test');
+      if (object.style.display == "none") {
+        object.style.display = "block";
+      }
+      else {
+        object.style.display = "none";
+      }
+
+    }
+    function categoriesShow(event) {
+      var element = $(event.target).parent('li');
+      if (element.hasClass('open')) {
+        element.removeClass('open');
+        element.find('li').removeClass('open');
+        element.find('ul').slideUp();
+      } else {
+        element.addClass('open');
+        element.children('ul').slideDown();
+        element.siblings('li').children('ul').slideUp();
+        element.siblings('li').removeClass('open');
+        element.siblings('li').find('li').removeClass('open');
+        element.siblings('li').find('ul').slideUp();
+      }
+    }
   </script>
 </body>
 

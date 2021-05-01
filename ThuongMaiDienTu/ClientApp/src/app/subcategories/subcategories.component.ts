@@ -53,6 +53,10 @@ export class SubcategoriesComponent implements OnInit {
     })
   }
 
+  setSubcategoryUpNull() {
+    this.subcategoryUp = null;
+  }
+
   update(id: string, value: Subcategories) {
     this.subcategory = value;
     this.subcategory.categoryId = id;

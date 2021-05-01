@@ -66,17 +66,6 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
               </form>
             </div>
           </div>
-
-          <!--<?php
-          if (isset($_GET['edit'])) {
-          $subcat_id = $_GET['edit'];
-          $get_subcat_id = "select * from subcategory where subcate_id = '$subcat_id'";
-          $run_edit_id = mysqli_query($conn, $get_subcat_id);
-          if (mysqli_num_rows($run_edit_id) > 0) {
-          $row_edit_id = mysqli_fetch_array($run_edit_id);
-          $edit_catid = $row_edit_id['cate_id'];
-          $edit_subname = $row_edit_id['subcate_name'];
-          ?>-->
           <div *ngIf="subcategoryUp" class="card">
             <div class="card-body">
               <div class="card-title">
@@ -86,44 +75,20 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
                 <div class="form-group">
                   <label for="category">Edit Category Name:*</label>
                   <div class="box">
-                    <select name="editcategories">
-                      <!--<?php
-        $queryedit = "select * from category order by ID asc";
-        $runedit = mysqli_query($conn, $queryedit);
-        if (mysqli_num_rows($runedit) > 0) {
-        while ($rowedit = mysqli_fetch_array($runedit)) {
-        $edit_cat_id = $rowedit['ID'];
-        $edit_cat_name = $rowedit['cate_name'];
-        $selected = "";
-        if($edit_cat_id == $edit_catid)
-        {
-        $selected = "selected";
-        }
-        ?>-->
-                      <!--<option <?php echo $selected; ?> value="<?php echo $edit_cat_id ?>"><?php echo $edit_cat_id ?>. <?php echo $edit_cat_name ?></option>-->
-                      <option value="<?php echo $cat_id ?>"><?php echo $cat_id ?>. <?php echo $cat_name ?></option>
-                      <!--<?php
-        }
-        } else {
-        echo "No Categories Found";
-        }
-        ?>-->
+                    <select name="categoryId" [(ngModel)]="categoryId">
+                      <option *ngFor="let category of categories" value={{category.categoryId}} style="color:black;">{{category.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="subcategory">Edit Sub-Category Name:*</label>
-                  <input type="text" placeholder="Edit Sub-Category Name" class="form-control" name="edit-subcat-name" value="<?php echo $edit_subname; ?>" required>
+                  <input type="text" placeholder="Sub-Category Name" class="form-control" name="name" [(ngModel)]="nameUp" required>
                 </div>
                 <input type="submit" value="Edit Sub-Category" name="edit-subcategory" class="btn btn-primary">
-                <button type="button" class="btn btn-danger" style="float: right;" (click)="setCategoryUpNull()">Cancel</button>
+                <button type="button" class="btn btn-danger" style="float: right;" (click)="setSubcategoryUpNull()">Cancel</button>
               </form>
             </div>
           </div>
-          <!--<?php
-          }
-          }
-          ?>-->
         </div>
         <div class="col-md-7">
           <div class="card">
@@ -135,18 +100,18 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
                 <table class="table table-bordered table-striped table-hover">
                   <thead>
                     <tr>
-                      <th>Categories ID</th>
                       <th>Sub-Categories ID</th>
                       <th>Sub-Categories Name</th>
+                      <th>Categories ID</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let subcategory of subcategories">
-                      <td>{{subcategory.categoryId}}</td>
                       <td>{{subcategory.subcategoryId}}</td>
                       <td>{{subcategory.name}}</td>
+                      <td>{{subcategory.categoryId}}</td>
                       <td><button type="button" class="btn btn-primary" (click)="getSubcategoryById(subcategory.subcategoryId)"><i class="fa fa-pencil"></i></button></td>
                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getSubcategoryDel(subcategory.subcategoryId)"><i class="fa fa-close"></i></button></td>
                     </tr>
