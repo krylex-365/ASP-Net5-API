@@ -4,14 +4,12 @@
 
 <body>
 <?php require_once('inc/preload.php');?> -->
-
 <!--**********************************
         Main wrapper start
     ***********************************-->
 <div id="main-wrapper">
-    <app-web-form></app-web-form>
+  <app-web-form></app-web-form>
   <!-- <?php require_once('inc/web-form.php');?> -->
-  
   <!--**********************************
             Content body start
         ***********************************-->
@@ -26,12 +24,17 @@
       </div>
     </div>
     <!-- row -->
-    
+
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <a href="./products"><button class="btn btn-primary" style="float:left;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                </div>
+              </div>
               <div class="card-title">
                 <h3>Edit Product</h3>
               </div>
@@ -87,25 +90,24 @@
                   <input type="submit" value="Edit Product" name="edit-product" class="btn btn-primary">
                 </div>
               </form>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <?php
-                  }
-                  } else {
-                    echo "No Product Found";
-                  }
-                  ?> -->
-                    
-              
-              </div>
             </div>
           </div>
-	
+        </div>
+        <!-- <?php
+        }
+        } else {
+          echo "No Product Found";
+        }
+        ?> -->
+
+
+      </div>
+    </div>
+  </div>
+
   <!--**********************************
             Content body end
-        ***********************************--> 
-  
+        ***********************************-->
   <!--**********************************
             Footer start
         ***********************************-->
@@ -116,10 +118,9 @@
   </div>
   <!--**********************************
             Footer end
-        ***********************************--> 
+        ***********************************-->
 </div>
 <!--**********************************
         Main wrapper end
     ***********************************-->
-
 <!-- <?php require_once('inc/footer.php');?> -->
