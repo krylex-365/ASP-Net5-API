@@ -161,10 +161,8 @@
             <ul class="vertical-menu-list" id="test">
               <li *ngFor="let cate of categories">
                 <a href="#"><span></span>{{cate.name}}<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                <ul class="ht-dropdown mega-child">
-                  <li><a href="#">A B C</a></li>
-                  <li><a href="#">A B C</a></li>
-                  <li><a href="#">A B C</a></li>
+                <ul *ngIf="getSubcategoriesByCategoryId(cate.categoryId).length > 0" class="ht-dropdown mega-child">
+                  <li *ngFor="let sub of getSubcategoriesByCategoryId(cate.categoryId)"><a href="#">{{sub.name}}</a></li>
                 </ul>
               </li>
             </ul>

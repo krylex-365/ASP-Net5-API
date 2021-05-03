@@ -84,6 +84,33 @@ namespace TMDT.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
             //return "Updated";
         }
+        [HttpPut("{id}")]
+        public HttpResponseMessage UpdateId(string id)
+        {
+            Order order1 = context.Orders.Find(id);
+            if (order1 == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "Update not found";
+            }
+
+
+            context.Entry(order1).State = EntityState.Detached;
+
+            if(int.Parse(order1.Status) > 0 || int.Parse(order1.Status) < 3)
+            {
+                int s = int.Parse(order1.Status);
+                s++;
+
+                order1.Status = "" + s;
+            }
+
+            context.Entry(order1).State = EntityState.Modified;
+            context.SaveChanges();
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+            //return "Updated";
+        }
         [HttpDelete("{id}")]
         public HttpResponseMessage Delete(string id)
         {

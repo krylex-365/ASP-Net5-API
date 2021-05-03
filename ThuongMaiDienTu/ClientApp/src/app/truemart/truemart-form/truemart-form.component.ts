@@ -20,26 +20,27 @@ export class TruemartFormComponent implements OnInit {
   constructor(private categoryService: CategoriesService,
     private subcategoryService: SubcategoriesService ) { }
 
-  ngOnInit(){
+  async ngOnInit() {
+    await this.subcategoryService.getSubcategories().subscribe(
+      result => {
+        this.subcategories = result;
+        console.log(this.subcategories);
+      });
     this.categoryService.getCategories().subscribe(
     result => {
       this.categories = result;
       console.log(this.categories);
     });
-    this.subcategoryService.getSubcategories().subscribe(
-    result => {
-      this.subcategories = result;
-      console.log(this.subcategories);
-    });
   }
 
-  getSubcategoriesByCategoryId(id) {
-    this.subcates = null;
+  getSubcategoriesByCategoryId(id): Array<Subcategories> {
+    this.subcates = Array<Subcategories>();
     this.subcategories.forEach(sub => {
-      if (sub.categoryId = id) {
+      if (sub.categoryId == id) {
         this.subcates.push(sub);
       }
-    })
+    });
+    return this.subcates;
   }
- 
+
 }

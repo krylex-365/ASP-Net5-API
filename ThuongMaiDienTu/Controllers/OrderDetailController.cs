@@ -33,6 +33,12 @@ namespace TMDT.Controllers
         {
             return context.OrderDetails.Find(id);
         }
+        [HttpGet("Order/{id}")]
+        public List<OrderDetail> GetAllByOrderId(string id)
+        {
+            List<OrderDetail> orderDetails = context.OrderDetails.ToList().FindAll(det => det.OrderId == id);
+            return orderDetails;
+        }
         [HttpPost]
         public HttpResponseMessage Add(OrderDetail orderDetail)
         {

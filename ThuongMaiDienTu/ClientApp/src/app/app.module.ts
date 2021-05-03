@@ -47,6 +47,7 @@ import { ShopComponent } from './truemart/shop/shop.component';
 import { LoginTruemartComponent } from './truemart/login/login.component';
 import { ProfileComponent } from './truemart/profile/profile.component';
 import { UserProfileService } from '../services/user-profile.service';
+import { OrderDetailService } from '../services/order-detail.service';
 
 
 @NgModule({
@@ -125,6 +126,7 @@ import { UserProfileService } from '../services/user-profile.service';
     UserAddService,
     UserEditService,
     ReloadService,
+    OrderDetailService,
     //ProductShopService,
     //UserProfileService,
 
