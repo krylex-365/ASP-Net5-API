@@ -103,6 +103,7 @@ import { OrderDetailService } from '../services/order-detail.service';
       { path: 'user-add', component: UserAddComponent },
       { path: 'user-edit/:id', component: UserEditComponent },
       { path: 'shop', component: ShopComponent },
+      { path: 'shop/:id', component: ShopComponent },
       { path: 'productshop', component: ProductShopComponent },
       { path: 'loginshop', component: LoginTruemartComponent },
       { path: 'profileshop', component: ProfileComponent },

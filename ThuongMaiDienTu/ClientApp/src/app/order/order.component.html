@@ -104,7 +104,7 @@
                         </tr>
                         <tr *ngFor="let detail of getOrderDetailsByOrderId(order.orderId)">
                           {{getProductById(detail.productId)}}
-                          <td><img src="images/products/{{product.image}}" width="50%"></td>
+                          <td><img src="product-img/{{product.image}}" width="50%"></td>
                           <td>{{product.name}}</td>
                           <td>{{product.price}}$</td>
                           <td>{{detail.quantity}}</td>
