@@ -10,9 +10,9 @@
     <div class="container">
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
-          <li><a href="index.php">Home</a></li>
-          <li><a href="shop.php">Shop</a></li>
-          <li class="active"><a href="product.php">Products</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="./shop">Shop</a></li>
+          <li class="active"><a href="#">Products</a></li>
         </ul>
       </div>
     </div>
@@ -37,7 +37,7 @@
           $pro_des = $row[ 'descr' ];
           $pro_image = $row[ 'img' ];
           ?> -->
-      <form action='cart_process.php?action=add&id=" . $pro_id . "' method='POST'>
+      <form>
         <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
         <div class="thumb-bg">
           <div class="row">
@@ -45,7 +45,7 @@
             <div class="col-lg-5 mb-all-40">
               <!-- Thumbnail Large Image start -->
               <div class="tab-content">
-                <div id="thumb1" class="tab-pane fade show active"> <a data-fancybox="images" href="admin/product-img/<?php echo $pro_image ?>"><img src="admin/product-img/<?php echo $pro_image ?>" alt="product-view"></a> </div>
+                <div id="thumb1" class="tab-pane fade show active"> <a data-fancybox="images" href="admin/product-img/<?php echo $pro_image ?>"><img src="../product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="product-view"></a> </div>
               </div>
               <!-- Thumbnail Large Image End -->
               <!-- Thumbnail Image End -->
@@ -53,27 +53,26 @@
             <!-- Thumbnail Description Start -->
             <div class="col-lg-7">
               <div class="thubnail-desc fix">
-                <h3 class="product-header"><?php echo $pro_name ?></h3>
+                <h3 class="product-header">adidas_W.N.D._Primeblue_Jacket_Gold</h3>
                 <div class="rating-summary fix mtb-10">
                   <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                  <div class="rating-feedback"> <a href="#">(1 review)</a> <a href="#">add to your review</a> </div>
+                  <div class="rating-feedback"> <a href="#">(1 review)</a><br /><a href="#">add to your review</a> </div>
                 </div>
                 <div class="pro-price mtb-30">
                   <p class="d-flex align-items-center">
                     <!-- <?php
                     if ( $pro_sale > 0 ) {
                       ?> -->
-                    <span class="prev-price">$<?php echo $pro_price ?></span> <span class="price">$<?php echo $pro_newprice?></span> <span class="saving-price">save <?php echo $pro_sale ?>%</span>
+                    <span class="prev-price">$ 20</span> <span class="price">$ 18</span> <span class="saving-price">save 10%</span>
                     <!-- <?php
                     } else {
                       ?> -->
-                    <span class="price">$<?php echo $pro_newprice?></span>
+                    <!--<span class="price">$<?php echo $pro_newprice?></span>-->
                     <!-- <?php
                     }
                     ?> -->
                   </p>
                 </div>
-                <p class="mb-20 pro-desc-details"><?php echo $pro_des ?></p>
                 <div class="box-quantity d-flex hot-product2">
                   <input type="hidden" name="pro_qty" value="1">
                   <div class="pro-actions">
@@ -119,73 +118,71 @@
             <div id="review" class="tab-pane fade">
               <!-- Reviews Start -->
               <div class="review border-default universal-padding">
-                <div class="group-title">
-                  <h2>customer review</h2>
-                </div>
-                <h4 class="review-mini-title">Truemart</h4>
-                <ul class="review-list">
-                  <!-- Single Review List Start -->
-                  <li>
-                    <span>Quality</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                    <label>Truemart</label>
-                  </li>
-                  <!-- Single Review List End -->
-                  <!-- Single Review List Start -->
-                  <li>
-                    <span>Price</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
-                    <label>Review by <a href="https://themeforest.net/user/hastech">Truemart</a></label>
-                  </li>
-                  <!-- Single Review List End -->
-                  <!-- Single Review List Start -->
-                  <li>
-                    <span>Value</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i>
-                    <label>Posted on 7/20/18</label>
-                  </li>
-                  <!-- Single Review List End -->
-                </ul>
-              </div>
-              <!-- Reviews End -->
-              <!-- Reviews Start -->
-              <div class="review border-default universal-padding mt-30">
-                <h2 class="review-title mb-30">
-                  You're reviewing: <br>
-                  <span><?php echo $pro_name?></span>
+                <h2 class="review-title mb-20">
+                  You're reviewing:
                 </h2>
-                <p class="review-mini-title">your rating</p>
-                <ul class="review-list">
-                  <!-- Single Review List Start -->
-                  <li> <span>Quality</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </li>
-                  <!-- Single Review List End -->
-                  <!-- Single Review List Start -->
-                  <li> <span>Price</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </li>
-                  <!-- Single Review List End -->
-                  <!-- Single Review List Start -->
-                  <li> <span>Value</span> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </li>
-                  <!-- Single Review List End -->
-                </ul>
                 <!-- Reviews Field Start -->
-                <div class="riview-field mt-40">
+                <div class="riview-field">
                   <div class="form-group">
                     <label class="req" for="sure-name">Nickname</label>
                     <input type="text" class="form-control" id="sure-name" required>
                   </div>
                   <div class="form-group">
-                    <label class="req" for="subject">Summary</label>
-                    <input type="text" class="form-control" id="subject" required>
-                  </div>
-                  <div class="form-group">
                     <label class="req" for="comments">Review</label>
                     <textarea class="form-control" rows="5" id="comments" required></textarea>
                   </div>
-                  <button class="customer-btn" onClick="submit_review()">Submit Review</button>
-                  <!-- <script>
-                  function submit_review() {
-                    alert("Thank for your review.");
-                    window.location="./product.php?id=" + <?php echo $pro_id?> + "";
-                  }
-                  </script>  -->
+                  <button class="customer-btn" onClick="submit_review()">Submit Review</button> 
                 </div>
                 <!-- Reviews Field Start -->
+              </div>
+              <!-- Reviews End -->
+              <!-- Reviews Start -->
+              <div class="review border-default universal-padding mt-30">
+                <div class="group-title">
+                  <h2>customers review</h2>
+                </div>
+                <div class="review border-default universal-padding mt-30">
+                  <h2 class="review-title">
+                    User 1
+                  </h2>
+                  <!-- Reviews Field Start -->
+                  <div class="riview-field">
+                    <div class="form-group">
+                      <label class="req" for="date">2/4/2021</label>
+                    </div>
+                    <div class="form-group">
+                      <label class="req" for="comments">BIG TREFOIL TEE\r\nA COTTON GRAPHIC TEE CELEBRATING THE TREFOIL.\r\nGet into a \'70s groove. Pulled from the archives, this adidas Trefoil tee keeps your t-shirt game fresh and clean. All-cotton jersey feels soft to the touch.</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="review border-default universal-padding mt-30">
+                  <h2 class="review-title">
+                    User 2
+                  </h2>
+                  <!-- Reviews Field Start -->
+                  <div class="riview-field">
+                    <div class="form-group">
+                      <label class="req" for="date">2/4/2021</label>
+                    </div>
+                    <div class="form-group">
+                      <label class="req" for="comments">KEY SPORT POLO SHIRT\r\nSPORT-INSPIRED STYLE FOR THE GOLF COURSE.\r\nBring fresh, classic style to your golf game. Every drive comes alive when you feel good. The adidas Key Sport Polo Shirt offers lightweight comfort for blue-sky days on the links.</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="review border-default universal-padding mt-30">
+                  <h2 class="review-title">
+                    User 3
+                  </h2>
+                  <!-- Reviews Field Start -->
+                  <div class="riview-field">
+                    <div class="form-group">
+                      <label class="req" for="date">2/4/2021</label>
+                    </div>
+                    <div class="form-group">
+                      <label class="req" for="comments">ADIDAS PANTS\r\nWIDE-LEG PANTS WITH UTILITY-INSPIRED DETAILS.\r\nWhen you think of Copenhagen, what comes to mind? The adidas Bellista collection looked to the streets of one of the world\'s most exciting fashion capitols to bring that image and feeling to the body. The roomy drape of the adidas Pants elicits a sense of movement as you wander your own city. Snap buttons on the cuffs add an unexpected touch, nodding to Copenhagen\'s high attention to detail. Because no detail is too small to make a difference.</label>
+                    </div>
+                  </div>
+                </div>
               </div>
               <!-- Reviews End -->
             </div>
@@ -232,26 +229,25 @@
           $pro_des = $rowOther[ 'descr' ];
           $pro_img = $rowOther[ 'img' ];
           ?> -->
-        <form action="cart_process.php?action=add&id=<?php echo $pro_id?>" method="POST">
-          <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
+        <form>
+          <input type="hidden" name="pro_id" value="1">
           <div class="single-product">
             <!-- Product Image Start -->
-            <div class="pro-img"> <a href="product.php?id=<?php echo $pro_id?>"> <img class="primary-img" src="admin/product-img/<?php echo $pro_img ?>" alt="single-product"> <img class="secondary-img" src="admin/product-img/<?php echo $pro_img ?>" alt="single-product"> </a> <a href="#" class="quick_view" data-toggle="modal" data-target="#myModal" title="Quick View"><i class="lnr lnr-magnifier"></i></a> </div>
+            <div class="pro-img"> <a href="#"> <img class="primary-img" src="../product-img/Big_Trefoil_Shorts_Tee_Set_Blue.jpg" alt="single-product"></a></div>
             <!-- Product Image End -->
             <!-- Product Content Start -->
             <div class="pro-content">
               <div class="pro-info">
-                <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
-                <h4><a href="product.php?id=<?php echo $pro_id?>"><?php echo $pro_name?></a></h4>
+                <input type="hidden" name="pro_id" value="1">
+                <h4><a href="#">ABC</a></h4>
                 <!-- <?php
                 if ( $pro_sale > 0 ) {
                   ?> -->
-                <p><span class="price">$<?php echo $pro_newprice?></span><del class="prev-price">$<?php echo $pro_price?></del></p>
-                <div class="label-product l_sale"><?php echo $pro_sale?><span class="symbol-percent">%</span></div>
+                <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
                 <!-- <?php
                 } else {
                   ?> -->
-                <p><span class="price">$<?php echo $pro_newprice?></span></p>
                 <!-- <?php
                 }
                 ?> -->
