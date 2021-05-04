@@ -49,6 +49,7 @@ export class SubcategoriesComponent implements OnInit {
         this.subcategory = subcate;
         this.subcategoryUp = subcate;
         this.nameUp = subcate.name;
+        this.categoryId = subcate.categoryId;
       }
     })
   }

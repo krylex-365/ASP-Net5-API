@@ -102,18 +102,6 @@
                           <th style="width: 16%">Quantity</th>
                           <th style="width: 16%">Total</th>
                         </tr>
-                        <!-- <?php
-      $total_price = 0;
-      $querydetail = "SELECT `detail_order`.*, `order`.*, `product`.* FROM `detail_order` LEFT JOIN `order` ON `detail_order`.`cart_id` = `order`.`order_id` LEFT JOIN `product` ON `detail_order`.`pro_id` = `product`.`pid` WHERE `detail_order`.`cart_id` = '$order_id';";
-      $rundetail = mysqli_query( $conn, $querydetail );
-      if ( mysqli_num_rows( $rundetail ) > 0 ) {
-        while ( $rowdetail = mysqli_fetch_array( $rundetail ) ) {
-          $pro_img = $rowdetail[ 'img' ];
-          $pro_name = $rowdetail[ 'pname' ];
-          $pro_quantity = $rowdetail[ 'quantity' ];
-          $pro_price = $rowdetail[ 'new_price' ];
-          $pro_total = $pro_quantity * $pro_price;
-          ?> -->
                         <tr *ngFor="let detail of getOrderDetailsByOrderId(order.orderId)">
                           {{getProductById(detail.productId)}}
                           <td><img src="images/products/{{product.image}}" width="50%"></td>
@@ -121,39 +109,28 @@
                           <td>{{product.price}}$</td>
                           <td>{{detail.quantity}}</td>
                           <td>{{detail.totalPrice}}$</td>
+                          {{caculatorTotal(detail.totalPrice)}}
                         </tr>
-                        <!-- <?php
-      $total_price += $pro_total;
-      }
-      }
-      ?> -->
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Sub Total:</th>
-                          <th style="color: #ea5774;">$ <?php echo $total_price?></th>
-                        </tr>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th style="color: #ea5774;">Shipping:</th>
-                          <th style="color: #ea5774;">$ 5</th>
+                          <th style="color: #ea5774;">$ {{total}}</th>
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Taxes:</th>
-                          <th style="color: #ea5774;">$ <?php echo $total_price*0.05?></th>
+                          <th style="color: #ea5774;">$ {{total * 0.05}}</th>
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Total:</th>
-                          <th style="color: #ea5774;">$ <?php echo $total_price + $total_price*0.05 + 5?></th>
+                          <th style="color: #ea5774;">$ {{total * 0.05 + total}}</th>
                         </tr>
                       </table>
                     </div>
@@ -169,23 +146,15 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;">Are you sure to delete Order ID: <?php echo $order_id?> ?</h3>
+                  <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;">Are you sure to delete Order ID: {{idDel}} ?</h3>
                 </div>
                 <div class="modal-footer" style="margin: auto;">
+                  <button type="button" (click)="delete()" class="btn btn-danger">Yes, delete it !</button>
                   <button type="button" (click)="setNullIdDel()" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                  <a>
-                    <button type="button" (click)="delete()" class="btn btn-danger">Yes, delete it !</button>
-                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <?php
-          }
-          } else {
-            echo "No Categories Found";
-          }
-          ?> -->
         </div>
       </div>
     </div>
@@ -209,4 +178,3 @@
 <!--**********************************
         Main wrapper end
     ***********************************-->
-<!-- <?php require_once('inc/footer.php');?> -->

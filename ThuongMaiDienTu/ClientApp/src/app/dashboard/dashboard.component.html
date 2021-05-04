@@ -103,39 +103,59 @@
                       <td>{{dashboard.customerName}}</td>
                       <td>{{dashboard.address}}</td>
                       <td>{{dashboard.buyDate}}</td>
-                      <td>{{dashboard.status}}</td>
-                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $order_id?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $order_id?>"><i class="fa fa-trash-o"></i></button></td>
+                      <td>
+                        <a>
+                          <button *ngIf="dashboard.status == 0" type="button" class="btn btn-success" style="color:#fff;" disabled>Cancel</button>
+                          <button *ngIf="dashboard.status == 1" type="button" (click)="updateById(dashboard.orderId)" class="btn btn-info">New Order</button>
+                          <button *ngIf="dashboard.status == 2" type="button" (click)="updateById(dashboard.orderId)" class="btn btn-danger">Delivery</button>
+                          <button *ngIf="dashboard.status == 3" type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
+                        </a>
+                      </td>
+                      <td><button type="button" (click)="getOrder(dashboard.orderId)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalOrderDetails"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                      <td><button type="button" (click)="setIdDel(dashboard.orderId)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDel"><i class="fa fa-trash-o"></i></button></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="modal fade" id="exampleModalLong<?php echo $order_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div *ngIf="order" class="modal fade" id="exampleModalOrderDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle<?php echo $order_id?>" style="color:#7571f9;">Order Details</h5>
+                  <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">Order Details</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
                 <div class="modal-body">
                   <div class="row">
                     <div class="col-md-6">
                       <h6 style="color:#ea5774;font-weight:500;">Order ID:</h6>
-                      <p> <?php echo $order_id?></p>
+                      <p>{{order.orderId}}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 style="color:#ea5774;font-weight:500;">Date:</h6>
+                      <p>{{order.date}}</p>
+                    </div>
+                    {{getCustomerById(order.customerId)}}
+                    <div class="col-md-6">
+                      <h6 style="color:#ea5774;font-weight:500;">Customer:</h6>
+                      <p>{{customer.name}}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 style="color:#ea5774;font-weight:500;">Address:</h6>
+                      <p>{{customer.address}}</p>
                     </div>
                     <div class="col-md-6">
                       <h6 style="color:#ea5774;font-weight:500;">Email:</h6>
-                      <p> saasa</p>
+                      <p>{{customer.mail}}</p>
                     </div>
                     <div class="col-md-6">
                       <h6 style="color:#ea5774;font-weight:500;">Phone Number:</h6>
-                      <p>sasas</p>
+                      <p>{{customer.phoneNumber}}</p>
                     </div>
                     <div class="col-md-12">
                       <h6 style="color:#ea5774;font-weight:500;">Order Note:</h6>
-                      <p> sasas</p>
+                      <p>{{order.note}}</p>
                     </div>
                     <div class="table-responsive">
                       <table id="table-detail-<?php echo $order_id?>" class="table table-bordered table-striped table-hover">
@@ -146,40 +166,35 @@
                           <th style="width: 16%">Quantity</th>
                           <th style="width: 16%">Total</th>
                         </tr>
-                        <tr>
-                          <td><img src="" width="100%"></td>
-                          <td>sa</td>
-                          <td>sdsd</td>
-                          <td>dsds</td>
-                          <td>dsds</td>
+                        <tr *ngFor="let detail of getOrderDetailsByOrderId(order.orderId)">
+                          {{getProductById(detail.productId)}}
+                          <td><img src="images/products/{{product.image}}" width="50%"></td>
+                          <td>{{product.name}}</td>
+                          <td>{{product.price}}$</td>
+                          <td>{{detail.quantity}}</td>
+                          <td>{{detail.totalPrice}}$</td>
+                          {{caculatorTotal(detail.totalPrice)}}
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Sub Total:</th>
-                          <th style="color: #ea5774;">sasas</th>
-                        </tr>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th style="color: #ea5774;">Shipping:</th>
-                          <th style="color: #ea5774;">$ 5</th>
+                          <th style="color: #ea5774;">$ {{total}}</th>
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Taxes:</th>
-                          <th style="color: #ea5774;">$ dds</th>
+                          <th style="color: #ea5774;">$ {{total * 0.05}}</th>
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Total:</th>
-                          <th style="color: #ea5774;">$dsds</th>
+                          <th style="color: #ea5774;">$ {{total * 0.05 + total}}</th>
                         </tr>
                       </table>
                     </div>
@@ -191,17 +206,15 @@
               </div>
             </div>
           </div>
-          <div class="modal fade" id="exampleModal<?php echo $order_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModalDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title" id="exampleModalLabel<?php echo $order_id?>" style="margin: auto;">Are you sure to delete Order ID: <?php echo $order_id?> ?</h3>
+                  <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;">Are you sure to delete Order ID: {{idDel}} ?</h3>
                 </div>
                 <div class="modal-footer" style="margin: auto;">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                  <a href="orders.php?del=<?php echo $order_id?>">
-                    <button type="button" class="btn btn-danger">Yes, delete it !</button>
-                  </a>
+                  <button type="button" (click)="delete()" class="btn btn-danger">Yes, delete it !</button>
+                  <button type="button" (click)="setNullIdDel()" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
             </div>

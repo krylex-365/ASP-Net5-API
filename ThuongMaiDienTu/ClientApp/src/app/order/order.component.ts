@@ -28,6 +28,7 @@ export class OrderComponent {
   orderDetail: OrderDetail;
 
   idDel: string;
+  total: number;
 
   constructor(private orderService: OrderService,
     private customerService: CustomerService,
@@ -55,6 +56,7 @@ export class OrderComponent {
         this.orders = result;
         console.log(this.orders);
       });
+    this.total = 0;
   }
 
   getCustomerById(id: string) {
@@ -120,5 +122,9 @@ export class OrderComponent {
 
   refresh(): void {
     window.location.reload();
+  }
+
+  caculatorTotal(num: string) {
+    this.total += Number.parseFloat(num);
   }
 }
