@@ -1,0 +1,290 @@
+<!-- <?php
+require_once( 'inc/top.php' );
+session_start();
+?>
+<title>Cart || Truemart Responsive Html5 Ecommerce Template</title> -->
+<!-- <style>
+.btn-cart {
+    border-color: #363f4d;
+    background: #363f4d none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 15px;
+    padding: 0 20px;
+    text-shadow: none;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    white-space: nowrap;
+    width: inherit;
+    border-radius: 4px;
+}
+.btn-cart:hover {
+    background-color: #e62e04;
+    border-color: #e62e04;
+}
+.table-content table td.product-remove i {
+    color: #fff;
+}
+.table-content table td.product-remove a:hover i {
+    color: #fff;
+}
+</style> -->
+<!-- </head><body> -->
+<!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]--> 
+
+<!-- Main Wrapper Start Here -->
+<div class="wrapper">
+    <app-truemart-form></app-truemart-form>
+  <!-- <?php require_once('inc/header.php');?> -->
+  
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-area mt-30">
+    <div class="container">
+      <div class="breadcrumb">
+        <ul class="d-flex align-items-center">
+          <li><a href="index.php">Home</a></li>
+          <li class="active"><a href="cart.php">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Container End --> 
+  </div>
+  <!-- Breadcrumb End --> 
+  <!-- Cart Main Area Start -->
+  <div class="cart-main-area ptb-100 ptb-sm-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12"> 
+          <!-- Form Start -->
+          <form action="cart_process.php" method="POST">
+          <!-- Table Content Start -->
+          <div class="table-content table-responsive mb-45">
+            <table>
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Image</th>
+                  <th class="product-name">Product</th>
+                  <th class="product-price">Price ($)</th>
+                  <th class="product-quantity">Quantity</th>
+                  <th class="product-subtotal">Total ($)</th>
+                  <th class="product-remove">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <?php
+                if ( isset( $_SESSION[ 'cart' ] ) ) {
+                  $totalprice = 0;
+                  $pro_id = array_column( $_SESSION[ 'cart' ], 'pro_id' );
+                  $query = "SELECT * FROM product WHERE 1";
+                  $run = mysqli_query( $conn, $query );
+                  if ( mysqli_num_rows( $run ) > 0 ) {
+                    while ( $row = mysqli_fetch_array( $run ) ) {
+                      if ( !empty( $_SESSION[ 'cart' ] ) ) {
+                        foreach ( $pro_id as $id ) {
+                          if ( $row[ 'pid' ] == $id ) {
+                            $total = 0;
+                            $totalprice += $row[ 'new_price' ];
+                            $VAT = $totalprice * ( 5 / 100 );
+                            $carttotal = $totalprice + $VAT + 5;
+                            $total = $row[ 'new_price' ] * 1;
+                            ?> -->
+                <tr class="product">
+                  <input type="hidden" name="pro_id" value="<?php echo $row[ 'pid' ]?>">
+                  <td class="product-thumbnail"><a href="product.php?id=<?php echo $row[ 'pid' ]?>"><img src="./admin/product-img/<?php echo $row[ 'img' ]?>" alt="cart-image" /></a></td>
+                  <td class="product-name"><a href='#'><?php echo $row[ 'pname' ]?></a></td>
+                  <td class="product-price"><?php echo $row[ 'new_price' ]?></td>
+                  <td class="product-quantity"><input type="number" name="pro_quantity<?php echo $row[ 'pid' ]?>" value="1" min="1" max="99" id="pr"></td>
+                  <td class="product-subtotal"><?php echo $total?></td>
+                  <td class="product-remove"><a href="cart_process.php?action=remove&id=<?php echo $row[ 'pid' ]?>">
+                    <button type="button" class="btn btn-cart mx-2" name="remove"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </a></td>
+                </tr>
+                <!-- <?php
+                }
+                }
+                } else {
+                  $totalprice = 0;
+                  $VAT = 0;
+                  $carttotal = 0;
+                  echo "<tr><td colspan='6' align='center'>No items in cart</td</tr>";
+                  unset( $_SESSION[ 'cart' ] );
+                  break;
+                }
+                }
+                }
+                } else {
+                  echo "<tr><td colspan='6' align='center'>No items in cart</td</tr>";
+                }
+                ?> -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Content Start -->
+          <div class="row">
+          <!-- Cart Button Start -->
+          <div class="col-md-8 col-sm-12">
+            <div class="buttons-cart"> <a href="index.php">Continue Shopping</a> </div>
+          </div>
+          <!-- Cart Button Start --> 
+          <!-- Cart Totals Start -->
+          <div class="col-md-4 col-sm-12">
+          <div class="cart_totals float-md-right text-md-right">
+          <h2>Cart Totals</h2>
+          <br />
+          <table class="float-md-right">
+            <tbody class="totals-value">
+              <tr>
+                <th>Subtotal</th>
+                <td>$<span class="amount cart-subtotal">
+                  <!-- <?php if(isset($_SESSION['cart'])){echo $totalprice;}else{ echo "0";} ?> -->
+                  </span></td>
+              </tr>
+              <tr>
+                <th>Shipping</th>
+                <td>$<span class="amount cart-shipping">5</span></td>
+              </tr>
+              <tr>
+                <th>Taxes</th>
+                <td>$<span class="amount vat">
+                  <!-- <?php if(isset($_SESSION['cart'])){echo $VAT;}else{ echo "0";} ?> -->
+                  </span></td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td><strong>$<span class="amount cart-total">
+                  <!-- <?php if(isset($_SESSION['cart'])){echo $carttotal;}else{ echo "0";} ?> -->
+                  </span></strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="wc-proceed-to-checkout">
+          <p class="btn btn-cart" data-toggle="modal" data-target="#exampleModalLong<?php echo $_SESSION['accID'] ?>">CHECKOUT</p>
+          <!-- <?php
+          if ( isset( $_SESSION[ 'accID' ] ) ) {
+            $query = "SELECT * FROM `customer` c left join account ac on c.accountID=ac.accID WHERE ac.accID='" . $_SESSION[ 'accID' ] . "'";
+            $run = mysqli_query( $conn, $query );
+            if ( mysqli_num_rows( $run ) > 0 ) {
+              while ( $row = mysqli_fetch_array( $run ) ) {
+                $cus_id = $row[ 'cusID' ];
+                $cus_name = $row[ 'cusName' ];
+                $cus_address = $row[ 'cusAddress' ];
+                $email = $row[ 'cusEmail' ];
+                $phonenumber = $row[ 'cusPhoneNumber' ];
+                ?> -->
+          <div class="modal fade" id="exampleModalLong<?php echo $_SESSION['accID'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle<?php echo $_SESSION['accID'] ?>" style="color:#7571f9;">Confirm Your Information</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+          </div>
+          <div class="modal-body">
+          <div class="row">
+          <div class="col-md-6">
+            <h6 style="color:#ea5774;font-weight:500;float:left;margin:5px 0px 5px;">Customer:</h6>
+            <p> <?php echo $cus_name?></p>
+          </div>
+          <div class="col-md-6">
+            <h6 style="color:#ea5774;font-weight:500;float:left;margin:5px 0px 5px;">Address:</h6>
+            <p> <?php echo $cus_address?></p>
+          </div>
+          <div class="col-md-6">
+            <h6 style="color:#ea5774;font-weight:500;float:left;margin:5px 0px 5px;">Email:</h6>
+            <p> <?php echo $email?></p>
+          </div>
+          <div class="col-md-6">
+            <h6 style="color:#ea5774;font-weight:500;float:left;margin:5px 0px 5px;">Phone Number:</h6>
+            <p> <?php echo $phonenumber?></p>
+          </div>
+          <div class="col-md-6">
+          <h6 style="color:#ea5774;font-weight:500;float:left;margin:5px 0px 5px;">Your Note:</h6>
+          <form>
+            <input type="text" class="form-control" name="ordernote" placeholder="Your Note...">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-cart" data-dismiss="modal">CLOSE</button>
+      <button type="submit" name="checkout" class="btn btn-cart">CHECKOUT</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cart Totals End -->
+
+<!-- <?php
+}
+}
+} else {
+  echo "<script>alert('Please login to continue!');window.location='login.php';</script>";
+}
+?> -->
+<!-- Row End -->
+</form>
+<!-- Form End -->
+</div>
+</div>
+<!-- Row End -->
+</div>
+</div>
+<!-- Cart Main Area End --> 
+<!-- Support Area Start Here -->
+<div class="support-area bdr-top">
+  <div class="container">
+    <div class="d-flex flex-wrap text-center">
+      <div class="single-support">
+        <div class="support-icon"> <i class="lnr lnr-gift"></i> </div>
+        <div class="support-desc">
+          <h6>Great Value</h6>
+          <span>Nunc id ante quis tellus faucibus dictum in eget.</span> </div>
+      </div>
+      <div class="single-support">
+        <div class="support-icon"> <i class="lnr lnr-rocket" ></i> </div>
+        <div class="support-desc">
+          <h6>Worlwide Delivery</h6>
+          <span>Quisque posuere enim augue, in rhoncus diam dictum non</span> </div>
+      </div>
+      <div class="single-support">
+        <div class="support-icon"> <i class="lnr lnr-lock"></i> </div>
+        <div class="support-desc">
+          <h6>Safe Payment</h6>
+          <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span> </div>
+      </div>
+      <div class="single-support">
+        <div class="support-icon"> <i class="lnr lnr-enter-down"></i> </div>
+        <div class="support-desc">
+          <h6>Shop Confidence</h6>
+          <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span> </div>
+      </div>
+      <div class="single-support">
+        <div class="support-icon"> <i class="lnr lnr-users"></i> </div>
+        <div class="support-desc">
+          <h6>24/7 Help Center</h6>
+          <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span> </div>
+      </div>
+    </div>
+  </div>
+  <!-- Container End --> 
+</div>
+</div>
+<!-- Support Area End Here -->
+
+<!-- <?php require_once('inc/footer.php');?>
+<script src="js/js-cart.js"></script>
+</body>
+</html> -->
