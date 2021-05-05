@@ -115,13 +115,13 @@ session_start();
                           <div class="pro-info">
                             <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
                             <h4><a href="truemart/product/{{prod.productId}}">{{prod.name}}</a></h4>
-                            <p><span *ngIf="prod.sale == 0" class="price">{{prod.price}}</span><del *ngIf="prod.sale != 0" class="prev-price">{{prod.price}}</del></p>
+                            <p><span *ngIf="prod.sale == 0" class="price">$ {{prod.price}}</span><del *ngIf="prod.sale != 0" class="prev-price">$ {{prod.price}}</del></p>
                             <div *ngIf="prod.sale != 0" class="label-product l_sale">{{prod.sale}}<span class="symbol-percent">%</span></div>
-                            <p *ngIf="prod.sale != 0"><span class="price">{{1*prod.price - (1*prod.price*30/100)}}</span></p>
+                            <p *ngIf="prod.sale != 0"><span class="price">$ {{1*prod.price - (1*prod.price*30/100)}}</span></p>
                           </div>
                           <div class="pro-actions">
                             <div class="actions-primary">
-                              <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 50px;">
+                              <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
                             </div>
                           </div>
                         </div>
