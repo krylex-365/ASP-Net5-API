@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import * as $ from 'jquery';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -77,7 +77,8 @@ import { OrderDetailService } from '../services/order-detail.service';
     ProductShopComponent,
     LoginTruemartComponent,
     ProfileComponent,
-    /*IndexComponent,*/
+    IndexComponent,
+    /**/
 
   ],
   imports: [
@@ -102,6 +103,7 @@ import { OrderDetailService } from '../services/order-detail.service';
       { path: 'profile', component: AccountProfileComponent },
       { path: 'user-add', component: UserAddComponent },
       { path: 'user-edit/:id', component: UserEditComponent },
+      { path: 'indexshop', component: IndexComponent },
       { path: 'shop', component: ShopComponent },
       { path: 'shop/:id', component: ShopComponent },
       { path: 'productshop', component: ProductShopComponent },

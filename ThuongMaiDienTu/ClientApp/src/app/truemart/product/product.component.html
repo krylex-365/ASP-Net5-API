@@ -210,25 +210,8 @@
       </div>
       <!-- Product Title End -->
       <!-- Hot Deal Product Activation Start -->
-
       <div class="hot-deal-active owl-carousel">
-        <!-- Single Product Start .................................................... -->
-        <!-- <?php
-        $id = $_GET[ 'id' ];
-        $sqlDetail = "select * from `product` where pid ='$id'";
-        $resultRow = mysqli_query( $conn, $sqlDetail );
-        $row = mysqli_fetch_row( $resultRow );
-        $query1 = "SELECT * FROM `product` WHERE subcate_id = $row[5] and pid!= $id order by rand() limit 20";
-        $resultOther = mysqli_query( $conn, $query1 );
-        while ( $rowOther = mysqli_fetch_array( $resultOther ) ) {
-          $pro_id = $rowOther[ 'pid' ];
-          $pro_name = $rowOther[ 'pname' ];
-          $pro_price = $rowOther[ 'price' ];
-          $pro_sale = $rowOther[ 'sale' ];
-          $pro_newprice = $rowOther[ 'new_price' ];
-          $pro_des = $rowOther[ 'descr' ];
-          $pro_img = $rowOther[ 'img' ];
-          ?> -->
+        <!-- Single Product Start -->
         <form>
           <input type="hidden" name="pro_id" value="1">
           <div class="single-product">
@@ -240,17 +223,8 @@
               <div class="pro-info">
                 <input type="hidden" name="pro_id" value="1">
                 <h4><a href="#">ABC</a></h4>
-                <!-- <?php
-                if ( $pro_sale > 0 ) {
-                  ?> -->
                 <p><span class="price">$20</span><del class="prev-price">$18</del></p>
                 <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
-                <!-- <?php
-                } else {
-                  ?> -->
-                <!-- <?php
-                }
-                ?> -->
               </div>
               <div class="pro-actions">
                 <div class="actions-primary">
@@ -261,10 +235,7 @@
           </div>
         </form>
         <!-- Single Product End -->
-        <!-- Single Product Start -->
-        <!-- <?php }?> -->
         <!-- Hot Deal Product Active End -->
-        <!-- Single Product Start -->
       </div>
       <!-- Product Content End -->
     </div>

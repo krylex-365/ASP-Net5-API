@@ -6,7 +6,6 @@ import { Subcategories } from '../../../models/subcategories';
 import { CategoriesService } from '../../../services/categories.service';
 import { ProductService } from '../../../services/product.service';
 import { SubcategoriesService } from '../../../services/subcategories.service';
-
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',

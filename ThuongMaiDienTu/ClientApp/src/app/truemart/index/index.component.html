@@ -1,1 +1,740 @@
-﻿<div style="border: 1px solid red">index Component</div>
+<div class="wrapper">
+  <app-truemart-form></app-truemart-form>
+  <!--<?php require_once('inc/slider.php');?>-->
+  <div class="slider_box">
+    <div class="slider-wrapper theme-default">
+      <!-- Slider Background  Image Start-->
+      <div id="slider" class="nivoSlider"> <a href="shop.php"><img src="./truemart/img/slider/5.jpg" data-thumb="./truemart/img/slider/5.jpg" alt="" title="#htmlcaption" /></a> <a href="shop.php"><img src="./truemart/img/slider/6.jpg" data-thumb="./truemart/img/slider/6.jpg" alt="" title="#htmlcaption2" /></a> </div>
+      <!-- Slider Background  Image Start-->
+    </div>
+  </div>
+  <!-- Brand Banner Area Start Here -->
+  <div class="image-banner pt-30 pb-30">
+    <div class="container">
+      <div class="col-img"> <a href="#"><img src="./truemart/img/banner/h1-banner.jpg" alt="image banner"></a> </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Brand Banner Area End Here -->
+  <!-- Hot Deal Products Start Here -->
+  <div class="hot-deal-products pb-10 pb-sm-50">
+    <div class="container all-border">
+      <!-- Product Title Start -->
+      <div class="post-title pb-30">
+        <h2>hot deals</h2>
+      </div>
+      <!-- Product Title End -->
+      <!-- Hot Deal Product Activation Start -->
+      <div class="hot-deal-active owl-carousel">
+        <!-- Single Product Start -->
+        <!--<img class='secondary-img' src='img/products/7.jpg' alt='single-product'></a>-->
+        <!--<?php
+        $query = "SELECT * FROM `product` WHERE `sale`>= 15 LIMIT 15";
+        $run = mysqli_query( $conn, $query );
+        if ( mysqli_num_rows( $run ) > 0 ) {
+        while ( $row = mysqli_fetch_array( $run ) ) {
+        $pid = $row[ 'pid' ];
+        $pname = $row[ 'pname' ];
+        $price = $row[ 'price' ];
+        $sale = $row[ 'sale' ];
+        $newprice = $row[ 'new_price' ];
+        $img = $row[ 'img' ];
+        ?>-->
+        <div class="single-product">
+          <form>
+            <!-- Product Image Start -->
+            <div class="pro-img">
+              <a href="#">
+                <img class="primary-img" src="../product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="single-product">
+                <div class="countdown" data-countdown="2021/03/01"></div>
+              </a>
+            </div>
+            <!-- Product Image End -->
+            <!-- Product Content Start -->
+            <div class="pro-content">
+              <div class="pro-info">
+                <input type="hidden" name="pro_id" value="1">
+                <h4><a href="#">ABC</a></h4>
+                <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+              </div>
+              <div class="pro-actions">
+                <div class="actions-primary">
+                  <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--<?php
+        }
+        }
+        ?>-->
+        <!-- Product Content End -->
+        <!-- Single Product End -->
+      </div>
+      <!-- Hot Deal Product Active End -->
+
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Hot Deal Products End Here -->
+  <div class="big-banner ptb-20 pb-sm-60">
+    <div class="container big-banner-box">
+      <div class="col-img"> <a href="#"> <img src="./truemart/img/banner/5.jpg" alt=""> </a> </div>
+      <div class="col-img"> <a href="#"> <img src="./truemart/img/banner/h1-banner3.jpg" alt=""> </a> </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Trending Products End Here -->
+  <div class="trendig-product pt-30 pb-10 off-white-bg">
+    <div class="container">
+      <div class="trending-box">
+        <div class="title-box hot-trending">
+          <h2>Hot Trending</h2>
+        </div>
+        <div class="product-list-box">
+          <!-- Arrivals Product Activation Start Here -->
+          <div class="trending-pro-active owl-carousel">
+            <!-- Single Product Start -->
+            <!--<?php
+            $query = "SELECT * FROM `product` WHERE `new_price` >= 100 AND `new_price` <= 200 LIMIT 10";
+            $run = mysqli_query( $conn, $query );
+            if ( mysqli_num_rows( $run ) > 0 ) {
+            while ( $row = mysqli_fetch_array( $run ) ) {
+            $pid = $row[ 'pid' ];
+            $pname = $row[ 'pname' ];
+            $price = $row[ 'price' ];
+            $sale = $row[ 'sale' ];
+            $newprice = $row[ 'new_price' ];
+            $img = $row[ 'img' ];
+            ?>-->
+            <div class="single-product">
+              <form action="cart_process.php?action=add&id=<?php echo $pid?>" method="POST">
+                <!-- Product Image Start -->
+                <div class="pro-img"><a href="#"> <img class="primary-img" src="../product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="single-product"></a></div>
+                <!-- Product Image End -->
+                <!-- Product Content Start -->
+                <div class="pro-content">
+                  <div class="pro-info">
+                    <input type="hidden" name="pro_id" value="1">
+                    <h4><a href="#">ABC</a></h4>
+                    <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                    <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                  </div>
+                  <div class="pro-actions">
+                    <div class="actions-primary">
+                      <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--<?php
+            }
+            }
+            ?>-->
+            <!-- Single Product End -->
+          </div>
+          <!-- Arrivals Product Activation End Here -->
+        </div>
+        <!-- main-product-tab-area-->
+      </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Trending Products End Here -->
+  <!-- Trending Products End Here -->
+  <div class="trendig-product pb-30 off-white-bg pb-sm-60">
+    <div class="container">
+      <div class="trending-box">
+        <div class="title-box best-selling">
+          <h2>Best Selling</h2>
+        </div>
+        <div class="product-list-box">
+          <!-- Arrivals Product Activation Start Here -->
+          <div class="trending-pro-active owl-carousel">
+            <!-- Single Product Start -->
+            <!--<?php
+            $query = "SELECT * FROM `product` WHERE `sale` > 0 AND `sale` < 50 LIMIT 10";
+            $run = mysqli_query( $conn, $query );
+            if ( mysqli_num_rows( $run ) > 0 ) {
+            while ( $row = mysqli_fetch_array( $run ) ) {
+            $pid = $row[ 'pid' ];
+            $pname = $row[ 'pname' ];
+            $price = $row[ 'price' ];
+            $sale = $row[ 'sale' ];
+            $newprice = $row[ 'new_price' ];
+            $img = $row[ 'img' ];
+            ?>-->
+            <div class="single-product">
+              <form action="cart_process.php?action=add&id=<?php echo $pid?>" method="POST">
+                <!-- Product Image Start -->
+                <div class="pro-img"><a href="product.php?id=<?php echo $pid?>"> <img class="primary-img" src="../product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="single-product"></a></div>
+                <!-- Product Image End -->
+                <!-- Product Content Start -->
+                <div class="pro-content">
+                  <div class="pro-info">
+                    <input type="hidden" name="pro_id" value="1">
+                    <h4><a href="#">ABC</a></h4>
+                    <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                    <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                  </div>
+                  <div class="pro-actions">
+                    <div class="actions-primary">
+                      <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--<?php
+            }
+            }
+            ?>-->
+            <!-- Single Product End -->
+          </div>
+          <!-- Arrivals Product Activation End Here -->
+        </div>
+        <!-- main-product-tab-area-->
+      </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Trending Products End Here -->
+  <!-- Big Banner Start Here -->
+  <div class="big-banner ptb-50 mt-sm-60 pb-sm-45">
+    <div class="container banner-2">
+      <div class="banner-box">
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-1.jpg" alt="banner 3"></a> </div>
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-2.jpg" alt="banner 3"></a> </div>
+      </div>
+      <div class="banner-box">
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-3.jpg" alt="banner 3"></a> </div>
+      </div>
+      <div class="banner-box">
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-4.jpg" alt="banner 3"></a> </div>
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-5.jpg" alt="banner 3"></a> </div>
+      </div>
+      <div class="banner-box">
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-6.jpg" alt="banner 3"></a> </div>
+      </div>
+      <div class="banner-box">
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-7.jpg" alt="banner 3"></a> </div>
+        <div class="col-img"> <a href="#"><img src="./truemart/img/banner/banner3-8.jpg" alt="banner 3"></a> </div>
+      </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Big Banner End Here -->
+  <!--<?php
+  $query = "SELECT * FROM `category`";
+  $run = mysqli_query( $conn, $query );
+  if ( mysqli_num_rows( $run ) > 0 ) {
+  while ( $row = mysqli_fetch_array( $run ) ) {
+  $cate_id = $row[ 'ID' ];
+  $cate_name = $row[ 'cate_name' ];
+  ?>-->
+  <!-- Arrivals Products Area Start Here -->
+  <div class="arrivals-product pb-85 pb-sm-45">
+    <div class="container">
+      <div class="main-product-tab-area">
+        <div class="tab-menu mb-25">
+          <div class="section-ttitle">
+            <h2>Cate name </h2>
+          </div>
+          <!-- Nav tabs -->
+          <ul class="nav tabs-area" role="tablist">
+            <!--<?php
+
+            $query1 = "SELECT * FROM `subcategory` WHERE `cate_id` = $cate_id LIMIT 1";
+            $run1 = mysqli_query( $conn, $query1 );
+            if ( mysqli_num_rows( $run1 ) > 0 ) {
+            while ( $row = mysqli_fetch_array( $run1 ) ) {
+            $subcate_id = $row[ 'subcate_id' ];
+            $subcate_name = $row[ 'subcate_name' ];
+            ?>-->
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#subcatab1">Sub name 1</a> </li>
+            <!-- <?php
+             }
+             } else {
+             echo "No Subcategories Found";
+             }
+             ?>
+             <?php
+             $query1 = "SELECT * FROM `subcategory` WHERE `cate_id` = $cate_id LIMIT 1,3";
+             $run1 = mysqli_query( $conn, $query1 );
+             if ( mysqli_num_rows( $run1 ) > 0 ) {
+             while ( $row = mysqli_fetch_array( $run1 ) ) {
+             $subcate_id = $row[ 'subcate_id' ];
+             $subcate_name = $row[ 'subcate_name' ];
+             ?>-->
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#subcatab2">Sub name 2</a> </li>
+            <!--<?php
+            }
+            } else {
+            echo "No Prodctsu Found";
+            }
+            ?>-->
+          </ul>
+        </div>
+        <!-- Tab Content Start -->
+        <div class="tab-content">
+          <!--<?php
+          $query1 = "SELECT * FROM `subcategory` WHERE `cate_id` = $cate_id LIMIT 1";
+          $run1 = mysqli_query( $conn, $query1 );
+          if ( mysqli_num_rows( $run1 ) > 0 ) {
+          while ( $row = mysqli_fetch_array( $run1 ) ) {
+          $subcate_id = $row[ 'subcate_id' ];
+          $subcate_name = $row[ 'subcate_name' ];
+          ?>-->
+          <!-- /////////////////////////// ACTIVE TABPANE IN HERE /////////////////////////// -->
+          <div id="subcatab1" class="tab-pane fade show active">
+            <div class="row">
+              <div class="col-lg-5 order-2 order-lg-1">
+                <div class="banner-site-box mt-10">
+                  <!--<?php
+                  $query20 = "SELECT * FROM `product` WHERE `subcate_id` = $subcate_id LIMIT 1";
+                  $run20 = mysqli_query( $conn, $query20 );
+                  if ( mysqli_num_rows( $run20 ) > 0 ) {
+                  while ( $row = mysqli_fetch_array( $run20 ) ) {
+                  $pro_pid = $row[ 'pid' ];
+                  $pro_pname = $row[ 'pname' ];
+                  $pro_price = $row[ 'price' ];
+                  $pro_sale = $row[ 'sale' ];
+                  $pro_newprice = $row[ 'new_price' ];
+                  $pro_img = $row[ 'img' ];
+                  ?>-->
+                  <div class="col-img"> <a href="#"><img src="../product-img/GUND-Rainbow-Shimmer-Caticorn-Multicolor.jpg" alt=""></a> </div>
+
+                  <!-- Single Product Start -->
+                  <div class="single-product mt-20">
+                    <!-- Product Image Start -->
+                    <div class="pro-img"> <a href="#"> <img class="primary-img" src="../product-img/Peppa-Pig-PEP0477-Red-Car.jpg" alt="single-product"></a></div>
+                    <!-- Product Image End -->
+                    <!-- Product Content Start -->
+                    <div class="pro-content">
+                      <div class="pro-info">
+                        <input type="hidden" name="pro_id" value="1">
+                        <h4><a href="#">ABC</a></h4>
+                        <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                        <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                      </div>
+                    </div>
+                    <!-- Product Content End -->
+                  </div>
+                  <!-- Single Product End -->
+                  <!--<?php
+                  }
+                  } else {
+                  echo "No Product Found";
+                  }
+                  ?>-->
+                </div>
+              </div>
+              <div class="col-lg-7 order-1 order-lg-2">
+                <!-- Arrivals Product Activation Start Here -->
+                <div class="electronics-pro-active2 owl-carousel">
+                  <!--<?php
+                  $queryCountPro = "SELECT * FROM `product` WHERE `subcate_id` = $subcate_id LIMIT 1,6";
+                  $runCountPro = mysqli_query( $conn, $queryCountPro );
+                  if ( mysqli_num_rows( $runCountPro ) > 0 ) {
+                  $countPro = ceil( mysqli_num_rows( $runCountPro ) / 2 );
+                  for ( $index = 1; $index <= $countPro; $index++ ) {
+                  $query_pro = "SELECT * FROM `product` WHERE `subcate_id` = $subcate_id";
+                  ?>-->
+                  <div class="double-product">
+                    <!--<?php
+                    $limit = 2;
+                    $start = ( ( $index - 1 ) * $limit ) + 1;
+                    $query_pro .= " LIMIT $start,$limit";
+                    $runpro = mysqli_query( $conn, $query_pro );
+                    if ( mysqli_num_rows( $runpro ) > 0 ) {
+                    while ( $row = mysqli_fetch_array( $runpro ) ) {
+                    $pro_pid = $row[ 'pid' ];
+                    $pro_pname = $row[ 'pname' ];
+                    $pro_price = $row[ 'price' ];
+                    $pro_sale = $row[ 'sale' ];
+                    $pro_newprice = $row[ 'new_price' ];
+                    $pro_img = $row[ 'img' ];
+                    ?>-->
+                    <!-- Single Product Start -->
+                    <div class="single-product">
+                      <form action="cart_process.php?action=add&id=<?php echo $pro_pid?>" method="POST">
+                        <!-- Product Image Start -->
+                        <div class="pro-img"> <a href="#"> <img class="primary-img" src="../product-img/Last-Kids-Earth-Awesomeness-Exclusive.jpg"></a></div>
+                        <!-- Product Image End -->
+                        <!-- Product Content Start -->
+                        <div class="pro-content">
+                          <div class="pro-info">
+                            <input type="hidden" name="pro_id" value="1">
+                            <h4><a href="#">ABC</a></h4>
+                            <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                            <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                          </div>
+                          <div class="pro-actions">
+                            <div class="actions-primary">
+                              <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Product Content End -->
+                      </form>
+                    </div>
+                    <!-- Single Product End -->
+                    <!--<?php
+                    }
+                    }
+                    ?>-->
+                  </div>
+                  <!--<?php
+                  }
+                  }
+                  ?>-->
+                </div>
+                <!-- Arrivals Product Activation End Here -->
+              </div>
+            </div>
+          </div>
+          <!-- #electronics End Here -->
+          <!--<?php
+          }
+          } else {
+          echo "No Prodctsu Found";
+          }
+          ?>-->
+          <!-- /////////////////////////// NO ACTIVE TABPANE IN HERE /////////////////////////// -->
+          <!--<?php
+          $query1 = "SELECT * FROM `subcategory` WHERE `cate_id` = $cate_id LIMIT 1,3";
+          $run1 = mysqli_query( $conn, $query1 );
+          if ( mysqli_num_rows( $run1 ) > 0 ) {
+          while ( $row = mysqli_fetch_array( $run1 ) ) {
+          $subcate_id = $row[ 'subcate_id' ];
+          $subcate_name = $row[ 'subcate_name' ];
+          ?>-->
+          <div id="subcatab2" class="tab-pane fade">
+            <div class="row">
+              <div class="col-lg-5 order-2 order-lg-1">
+                <div class="banner-site-box mt-10">
+                  <!--<?php
+                  $query19 = "SELECT * FROM `product` WHERE `subcate_id` = $subcate_id LIMIT 1";
+                  $run19 = mysqli_query( $conn, $query19 );
+                  if ( mysqli_num_rows( $run19 ) > 0 ) {
+                  while ( $row = mysqli_fetch_array( $run19 ) ) {
+                  $pro_pid = $row[ 'pid' ];
+                  $pro_pname = $row[ 'pname' ];
+                  $pro_price = $row[ 'price' ];
+                  $pro_sale = $row[ 'sale' ];
+                  $pro_newprice = $row[ 'new_price' ];
+                  $pro_img = $row[ 'img' ];
+                  ?>-->
+                  <div class="col-img"> <a href="#"><img src="../product-img/lg-55LH575T.jpg" alt=""></a> </div>
+                  <!-- Single Product Start -->
+                  <div class="single-product mt-20">
+                    <!-- Product Image Start -->
+                    <div class="pro-img"> <a href="#"> <img class="primary-img" src="../product-img/lg-55LH575T.jpg" alt="single-product"></a></div>
+                    <!-- Product Image End -->
+                    <!-- Product Content Start -->
+                    <div class="pro-content">
+                      <div class="pro-info">
+                        <input type="hidden" name="pro_id" value="1">
+                        <h4><a href="#">ABC</a></h4>
+                        <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                        <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                      </div>
+                    </div>
+                    <!-- Product Content End -->
+                  </div>
+                  <!-- Single Product End -->
+                  <!--<?php
+                  }
+                  } else {
+                  echo "No Product Found";
+                  }
+                  ?>-->
+                </div>
+              </div>
+              <div class="col-lg-7 order-1 order-lg-2">
+                <!-- Arrivals Product Activation Start Here -->
+                <div class="electronics-pro-active2 owl-carousel">
+                  <!--<?php
+                  $queryCountPro = "SELECT * FROM `product` WHERE `subcate_id` = $subcate_id LIMIT 1,6";
+                  $runCountPro = mysqli_query( $conn, $queryCountPro );
+                  if ( mysqli_num_rows( $runCountPro ) > 0 ) {
+                  $countPro = ceil( mysqli_num_rows( $runCountPro ) / 2 );
+                  for ( $index = 1; $index <= $countPro; $index++ ) {
+                  $query_pro = "SELECT * FROM `product` WHERE `subcate_id` = $subcate_id";
+                  ?>-->
+                  <div class="double-product">
+                    <!--<?php
+                    $limit = 2;
+                    $start = ( ( $index - 1 ) * $limit ) + 1;
+                    $query_pro .= " LIMIT $start,$limit";
+                    $runpro = mysqli_query( $conn, $query_pro );
+                    if ( mysqli_num_rows( $runpro ) > 0 ) {
+                    while ( $row = mysqli_fetch_array( $runpro ) ) {
+                    $pro_pid = $row[ 'pid' ];
+                    $pro_pname = $row[ 'pname' ];
+                    $pro_price = $row[ 'price' ];
+                    $pro_sale = $row[ 'sale' ];
+                    $pro_newprice = $row[ 'new_price' ];
+                    $pro_img = $row[ 'img' ];
+                    ?>-->
+                    <!-- Single Product Start -->
+                    <div class="single-product">
+                      <form action="cart_process.php?action=add&id=<?php echo $pro_pid?>" method="POST">
+                        <!-- Product Image Start -->
+                        <div class="pro-img"> <a href="#"> <img class="primary-img" src="../product-img/lg-55LH575T.jpg" alt="single-product"></a></div>
+                        <!-- Product Image End -->
+                        <!-- Product Content Start -->
+                        <div class="pro-content">
+                          <div class="pro-info">
+                            <input type="hidden" name="pro_id" value="1">
+                            <h4><a href="#">ABC</a></h4>
+                            <p><span class="price">$20</span><del class="prev-price">$18</del></p>
+                            <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                          </div>
+                          <div class="pro-actions">
+                            <div class="actions-primary">
+                              <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Product Content End -->
+                      </form>
+                    </div>
+                    <!-- Single Product End -->
+                    <!--<?php
+                    }
+                    }
+                    ?>-->
+                  </div>
+                  <!--<?php
+                  }
+                  }
+                  ?>-->
+                </div>
+                <!-- Arrivals Product Activation End Here -->
+              </div>
+            </div>
+          </div>
+          <!-- #electronics End Here -->
+          <!--<?php
+          }
+          } else {
+          echo "No Products Found";
+          }
+          ?>-->
+        </div>
+        <!-- Tab Content End -->
+      </div>
+      <!-- main-product-tab-area-->
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Arrivals Products Area End Here -->
+  <!--<?php
+  }
+  } else {
+  echo "No Categories Found";
+  }
+  ?>-->
+  <!-- Brand Banner Area Start Here -->
+  <div class="main-brand-banner ptb-30 pb-sm-60 pt-sm-55">
+    <div class="container all-border">
+      <div class="section-ttitle mb-30">
+        <h2>Hot Brands</h2>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-lg-3">
+          <div class="col-img"> <img src="./truemart/img/banner/h1-band1.jpg" alt=""> </div>
+        </div>
+        <div class="col-lg-6">
+          <!-- Brand Banner Start -->
+          <div class="brand-banner owl-carousel">
+            <div class="single-brand"> <a href="#"><img class="img" src="./truemart/img/brand/1.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> </div>
+            <div class="single-brand"> <a href="#"><img class="img" src="./truemart/img/brand/1.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> </div>
+            <div class="single-brand"> <a href="#"><img src="./truemart/img/brand/1.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> </div>
+            <div class="single-brand"> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/4.jpg" alt="brand-image"></a> </div>
+            <div class="single-brand"> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/4.jpg" alt="brand-image"></a> </div>
+            <div class="single-brand"> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/4.jpg" alt="brand-image"></a> </div>
+            <div class="single-brand"> <a href="#"><img src="./truemart/img/brand/2.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/3.jpg" alt="brand-image"></a> <a href="#"><img src="./truemart/img/brand/4.jpg" alt="brand-image"></a> </div>
+          </div>
+          <!-- Brand Banner End -->
+
+        </div>
+        <div class="col-lg-3">
+          <div class="col-img"> <img src="./truemart/img/banner/h1-band2.jpg" alt=""> </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Brand Banner Area End Here -->
+  <!-- Support Area Start Here -->
+  <div class="support-area bdr-top">
+    <div class="container">
+      <div class="d-flex flex-wrap text-center">
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-gift"></i> </div>
+          <div class="support-desc">
+            <h6>Great Value</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-rocket"></i> </div>
+          <div class="support-desc">
+            <h6>Worlwide Delivery</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-lock"></i> </div>
+          <div class="support-desc">
+            <h6>Safe Payment</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-enter-down"></i> </div>
+          <div class="support-desc">
+            <h6>Shop Confidence</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-users"></i> </div>
+          <div class="support-desc">
+            <h6>24/7 Help Center</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Footer Area Start Here -->
+  <footer class="off-white-bg2 pt-50 bdr-top pt-sm-55">
+    <!-- Footer Top Start -->
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Information</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="#">Delivery Information</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="contact.html">Terms & Conditions</a></li>
+                  <li><a href="login.html">FAQs</a></li>
+                  <li><a href="login.html">Return Policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Customer Service</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="wishlist.html">Wish List</a></li>
+                  <li><a href="#">Site Map</a></li>
+                  <li><a href="#">Gift Certificates</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Extras</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="#">Newsletter</a></li>
+                  <li><a href="#">Brands</a></li>
+                  <li><a href="#">Gift Certificates</a></li>
+                  <li><a href="#">Affiliate</a></li>
+                  <li><a href="#">Specials</a></li>
+                  <li><a href="#">Site Map</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">My Account</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">My Account</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="wishlist.html">Wish List</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">My Account</h3>
+              <div class="footer-content">
+                <ul class="footer-list address-content">
+                  <li><i class="lnr lnr-map-marker"></i> Address: 169-C, Technohub, Dubai Silicon Oasis.</li>
+                  <li><i class="lnr lnr-envelope"></i><a href="#"> mail Us: Support@truemart.com </a></li>
+                  <li>
+                    <i class="lnr lnr-phone-handset"></i> Phone: (+800) 123 456 789)
+                  </li>
+                </ul>
+                <div class="payment mt-25 bdr-top pt-30">
+                  <a href="#"><img class="img" src="truemart/img/payment/1.png" alt="payment-image"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+        </div>
+        <!-- Row End -->
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Top End -->
+    <!-- Footer Middle Start -->
+    <div class="footer-middle text-center">
+      <div class="container">
+        <div class="footer-middle-content pt-20 pb-30">
+          <ul class="social-footer">
+            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><img src="truemart/img/icon/social-img1.png" alt="google play"></a></li>
+            <li><a href="#"><img src="truemart/img/icon/social-img2.png" alt="app store"></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Middle End -->
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom pb-30">
+      <div class="container">
+        <div class="copyright-text text-center">
+          <p>Copyright © 2018 <a target="_blank" href="#">Truemart</a> All Rights Reserved.</p>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Bottom End -->
+  </footer>
+  <!-- Footer Area End Here -->
+</div>
