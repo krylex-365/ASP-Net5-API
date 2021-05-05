@@ -48,7 +48,10 @@ import { LoginTruemartComponent } from './truemart/login/login.component';
 import { ProfileComponent } from './truemart/profile/profile.component';
 import { UserProfileService } from '../services/user-profile.service';
 import { OrderDetailService } from '../services/order-detail.service';
-
+import { CheckoutComponent } from './truemart/checkout/checkout.component';
+import { RegisterComponent } from './truemart/register/register.component';
+import { CartComponent } from './truemart/cart/cart.component';
+import { RegisterService } from 'src/services/register.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +81,9 @@ import { OrderDetailService } from '../services/order-detail.service';
     LoginTruemartComponent,
     ProfileComponent,
     IndexComponent,
+    CartComponent,
+    CheckoutComponent,
+    RegisterComponent,
     /**/
 
   ],
@@ -109,6 +115,9 @@ import { OrderDetailService } from '../services/order-detail.service';
       { path: 'productshop', component: ProductShopComponent },
       { path: 'loginshop', component: LoginTruemartComponent },
       { path: 'profileshop', component: ProfileComponent },
+      { path: 'checkout', component: CheckoutComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'register', component: RegisterComponent },
       /*{ path: 'index', component: IndexComponent },*/
 
     ]),
@@ -130,6 +139,7 @@ import { OrderDetailService } from '../services/order-detail.service';
     UserEditService,
     ReloadService,
     OrderDetailService,
+    RegisterService,
     //ProductShopService,
     //UserProfileService,
 

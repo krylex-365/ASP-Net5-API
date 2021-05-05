@@ -1,0 +1,32 @@
+.btn-cart {
+    border-color: #363f4d;
+    background: #363f4d none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 15px;
+    padding: 0 20px;
+    text-shadow: none;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    white-space: nowrap;
+    width: inherit;
+    border-radius: 4px;
+}
+.btn-cart:hover {
+    background-color: #e62e04;
+    border-color: #e62e04;
+}
+.table-content table td.product-remove i {
+    color: #fff;
+}
+.table-content table td.product-remove a:hover i {
+    color: #fff;
+}
