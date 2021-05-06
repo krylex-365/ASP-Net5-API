@@ -25,7 +25,7 @@
               <h3 class="card-title text-white">All Products</h3>
               <div class="d-inline-block">
                 <h2 class="text-white">{{allProduct}}</h2>
-                <a href="./products">
+                <a href="./admin/products">
                   <p class="text-white mb-0">See detail...</p>
                 </a>
               </div>
@@ -39,7 +39,7 @@
               <h3 class="card-title text-white">All Categories</h3>
               <div class="d-inline-block">
                 <h2 class="text-white">{{allCategory}}</h2>
-                <a href="./categories">
+                <a href="./admin/categories">
                   <p class="text-white mb-0">See detail...</p>
                 </a>
               </div>
@@ -53,7 +53,7 @@
               <h3 class="card-title text-white">All Sub-Categories</h3>
               <div class="d-inline-block">
                 <h2 class="text-white">{{allSubcategory}}</h2>
-                <a href="./subcategories">
+                <a href="./admin/subcategories">
                   <p class="text-white mb-0">See detail...</p>
                 </a>
               </div>
@@ -68,7 +68,7 @@
               <div class="d-inline-block">
 
                 <h2 class="text-white">{{allCustomer}}</h2>
-                <a href="./users">
+                <a href="./admin/users">
                   <p class="text-white mb-0">See detail...</p>
                 </a>
               </div>
@@ -168,7 +168,7 @@
                         </tr>
                         <tr *ngFor="let detail of getOrderDetailsByOrderId(order.orderId)">
                           {{getProductById(detail.productId)}}
-                          <td><img src="images/products/{{product.image}}" width="50%"></td>
+                          <td><img src="product-img/{{product.image}}" width="50%"></td>
                           <td>{{product.name}}</td>
                           <td>{{product.price}}$</td>
                           <td>{{detail.quantity}}</td>

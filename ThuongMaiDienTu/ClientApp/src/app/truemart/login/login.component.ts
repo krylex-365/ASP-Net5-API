@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Account } from '../../../models/account';
+import { LoginService } from '../../../services/login.service';
+import { ReloadService } from '../../../services/reload.service';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({
     selector: 'app-login',
@@ -7,7 +12,39 @@ import { Component } from '@angular/core';
 })
 /** login component*/
 export class LoginTruemartComponent {
-    /** login ctor */
-  constructor() { }
+  /** login ctor */
+
+  account: Account;
+  login: boolean;
+  errorMsg = '';
+  dashboard: DashboardComponent;
+
+  constructor(private loginService: LoginService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private reload: ReloadService ) { }
   ngOnInit() { }
+
+  onSubmit(account: Account) {
+    this.account = account;
+    this.login = false;
+
+    this.loginService.login(this.account).subscribe(
+      () => {
+        console.log(this.loginService.getuser())
+        if (this.loginService.getuser().UserName != "") {
+          this.redirectShop();
+        }
+      }
+    )
+  }
+
+  redirectShop() {
+    this.reload.reload = "1";
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'shop');
+  }
+
+  refresh(): void {
+    window.location.reload();
+  }
 }

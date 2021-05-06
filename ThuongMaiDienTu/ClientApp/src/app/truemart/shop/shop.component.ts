@@ -4,7 +4,9 @@ import { Categories } from '../../../models/Categories';
 import { Product } from '../../../models/Product';
 import { Subcategories } from '../../../models/subcategories';
 import { CategoriesService } from '../../../services/categories.service';
+import { LoginService } from '../../../services/login.service';
 import { ProductService } from '../../../services/product.service';
+import { ReloadService } from '../../../services/reload.service';
 import { SubcategoriesService } from '../../../services/subcategories.service';
 @Component({
   selector: 'app-shop',
@@ -19,15 +21,21 @@ export class ShopComponent implements OnInit {
   subcategories: Array<Subcategories>;
   subcates: Array<Subcategories>;
 
+  //Login
+  currentUser;
+
   bool: boolean;
 
   constructor(private categoryService: CategoriesService,
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
+    private reload: ReloadService,
     private subcategoryService: SubcategoriesService  ) { }
 
   async ngOnInit() {
+    this.reload.refresh();
+
     const id = String(this.route.snapshot.paramMap.get('id'));
 
     await this.subcategoryService.getSubcategories().subscribe(
@@ -72,11 +80,14 @@ export class ShopComponent implements OnInit {
         console.log(this.products);
       });
 
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+
     await this.categoryService.getCategories().subscribe(
       result => {
         this.categories = result;
         console.log(this.categories);
       });
+
   }
 
   addToCart(id) {

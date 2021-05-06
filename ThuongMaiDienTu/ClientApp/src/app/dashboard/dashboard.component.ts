@@ -9,6 +9,7 @@ import { CustomerService } from '../../services/customer.service';
 import { DashboardService } from '../../services/dashboard.service';
 import { OrderDetailService } from '../../services/order-detail.service';
 import { OrderService } from '../../services/order.service';
+import { Page404Service } from '../../services/page404.service';
 import { ProductService } from '../../services/product.service';
 import { ReloadService } from '../../services/reload.service';
 import { SubcategoriesService } from '../../services/subcategories.service';
@@ -47,9 +48,12 @@ export class DashboardComponent implements OnInit{
     private customerService: CustomerService,
     private orderService: OrderService,
     private orderDetailService: OrderDetailService,
-    private reload: ReloadService  ) { }
+    private reload: ReloadService,
+    private page404: Page404Service) { }
 
   async ngOnInit() {
+    this.page404.go();
+
     await this.customerService.getCustomers().subscribe(
       result => {
         this.customers = result;
@@ -161,4 +165,8 @@ export class DashboardComponent implements OnInit{
     this.total += Number.parseFloat(num);
   }
 
+}
+
+function jwt_decode(token: any): boolean {
+    throw new Error('Function not implemented.');
 }

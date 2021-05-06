@@ -52,6 +52,7 @@ import { CheckoutComponent } from './truemart/checkout/checkout.component';
 import { RegisterComponent } from './truemart/register/register.component';
 import { CartComponent } from './truemart/cart/cart.component';
 import { RegisterService } from 'src/services/register.service';
+import { Page404Service } from '../services/page404.service';
 
 @NgModule({
   declarations: [
@@ -92,27 +93,27 @@ import { RegisterService } from 'src/services/register.service';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: '', component: ShopComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'role', component: RoleComponent },
       { path: 'account', component: AccountComponent },
       { path: 'admin/login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'products', component: ProductComponent },
-      { path: 'orders', component: OrderComponent },
-      { path: 'users', component: UserAccountComponent },
-      { path: 'categories', component: CategoriesComponent },
-      { path: 'subcategories', component: SubcategoriesComponent },
-      { path: 'addproduct', component: AddproductComponent },
-      { path: 'editproduct/:id', component: EditproductComponent },
-      { path: 'profile', component: AccountProfileComponent },
-      { path: 'user-add', component: UserAddComponent },
-      { path: 'user-edit/:id', component: UserEditComponent },
+      { path: 'admin/dashboard', component: DashboardComponent },
+      { path: 'admin/products', component: ProductComponent },
+      { path: 'admin/orders', component: OrderComponent },
+      { path: 'admin/users', component: UserAccountComponent },
+      { path: 'admin/categories', component: CategoriesComponent },
+      { path: 'admin/subcategories', component: SubcategoriesComponent },
+      { path: 'admin/addproduct', component: AddproductComponent },
+      { path: 'admin/editproduct/:id', component: EditproductComponent },
+      { path: 'admin/profile', component: AccountProfileComponent },
+      { path: 'admin/user-add', component: UserAddComponent },
+      { path: 'admin/user-edit/:id', component: UserEditComponent },
       { path: 'indexshop', component: IndexComponent },
       { path: 'shop', component: ShopComponent },
       { path: 'shop/:id', component: ShopComponent },
-      { path: 'productshop', component: ProductShopComponent },
+      { path: 'productshop/:id', component: ProductShopComponent },
       { path: 'loginshop', component: LoginTruemartComponent },
       { path: 'profileshop', component: ProfileComponent },
       { path: 'checkout', component: CheckoutComponent },
@@ -140,6 +141,7 @@ import { RegisterService } from 'src/services/register.service';
     ReloadService,
     OrderDetailService,
     RegisterService,
+    Page404Service,
     //ProductShopService,
     //UserProfileService,
 

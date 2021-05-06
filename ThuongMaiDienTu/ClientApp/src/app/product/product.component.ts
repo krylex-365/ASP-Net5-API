@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/Product';
+import { Page404Service } from '../../services/page404.service';
 import { ProductService } from '../../services/product.service';
 import { ReloadService } from '../../services/reload.service';
 
@@ -18,10 +19,13 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
+    private page404: Page404Service,
     private reload: ReloadService  ) {
   }
 
   ngOnInit() {
+    this.page404.go();
+
     this.productService.getProducts().subscribe(
       result => {
         this.products = result;
@@ -53,6 +57,6 @@ export class ProductComponent implements OnInit {
   }
 
   redirectProducts() {
-    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'products');
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'admin/products');
   }
 }

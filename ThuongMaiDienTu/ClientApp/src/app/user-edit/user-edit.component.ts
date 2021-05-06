@@ -5,6 +5,7 @@ import { Account } from '../../models/account';
 import { AccountService } from '../../services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReloadService } from '../../services/reload.service';
+import { Page404Service } from '../../services/page404.service';
 
 @Component({
     selector: 'app-user-edit',
@@ -34,9 +35,12 @@ export class UserEditComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute,
+    private page404: Page404Service,
     private reload: ReloadService) { }
 
   ngOnInit() {
+    this.page404.go();
+
     const customerId = String(this.route.snapshot.paramMap.get('id'));
 
     this.newMethod().customerService.getCustomerById(customerId).subscribe(
@@ -111,6 +115,6 @@ export class UserEditComponent implements OnInit {
 
   redirectUsers() {
     this.reload.reload = "1";
-    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'users');
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'admin/users');
   }
 }

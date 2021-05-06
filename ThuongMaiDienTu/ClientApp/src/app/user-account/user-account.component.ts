@@ -6,6 +6,7 @@ import { AccountService } from '../../services/account.service';
 import { RoleService } from '../../services/role.service';
 import { Role } from '../../models/role';
 import { ReloadService } from '../../services/reload.service';
+import { Page404Service } from '../../services/page404.service';
 
 @Component({
     selector: 'app-user-account',
@@ -28,11 +29,14 @@ export class UserAccountComponent implements OnInit{
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
     private roleService: RoleService,
+    private page404: Page404Service,
     private reload: ReloadService) {
 
   }
 
   async ngOnInit() {
+    this.page404.go();
+
     await this.accountService.getAccounts().subscribe(
       result => {
         this.accounts = result;

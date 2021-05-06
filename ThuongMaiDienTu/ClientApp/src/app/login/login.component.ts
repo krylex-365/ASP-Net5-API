@@ -51,12 +51,12 @@ export class LoginComponent {
 
   redirectAdmin() {
     this.reload.reload = "1";
-    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'dashboard');
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'admin/dashboard');
   }
 
   redirectUser() {
     this.reload.reload = "1";
-    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'account');
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'admin/account');
   }
 
   refresh(): void {

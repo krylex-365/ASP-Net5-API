@@ -13,7 +13,6 @@ using TMDT.Models;
 
 namespace TMDT.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase

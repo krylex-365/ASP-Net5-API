@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categories } from '../../models/Categories';
 import { CategoriesService } from '../../services/categories.service';
+import { Page404Service } from '../../services/page404.service';
 
 @Component({
     selector: 'app-categories',
@@ -20,9 +21,12 @@ export class CategoriesComponent implements OnInit {
 
   constructor(private categoriesSevice: CategoriesService,
     private router: Router,
-    private route: ActivatedRoute  ) { }
+    private route: ActivatedRoute,
+    private page404: Page404Service  ) { }
 
   ngOnInit() {
+    this.page404.go();
+
     this.categoriesSevice.getCategories().subscribe(
       result => {
         this.categories = result;

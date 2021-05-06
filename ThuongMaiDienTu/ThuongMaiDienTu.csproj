@@ -66,6 +66,7 @@
     <TypeScriptCompile Remove="ClientApp\src\services\login.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\order-detail.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\order.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\page404.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\product.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\reload.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\subcategories.service.ts" />

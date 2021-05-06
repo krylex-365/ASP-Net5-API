@@ -15,7 +15,7 @@
     <div class="row page-titles mx-0">
       <div class="col p-md-0">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="./admin/dashboard">Dashboard</a></li>
           <li class="breadcrumb-item active">Users</li>
         </ol>
       </div>
@@ -27,7 +27,7 @@
             <div class="card-title">
               <h3>Users</h3>
             </div>
-            <a href="./user-add">
+            <a href="./admin/user-add">
               <button style="margin-bottom: 20px" class='btn btn-primary'><span style="margin-right: 10px">Add User</span><i class="fa fa-plus"></i></button>
             </a>
             <div class="table-responsive">
@@ -65,7 +65,7 @@
                     {{getUserName(cus.customerId)}}
                     <td>{{userName}}</td>
                     <td class="td-center"><button type="button" (click)="detail(cus.customerId)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDetails"><i class="fa fa-info"></i></button></td>
-                    <td><a href="./user-edit/{{cus.customerId}}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
+                    <td><a href="./admin/user-edit/{{cus.customerId}}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
                     <td><button type="button" (click)="setDeleteId(cus.customerId, cus.name)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDelete"><i class="fa fa-close"></i></button></td>
                   </tr>
                   <div *ngIf="customer" class="modal fade bd-example-modal-lg" id="exampleModalDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

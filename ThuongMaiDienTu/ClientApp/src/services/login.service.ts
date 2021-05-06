@@ -61,7 +61,8 @@ export class LoginService {
   }
 
   logout() {
-    return this.http.get(this.url + 'api/Home');
+    this.user = null;
+    return this.http.get(this.url + 'api/Home', { observe: 'response' });
   }
 
 }

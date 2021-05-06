@@ -105,7 +105,7 @@ session_start();
                       <form action="#" method="POST">
                         <!-- Product Image Start -->
                         <div class="pro-img">
-                          <a href="truemart/product/{{prod.productId}}">
+                          <a href="truemart/productshop/{{prod.productId}}">
                             <img class="primary-img" src="product-img/{{prod.image}}" alt="single-product">
                           </a>
                         </div>
@@ -121,7 +121,10 @@ session_start();
                           </div>
                           <div class="pro-actions">
                             <div class="actions-primary">
-                              <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
+                              <input *ngIf="currentUser != null && currentUser.name != ''" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
+                             
+                              <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
+                              
                             </div>
                           </div>
                         </div>

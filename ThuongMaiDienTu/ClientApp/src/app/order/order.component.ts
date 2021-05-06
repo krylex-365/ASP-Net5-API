@@ -6,6 +6,7 @@ import { Product } from '../../models/Product';
 import { CustomerService } from '../../services/customer.service';
 import { OrderDetailService } from '../../services/order-detail.service';
 import { OrderService } from '../../services/order.service';
+import { Page404Service } from '../../services/page404.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -33,9 +34,12 @@ export class OrderComponent {
   constructor(private orderService: OrderService,
     private customerService: CustomerService,
     private productService: ProductService,
+    private page404: Page404Service,
     private orderDetailService: OrderDetailService) { }
 
   async ngOnInit() {
+    this.page404.go();
+
     await this.customerService.getCustomers().subscribe(
       result => {
         this.customers = result;

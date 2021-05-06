@@ -92,7 +92,7 @@
                 </ul>
               </li>
               <li>
-                <a href="#">
+                <a href="loginshop">
                   <i class="lnr lnr-user"></i> <span class="my-cart">
                     <!--<span>Hello, </span><span><strong><?php echo $name?></strong></span>-->
                     <span> <strong>Login</strong> Or</span><span><strong> Register</strong></span>
@@ -100,18 +100,18 @@
                 </a>
                 <ul class="ht-dropdown user-dropdown">
                   <!--<?php
-                  if ( isset( $_SESSION[ 'username' ] ) ) {
-                  ?>-->
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Logout</a></li>
+    if ( isset( $_SESSION[ 'username' ] ) ) {
+    ?>-->
+                  <li><a href="profileshop">Profile</a></li>
+                  <li><a (click)="logout()">Logout</a></li>
                   <!--<?php
-                  } else {
-                  ?>-->
-                  <li><a href="login.php">Login</a></li>
-                  <li><a href="register.php">Register</a></li>
+    } else {
+    ?>-->
+                  <li><a href="loginshop">Login</a></li>
+                  <li><a href="register">Register</a></li>
                   <!--<?php
-                  }
-                  ?>-->
+    }
+    ?>-->
                 </ul>
               </li>
             </ul>

@@ -14,6 +14,7 @@ using TMDT.Models;
 using System.Linq;
 using System.Net.Http;
 using ThuongMaiDienTu.Models;
+using System.Net;
 
 namespace WebApplication1.Controllers
 {
@@ -79,10 +80,10 @@ namespace WebApplication1.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
         [HttpGet]
-        public ObjectResult Logout()
+        public HttpResponseMessage Logout()
         {
             HttpContext.Session.Clear();
-            return Ok("Đã đăng xuất");
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

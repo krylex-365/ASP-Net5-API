@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Categories } from '../../models/Categories';
 import { Subcategories } from '../../models/subcategories';
 import { CategoriesService } from '../../services/categories.service';
+import { Page404Service } from '../../services/page404.service';
 import { SubcategoriesService } from '../../services/subcategories.service';
 
 @Component({
@@ -20,9 +21,13 @@ export class SubcategoriesComponent implements OnInit {
   categoryId = '1';
   nameUp = '';
   /** subcategories ctor */
-  constructor(private subcategoriesSevice: SubcategoriesService, private categoriesService: CategoriesService) { }
+  constructor(private subcategoriesSevice: SubcategoriesService,
+    private categoriesService: CategoriesService,
+    private page404: Page404Service  ) { }
 
   ngOnInit() {
+    this.page404.go();
+
     this.categoriesService.getCategories().subscribe(
       result => {
         this.categories = result;
