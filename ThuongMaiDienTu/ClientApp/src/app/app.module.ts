@@ -53,6 +53,7 @@ import { RegisterComponent } from './truemart/register/register.component';
 import { CartComponent } from './truemart/cart/cart.component';
 import { RegisterService } from 'src/services/register.service';
 import { Page404Service } from '../services/page404.service';
+import { CardService } from '../services/card.service';
 
 @NgModule({
   declarations: [
@@ -142,6 +143,7 @@ import { Page404Service } from '../services/page404.service';
     OrderDetailService,
     RegisterService,
     Page404Service,
+    CardService,
     //ProductShopService,
     //UserProfileService,
 

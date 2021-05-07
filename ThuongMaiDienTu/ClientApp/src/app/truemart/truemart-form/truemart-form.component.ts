@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categories } from '../../../models/Categories';
 import { Subcategories } from '../../../models/subcategories';
+import { CardService } from '../../../services/card.service';
 import { CategoriesService } from '../../../services/categories.service';
 import { LoginService } from '../../../services/login.service';
 import { ReloadService } from '../../../services/reload.service';
 import { SubcategoriesService } from '../../../services/subcategories.service';
+import jwt_decode from 'jwt-decode';
+import { Card } from '../../../models/card';
+import { Product } from '../../../models/Product';
+import { ProductService } from '../../../services/product.service';
 declare var $: any;
 @Component({
   selector: 'app-truemart-form',
@@ -19,19 +24,53 @@ export class TruemartFormComponent implements OnInit {
   categories: Array<Categories>;
   subcategories: Array<Subcategories>;
   subcates: Array<Subcategories>;
+  products: Array<Product>;
 
   //login
   currentUser;
+  token;
+  cards: Array<Card>;
+  pros: Array<Product>;
 
   constructor(private categoryService: CategoriesService,
     private subcategoryService: SubcategoriesService,
     private router: Router,
     private route: ActivatedRoute,
     private loginService: LoginService,
+    private cardService: CardService,
+    private productService: ProductService,
     private reload: ReloadService  ) { }
 
   async ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if(this.currentUser != null) {
+      this.token = jwt_decode(this.currentUser.token);
+      await this.cardService.getCardByCustomerId(this.token.CustomerId).subscribe(
+        result => {
+          this.cards = result;
+          console.log(this.cards);
+
+          this.productService.getProducts().subscribe(
+            result => {
+              this.products = result;
+              console.log(this.products);
+
+              if (this.cards.length > 0) {
+                this.pros = Array<Product>();
+                this.products.forEach(pro => {
+                  this.cards.forEach(ca => {
+                    if (pro.productId == ca.productId) {
+                      this.pros.push(pro);
+                    }
+                  })
+                })
+              }
+            }
+          )
+        }
+      )
+    }
 
     await this.subcategoryService.getSubcategories().subscribe(
       result => {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ThuongMaiDienTu.Models;
 using TMDT.Models;
 
 namespace TMDT.Data
@@ -141,8 +142,8 @@ namespace TMDT.Data
                 new OrderDetail
                 {
                     OrderDetailId = "1",
-                    Quantity = "0000",
-                    TotalPrice = "00000",
+                    Quantity = "1",
+                    TotalPrice = "30",
                     OrderId = "1",
                     ProductId = "1"
                 }
@@ -154,7 +155,17 @@ namespace TMDT.Data
                 {
                     ReviewId = "1",
                     Comment = "NNN",
-                    Rating = 5,
+                    ReviewDate = new DateTime(2000,1,1),
+                    CustomerId = "1",
+                    ProductId = "1"
+                }
+            });
+
+            context.Cards.AddRange(new List<Card>()
+            {
+                new Card
+                {
+                    CardId = "1",
                     CustomerId = "1",
                     ProductId = "1"
                 }

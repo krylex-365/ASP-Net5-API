@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ThuongMaiDienTu.Models;
 using TMDT.Models;
 
 namespace TMDT.Data
@@ -18,5 +19,6 @@ namespace TMDT.Data
         public DbSet<Subcategory> Subcategories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Card> Cards { get; set; }
     }
 }

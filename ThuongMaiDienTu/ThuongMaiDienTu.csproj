@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\models\account.ts" />
+    <None Remove="ClientApp\src\models\card.ts" />
     <None Remove="ClientApp\src\models\customer.ts" />
     <None Remove="ClientApp\src\models\Dashboard.ts" />
     <None Remove="ClientApp\src\models\login.ts" />
@@ -61,6 +62,7 @@
     <TypeScriptCompile Remove="ClientApp\src\app\truemart\index\index.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\user-account\user-account.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\account.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\card.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\customer.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\dashboard.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\login.service.ts" />

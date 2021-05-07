@@ -35,9 +35,12 @@ namespace WebApplication1.Controllers
             if (ac != null)
             {
                 var role = context.Roles.Find(ac.RoleId);
+                var customer = context.Customers.ToList().FindAll(cus => cus.AccountId == ac.AccountId)[0];
+
                 var claims = new[]
                 {
                     new Claim("AccountId", ac.AccountId),
+                    new Claim("CustomerId", customer.CustomerId),
                     new Claim("UserName", ac.UserName),
                     new Claim(ClaimTypes.Role, role.Name)
                 };

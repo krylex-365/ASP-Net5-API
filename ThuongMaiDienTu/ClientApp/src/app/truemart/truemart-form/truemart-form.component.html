@@ -54,14 +54,14 @@
                   </span>
                 </a>
                 <ul class="ht-dropdown cart-box-width">
-                  <li>
+                  <li *ngFor="let pro of pros">
                     <!-- Cart Box Start -->
                     <div class="single-cart-box">
                       <form action="#" method="POST">
-                        <div class="cart-img"> <a href="#>"><img src="../product-img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="cart-image"></a> <span class="pro-quantity">1X</span> </div>
+                        <div class="cart-img"> <a href="#>"><img src="../product-img/{{pro.image}}" alt="cart-image"></a> <span class="pro-quantity">1X</span> </div>
                         <div class="cart-content">
-                          <h6><a href="#">Product 1</a></h6>
-                          <span class="cart-price">$ 20</span>
+                          <h6><a href="./productshop/{{pro.productId}}">{{pro.name}}</a></h6>
+                          <span class="cart-price">$ {{pro.price}}</span>
                         </div>
                         <button class="btn del-icone" type="submit" name="remove" style="padding: 0px;"><i class="ion-close"></i></button>
                       </form>
