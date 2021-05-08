@@ -5,6 +5,9 @@ import { Page404Service } from '../../../services/page404.service';
 import jwt_decode from 'jwt-decode';
 import { CardService } from '../../../services/card.service';
 import { ProductService } from '../../../services/product.service';
+import { QuanTity } from '../../../models/quantity';
+import { CustomerService } from '../../../services/customer.service';
+import { Customer } from '../../../models/customer';
 declare var $: any;
 @Component({
   selector: 'app-cart',
@@ -23,10 +26,16 @@ export class CartComponent implements OnInit {
   cardId;
 
   //Form
-  pro_quantity
+  quantitys: Array<QuanTity>;
+  quantity: QuanTity;
+  index_ls: number;
+
+  //Customer
+ customer: Customer;
 
   constructor(private page404: Page404Service,
     private cardService: CardService,
+    private customerService: CustomerService,
     private productService: ProductService,  ) { }
 
   async ngOnInit() {
@@ -35,6 +44,9 @@ export class CartComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
 
     if (this.currentUser != null) {
+      this.quantitys = Array<QuanTity>();
+      this.index_ls = -1;
+
       this.token = jwt_decode(this.currentUser.token);
       await this.cardService.getCardByCustomerId(this.token.CustomerId).subscribe(
         result => {
@@ -49,9 +61,13 @@ export class CartComponent implements OnInit {
               if (this.cards.length > 0) {
                 this.pros = Array<Product>();
                 this.products.forEach(pro => {
-                  this.cards.forEach(ca => {
+                  this.cards.forEach(async ca => {
                     if (pro.productId == ca.productId) {
-                      this.pros.push(pro);
+                      await this.pros.push(pro);
+                      this.quantity = new QuanTity;
+                      this.quantity.product = pro;
+                      this.quantity.quantity = 1;
+                      this.quantitys.push(this.quantity);
                     }
                   })
                 })
@@ -60,8 +76,16 @@ export class CartComponent implements OnInit {
           )
         }
       )
-    }
 
+      //Customer
+      var customerId = this.token.CustomerId;
+      this.customerService.getCustomerById(customerId).subscribe(
+        result => {
+          this.customer = result;
+          console.log(this.customer);
+        });
+
+    }
 
     $(document).ready(function () {
       /* Set rates + misc */
@@ -142,6 +166,14 @@ export class CartComponent implements OnInit {
           this.refresh();
         }
       });
+  }
+
+  subtotal() {
+    var total = 0;
+    this.quantitys.forEach(quan => {
+      total += Number.parseFloat(quan.product.price) * quan.quantity;
+    })
+    return total;
   }
 
   refresh(): void {

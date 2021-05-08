@@ -45,6 +45,7 @@
     <None Remove="ClientApp\src\models\order.ts" />
     <None Remove="ClientApp\src\models\orderDetail.ts" />
     <None Remove="ClientApp\src\models\product.ts" />
+    <None Remove="ClientApp\src\models\quantity.ts" />
     <None Remove="ClientApp\src\models\role.ts" />
     <None Remove="ClientApp\src\models\subcategories.ts" />
     <None Remove="ClientApp\src\models\user.ts" />

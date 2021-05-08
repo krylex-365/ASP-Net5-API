@@ -72,21 +72,18 @@
                     <!-- Cart Box Start -->
                     
                     <!-- Cart Footer Inner Start -->
-                    <div class="cart-footer">
+                    <div *ngIf="pros" class="cart-footer">
                       <ul class="price-content">
                         <li>
-                          Subtotal ($)<span class="amount" id="cart-subtotal">
-                            <!--<?php if(isset($_SESSION['cart'])){echo $totalprice;}else{ echo "0";} ?>-->
+                          Subtotal ($ {{subtotal()}})<span class="amount" id="cart-subtotal">
                           </span>
                         </li>
                         <li>
-                          Taxes ($)<span class="amount" id="vat">
-                            <!--<?php if(isset($_SESSION['cart'])){echo $VAT;}else{ echo "0";} ?>-->
+                          Taxes ($ 1.00)<span class="amount" id="vat">
                           </span>
                         </li>
                         <li>
-                          Total ($)<span class="amount" id="cart-total">
-                            <!--<?php if(isset($_SESSION['cart'])){echo $carttotal;}else{ echo "0";} ?>-->
+                          Total ($ {{subtotal() + 1.0}})<span class="amount" id="cart-total">
                           </span>
                         </li>
                       </ul>
