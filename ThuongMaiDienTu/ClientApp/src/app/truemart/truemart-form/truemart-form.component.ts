@@ -31,6 +31,7 @@ export class TruemartFormComponent implements OnInit {
   token;
   cards: Array<Card>;
   pros: Array<Product>;
+  cardId;
 
   constructor(private categoryService: CategoriesService,
     private subcategoryService: SubcategoriesService,
@@ -126,6 +127,22 @@ export class TruemartFormComponent implements OnInit {
       }
     });
     return this.subcates;
+  }
+
+  deleteCard(id) {
+    this.cardId = 0;
+    this.cards.forEach(car => {
+      if (car.productId == id) {
+        this.cardId = car.cardId;
+      }
+    })
+    this.cardService.delete(this.cardId).subscribe(
+      result => {
+        console.log(result);
+        if (result.status == 200) {
+          this.refresh();
+        }
+      });
   }
 
   logout() {

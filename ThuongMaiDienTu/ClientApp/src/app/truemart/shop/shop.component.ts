@@ -3,11 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Categories } from '../../../models/Categories';
 import { Product } from '../../../models/Product';
 import { Subcategories } from '../../../models/subcategories';
+import { CardService } from '../../../services/card.service';
 import { CategoriesService } from '../../../services/categories.service';
 import { LoginService } from '../../../services/login.service';
 import { ProductService } from '../../../services/product.service';
 import { ReloadService } from '../../../services/reload.service';
 import { SubcategoriesService } from '../../../services/subcategories.service';
+import jwt_decode from 'jwt-decode';
+import { Card } from '../../../models/card';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -23,6 +26,7 @@ export class ShopComponent implements OnInit {
 
   //Login
   currentUser;
+  token;
 
   bool: boolean;
 
@@ -31,6 +35,7 @@ export class ShopComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private reload: ReloadService,
+    private cardService: CardService,
     private subcategoryService: SubcategoriesService  ) { }
 
   async ngOnInit() {
@@ -81,6 +86,7 @@ export class ShopComponent implements OnInit {
       });
 
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.token = jwt_decode(this.currentUser.token);
 
     await this.categoryService.getCategories().subscribe(
       result => {
@@ -90,8 +96,19 @@ export class ShopComponent implements OnInit {
 
   }
 
-  addToCart(id) {
+  addToCard(id) {
     console.log(id);
+    const card = new Card;
+    card.cardId = "1";
+    card.customerId = this.token.CustomerId;
+    card.productId = id;
+    this.cardService.add(card).subscribe(
+      result => {
+        console.log(result);
+        if (result.status == 200) {
+          this.refresh();
+        }
+      });
   }
 
   getSubcategoriesByCategoryId(id): Array<Subcategories> {
@@ -102,6 +119,10 @@ export class ShopComponent implements OnInit {
       }
     });
     return this.subcates;
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
 }

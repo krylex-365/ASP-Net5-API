@@ -121,7 +121,7 @@ session_start();
                           </div>
                           <div class="pro-actions">
                             <div class="actions-primary">
-                              <input *ngIf="currentUser != null && currentUser.name != ''" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
+                              <input *ngIf="currentUser != null && currentUser.name != ''" (click)="addToCard(prod.productId)" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
                              
                               <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
                               
