@@ -1,169 +1,293 @@
-<!-- <?php 
+<!-- <?php
 require_once('inc/top.php');
 session_start();
 if(isset($_SESSION['username'])){
-	echo "<script>alert('You already logining. Can\'t register new account!');window.location='./index.php'</script>";
+  echo "<script>alert('You already logining. Can\'t register new account!');window.location='./index.php'</script>";
 }
 ?>
 <title>Register || Truemart Responsive Html5 Ecommerce Template</title>
 </head>
 
 <body> -->
-    <!--[if lte IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
-
-    <!-- Main Wrapper Start Here -->
-    <div class="wrapper">
-       <!-- <?php require_once('inc/header.php');?> -->
-        <app-truemart-form></app-truemart-form>
-        <!-- Breadcrumb Start -->
-        <div class="breadcrumb-area mt-30">
-            <div class="container">
-                <div class="breadcrumb">
-                    <ul class="d-flex align-items-center">
-                        <li><a href="index.php">Home</a></li>
-                        <li class="active"><a href="register.php">Register</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Container End -->
-        </div>
-        <!-- Breadcrumb End -->
-       <!-- Register Account Start -->
-        <div class="register-account ptb-100 ptb-sm-60">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="register-title">
-                            <h3 class="mb-10">REGISTER ACCOUNT</h3>
-                            <p class="mb-10">If you already have an account with us, please login at the login page.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Row End -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <form method="POST" class="form-register" action="register-process.php">
-                            <fieldset>
-                                <legend>Your Personal Details</legend>
-                                <div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="f-name"><span class="require">*</span>First and last Name</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="yourname" name="yourname" placeholder="First and last Name here" required>
-                                    </div>
-                                </div>
-                                <div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="email"><span class="require">*</span>Enter you email address here...</label>
-                                    <div class="col-md-10">
-                                        <input type="email" class="form-control" id="email" name="val-email" placeholder="Enter you email address here..." required>
-                                    </div>
-                                </div>
-                                <div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="number"><span class="require">*</span>Telephone</label>
-                                    <div class="col-md-10">
-                                        <input type="number" class="form-control" id="number" placeholder="Telephone" name="phone" required>
-                                    </div>
-                                </div>
-								<div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="f-name"><span class="require">*</span>Address</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="address" name="address" placeholder="Your address" required>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Your User name and Password</legend>
-								 <div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="f-name"><span class="require">*</span>User name</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="username" placeholder="User name here" name="username" required>
-                                    </div>
-                                </div>
-                                <div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Password:</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pwd" placeholder="Password" name="password" required>
-                                    </div>
-                                </div>
-                                <div class="form-group d-md-flex align-items-md-center">
-                                    <label class="control-label col-md-2" for="pwd-confirm"><span class="require">*</span>Confirm Password</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pwd-confirm" placeholder="Confirm password" name="passwordcf" required>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="terms">
-                                <div class="float-md-right">
-                                    <span>I have read and agree to the <a href="#" class="agree"><b>Privacy Policy</b></a></span>
-                                    <input type="checkbox" name="agree" value="1"> &nbsp;
-                                    <input type="submit" value="Continue" class="return-customer-btn" name="add-user">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Row End -->
-            </div>
-            <!-- Container End -->
-        </div>
-        <!-- Register Account End -->
-        <!-- Support Area Start Here -->
-        <div class="support-area bdr-top">
-            <div class="container">
-                <div class="d-flex flex-wrap text-center">
-                    <div class="single-support">
-                        <div class="support-icon">
-                            <i class="lnr lnr-gift"></i>
-                        </div>
-                        <div class="support-desc">
-                            <h6>Great Value</h6>
-                            <span>Nunc id ante quis tellus faucibus dictum in eget.</span>
-                        </div>
-                    </div>
-                    <div class="single-support">
-                        <div class="support-icon">
-                            <i class="lnr lnr-rocket" ></i>
-                        </div>
-                        <div class="support-desc">
-                            <h6>Worlwide Delivery</h6>
-                            <span>Quisque posuere enim augue, in rhoncus diam dictum non</span>
-                        </div>
-                    </div>
-                    <div class="single-support">
-                        <div class="support-icon">
-                           <i class="lnr lnr-lock"></i>
-                        </div>
-                        <div class="support-desc">
-                            <h6>Safe Payment</h6>
-                            <span>Duis suscipit elit sem, sed mattis tellus accumsan.</span>
-                        </div>
-                    </div>
-                    <div class="single-support">
-                        <div class="support-icon">
-                           <i class="lnr lnr-enter-down"></i>
-                        </div>
-                        <div class="support-desc">
-                            <h6>Shop Confidence</h6>
-                            <span>Faucibus dictum suscipit eget metus. Duis  elit sem, sed.</span>
-                        </div>
-                    </div>
-                    <div class="single-support">
-                        <div class="support-icon">
-                           <i class="lnr lnr-users"></i>
-                        </div>
-                        <div class="support-desc">
-                            <h6>24/7 Help Center</h6>
-                            <span>Quisque posuere enim augue, in rhoncus diam dictum non.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Container End -->
-        </div>
+<!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
+<!-- Main Wrapper Start Here -->
+<div class="wrapper">
+  <!-- <?php require_once('inc/header.php');?> -->
+  <app-truemart-form></app-truemart-form>
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-area mt-30">
+    <div class="container">
+      <div class="breadcrumb">
+        <ul class="d-flex align-items-center">
+          <li><a href="#">Home</a></li>
+          <li class="active"><a href="#">Register</a></li>
+        </ul>
+      </div>
     </div>
-        <!-- Support Area End Here -->
-        <!-- <?php require_once('inc/footer.php');?>
-</body>
-
-</html> -->
+    <!-- Container End -->
+  </div>
+  <!-- Breadcrumb End -->
+  <!-- Register Account Start -->
+  <div class="register-account ptb-100 ptb-sm-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="register-title">
+            <h3 class="mb-10">REGISTER ACCOUNT</h3>
+            <p class="mb-10">If you already have an account with us, please login at the login page.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Row End -->
+      <div class="row">
+        <div class="col-sm-12">
+          <form class="form-register">
+            <fieldset>
+              <legend>Your Personal Details</legend>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="f-name"><span class="require">*</span>First and last Name</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="yourname" name="yourname" placeholder="First and last Name here" required>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="f-name"><span class="require">*</span>Address</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="address" name="address" placeholder="Your address..." required>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="birthday"><span class="require">*</span>Birthday</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="birthday" placeholder="Your birthday mm/DD/yyyy..." name="birthday" required>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="number"><span class="require">*</span>Sex</label>
+                <div class="col-md-10">
+                  <select class="form-control" name="sex" required>
+                    <option value="">-- Choose Sex --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="number"><span class="require">*</span>Telephone</label>
+                <div class="col-md-10">
+                  <input type="number" class="form-control" id="number" placeholder="Enter your telephone..." name="phone" required>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="email"><span class="require">*</span>Email</label>
+                <div class="col-md-10">
+                  <input type="email" class="form-control" id="email" name="val-email" placeholder="Enter your email address here..." required>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Your User name and Password</legend>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="f-name"><span class="require">*</span>User name</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="username" placeholder="User name here..." name="username" required>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Password</label>
+                <div class="col-md-10">
+                  <input type="password" class="form-control" id="pwd" placeholder="Password here..." name="password" required>
+                </div>
+              </div>
+              <div class="form-group d-md-flex align-items-md-center">
+                <label class="control-label col-md-2" for="pwd-confirm"><span class="require">*</span>Confirm Password</label>
+                <div class="col-md-10">
+                  <input type="password" class="form-control" id="pwd-confirm" placeholder="And confirm it..." name="passwordcf" required>
+                </div>
+              </div>
+            </fieldset>
+            <div class="terms">
+              <div class="float-md-right">
+                <span>I have read and agree to the <a href="#" class="agree"><b>Privacy Policy</b></a></span>
+                <input type="checkbox" name="agree" value="1"> &nbsp;
+                <input type="submit" value="Continue" class="return-customer-btn" name="add-user">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Row End -->
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Register Account End -->
+  <!-- Support Area Start Here -->
+  <div class="support-area bdr-top">
+    <div class="container">
+      <div class="d-flex flex-wrap text-center">
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-gift"></i> </div>
+          <div class="support-desc">
+            <h6>Great Value</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-rocket"></i> </div>
+          <div class="support-desc">
+            <h6>Worlwide Delivery</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-lock"></i> </div>
+          <div class="support-desc">
+            <h6>Safe Payment</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-enter-down"></i> </div>
+          <div class="support-desc">
+            <h6>Shop Confidence</h6>
+          </div>
+        </div>
+        <div class="single-support">
+          <div class="support-icon"> <i class="lnr lnr-users"></i> </div>
+          <div class="support-desc">
+            <h6>24/7 Help Center</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Footer Area Start Here -->
+  <footer class="off-white-bg2 pt-50 bdr-top pt-sm-55">
+    <!-- Footer Top Start -->
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Information</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="#">Delivery Information</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="contact.html">Terms & Conditions</a></li>
+                  <li><a href="login.html">FAQs</a></li>
+                  <li><a href="login.html">Return Policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Customer Service</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="wishlist.html">Wish List</a></li>
+                  <li><a href="#">Site Map</a></li>
+                  <li><a href="#">Gift Certificates</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">Extras</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="#">Newsletter</a></li>
+                  <li><a href="#">Brands</a></li>
+                  <li><a href="#">Gift Certificates</a></li>
+                  <li><a href="#">Affiliate</a></li>
+                  <li><a href="#">Specials</a></li>
+                  <li><a href="#">Site Map</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">My Account</h3>
+              <div class="footer-content">
+                <ul class="footer-list">
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="#">Returns</a></li>
+                  <li><a href="#">My Account</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="wishlist.html">Wish List</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+          <!-- Single Footer Start -->
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="single-footer mb-sm-40">
+              <h3 class="footer-title">My Account</h3>
+              <div class="footer-content">
+                <ul class="footer-list address-content">
+                  <li><i class="lnr lnr-map-marker"></i> Address: 169-C, Technohub, Dubai Silicon Oasis.</li>
+                  <li><i class="lnr lnr-envelope"></i><a href="#"> mail Us: Support@truemart.com </a></li>
+                  <li>
+                    <i class="lnr lnr-phone-handset"></i> Phone: (+800) 123 456 789)
+                  </li>
+                </ul>
+                <div class="payment mt-25 bdr-top pt-30">
+                  <a href="#"><img class="img" src="truemart/img/payment/1.png" alt="payment-image"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Single Footer Start -->
+        </div>
+        <!-- Row End -->
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Top End -->
+    <!-- Footer Middle Start -->
+    <div class="footer-middle text-center">
+      <div class="container">
+        <div class="footer-middle-content pt-20 pb-30">
+          <ul class="social-footer">
+            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><img src="truemart/img/icon/social-img1.png" alt="google play"></a></li>
+            <li><a href="#"><img src="truemart/img/icon/social-img2.png" alt="app store"></a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Middle End -->
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom pb-30">
+      <div class="container">
+        <div class="copyright-text text-center">
+          <p>Copyright © 2018 <a target="_blank" href="#">Truemart</a> All Rights Reserved.</p>
+        </div>
+      </div>
+      <!-- Container End -->
+    </div>
+    <!-- Footer Bottom End -->
+  </footer>
+  <!-- Footer Area End Here -->
+</div>
+<!-- Main Wrapper End Here -->

@@ -84,9 +84,9 @@ import { CardService } from '../services/card.service';
     ProfileComponent,
     IndexComponent,
     CartComponent,
-    CheckoutComponent,
     RegisterComponent,
-    /**/
+    /*
+    CheckoutComponent,*/
 
   ],
   imports: [
@@ -117,10 +117,10 @@ import { CardService } from '../services/card.service';
       { path: 'productshop/:id', component: ProductShopComponent },
       { path: 'loginshop', component: LoginTruemartComponent },
       { path: 'profileshop', component: ProfileComponent },
-      { path: 'checkout', component: CheckoutComponent },
       { path: 'cart', component: CartComponent },
       { path: 'register', component: RegisterComponent },
-      /*{ path: 'index', component: IndexComponent },*/
+      /*{ path: 'index', component: IndexComponent },
+      { path: 'checkout', component: CheckoutComponent },*/
 
     ]),
   ],
