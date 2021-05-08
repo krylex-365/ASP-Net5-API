@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from '../../../models/card';
+import { Product } from '../../../models/Product';
+import { Page404Service } from '../../../services/page404.service';
+import jwt_decode from 'jwt-decode';
+import { CardService } from '../../../services/card.service';
+import { ProductService } from '../../../services/product.service';
 declare var $: any;
 @Component({
   selector: 'app-cart',
@@ -7,9 +13,56 @@ declare var $: any;
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  products: Array<Product>;
 
-  ngOnInit() {
+  //login
+  currentUser;
+  token;
+  cards: Array<Card>;
+  pros: Array<Product>;
+  cardId;
+
+  //Form
+  pro_quantity
+
+  constructor(private page404: Page404Service,
+    private cardService: CardService,
+    private productService: ProductService,  ) { }
+
+  async ngOnInit() {
+    this.page404.go();
+
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if (this.currentUser != null) {
+      this.token = jwt_decode(this.currentUser.token);
+      await this.cardService.getCardByCustomerId(this.token.CustomerId).subscribe(
+        result => {
+          this.cards = result;
+          console.log(this.cards);
+
+          this.productService.getProducts().subscribe(
+            result => {
+              this.products = result;
+              console.log(this.products);
+
+              if (this.cards.length > 0) {
+                this.pros = Array<Product>();
+                this.products.forEach(pro => {
+                  this.cards.forEach(ca => {
+                    if (pro.productId == ca.productId) {
+                      this.pros.push(pro);
+                    }
+                  })
+                })
+              }
+            }
+          )
+        }
+      )
+    }
+
+
     $(document).ready(function () {
       /* Set rates + misc */
       /*var shipping = 5;*/
@@ -75,4 +128,23 @@ export class CartComponent implements OnInit {
     });
   }
 
+  deleteCard(id) {
+    this.cardId = 0;
+    this.cards.forEach(car => {
+      if (car.productId == id) {
+        this.cardId = car.cardId;
+      }
+    })
+    this.cardService.delete(this.cardId).subscribe(
+      result => {
+        console.log(result);
+        if (result.status == 200) {
+          this.refresh();
+        }
+      });
+  }
+
+  refresh(): void {
+    window.location.reload();
+  }
 }

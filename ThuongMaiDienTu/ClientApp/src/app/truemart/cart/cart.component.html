@@ -51,7 +51,7 @@ session_start();
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
           <li><a href="#">Home</a></li>
-          <li class="active"><a href="#">Cart</a></li>
+          <li class="active"><a href="cart">Cart</a></li>
         </ul>
       </div>
     </div>
@@ -96,7 +96,7 @@ session_start();
                               $carttotal = $totalprice + $VAT + 5;
                               $total = $row[ 'new_price' ] * 1;
                               ?> -->
-                  <tr class="product">
+                  <tr *ngFor="let pro of pros" class="product">
                     <td class="product-thumbnail"><input type="hidden" name="pro_id" value="id"><a href="#"><img src="./product-img/Adilette_Comfort_Slides_Black.jpg" alt="cart-image" /></a></td>
                     <td class="product-name"><a href='#'>Adilette_Comfort_Slides_Black</a></td>
                     <td class="product-price">20</td>
