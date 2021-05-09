@@ -15,6 +15,8 @@ declare var $: any;
 export class ProductShopComponent implements OnInit {
 
   product: Product;
+  products: Array<Product>;
+  pros: Array<Product>;
 
   //Login
   currentUser;
@@ -24,11 +26,11 @@ export class ProductShopComponent implements OnInit {
     private route: ActivatedRoute,
     private cardService: CardService,  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     const productId = String(this.route.snapshot.paramMap.get('id'));
 
-    this.productService.getProductById(productId).subscribe(
+    await this.productService.getProductById(productId).subscribe(
       result => {
         this.product = result;
 
@@ -39,7 +41,14 @@ export class ProductShopComponent implements OnInit {
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
     }
-    
+
+    await this.productService.getProducts().subscribe(
+      result => {
+        this.products = result;
+        console.log(this.products);
+
+        this.realtedProducts();
+      });
   }
 
   addToCard(id) {
@@ -55,6 +64,16 @@ export class ProductShopComponent implements OnInit {
           this.refresh();
         }
       });
+  }
+
+  realtedProducts() {
+    this.pros = Array<Product>();
+    this.products.forEach(pro => {
+      if (pro.subcategoryId == this.product.subcategoryId && pro.productId != this.product.productId) {
+        this.pros.push(pro);
+      }
+    })
+    console.log(this.pros);
   }
 
   refresh(): void {

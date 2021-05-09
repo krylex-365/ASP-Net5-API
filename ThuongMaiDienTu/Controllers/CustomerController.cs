@@ -39,16 +39,10 @@ namespace TMDT.Controllers
             }
             return null;
         }
+        [AllowAnonymous]
         [HttpPost]
         public HttpResponseMessage Add(Customer customer)
         {
-            Account account = context.Accounts.Find(customer.AccountId);
-            if (account == null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                /*return "AccountId does not exist";*/
-            }
-
             //Tu dong tao khoa chinh
             List<Customer> customers = context.Customers.ToList();
             string key = "0";
@@ -61,6 +55,13 @@ namespace TMDT.Controllers
             }
             key = "" + (int.Parse(key) + 1);
             customer.CustomerId = key;
+
+            Account account = context.Accounts.Find(customer.CustomerId);
+            if (account == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                /*return "AccountId does not exist";*/
+            }
 
             context.Customers.Add(customer);
             context.SaveChanges();

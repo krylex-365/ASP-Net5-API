@@ -39,6 +39,7 @@ namespace TMDT.Controllers
             }
             return null;
         }
+        [AllowAnonymous]
         [HttpPost]
         public HttpResponseMessage Add(Account account)
         {
@@ -51,6 +52,14 @@ namespace TMDT.Controllers
 
             //Tu dong tao khoa chinh
             List<Account> accounts = context.Accounts.ToList();
+
+            //Check
+            List<Account> ac = accounts.FindAll(acc => acc.UserName == account.UserName);
+            if(ac.Count != 0)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
             string key = "0";
             foreach (Account account1 in accounts)
             {

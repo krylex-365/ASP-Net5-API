@@ -51,7 +51,7 @@ import { OrderDetailService } from '../services/order-detail.service';
 import { CheckoutComponent } from './truemart/checkout/checkout.component';
 import { RegisterComponent } from './truemart/register/register.component';
 import { CartComponent } from './truemart/cart/cart.component';
-import { RegisterService } from 'src/services/register.service';
+import { RegisterService } from '../services/register.service';
 import { Page404Service } from '../services/page404.service';
 import { CardService } from '../services/card.service';
 

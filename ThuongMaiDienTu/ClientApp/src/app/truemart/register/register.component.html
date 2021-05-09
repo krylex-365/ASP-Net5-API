@@ -22,7 +22,7 @@ if(isset($_SESSION['username'])){
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
           <li><a href="#">Home</a></li>
-          <li class="active"><a href="#">Register</a></li>
+          <li class="active"><a href="register">Register</a></li>
         </ul>
       </div>
     </div>
@@ -43,47 +43,47 @@ if(isset($_SESSION['username'])){
       <!-- Row End -->
       <div class="row">
         <div class="col-sm-12">
-          <form class="form-register">
+          <form #userAdd="ngForm" (ngSubmit)="add(userAdd.value)" class="form-register">
             <fieldset>
               <legend>Your Personal Details</legend>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="f-name"><span class="require">*</span>First and last Name</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" id="yourname" name="yourname" placeholder="First and last Name here" required>
+                  <input type="text" class="form-control" id="yourname" name="name" [(ngModel)]="name" placeholder="First and last Name here" required>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="f-name"><span class="require">*</span>Address</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Your address..." required>
+                  <input type="text" class="form-control" id="address" name="address" [(ngModel)]="address" placeholder="Your address..." required>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="birthday"><span class="require">*</span>Birthday</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" id="birthday" placeholder="Your birthday mm/DD/yyyy..." name="birthday" required>
+                  <input type="text" class="form-control" id="birthday" placeholder="Your birthday mm/DD/yyyy..." name="birthday" [(ngModel)]="birthday" required>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="number"><span class="require">*</span>Sex</label>
                 <div class="col-md-10">
-                  <select class="form-control" name="sex" required>
+                  <select class="form-control" name="sex" [(ngModel)]="sex" required>
                     <option value="">-- Choose Sex --</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                    <option (click)="Sex(Male)" value="Male">Male</option>
+                    <option (click)="Sex(Female)" value="Female">Female</option>
                   </select>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="number"><span class="require">*</span>Telephone</label>
                 <div class="col-md-10">
-                  <input type="number" class="form-control" id="number" placeholder="Enter your telephone..." name="phone" required>
+                  <input type="number" class="form-control" id="number" placeholder="Enter your telephone..." name="phoneNumber" [(ngModel)]="phoneNumber" required>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="email"><span class="require">*</span>Email</label>
                 <div class="col-md-10">
-                  <input type="email" class="form-control" id="email" name="val-email" placeholder="Enter your email address here..." required>
+                  <input type="email" class="form-control" id="email" name="mail" [(ngModel)]="mail" placeholder="Enter your email address here..." required>
                 </div>
               </div>
             </fieldset>
@@ -92,13 +92,13 @@ if(isset($_SESSION['username'])){
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="f-name"><span class="require">*</span>User name</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" id="username" placeholder="User name here..." name="username" required>
+                  <input type="text" class="form-control" id="username" placeholder="User name here..." name="userName" [(ngModel)]="userName" required>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">
                 <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Password</label>
                 <div class="col-md-10">
-                  <input type="password" class="form-control" id="pwd" placeholder="Password here..." name="password" required>
+                  <input type="password" class="form-control" id="pwd" placeholder="Password here..." name="password" [(ngModel)]="password" required>
                 </div>
               </div>
               <div class="form-group d-md-flex align-items-md-center">

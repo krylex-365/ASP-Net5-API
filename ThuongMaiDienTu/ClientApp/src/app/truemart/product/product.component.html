@@ -218,21 +218,26 @@
         <!-- Single Product Start -->
         <form>
           <input type="hidden" name="pro_id" value="1">
-          <div class="single-product">
+          <div *ngFor="let pro of pros" class="single-product">
             <!-- Product Image Start -->
-            <div class="pro-img"> <a href="#"> <img class="primary-img" src="../product-img/Big_Trefoil_Shorts_Tee_Set_Blue.jpg" alt="single-product"></a></div>
+            <div class="pro-img"> <a href="productshop/{{pro.productId}}"> <img class="primary-img" src="./product-img/{{pro.image}}" alt="single-product"></a></div>
             <!-- Product Image End -->
             <!-- Product Content Start -->
             <div class="pro-content">
               <div class="pro-info">
                 <input type="hidden" name="pro_id" value="1">
-                <h4><a href="#">ABC</a></h4>
-                <p><span class="price">$20</span><del class="prev-price">$18</del></p>
-                <div class="label-product l_sale">10<span class="symbol-percent">%</span></div>
+                <h4><a href="productshop/{{pro.productId}}">{{pro.name}}</a></h4>
+                <p>
+                  <span *ngIf="pro.sale == 0" class="price">${{pro.price}}</span>
+                  <span *ngIf="pro.sale != 0" class="price">${{(pro.price - (pro.price / pro.sale)).toFixed(2)}}</span>
+                  <del *ngIf="pro.sale != 0" class="prev-price">${{pro.price}}</del>
+                </p>
+                <div *ngIf="pro.sale != 0" class="label-product l_sale">{{pro.sale}}<span class="symbol-percent">%</span></div>
               </div>
               <div class="pro-actions">
                 <div class="actions-primary">
-                  <input type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                  <input *ngIf="currentUser != null && currentUser.name != ''" (click)="addToCard(pro.productId)" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
+                  <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
                 </div>
               </div>
             </div>

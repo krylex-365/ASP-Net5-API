@@ -21,7 +21,6 @@ export class UserAddComponent implements OnInit{
   roleId: string;
   account: Account;
   customer: Customer;
-  bool: boolean;
 
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
@@ -50,7 +49,7 @@ export class UserAddComponent implements OnInit{
     this.account.customer = null;
     this.account.password = value.password;
     this.account.roleId = value.roleId;
-    this.account.status = "1";
+    this.account.status = "0";
     this.account.userName = value.userName;
     this.customer.accountId = "1" //C# xử lý
     this.customer.address = value.address;
@@ -62,29 +61,21 @@ export class UserAddComponent implements OnInit{
     this.customer.phoneNumber = value.phoneNumber;
     this.customer.review = null;
     this.customer.sex = value.sex;
-    this.customer.status = "1";
-
-    this.bool = true;
+    this.customer.status = "0";
     
     await this.accountService.add(this.account).subscribe(
       result => {
         console.log(result);
         if (result.status == 200) {
-          this.bool = false;
+          this.customerService.add(this.customer).subscribe(
+            result => {
+              console.log(result);
+              if (result.status == 200) {
+                this.redirectUsers();
+              }
+            });
         }
       });
-
-    this.customerService.add(this.customer).subscribe(
-      result => {
-        console.log(result);
-        if (result.status != 200) {
-          this.bool = false;
-        }
-      });
-
-    if (this.bool) {
-      this.redirectUsers();
-    }
   }
 
   redirectUsers() {
