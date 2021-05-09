@@ -105,7 +105,7 @@ session_start();
                       <form action="#" method="POST">
                         <!-- Product Image Start -->
                         <div class="pro-img">
-                          <a href="truemart/productshop/{{prod.productId}}">
+                          <a href="productshop/{{prod.productId}}">
                             <img class="primary-img" src="product-img/{{prod.image}}" alt="single-product">
                           </a>
                         </div>
@@ -114,7 +114,7 @@ session_start();
                         <div class="pro-content">
                           <div class="pro-info">
                             <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
-                            <h4><a href="truemart/product/{{prod.productId}}">{{prod.name}}</a></h4>
+                            <h4><a href="productshop/{{prod.productId}}">{{prod.name}}</a></h4>
                             <p><span *ngIf="prod.sale == 0" class="price">$ {{prod.price}}</span><del *ngIf="prod.sale != 0" class="prev-price">$ {{prod.price}}</del></p>
                             <div *ngIf="prod.sale != 0" class="label-product l_sale">{{prod.sale}}<span class="symbol-percent">%</span></div>
                             <p *ngIf="prod.sale != 0"><span class="price">$ {{1*prod.price - (1*prod.price*30/100)}}</span></p>

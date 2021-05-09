@@ -39,13 +39,13 @@
           ?> -->
       <form>
         <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
-        <div class="thumb-bg">
+        <div *ngIf="product" class="thumb-bg">
           <div class="row">
             <!-- Main Thumbnail Image Start -->
             <div class="col-lg-5 mb-all-40">
               <!-- Thumbnail Large Image start -->
               <div class="tab-content">
-                <div id="thumb1" class="tab-pane fade show active"> <a data-fancybox="images" href="../product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg"><img src="../product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="product-view"></a> </div>
+                <div id="thumb1" class="tab-pane fade show active"> <a data-fancybox="images" href="./product-img/{{product.image}}"><img src="./product-img/{{product.image}}" alt="product-view"></a> </div>
               </div>
               <!-- Thumbnail Large Image End -->
               <!-- Thumbnail Image End -->
@@ -53,7 +53,7 @@
             <!-- Thumbnail Description Start -->
             <div class="col-lg-7">
               <div class="thubnail-desc fix">
-                <h3 class="product-header">adidas_W.N.D._Primeblue_Jacket_Gold</h3>
+                <h3 class="product-header">{{product.name}}</h3>
                 <div class="rating-summary fix mtb-10">
                   <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
                   <div class="rating-feedback"> <a href="#">(1 review)</a><br /><a href="#">add to your review</a> </div>
@@ -61,23 +61,27 @@
                 <div class="pro-price mtb-30">
                   <p class="d-flex align-items-center">
                     <!-- <?php
-                    if ( $pro_sale > 0 ) {
-                      ?> -->
-                    <span class="prev-price">$ 20</span> <span class="price">$ 18</span> <span class="saving-price">save 10%</span>
+  if ( $pro_sale > 0 ) {
+    ?> -->
+                    <span *ngIf="product.sale != 0" class="prev-price">$ {{product.price}}</span>
+                    <span *ngIf="product.sale != 0" class="price">$ {{product.price - (product.price/product.sale)}}</span>
+                    <span *ngIf="product.sale == 0" class="price">$ {{product.price}}</span>
+                    <span *ngIf="product.sale != 0" class="saving-price">save {{product.sale}}%</span>
                     <!-- <?php
-                    } else {
-                      ?> -->
+  } else {
+    ?> -->
                     <!--<span class="price">$<?php echo $pro_newprice?></span>-->
                     <!-- <?php
-                    }
-                    ?> -->
+  }
+  ?> -->
                   </p>
                 </div>
                 <div class="box-quantity d-flex hot-product2">
                   <input type="hidden" name="pro_qty" value="1">
                   <div class="pro-actions">
                     <div class="actions-primary">
-                      <input type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
+                      <input *ngIf="currentUser != null && currentUser.name != ''" (click)="addToCard(product.productId)" type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
+                      <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
                     </div>
                   </div>
                 </div>

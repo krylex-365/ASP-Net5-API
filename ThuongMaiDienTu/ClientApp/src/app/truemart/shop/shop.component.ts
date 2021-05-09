@@ -86,7 +86,9 @@ export class ShopComponent implements OnInit {
       });
 
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.token = jwt_decode(this.currentUser.token);
+    if (this.currentUser != null) {
+      this.token = jwt_decode(this.currentUser.token);
+    }
 
     await this.categoryService.getCategories().subscribe(
       result => {
