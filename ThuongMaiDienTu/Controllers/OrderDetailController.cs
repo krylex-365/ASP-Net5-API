@@ -41,23 +41,31 @@ namespace TMDT.Controllers
         [HttpPost]
         public HttpResponseMessage Add(OrderDetail orderDetail)
         {
-            OrderDetail orderDetail1 = context.OrderDetails.Find(orderDetail.OrderDetailId);
-            if (orderDetail1 != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Duplicate primary key";
-            }
-            Order order = context.Orders.Find(orderDetail.OrderId);
-            if (order == null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "OrderId does not exist";
-            }
             Product product = context.Products.Find(orderDetail.ProductId);
             if (product == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "ProductId does not exist";
+            }
+
+            List<OrderDetail> orderDetails = context.OrderDetails.ToList();
+            string key = "0";
+            foreach (OrderDetail orderDetail1 in orderDetails)
+            {
+                if (int.Parse(orderDetail1.OrderDetailId) > int.Parse(key))
+                {
+                    key = orderDetail1.OrderDetailId;
+                }
+            }
+            key = "" + (int.Parse(key) + 1);
+            orderDetail.OrderDetailId = key;
+            orderDetail.OrderId = key;
+
+            Order order = context.Orders.Find(orderDetail.OrderId);
+            if (order == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                //return "OrderId does not exist";
             }
 
             context.OrderDetails.Add(orderDetail);

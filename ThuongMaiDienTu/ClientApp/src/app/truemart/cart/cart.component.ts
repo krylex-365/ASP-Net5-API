@@ -8,6 +8,10 @@ import { ProductService } from '../../../services/product.service';
 import { QuanTity } from '../../../models/quantity';
 import { CustomerService } from '../../../services/customer.service';
 import { Customer } from '../../../models/customer';
+import { Order } from '../../../models/Order';
+import { OrderDetail } from '../../../models/orderDetail';
+import { Checkout } from '../../../models/checkout';
+import { CheckoutService } from '../../../services/checkout.service';
 declare var $: any;
 @Component({
   selector: 'app-cart',
@@ -31,15 +35,26 @@ export class CartComponent implements OnInit {
   index_ls: number;
 
   //Customer
- customer: Customer;
+  customer: Customer;
+
+  //Checkout
+  checkt: Checkout
+  note;
+  payment;
+
+  //Message
+  Notenoughquantity: string;
 
   constructor(private page404: Page404Service,
     private cardService: CardService,
     private customerService: CustomerService,
-    private productService: ProductService,  ) { }
+    private productService: ProductService,
+    private checkoutService: CheckoutService  ) { }
 
   async ngOnInit() {
     this.page404.go();
+
+    this.Notenoughquantity = null;
 
     this.currentUser = JSON.parse(localStorage.getItem('user'));
 
@@ -68,6 +83,12 @@ export class CartComponent implements OnInit {
                       this.quantity.product = pro;
                       this.quantity.quantity = 1;
                       this.quantitys.push(this.quantity);
+
+                      //Kiem tra so luong product vs so luong dat
+                      if (Number.parseInt(this.quantity.product.quantity) < this.quantity.quantity) {
+                        //Hien thi thong bao
+                        this.Notenoughquantity = this.quantity.product.name + ' "Not Enough Quantity"';
+                      }
                     }
                   })
                 })
@@ -174,6 +195,53 @@ export class CartComponent implements OnInit {
       total += Number.parseFloat(quan.product.price) * quan.quantity;
     })
     return total;
+  }
+
+  CheckOut() {
+    var order: Order;
+    var orderDetail: OrderDetail;
+    
+    this.checkt = new Checkout();
+    this.checkt.orderDetails = Array<OrderDetail>();
+    order = new Order;
+
+    order.customerId = this.token.CustomerId;
+    order.date = new Date();
+    if (this.note == null) {
+      order.note = "NNN";
+    } else {
+      order.note = this.note;
+    }
+    order.orderId = "1"; //C# xu ly
+    order.payment = "NNN";
+    order.status = "1";
+    order.orderDetail = null;
+
+    this.checkt.order = order;
+
+    for (var i = 0; i < this.quantitys.length; i++) { 
+      orderDetail = new OrderDetail;
+
+      orderDetail.orderDetailId = "1" // C# xu ly
+      orderDetail.orderId = "1" //C# xu ly
+      orderDetail.productId = this.quantitys[i].product.productId;
+      orderDetail.quantity = "" + this.quantitys[i].quantity;
+      orderDetail.totalPrice = "" + (Number.parseFloat(this.quantitys[i].product.price) * this.quantitys[i].quantity);
+
+      this.checkt.orderDetails.push(orderDetail);
+    }
+
+    if (this.Notenoughquantity == null) {
+      this.checkoutService.add(this.checkt).subscribe(
+        result => {
+          console.log(result);
+          if (result.status == 200) {
+            //C# Update quantity product trong CheckoutController
+            //C# delete cart trong CheckoutController
+            this.refresh();
+          }
+        });
+    }
   }
 
   refresh(): void {

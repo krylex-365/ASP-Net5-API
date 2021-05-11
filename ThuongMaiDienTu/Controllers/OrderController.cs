@@ -41,18 +41,24 @@ namespace TMDT.Controllers
         [HttpPost]
         public HttpResponseMessage Add(Order order)
         {
-            Order order1 = context.Orders.Find(order.OrderId);
-            if (order1 != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Duplicate primary key";
-            }
             Customer customer = context.Customers.Find(order.CustomerId);
             if (customer == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "CustomerId does not exist";
             }
+
+            List<Order> orders = context.Orders.ToList();
+            string key = "0";
+            foreach (Order order1 in orders)
+            {
+                if (int.Parse(order1.OrderId) > int.Parse(key))
+                {
+                    key = order1.OrderId;
+                }
+            }
+            key = "" + (int.Parse(key) + 1);
+            order.OrderId = key;
 
             context.Orders.Add(order);
             context.SaveChanges();
@@ -122,7 +128,7 @@ namespace TMDT.Controllers
 
             order.Status = "-1";
 
-            context.Entry(order).State = EntityState.Deleted;
+            context.Entry(order).State = EntityState.Detached;
             context.Entry(order).State = EntityState.Modified;
             context.SaveChanges();
 

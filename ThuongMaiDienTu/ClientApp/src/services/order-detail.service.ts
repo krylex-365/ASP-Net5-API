@@ -14,6 +14,8 @@ export class OrderDetailService {
     return this.http.get<OrderDetail[]>(this.url + 'api/OrderDetail');
   }
 
+
+
   update(orderDetail: OrderDetail) {
     return this.http.put<HttpResponse<OrderDetail>>(this.url + 'api/OrderDetail', orderDetail, { observe: 'response' });
   }

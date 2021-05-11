@@ -55,8 +55,9 @@ namespace TMDT.Controllers
             }
             key = "" + (int.Parse(key) + 1);
             customer.CustomerId = key;
+            customer.AccountId = key;
 
-            Account account = context.Accounts.Find(customer.CustomerId);
+            Account account = context.Accounts.Find(customer.AccountId);
             if (account == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);

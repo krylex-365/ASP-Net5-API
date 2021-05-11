@@ -128,7 +128,7 @@ session_start();
             <div class="row">
               <!-- Cart Button Start -->
               <div class="col-md-8 col-sm-12">
-                <div class="buttons-cart"> <a href="cart">Continue Shopping</a> </div>
+                <div class="buttons-cart"> <a href="shop">Continue Shopping</a> </div>
               </div>
               <!-- Cart Button Start -->
               <!-- Cart Totals Start -->
@@ -167,19 +167,20 @@ session_start();
                     </tbody>
                   </table>
                   <div class="wc-proceed-to-checkout">
-                    <p class="btn btn-cart" data-toggle="modal" data-target="#exampleModalCheckout">CHECKOUT</p>
+                    <p *ngIf="Notenoughquantity != null">{{Notenoughquantity}}</p>
+                    <p *ngIf="Notenoughquantity == null" class="btn btn-cart" data-toggle="modal" data-target="#exampleModalCheckout">CHECKOUT</p>
                     <!-- <?php
-                    if ( isset( $_SESSION[ 'accID' ] ) ) {
-                      $query = "SELECT * FROM `customer` c left join account ac on c.accountID=ac.accID WHERE ac.accID='" . $_SESSION[ 'accID' ] . "'";
-                      $run = mysqli_query( $conn, $query );
-                      if ( mysqli_num_rows( $run ) > 0 ) {
-                        while ( $row = mysqli_fetch_array( $run ) ) {
-                          $cus_id = $row[ 'cusID' ];
-                          $cus_name = $row[ 'cusName' ];
-                          $cus_address = $row[ 'cusAddress' ];
-                          $email = $row[ 'cusEmail' ];
-                          $phonenumber = $row[ 'cusPhoneNumber' ];
-                          ?> -->
+  if ( isset( $_SESSION[ 'accID' ] ) ) {
+    $query = "SELECT * FROM `customer` c left join account ac on c.accountID=ac.accID WHERE ac.accID='" . $_SESSION[ 'accID' ] . "'";
+    $run = mysqli_query( $conn, $query );
+    if ( mysqli_num_rows( $run ) > 0 ) {
+      while ( $row = mysqli_fetch_array( $run ) ) {
+        $cus_id = $row[ 'cusID' ];
+        $cus_name = $row[ 'cusName' ];
+        $cus_address = $row[ 'cusAddress' ];
+        $email = $row[ 'cusEmail' ];
+        $phonenumber = $row[ 'cusPhoneNumber' ];
+        ?> -->
                     <div class="modal fade" id="exampleModalCheckout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -207,17 +208,17 @@ session_start();
                               </div>
                               <div class="col-md-12">
                                 <h6 style="color:#e62e04;font-weight:bold;float:left;margin:5px 0px 5px;">Bank Account Number:</h6>
-                                <input type="text" class="form-control" name="postcode" placeholder="Enter here...">
+                                <input type="text" class="form-control" name="payment" [(ngModel)]="payment" placeholder="Enter here...">
                               </div>
                               <div class="col-md-12">
                                 <h6 style="color:#e62e04;font-weight:bold;float:left;margin:5px 0px 5px;">Your Note:</h6>
-                                <input type="text" class="form-control" name="ordernote" placeholder="Your Note...">
+                                <input type="text" class="form-control" name="note" [(ngModel)]="note" placeholder="Your Note...">
                               </div>
                             </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-cart" data-dismiss="modal">CLOSE</button>
-                            <button type="submit" name="checkout" class="btn btn-cart">CHECKOUT</button>
+                            <button *ngIf="quantitys.length > 0" (click)="CheckOut()" type="button" name="checkout" class="btn btn-cart">CHECKOUT</button>
                           </div>
                         </div>
                       </div>
