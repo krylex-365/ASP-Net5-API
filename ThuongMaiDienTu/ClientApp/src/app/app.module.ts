@@ -93,6 +93,7 @@ import { CardService } from '../services/card.service';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    
     RouterModule.forRoot([
       { path: '', component: ShopComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

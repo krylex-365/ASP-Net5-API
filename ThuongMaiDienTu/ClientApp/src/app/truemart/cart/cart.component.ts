@@ -42,8 +42,15 @@ export class CartComponent implements OnInit {
   note;
   payment;
 
+  //total
+  total;
+
   //Message
   Notenoughquantity: string;
+
+  //Payment
+  strikeCheckout: any = null;
+
 
   constructor(private page404: Page404Service,
     private cardService: CardService,
@@ -171,6 +178,9 @@ export class CartComponent implements OnInit {
         });
       }
     });
+
+    //Payment
+    this.stripePaymentGateway();
   }
 
   deleteCard(id) {
@@ -194,7 +204,24 @@ export class CartComponent implements OnInit {
     this.quantitys.forEach(quan => {
       total += Number.parseFloat(quan.product.price) * quan.quantity;
     })
+    this.total = total;
     return total;
+  }
+
+  checkQuantity() {
+    var boo = true;
+    var string = "";
+    this.quantitys.forEach(quan => {
+      if (Number.parseInt(quan.product.quantity) < quan.quantity) {
+        boo = false;
+        string = quan.product.name + ' "Not Enough Quantity"';
+      }
+    })
+    if (boo) {
+      this.Notenoughquantity = null;
+    } else {
+      this.Notenoughquantity = string;
+    }
   }
 
   CheckOut() {
@@ -238,7 +265,7 @@ export class CartComponent implements OnInit {
           if (result.status == 200) {
             //C# Update quantity product trong CheckoutController
             //C# delete cart trong CheckoutController
-            this.refresh();
+            this.makePayment(this.total + this.total * 0.05);
           }
         });
     }
@@ -246,5 +273,56 @@ export class CartComponent implements OnInit {
 
   refresh(): void {
     window.location.reload();
+  }
+
+  //Payment
+  makePayment(amount: any) {
+    const strikeCheckout = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51IpYAAFHJwvecwZid8EIfhwSEEKe6N3O12NpIGrbCr4T1YSIkwEOGuubH3xzjOBifbd2GcKTfsangLi9IEKaKOQj008aRf6g42',
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken)
+        alert('Stripe token generated!');
+        this.refresh();
+      }
+    });
+
+    strikeCheckout.open({
+      name: 'User test',
+      description: 'Payment widgets',
+      amount: amount * 100
+    });
+  }
+
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = "";
+      window.document.appendChild(script);
+    }
+  }
+
+  stripePaymentGateway() {
+    if (!window.document.getElementById('stripe-script')) {
+      const scr = window.document.createElement("script");
+      scr.id = "stripe-script";
+      scr.type = "text/javascript";
+      scr.src = "https://checkout.stripe.com/checkout.js";
+
+      scr.onload = () => {
+        this.strikeCheckout = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51IpYAAFHJwvecwZid8EIfhwSEEKe6N3O12NpIGrbCr4T1YSIkwEOGuubH3xzjOBifbd2GcKTfsangLi9IEKaKOQj008aRf6g42',
+          locale: 'auto',
+          token: function (token: any) {
+            console.log(token)
+            alert('Payment via stripe successfull!');
+          }
+        });
+      }
+
+      window.document.body.appendChild(scr);
+    }
   }
 }

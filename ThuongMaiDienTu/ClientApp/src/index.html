@@ -130,7 +130,7 @@
       border-color: #e62e04 !important;
     }
 
-    
+
 
     .box-quantity.hot-product2 .actions-primary input {
       background: #363f4d none repeat scroll 0 0;
@@ -147,6 +147,13 @@
         border-color: #e62e04;
       }
   </style>
+
+  <!--Payment-->
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+    Stripe.setPublishableKey('pk_live_51IpYAAFHJwvecwZi0fp5XUVJS3bxeq1kEzS8BMUR8zXLAJrmrTCq4qOqOgAzD4yfFS58PDpU0uW7zf6M561D3nJa00CGv8FNqr');
+  </script>
 </head>
 <body>
   <app-root>Loading...</app-root>
@@ -263,6 +270,8 @@
       //window.location="./product.php?id=" + <?php echo $pro_id?> + "";
     }
   </script>
+
+  
 </body>
 
 </html>

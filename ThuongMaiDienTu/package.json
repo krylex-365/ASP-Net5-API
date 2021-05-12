@@ -1,9 +1,14 @@
 {
   "dependencies": {
+    "@ionic-native/stripe": "^5.33.0",
+    "cordova-plugin-stripe": "^1.5.3",
     "jquery": "^3.6.0",
-    "jwt-decode": "^3.1.2"
+    "jwt-decode": "^3.1.2",
+    "stripe-angular": "^1.7.0"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.5"
+    "@types/jquery": "^3.5.5",
+    "@types/stripe-checkout": "^1.0.3",
+    "@types/stripe-v3": "^3.1.23"
   }
 }
