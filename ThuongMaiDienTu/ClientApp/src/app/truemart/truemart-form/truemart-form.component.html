@@ -96,8 +96,8 @@
               <li>
                 <a href="loginshop">
                   <i class="lnr lnr-user"></i> <span class="my-cart">
-                    <!--<span>Hello, </span><span><strong><?php echo $name?></strong></span>-->
-                    <span> <strong>Login</strong> Or</span><span><strong> Register</strong></span>
+                    <span *ngIf="curenUser != null">Hello, </span><span><strong>{{customer.name}}</strong></span>
+                    <span *ngIf="curenUser == null"> <strong>Login</strong> Or</span><span><strong> Register</strong></span>
                   </span>
                 </a>
                 <ul class="ht-dropdown user-dropdown">
