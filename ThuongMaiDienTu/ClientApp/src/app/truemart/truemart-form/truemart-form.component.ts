@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Categories } from '../../../models/Categories';
 import { Subcategories } from '../../../models/subcategories';
 import { CardService } from '../../../services/card.service';
+import { CustomerService } from '../../../services/customer.service';
+import { Customer } from '../../../models/customer';
 import { CategoriesService } from '../../../services/categories.service';
 import { LoginService } from '../../../services/login.service';
 import { ReloadService } from '../../../services/reload.service';
@@ -25,7 +27,8 @@ export class TruemartFormComponent implements OnInit {
   subcategories: Array<Subcategories>;
   subcates: Array<Subcategories>;
   products: Array<Product>;
-
+  //Customer
+  customer: Customer;
   //login
   currentUser;
   token;
@@ -83,6 +86,13 @@ export class TruemartFormComponent implements OnInit {
         this.categories = result;
         console.log(this.categories);
       });
+    //Customer
+    var customerId = this.token.CustomerId;
+      this.customerService.getCustomerById(customerId).subscribe(
+        result => {
+          this.customer = result;
+          console.log(this.customer);
+        });
 
     $(document).ready(function () {
 
