@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+declare var $: any;
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
@@ -9,5 +9,9 @@ import { Component } from '@angular/core';
 export class ProfileComponent {
     /** profile ctor */
   constructor() { }
-  ngOnInit() { }
+  ngOnInit() {
+    $(document).ready(function () {
+        $("#datepickerBirthday").datepicker();
+    });
+  }
 }

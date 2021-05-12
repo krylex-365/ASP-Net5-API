@@ -216,9 +216,7 @@
       <!-- Hot Deal Product Activation Start -->
       <div class="hot-deal-active owl-carousel">
         <!-- Single Product Start -->
-        <form>
-          <input type="hidden" name="pro_id" value="1">
-          <div *ngFor="let pro of pros" class="single-product">
+        <div class="single-product" *ngFor="let pro of pros">
             <!-- Product Image Start -->
             <div class="pro-img"> <a href="productshop/{{pro.productId}}"> <img class="primary-img" src="./product-img/{{pro.image}}" alt="single-product"></a></div>
             <!-- Product Image End -->
@@ -241,8 +239,7 @@
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+        </div>
         <!-- Single Product End -->
         <!-- Hot Deal Product Active End -->
       </div>

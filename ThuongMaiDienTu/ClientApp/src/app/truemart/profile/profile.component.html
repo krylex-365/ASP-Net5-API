@@ -32,7 +32,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
     <div class="container">
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
-          <li><a href="index.php">Home</a></li>
+          <li><a href="#">Home</a></li>
           <li class="active"><a href="user-profile">Profile</a></li>
         </ul>
       </div>
@@ -43,289 +43,96 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
   <!--**********************************
             Content body start
         ***********************************-->
-  <div class="content-body ptb-60 pb-sm-60">
+  <div class="thumnail-desc pb-100 pb-sm-60">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="basic-list-group">
-                <div class="row">
-                  <div class="col-xl-4 col-md-4 col-sm-3 mb-4 mb-sm-0">
-                    <div class="list-group" id="list-tab" role="tablist"> <a class="list-group-item list-group-item-action active show" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a> <a class="list-group-item list-group-item-action" id="list-edit-profile-list" data-toggle="list" href="#list-edit-profile" role="tab" aria-controls="editprofile" aria-selected="false">Edit Profile</a> <a class="list-group-item list-group-item-action" id="list-purchase-history-list" data-toggle="list" href="#list-purchase-history" role="tab" aria-controls="purchasehistory" aria-selected="false">Purchase History</a> </div>
+        <div class="col-sm-12">
+          <ul class="main-thumb-desc nav tabs-area" role="tablist">
+            <li><a class="active" data-toggle="tab" href="#profileInfo">Profile Information</a></li>
+            <li><a data-toggle="tab" href="#editProfile">Edit Profile</a></li>
+            <li><a data-toggle="tab" href="#purchaseHistory">Purcharse History</a></li>
+          </ul>
+          <!-- Profile Thumbnail Tab Content Start -->
+          <div class="tab-content thumb-content border-default">
+            <div id="profileInfo" class="tab-pane fade show active">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-12 mb-3"><h2>User Information</h2></div>
+                    <div class="col-lg-3">
+                      <div class="input-group">
+                        <div class="form-file">
+                          <input type="file" class="inputfile" name="avatar" id="your_picture" disabled/>
+                          <label for="your_picture">
+                            <figure>
+                              <img src="./images/user/form-user.png" alt="" class="your_picture_image">
+                            </figure>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-9">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="name">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" name="name" value="Your name" class="form-control" placeholder="Enter full name..." disabled>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="address">Address <span class="text-danger">*</span></label>
+                            <input type="text" name="address" value="Your address" class="form-control" placeholder="Enter address..." disabled>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="birthday">Birthday <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" value="8-9-2000" placeholder="mm/DD/yyyy" disabled> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="sex">Sex <span class="text-danger">*</span></label>
+                            <select class="form-control" name="sex" disabled>
+                              <option value="">-- Choose Sex --</option>
+                              <option value="Male" selected>Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                            <input type="text" name="phoneNumber" value="0909090909" class="form-control" placeholder="Enter phone number..." disabled>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="mail">Email <span class="text-danger">*</span></label>
+                            <input type="text" name="mail" value="Your mail" class="form-control" placeholder="Enter E-mail..." disabled>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-xl-8 col-md-8 col-sm-9">
-                    <div class="tab-content" id="nav-tabContent">
-                      <div class="tab-pane fade active show" id="list-profile">
-                        <div class="panel-body">
-                          <div class="card">
-                            <div class="card-body">
-                              <div class="card-title">
-                                <h3>Profile</h3>
-                              </div>
-                              <p><strong>Username:</strong> <?php echo $info_username_customer?></p>
-                              <p><strong>Full Name:</strong> <?php echo $info_name_customer?></p>
-                              <p><strong>Phone Number:</strong> <?php echo $info_phonenumber_customer?></p>
-                              <p><strong>Email:</strong> <?php echo $info_email_customer?></p>
-                              <p><strong>Address:</strong> <?php echo $info_address_customer?></p>
-                            </div>
+                  <div class="row">
+                    <div class="col-lg-12"><h2>Account Information</h2></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="username">Username <span class="text-danger">*</span></label>
+                            <input type="text" name="userName" value="Your username" class="form-control" placeholder="Enter a username..." disabled>
                           </div>
                         </div>
-                      </div>
-                      <div class="tab-pane fade" id="list-edit-profile" role="tabpanel">
-                        <div class="panel-body">
-                          <div class="card">
-                            <div class="card-body">
-                              <div class="card-title">
-                                <h3>Edit Profile</h3>
-                              </div>
-                              <div class="form-validation">
-                                <form class="form-valide" action="admin/inc/process.php" method="post">
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-yourname">Full Name <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="text" class="form-control" id="val-yourname" name="yourname" placeholder="Enter full name.." value="<?php echo $info_name_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-phoneus">Phone Number <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="text" class="form-control" id="val-phoneus" name="phone" placeholder="212-999-0000" value="<?php echo $info_phonenumber_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email.." value="<?php echo $info_email_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-address">Address <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="text" class="form-control" id="val-address" name="address" placeholder="Enter your address." value="<?php echo $info_address_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-username">Username <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="text" class="form-control" id="val-username" name="username" placeholder="Enter a username.." value="<?php echo $info_username_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-password">Password <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="password" class="form-control" id="val-password" name="password" placeholder="Enter new password" value="<?php echo $info_password_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span> </label>
-                                    <div class="col-lg-6">
-                                      <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="Repeat the password" value="<?php echo $info_password_customer;?>" required>
-                                    </div>
-                                  </div>
-                                  <div class="form-group row">
-                                    <div class="col-lg-8 ml-auto">
-                                      <button type="submit" class="btn btn-primary" name="edit-user" value="<?php echo $info_id_customer;?>">Edit</button>
-                                    </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane fade" id="list-purchase-history">
-                        <div class="panel-body">
-                          <div class="card">
-                            <div class="card-body">
-                              <div class="card-title">
-                                <h3>Purchase History</h3>
-                              </div>
-                              <div class="table-responsive">
-                                <table id="table-order" class="table table-bordered table-striped table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th style="width: 25%">Order ID</th>
-                                      <th style="width: 25%">Buy Date</th>
-                                      <th style="width: 25%">Status</th>
-                                      <th style="width: 25%">Details</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="table-order-body">
-                                    <!--<?php
-                                    $query = "SELECT * FROM `order`
-                                    LEFT JOIN `account` ON `order`.`u_id` = `account`.`accID`
-                                    LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` WHERE `order`.`u_id` = '$info_id_customer' ORDER BY `order`.`order_id` desc;";
-                                    $run = mysqli_query( $conn, $query );
-                                    if ( mysqli_num_rows( $run ) > 0 ) {
-                                    while ( $row = mysqli_fetch_array( $run ) ) {
-                                    $order_id = $row[ 'order_id' ];
-                                    $cus_id = $row[ 'cusName' ];
-                                    $cus_address = $row[ 'cusAddress' ];
-                                    $buy_date = $row[ 'buyDate' ];
-                                    $order_status = $row[ 'status' ];
-                                    ?>-->
-                                    <tr>
-                                      <td><?php echo $order_id?></td>
-                                      <td><?php echo $buy_date?></td>
-                                      <td>
-                                        <!--<?php
-                                        if ( $order_status == -1 ) {
-                                        ?>-->
-                                        <button type="button" class="btn btn-info">New Order</button>
-                                        <!--<?php
-                                        }
-                                        if ( $order_status == 0 ) {
-                                        ?>-->
-                                        <button type="button" class="btn btn-danger">Delivery</button>
-                                        <!--<?php
-                                        }
-                                        if ( $order_status == 1 ) {
-                                        ?>-->
-                                        <button type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
-                                        <!--<?php
-                                        }
-                                        ?>-->
-                                      </td>
-                                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $order_id?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-                                    </tr>
-                                    <!--<?php
-                                    }
-                                    } else {
-                                    echo "No Orders Found";
-                                    }
-                                    ?>-->
-                                  </tbody>
-                                </table>
-                              </div>
-                              <!--<?php
-                              $query = $query = "SELECT * FROM `order`
-                              LEFT JOIN `account` ON `order`.`u_id` = `account`.`accID`
-                              LEFT JOIN `customer` ON `customer`.`accountID` = `account`.`accID` WHERE `order`.`u_id` = '$info_id_customer' ORDER BY `order`.`order_id` desc;";
-                              $run = mysqli_query( $conn, $query );
-                              if ( mysqli_num_rows( $run ) > 0 ) {
-                              while ( $row = mysqli_fetch_array( $run ) ) {
-                              $order_id = $row[ 'order_id' ];
-                              $cus_id = $row[ 'cusName' ];
-                              $cus_address = $row[ 'cusAddress' ];
-                              $buy_date = $row[ 'buyDate' ];
-                              $email = $row[ 'cusEmail' ];
-                              $phonenumber = $row[ 'cusPhoneNumber' ];
-                              $order_note = $row[ 'note' ];
-                              ?>-->
-                              <div class="modal fade" id="exampleModalLong<?php echo $order_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h4 class="modal-title" id="exampleModalLongTitle<?php echo $order_id?>">Order Details</h4>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <div class="row">
-                                        <div class="col-md-6 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Order ID:</h6>
-                                          <p> <?php echo $order_id?></p>
-                                        </div>
-                                        <div class="col-md-6 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Date:</h6>
-                                          <p> <?php echo $buy_date?></p>
-                                        </div>
-                                        <div class="col-md-6 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Customer:</h6>
-                                          <p> <?php echo $cus_id?></p>
-                                        </div>
-                                        <div class="col-md-6 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Address:</h6>
-                                          <p> <?php echo $cus_address?></p>
-                                        </div>
-                                        <div class="col-md-6 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Email:</h6>
-                                          <p> <?php echo $email?></p>
-                                        </div>
-                                        <div class="col-md-6 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Phone Number:</h6>
-                                          <p> <?php echo $phonenumber?></p>
-                                        </div>
-                                        <div class="col-md-12 pb-10">
-                                          <h6 style="color:#ea5774;font-weight:600;">Order Note:</h6>
-                                          <p> <?php echo $order_note?></p>
-                                        </div>
-                                        <div class="table-responsive">
-                                          <table id="table-detail-<?php echo $order_id?>" class="table table-bordered table-striped table-hover">
-                                            <tr>
-                                              <th style="width: 26%">Images</th>
-                                              <th style="width: 26%">Product</th>
-                                              <th style="width: 16%">Price</th>
-                                              <th style="width: 16%">Quantity</th>
-                                              <th style="width: 16%">Total</th>
-                                            </tr>
-                                            <!--<?php
-                                            $total_price = 0;
-                                            $querydetail = "SELECT `detail_order`.*, `order`.*, `product`.* FROM `detail_order` LEFT JOIN `order` ON `detail_order`.`cart_id` = `order`.`order_id` LEFT JOIN `product` ON `detail_order`.`pro_id` = `product`.`pid` WHERE `detail_order`.`cart_id` = '$order_id';";
-                                            $rundetail = mysqli_query( $conn, $querydetail );
-                                            if ( mysqli_num_rows( $rundetail ) > 0 ) {
-                                            while ( $rowdetail = mysqli_fetch_array( $rundetail ) ) {
-                                            $pro_img = $rowdetail[ 'img' ];
-                                            $pro_name = $rowdetail[ 'pname' ];
-                                            $pro_quantity = $rowdetail[ 'quantity' ];
-                                            $pro_price = $rowdetail[ 'new_price' ];
-                                            $pro_total = $pro_quantity * $pro_price;
-                                            ?>-->
-                                            <tr>
-                                              <td><img src="admin/product-img/<?php echo $pro_img?>" style="width: 100%;"></td>
-                                              <td><?php echo $pro_name?></td>
-                                              <td>$<?php echo $pro_price?></td>
-                                              <td><?php echo $pro_quantity?></td>
-                                              <td>$<?php echo $pro_total?></td>
-                                            </tr>
-                                            <!--<?php
-                                            $total_price += $pro_total;
-                                            }
-                                            }
-                                            ?>-->
-                                            <tr>
-                                              <th></th>
-                                              <th></th>
-                                              <th></th>
-                                              <th style="color: #ea5774;">Sub Total:</th>
-                                              <th style="color: #ea5774;">$ <?php echo $total_price?></th>
-                                            </tr>
-                                            <tr>
-                                              <th></th>
-                                              <th></th>
-                                              <th></th>
-                                              <th style="color: #ea5774;">Shipping:</th>
-                                              <th style="color: #ea5774;">$ 5</th>
-                                            </tr>
-                                            <tr>
-                                              <th></th>
-                                              <th></th>
-                                              <th></th>
-                                              <th style="color: #ea5774;">Taxes:</th>
-                                              <th style="color: #ea5774;">$ <?php echo $total_price*0.05?></th>
-                                            </tr>
-                                            <tr>
-                                              <th></th>
-                                              <th></th>
-                                              <th></th>
-                                              <th style="color: #ea5774;">Total:</th>
-                                              <th style="color: #ea5774;">$ <?php echo $total_price + $total_price*0.05 + 5?></th>
-                                            </tr>
-                                          </table>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <!--<?php
-                              }
-                              }
-                              ?>-->
-                            </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="password">Password <span class="text-danger">*</span></label>
+                            <input type="password" name="password" value="Your password" class="form-control" placeholder="Choose a safe one.." disabled>
                           </div>
                         </div>
                       </div>
@@ -334,11 +141,232 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                 </div>
               </div>
             </div>
+            <div id="editProfile" class="tab-pane fade">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-validation">
+                    <form #userUpdate="ngForm" (ngSubmit)="update(userUpdate.value)">
+                      <div class="row">
+                        <div class="col-lg-12 mb-3"><h2>Edit User Information</h2></div>
+                        <div class="col-lg-3">
+                          <div class="input-group">
+                            <div class="form-file">
+                              <input type="file" class="inputfile" name="avatar" [(ngModel)]="avatar" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
+                              <label for="your_picture">
+                                <figure>
+                                  <img src="./images/user/form-user.png" alt="" class="your_picture_image">
+                                </figure>
+                                <span class="file-button">Pick Avatar</span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-9">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="name">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name" [(ngModel)]="name" class="form-control" placeholder="Enter full name..." required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="address">Address <span class="text-danger">*</span></label>
+                                <input type="text" name="address" [(ngModel)]="address" class="form-control" placeholder="Enter address..." required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="birthday">Birthday <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                  <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" [(ngModel)]="birthday" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="sex">Sex <span class="text-danger">*</span></label>
+                                <select class="form-control" name="sex" [(ngModel)]="sex" required>
+                                  <option value="">-- Choose Sex --</option>
+                                  <option value="Nam">Female</option>
+                                  <option value="Nữ">Male</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                                <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber" class="form-control" placeholder="Enter phone number..." required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="mail">Email <span class="text-danger">*</span></label>
+                                <input type="text" name="mail" [(ngModel)]="mail" class="form-control" placeholder="Enter E-mail..." required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12"><h2>Edit Account Information</h2></div>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="password">Password <span class="text-danger">*</span></label>
+                                <input type="password" name="password" [(ngModel)]="password" class="form-control" placeholder="Choose a safe one.." required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="confirm-password">Confirm Password <span class="text-danger">*</span></label>
+                                <input type="password" name="confirm-password" [(ngModel)]="password" class="form-control" placeholder="..and confirm it!" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-lg-12 td-center">
+                          <button type="submit" class="btn btn-primary">Edit User</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div id="purchaseHistory" class="tab-pane fade">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h3>Purchase History</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table id="table-order" class="table table-bordered table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 25%">Order ID</th>
+                          <th style="width: 25%">Buy Date</th>
+                          <th style="width: 25%">Status</th>
+                          <th style="width: 25%">Details</th>
+                        </tr>
+                      </thead>
+                      <tbody id="table-order-body">
+                        <tr>
+                          <td><?php echo $order_id?></td>
+                          <td><?php echo $buy_date?></td>
+                          <td>
+                            <button type="button" class="btn btn-info">New Order</button>
+                            <button type="button" class="btn btn-danger">Delivery</button>
+                            <button type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
+                          </td>
+                          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLongPurchaseHistory"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal fade" id="exampleModalLongPurchaseHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="exampleModalLongTitle<?php echo $order_id?>">Order Details</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-6 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Order ID:</h6>
+                              <p> <?php echo $order_id?></p>
+                            </div>
+                            <div class="col-md-6 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Date:</h6>
+                              <p> <?php echo $buy_date?></p>
+                            </div>
+                            <div class="col-md-6 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Customer:</h6>
+                              <p> <?php echo $cus_id?></p>
+                            </div>
+                            <div class="col-md-6 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Address:</h6>
+                              <p> <?php echo $cus_address?></p>
+                            </div>
+                            <div class="col-md-6 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Email:</h6>
+                              <p> <?php echo $email?></p>
+                            </div>
+                            <div class="col-md-6 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Phone Number:</h6>
+                              <p> <?php echo $phonenumber?></p>
+                            </div>
+                            <div class="col-md-12 pb-10">
+                              <h6 style="color:#ea5774;font-weight:600;">Order Note:</h6>
+                              <p> <?php echo $order_note?></p>
+                            </div>
+                            <div class="table-responsive">
+                              <table id="table-detail-<?php echo $order_id?>" class="table table-bordered table-striped table-hover">
+                                <tr>
+                                  <th style="width: 26%">Images</th>
+                                  <th style="width: 26%">Product</th>
+                                  <th style="width: 16%">Price</th>
+                                  <th style="width: 16%">Quantity</th>
+                                  <th style="width: 16%">Total</th>
+                                </tr>
+                                <tr>
+                                  <td><img src="./product-img/iphone-11-pro-max-256gb.jpg" style="width: 100%;"></td>
+                                  <td>iphone-11-pro-max-256gb</td>
+                                  <td>$ 222</td>
+                                  <td>1</td>
+                                  <td>$ 222</td>
+                                </tr>
+                                <tr>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th style="color: #ea5774;">Sub Total:</th>
+                                  <th style="color: #ea5774;">$ 222</th>
+                                </tr>
+                                <tr>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th style="color: #ea5774;">Taxes:</th>
+                                  <th style="color: #ea5774;">$ 1.00</th>
+                                </tr>
+                                <tr>
+                                  <th></th>
+                                  <th></th>
+                                  <th></th>
+                                  <th style="color: #ea5774;">Total:</th>
+                                  <th style="color: #ea5774;">$ 223</th>
+                                </tr>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--<?php
+                  }
+                  }
+                  ?>-->
+                </div>
+              </div>
+            </div>
           </div>
+          <!-- Profile Thumbnail Tab Content End -->
         </div>
       </div>
+      <!-- Row End -->
     </div>
-    <!-- #/ container -->
+    <!-- Container End -->
   </div>
   <!--**********************************
             Content body end
