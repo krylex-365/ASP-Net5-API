@@ -49,11 +49,11 @@
           <div class="cart-box mt-all-30">
             <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
               <li>
-                <a href="#">
-                  <i class="lnr lnr-cart"></i><span class="my-cart"><span *ngIf="currentUser != null && currentUser.name != '' && pros != null" class="total-pro">1</span><span>cart</span>
+                <a>
+                  <i class="lnr lnr-cart"></i><span class="my-cart"><span *ngIf="customer && pros != null" class="total-pro">1</span><span>cart</span>
                   </span>
                 </a>
-                <ul class="ht-dropdown cart-box-width">
+                <ul *ngIf="customer" class="ht-dropdown cart-box-width">
                   <li>
                     <ul *ngIf="pros">
                       <li *ngFor="let pro of pros">
@@ -96,24 +96,15 @@
               <li>
                 <a href="loginshop">
                   <i class="lnr lnr-user"></i> <span class="my-cart">
-                    <span *ngIf="curenUser != null">Hello, </span><span><strong>{{customer.name}}</strong></span>
-                    <span *ngIf="curenUser == null"> <strong>Login</strong> Or</span><span><strong> Register</strong></span>
+                    <span *ngIf="customer">Hello, </span><span *ngIf="customer"><strong>{{customer.name}}</strong></span>
+                    <span *ngIf="customer == null"> <strong>Login</strong> Or</span><span *ngIf="customer == null"><strong> Register</strong></span>
                   </span>
                 </a>
                 <ul class="ht-dropdown user-dropdown">
-                  <!--<?php
-    if ( isset( $_SESSION[ 'username' ] ) ) {
-    ?>-->
-                  <li *ngIf="curenUser != null"><a href="profileshop">Profile</a></li>
-                  <li *ngIf="curenUser != null"><a (click)="logout()">Logout</a></li>
-                  <!--<?php
-    } else {
-    ?>-->
-                  <li *ngIf="curenUser == null"><a href="loginshop">Login</a></li>
-                  <li *ngIf="curenUser == null"><a href="register">Register</a></li>
-                  <!--<?php
-    }
-    ?>-->
+                  <li *ngIf="customer != null"><a href="profileshop">Profile</a></li>
+                  <li *ngIf="customer != null"><a (click)="logout()">Logout</a></li>
+                  <li *ngIf="customer == null"><a href="loginshop">Login</a></li>
+                  <li *ngIf="customer == null"><a href="register">Register</a></li>
                 </ul>
               </li>
             </ul>

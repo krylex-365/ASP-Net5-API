@@ -33,7 +33,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
           <li><a href="#">Home</a></li>
-          <li class="active"><a href="user-profile">Profile</a></li>
+          <li class="active"><a href="profileshop">Profile</a></li>
         </ul>
       </div>
     </div>
@@ -53,7 +53,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
             <li><a data-toggle="tab" href="#purchaseHistory">Purcharse History</a></li>
           </ul>
           <!-- Profile Thumbnail Tab Content Start -->
-          <div class="tab-content thumb-content border-default">
+          <div *ngIf="customer && account" class="tab-content thumb-content border-default">
             <div id="profileInfo" class="tab-pane fade show active">
               <div class="card">
                 <div class="card-body">
@@ -65,7 +65,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                           <input type="file" class="inputfile" name="avatar" id="your_picture" disabled/>
                           <label for="your_picture">
                             <figure>
-                              <img src="./images/user/form-user.png" alt="" class="your_picture_image">
+                              <img src="./images/users/{{account.avatar}}" alt="" class="your_picture_image">
                             </figure>
                           </label>
                         </div>
@@ -76,20 +76,20 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" value="Your name" class="form-control" placeholder="Enter full name..." disabled>
+                            <input type="text" name="name" value="{{customer.name}}" class="form-control" placeholder="Enter full name..." disabled>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="address">Address <span class="text-danger">*</span></label>
-                            <input type="text" name="address" value="Your address" class="form-control" placeholder="Enter address..." disabled>
+                            <input type="text" name="address" value="{{customer.address}}" class="form-control" placeholder="Enter address..." disabled>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="birthday">Birthday <span class="text-danger">*</span></label>
                             <div class="input-group">
-                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" value="8-9-2000" placeholder="mm/DD/yyyy" disabled> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" value="{{customer.birthday}}" placeholder="mm/DD/yyyy" disabled> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
                             </div>
                           </div>
                         </div>
@@ -97,22 +97,21 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                           <div class="form-group">
                             <label for="sex">Sex <span class="text-danger">*</span></label>
                             <select class="form-control" name="sex" disabled>
-                              <option value="">-- Choose Sex --</option>
-                              <option value="Male" selected>Male</option>
-                              <option value="Female">Female</option>
+                              <option *ngIf="customer.sex == 'Male'" value="Male" selected>Male</option>
+                              <option *ngIf="customer.sex != 'Male'" value="Female" selected>Female</option>
                             </select>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="phone">Phone Number <span class="text-danger">*</span></label>
-                            <input type="text" name="phoneNumber" value="0909090909" class="form-control" placeholder="Enter phone number..." disabled>
+                            <input type="text" name="phoneNumber" value="{{customer.phoneNumber}}" class="form-control" placeholder="Enter phone number..." disabled>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="mail">Email <span class="text-danger">*</span></label>
-                            <input type="text" name="mail" value="Your mail" class="form-control" placeholder="Enter E-mail..." disabled>
+                            <input type="text" name="mail" value="{{customer.mail}}" class="form-control" placeholder="Enter E-mail..." disabled>
                           </div>
                         </div>
                       </div>
@@ -126,13 +125,13 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="username">Username <span class="text-danger">*</span></label>
-                            <input type="text" name="userName" value="Your username" class="form-control" placeholder="Enter a username..." disabled>
+                            <input type="text" name="userName" value="{{account.userName}}" class="form-control" placeholder="Enter a username..." disabled>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="password">Password <span class="text-danger">*</span></label>
-                            <input type="password" name="password" value="Your password" class="form-control" placeholder="Choose a safe one.." disabled>
+                            <input type="password" name="password" value="{{account.password}}" class="form-control" placeholder="Choose a safe one.." disabled>
                           </div>
                         </div>
                       </div>
@@ -141,7 +140,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                 </div>
               </div>
             </div>
-            <div id="editProfile" class="tab-pane fade">
+            <div *ngIf="customer && account" id="editProfile" class="tab-pane fade">
               <div class="card">
                 <div class="card-body">
                   <div class="form-validation">
@@ -154,7 +153,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                               <input type="file" class="inputfile" name="avatar" [(ngModel)]="avatar" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
                               <label for="your_picture">
                                 <figure>
-                                  <img src="./images/user/form-user.png" alt="" class="your_picture_image">
+                                  <img src="./images/users/{{account.avatar}}" alt="" class="your_picture_image">
                                 </figure>
                                 <span class="file-button">Pick Avatar</span>
                               </label>
@@ -188,8 +187,8 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                                 <label for="sex">Sex <span class="text-danger">*</span></label>
                                 <select class="form-control" name="sex" [(ngModel)]="sex" required>
                                   <option value="">-- Choose Sex --</option>
-                                  <option value="Nam">Female</option>
-                                  <option value="Nữ">Male</option>
+                                  <option value="Female">Female</option>
+                                  <option value="Male">Male</option>
                                 </select>
                               </div>
                             </div>
@@ -222,7 +221,7 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="confirm-password">Confirm Password <span class="text-danger">*</span></label>
-                                <input type="password" name="confirm-password" [(ngModel)]="password" class="form-control" placeholder="..and confirm it!" required>
+                                <input type="password" name="confirm-password" value="{{account.password}}" class="form-control" placeholder="..and confirm it!" required>
                               </div>
                             </div>
                           </div>

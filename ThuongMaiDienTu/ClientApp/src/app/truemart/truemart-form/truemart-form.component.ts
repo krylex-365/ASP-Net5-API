@@ -43,7 +43,8 @@ export class TruemartFormComponent implements OnInit {
     private loginService: LoginService,
     private cardService: CardService,
     private productService: ProductService,
-    private reload: ReloadService  ) { }
+    private reload: ReloadService,
+    private customerService: CustomerService  ) { }
 
   async ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
@@ -74,6 +75,14 @@ export class TruemartFormComponent implements OnInit {
           )
         }
       )
+
+      //Customer
+      var customerId = this.token.CustomerId;
+      await this.customerService.getCustomerById(customerId).subscribe(
+        result => {
+          this.customer = result;
+          console.log(this.customer);
+        });
     }
 
     await this.subcategoryService.getSubcategories().subscribe(
@@ -86,13 +95,6 @@ export class TruemartFormComponent implements OnInit {
         this.categories = result;
         console.log(this.categories);
       });
-    //Customer
-    var customerId = this.token.CustomerId;
-      this.customerService.getCustomerById(customerId).subscribe(
-        result => {
-          this.customer = result;
-          console.log(this.customer);
-        });
 
     $(document).ready(function () {
 

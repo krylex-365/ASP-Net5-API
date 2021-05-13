@@ -11,6 +11,8 @@ import { ReloadService } from '../../../services/reload.service';
 import { SubcategoriesService } from '../../../services/subcategories.service';
 import jwt_decode from 'jwt-decode';
 import { Card } from '../../../models/card';
+import { CustomerService } from '../../../services/customer.service';
+import { Customer } from '../../../models/customer';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -28,6 +30,9 @@ export class ShopComponent implements OnInit {
   currentUser;
   token;
 
+  //Customer
+  customer: Customer;
+
   bool: boolean;
 
   constructor(private categoryService: CategoriesService,
@@ -36,7 +41,8 @@ export class ShopComponent implements OnInit {
     private route: ActivatedRoute,
     private reload: ReloadService,
     private cardService: CardService,
-    private subcategoryService: SubcategoriesService  ) { }
+    private subcategoryService: SubcategoriesService,
+    private customerService: CustomerService  ) { }
 
   async ngOnInit() {
     this.reload.refresh();
@@ -88,6 +94,14 @@ export class ShopComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
+
+      //Customer
+      var customerId = this.token.CustomerId;
+      await this.customerService.getCustomerById(customerId).subscribe(
+        result => {
+          this.customer = result;
+          console.log(this.customer);
+        });
     }
 
     await this.categoryService.getCategories().subscribe(
