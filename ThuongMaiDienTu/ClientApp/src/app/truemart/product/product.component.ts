@@ -5,6 +5,8 @@ import { Product } from '../../../models/Product';
 import { ProductService } from '../../../services/product.service';
 import jwt_decode from 'jwt-decode';
 import { CardService } from '../../../services/card.service';
+import { Review } from '../../../models/review';
+import { ReviewService } from '../../../services/review.service';
 declare var $: any;
 
 @Component({
@@ -13,7 +15,8 @@ declare var $: any;
   styleUrls: ['./product.component.css']
 })
 export class ProductShopComponent implements OnInit {
-
+  review: Review;
+  reviews: Array<Review>;
   product: Product;
   products: Array<Product>;
   pros: Array<Product>;
@@ -23,6 +26,7 @@ export class ProductShopComponent implements OnInit {
   token;
 
   constructor(private productService: ProductService,
+    private reviewService: ReviewService,
     private route: ActivatedRoute,
     private cardService: CardService,  ) { }
 
@@ -36,7 +40,11 @@ export class ProductShopComponent implements OnInit {
 
         console.log(this.product);
       });
-
+    await this.reviewService.getReview().subscribe(
+      result => {
+        console.log(result);
+        this.reviews = result;        
+      });
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);

@@ -117,26 +117,29 @@
           <!-- Product Thumbnail Tab Content Start -->
           <div class="tab-content thumb-content border-default">
             <div id="dtail" class="tab-pane fade show active">
-              <p><?php echo $pro_des?></p>
+              <p>{{product.description}} </p>
             </div>
             <div id="review" class="tab-pane fade">
               <!-- Reviews Start -->
+              
               <div class="review border-default universal-padding">
                 <h2 class="review-title mb-20">
                   You're reviewing:
                 </h2>
                 <!-- Reviews Field Start -->
-                <div class="riview-field">
-                  <div class="form-group">
-                    <label class="req" for="sure-name">Nickname</label>
-                    <input type="text" class="form-control" id="sure-name" required>
+                <form #reviewAdd="ngForm" (ngSubmit)="add(reviewAdd.value)">
+                  <div class="riview-field">
+                    <div class="form-group">
+                      <label class="req" for="sure-name">Nickname</label>
+                      <input type="text" class="form-control" id="sure-name" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="req" for="comments">Review</label>
+                      <textarea class="form-control" rows="5" id="comments" required></textarea>
+                    </div>
+                    <button type="submit" class="customer-btn" onClick="submit_review()">Submit Review</button>
                   </div>
-                  <div class="form-group">
-                    <label class="req" for="comments">Review</label>
-                    <textarea class="form-control" rows="5" id="comments" required></textarea>
-                  </div>
-                  <button class="customer-btn" onClick="submit_review()">Submit Review</button> 
-                </div>
+                </form>
                 <!-- Reviews Field Start -->
               </div>
               <!-- Reviews End -->
@@ -152,10 +155,10 @@
                   <!-- Reviews Field Start -->
                   <div class="riview-field">
                     <div class="form-group">
-                      <label class="req" for="date">2/4/2021</label>
+                      <label class="req" for="date">{{review.reviewDate}}</label>
                     </div>
                     <div class="form-group">
-                      <label class="req" for="comments">BIG TREFOIL TEE\r\nA COTTON GRAPHIC TEE CELEBRATING THE TREFOIL.\r\nGet into a \'70s groove. Pulled from the archives, this adidas Trefoil tee keeps your t-shirt game fresh and clean. All-cotton jersey feels soft to the touch.</label>
+                      <label class="req" for="comments">{{review.comment}}</label>
                     </div>
                   </div>
                 </div>
