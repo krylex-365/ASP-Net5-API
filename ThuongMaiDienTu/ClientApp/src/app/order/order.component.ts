@@ -86,6 +86,7 @@ export class OrderComponent {
         this.odDetails.push(odd);
       }
     })
+    this.total = 0;
     return this.odDetails;
   }
 

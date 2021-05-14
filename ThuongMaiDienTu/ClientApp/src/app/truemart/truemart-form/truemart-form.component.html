@@ -73,17 +73,18 @@
                     
                     <!-- Cart Footer Inner Start -->
                     <div *ngIf="pros" class="cart-footer">
+                      {{subtotal()}}
                       <ul class="price-content">
                         <li>
-                          Subtotal ($ {{subtotal()}})<span class="amount" id="cart-subtotal">
+                          Subtotal ($ {{subTotal.toFixed(2)}})<span class="amount" id="cart-subtotal">
                           </span>
                         </li>
                         <li>
-                          Taxes ($ 1.00)<span class="amount" id="vat">
+                          Taxes ($ {{(subTotal * 0.05).toFixed(2)}})<span class="amount" id="vat">
                           </span>
                         </li>
                         <li>
-                          Total ($ {{subtotal() + 1.0}})<span class="amount" id="cart-total">
+                          Total ($ {{(subTotal + subTotal * 0.05).toFixed(2)}})<span class="amount" id="cart-total">
                           </span>
                         </li>
                       </ul>
@@ -97,14 +98,14 @@
                 <a href="loginshop">
                   <i class="lnr lnr-user"></i> <span class="my-cart">
                     <span *ngIf="customer">Hello, </span><span *ngIf="customer"><strong>{{customer.name}}</strong></span>
-                    <span *ngIf="customer == null"> <strong>Login</strong> Or</span><span *ngIf="customer == null"><strong> Register</strong></span>
+                    <span *ngIf="!customer"> <strong>Login</strong> Or</span><span *ngIf="!customer"><strong> Register</strong></span>
                   </span>
                 </a>
                 <ul class="ht-dropdown user-dropdown">
-                  <li *ngIf="customer != null"><a href="profileshop">Profile</a></li>
-                  <li *ngIf="customer != null"><a (click)="logout()">Logout</a></li>
-                  <li *ngIf="customer == null"><a href="loginshop">Login</a></li>
-                  <li *ngIf="customer == null"><a href="register">Register</a></li>
+                  <li *ngIf="customer"><a href="profileshop">Profile</a></li>
+                  <li *ngIf="customer"><a (click)="logout()">Logout</a></li>
+                  <li *ngIf="!customer"><a href="loginshop">Login</a></li>
+                  <li *ngIf="!customer"><a href="register">Register</a></li>
                 </ul>
               </li>
             </ul>

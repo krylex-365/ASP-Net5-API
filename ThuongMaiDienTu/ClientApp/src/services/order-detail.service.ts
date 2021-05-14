@@ -14,7 +14,9 @@ export class OrderDetailService {
     return this.http.get<OrderDetail[]>(this.url + 'api/OrderDetail');
   }
 
-
+  getOrderDetailsByOrderId(id) {
+    return this.http.get<OrderDetail[]>(this.url + 'api/OrderDetail/' + id);
+  }
 
   update(orderDetail: OrderDetail) {
     return this.http.put<HttpResponse<OrderDetail>>(this.url + 'api/OrderDetail', orderDetail, { observe: 'response' });

@@ -15,6 +15,9 @@ export class OrderService {
     return this.http.get<Order[]>(this.url + 'api/Order');
   }
 
+  getOrdersByCustomerId(customerId) {
+    return this.http.get<Order[]>(this.url + 'api/Order/' + customerId);
+  }
 
   update(order: Order) {
     return this.http.put<HttpResponse<Order>>(this.url + 'api/Order', order, { observe: 'response' });

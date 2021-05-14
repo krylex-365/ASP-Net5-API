@@ -13,6 +13,7 @@ using TMDT.Models;
 
 namespace ThuongMaiDienTu.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CheckoutController : ControllerBase

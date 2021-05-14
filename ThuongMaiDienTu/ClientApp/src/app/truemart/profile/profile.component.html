@@ -255,20 +255,20 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                         </tr>
                       </thead>
                       <tbody id="table-order-body">
-                        <tr>
-                          <td><?php echo $order_id?></td>
-                          <td><?php echo $buy_date?></td>
+                        <tr *ngFor="let od of orders">
+                          <td>{{od.orderId}}</td>
+                          <td>{{od.date}}</td>
                           <td>
-                            <button type="button" class="btn btn-info">New Order</button>
-                            <button type="button" class="btn btn-danger">Delivery</button>
-                            <button type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
+                            <button *ngIf="od.status == '1'" type="button" class="btn btn-info" disabled>New Order</button>
+                            <button *ngIf="od.status == '2'" type="button" class="btn btn-danger" disabled>Delivery</button>
+                            <button *ngIf="od.status == '3'" type="button" class="btn btn-success" style="color:#fff;" disabled>Delivered</button>
                           </td>
-                          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLongPurchaseHistory"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                          <td><button type="button" (click)="getOrder(od.orderId)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLongPurchaseHistory"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
-                  <div class="modal fade" id="exampleModalLongPurchaseHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div *ngIf="order" class="modal fade" id="exampleModalLongPurchaseHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -279,31 +279,31 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                           <div class="row">
                             <div class="col-md-6 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Order ID:</h6>
-                              <p> <?php echo $order_id?></p>
+                              <p> {{order.orderId}}</p>
                             </div>
                             <div class="col-md-6 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Date:</h6>
-                              <p> <?php echo $buy_date?></p>
+                              <p> {{order.date}}</p>
                             </div>
                             <div class="col-md-6 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Customer:</h6>
-                              <p> <?php echo $cus_id?></p>
+                              <p> {{customer.name}}</p>
                             </div>
                             <div class="col-md-6 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Address:</h6>
-                              <p> <?php echo $cus_address?></p>
+                              <p> {{customer.address}}</p>
                             </div>
                             <div class="col-md-6 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Email:</h6>
-                              <p> <?php echo $email?></p>
+                              <p> {{customer.mail}}</p>
                             </div>
                             <div class="col-md-6 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Phone Number:</h6>
-                              <p> <?php echo $phonenumber?></p>
+                              <p> {{customer.phoneNumber}}</p>
                             </div>
                             <div class="col-md-12 pb-10">
                               <h6 style="color:#ea5774;font-weight:600;">Order Note:</h6>
-                              <p> <?php echo $order_note?></p>
+                              <p> {{order.note}}</p>
                             </div>
                             <div class="table-responsive">
                               <table id="table-detail-<?php echo $order_id?>" class="table table-bordered table-striped table-hover">
@@ -314,33 +314,35 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
                                   <th style="width: 16%">Quantity</th>
                                   <th style="width: 16%">Total</th>
                                 </tr>
-                                <tr>
-                                  <td><img src="./product-img/iphone-11-pro-max-256gb.jpg" style="width: 100%;"></td>
-                                  <td>iphone-11-pro-max-256gb</td>
-                                  <td>$ 222</td>
-                                  <td>1</td>
-                                  <td>$ 222</td>
+                                <tr *ngFor="let orde of orderDetails">
+                                  {{getProductByOrderDetailId(orde.productId)}}
+                                  <td><img src="./product-img/{{product.image}}" style="width: 100%;"></td>
+                                  <td>{{product.name}}</td>
+                                  <td>$ {{product.price}}</td>
+                                  <td>{{orde.quantity}}</td>
+                                  <td>$ {{orde.totalPrice}}</td>
                                 </tr>
+                                {{caculatorSubTotal()}}
                                 <tr>
                                   <th></th>
                                   <th></th>
                                   <th></th>
                                   <th style="color: #ea5774;">Sub Total:</th>
-                                  <th style="color: #ea5774;">$ 222</th>
+                                  <th style="color: #ea5774;">$ {{subTotal.toFixed(2)}}</th>
                                 </tr>
                                 <tr>
                                   <th></th>
                                   <th></th>
                                   <th></th>
                                   <th style="color: #ea5774;">Taxes:</th>
-                                  <th style="color: #ea5774;">$ 1.00</th>
+                                  <th style="color: #ea5774;">$ {{(subTotal * 0.05).toFixed(2)}}</th>
                                 </tr>
                                 <tr>
                                   <th></th>
                                   <th></th>
                                   <th></th>
                                   <th style="color: #ea5774;">Total:</th>
-                                  <th style="color: #ea5774;">$ 223</th>
+                                  <th style="color: #ea5774;">$ {{(subTotal + subTotal * 0.05).toFixed(2)}}</th>
                                 </tr>
                               </table>
                             </div>

@@ -13,7 +13,6 @@ using TMDT.Models;
 
 namespace TMDT.Controllers
 {
-    [Authorize(Roles = "admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -23,12 +22,14 @@ namespace TMDT.Controllers
         {
             this.context = context;
         }
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public List<Account> GetList()
         {
             List<Account> accounts = context.Accounts.ToList().FindAll(acc => acc.Status != "-1");
             return accounts;
         }
+        [Authorize]
         [HttpGet("{id}")]
         public Account GetById(string id)
         {
@@ -76,6 +77,7 @@ namespace TMDT.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+        [Authorize]
         [HttpPut]
         public HttpResponseMessage Update(Account account)
         {
@@ -98,6 +100,7 @@ namespace TMDT.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public HttpResponseMessage Delete(string id)
         {

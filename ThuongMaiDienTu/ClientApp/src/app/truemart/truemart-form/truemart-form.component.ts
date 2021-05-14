@@ -36,6 +36,8 @@ export class TruemartFormComponent implements OnInit {
   pros: Array<Product>;
   cardId;
 
+  subTotal: number;
+
   constructor(private categoryService: CategoriesService,
     private subcategoryService: SubcategoriesService,
     private router: Router,
@@ -172,7 +174,7 @@ export class TruemartFormComponent implements OnInit {
     this.pros.forEach(pro => {
       total += Number.parseFloat(pro.price);
     })
-    return total;
+    this.subTotal = total;
   }
 
   refresh(): void {

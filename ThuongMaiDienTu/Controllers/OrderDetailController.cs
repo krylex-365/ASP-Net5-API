@@ -13,6 +13,7 @@ using TMDT.Models;
 
 namespace TMDT.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderDetailController : ControllerBase
@@ -28,9 +29,10 @@ namespace TMDT.Controllers
             return context.OrderDetails.ToList();
         }
         [HttpGet("{id}")]
-        public OrderDetail GetById(string id)
+        public List<OrderDetail> GetListByOrderId(string id)
         {
-            return context.OrderDetails.Find(id);
+            List<OrderDetail> orderDetails = context.OrderDetails.ToList().FindAll(or => or.OrderId == id);
+            return orderDetails;
         }
         [HttpGet("Order/{id}")]
         public List<OrderDetail> GetAllByOrderId(string id)

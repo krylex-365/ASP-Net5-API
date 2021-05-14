@@ -13,7 +13,6 @@ using TMDT.Models;
 
 namespace TMDT.Controllers
 {
-    [Authorize(Roles = "admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -23,12 +22,14 @@ namespace TMDT.Controllers
         {
             this.context = context;
         }
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public List<Customer> GetList()
         {
             List<Customer> customers = context.Customers.ToList().FindAll(cus => cus.Status != "-1");
             return customers;
         }
+        [Authorize]
         [HttpGet("{id}")]
         public Customer GetById(string id)
         {
@@ -70,6 +71,7 @@ namespace TMDT.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
             //return "Added";
         }
+        [Authorize]
         [HttpPut]
         public HttpResponseMessage Update(Customer customer)
         {
@@ -93,6 +95,7 @@ namespace TMDT.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
             //return "Updated";
         }
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public HttpResponseMessage Delete(string id)
         {

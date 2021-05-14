@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { Account } from '../../../models/account';
 import { Customer } from '../../../models/customer';
+import { Order } from '../../../models/order';
+import { OrderDetail } from '../../../models/orderDetail';
+import { Product } from '../../../models/Product';
 import { AccountService } from '../../../services/account.service';
 import { CustomerService } from '../../../services/customer.service';
+import { OrderDetailService } from '../../../services/order-detail.service';
+import { OrderService } from '../../../services/order.service';
+import { ProductService } from '../../../services/product.service';
 declare var $: any;
 @Component({
     selector: 'app-profile',
@@ -33,12 +39,24 @@ export class ProfileComponent implements OnInit{
   sex: string;
   bool: boolean;
 
+  //order
+  orders: Array<Order>;
+  products: Array<Product>;
+  product: Product;
+  orderDetails: Array<OrderDetail>;
+
+  //orderDetail
+  order: Order;
+  subTotal: number;
+
   constructor(private customerService: CustomerService,
-    private accountService: AccountService,) { }
+    private accountService: AccountService,
+    private orderService: OrderService,
+    private productService: ProductService,
+    private orderDetailService: OrderDetailService  ) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
 
@@ -69,12 +87,31 @@ export class ProfileComponent implements OnInit{
           this.avatar = this.account.avatar;
         });
 
+      this.orderService.getOrdersByCustomerId(this.customerId).subscribe(
+        result => {
+          this.orders = result;
+          console.log(this.orders);
+        });
+
+      this.productService.getProducts().subscribe(
+        result => {
+          this.products = result;
+          console.log(this.products);
+        });
+
+      /*this.orderDetailService.getOrderDetails().subscribe(
+        result => {
+          this.orderDetails = result;
+          console.log(this.orderDetails);
+        });*/
     }
 
 
     $(document).ready(function () {
         $("#datepickerBirthday").datepicker();
     });
+
+    this.subTotal = 0;
   }
 
   async update(value) {
@@ -111,6 +148,41 @@ export class ProfileComponent implements OnInit{
 
     if (this.bool) {
       this.refresh();
+    }
+  }
+
+  getOrder(id: string) {
+    this.subTotal = 0;
+
+    for (var i = 0; i < this.orders.length; i++) {
+      if (this.orders[i].orderId == id) {
+        this.order = this.orders[i];
+        break;
+      }
+    }
+
+    //OrderDetails
+    this.orderDetailService.getOrderDetailsByOrderId(id).subscribe(
+      result => {
+        this.orderDetails = result;
+        console.log(this.orderDetails);
+      }
+    )
+  }
+
+  getProductByOrderDetailId(id) {
+    for (var j = 0; j < this.products.length; j++) {
+      if (this.products[j].productId == id) {
+        this.product = this.products[j];
+        return;
+      }
+    }
+  }
+
+  caculatorSubTotal() {
+    this.subTotal = 0;
+    for (var i = 0; i < this.orderDetails.length; i++) {
+      this.subTotal += Number.parseInt(this.orderDetails[i].totalPrice);
     }
   }
 
