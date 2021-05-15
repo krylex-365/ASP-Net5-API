@@ -62,6 +62,12 @@
               <div class="card-title">
                 <h3>Categories</h3>
               </div>
+
+              <!--alert error-->
+              <div *ngIf="categoryDelError" class="alert alert-danger" role="alert">
+                {{categoryDelError}}
+              </div>
+
               <div class="table-responsive">
                 <table id="DataTable" class="table table-bordered table-striped table-hover zero-configuration">
                   <thead>
@@ -88,7 +94,7 @@
                         <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Are you sure to delete<br> Category {{categoryDel.categoryId}}. {{categoryDel.name}}?</h3>
                       </div>
                       <div class="modal-footer" style="margin: auto;">
-                        <button type="button" class="btn btn-danger" (click)="delete(categoryDel.categoryId)">Yes, delete it !</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(categoryDel.categoryId)">Yes, delete it !</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                       </div>
                     </div>

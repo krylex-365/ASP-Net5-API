@@ -17,12 +17,12 @@
         <div class="col-lg-5 col-md-8 ml-auto mr-auto col-10">
           <div class="categorie-search-box">
             <form action="search-product.php" method="get">
-              <div class="form-group">
+              <!--<div class="form-group">
                 <select *ngIf="subcategories" class="bootstrap-select" name="poscats">
                   <option value="0">All sub-categories</option>
                   <option *ngFor="let subc of subcategories" value='{{subc.subcategoryId}}'>{{subc.name}}</option>
                 </select>
-              </div>
+              </div>-->
               <style>
                 .ui-menu .ui-menu-item-wrapper {
                   font-size: 13px;
@@ -38,8 +38,10 @@
                   background: #fff !important;
                 }
               </style>
-              <input type="text" name="search" placeholder="I’m shopping for..." id="searchproduct">
-              <button type="submit" name="search-product"><i class="lnr lnr-magnifier"></i></button>
+              <input type="text" name="search" [(ngModel)]="nameProduct" placeholder="I’m shopping for..." id="searchproduct">
+              <a href="shop/n{{nameProduct}}">
+                <button type="button" name="search-product"><i class="lnr lnr-magnifier"></i></button>
+              </a>
             </form>
           </div>
         </div>
@@ -53,7 +55,7 @@
                   <i class="lnr lnr-cart"></i><span class="my-cart"><span *ngIf="customer && pros != null" class="total-pro">1</span><span>cart</span>
                   </span>
                 </a>
-                <ul *ngIf="customer" class="ht-dropdown cart-box-width">
+                <ul *ngIf="customer && pros" class="ht-dropdown cart-box-width">
                   <li>
                     <ul *ngIf="pros">
                       <li *ngFor="let pro of pros">
@@ -128,9 +130,9 @@
         <div class="col-xl-9 col-lg-8 col-md-12 ">
           <nav class="d-none d-lg-block">
             <ul class="header-bottom-list d-flex">
-              <li class="active"><a href="#">Home</a> </li>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">Cart</a></li>
+              <li class="active"><a href="shop">Home</a> </li>
+              <!--<li><a href="shop">Shop</a></li>-->
+              <li><a href="cart">Cart</a></li>
               <li><a href="#">About us</a></li>
               <li><a href="#">Contact us</a></li>
             </ul>

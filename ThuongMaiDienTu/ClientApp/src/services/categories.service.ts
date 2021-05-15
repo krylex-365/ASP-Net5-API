@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment.prod';
 import { Categories } from '../models/Categories';
 
@@ -24,6 +24,6 @@ export class CategoriesService {
   }
 
   delete(id: string) {
-    return this.http.delete<HttpResponse<Account>>(this.url + 'api/Category/' + id, { observe: 'response' });
+    return this.http.delete(this.url + 'api/Category/' + id, { observe: 'response' });
   }
 }

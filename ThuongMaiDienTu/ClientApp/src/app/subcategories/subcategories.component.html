@@ -96,6 +96,12 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
               <div class="card-title">
                 <h3>Sub-Categories</h3>
               </div>
+
+              <!--alert error-->
+              <div *ngIf="subcategoryDelError" class="alert alert-danger" role="alert">
+                {{subcategoryDelError}}
+              </div>
+
               <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover">
                   <thead>
@@ -113,18 +119,18 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
                       <td>{{subcategory.name}}</td>
                       <td>{{subcategory.categoryId}}</td>
                       <td><button type="button" class="btn btn-primary" (click)="getSubcategoryById(subcategory.subcategoryId)"><i class="fa fa-pencil"></i></button></td>
-                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getSubcategoryDel(subcategory.subcategoryId)"><i class="fa fa-close"></i></button></td>
+                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="getSubcategoryDel(subcategory)"><i class="fa fa-close"></i></button></td>
                     </tr>
                   </tbody>
                 </table>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div *ngIf="subcategoryDel" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Are you sure to delete<br> Sub-Category {{subcategoryDel.subcategoryId}}. {{subcategoryDel.name}} ?</h3>
                       </div>
                       <div class="modal-footer" style="margin: auto;">
-                        <button type="button" class="btn btn-danger" (click)="delete(subcategoryDel.subcategoryId)">Yes, delete it !</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(subcategoryDel.subcategoryId)">Yes, delete it !</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                       </div>
                     </div>

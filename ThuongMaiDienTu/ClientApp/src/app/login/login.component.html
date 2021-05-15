@@ -37,6 +37,9 @@
                   <form #account="ngForm" (ngSubmit)="onSubmit(account.value)" class="mt-5 mb-5 form-signin animated shake login-input">
                     <h3 class="text-center"> Admin Login </h3>
                     <br>
+                    <div *ngIf="loginError" class="alert alert-danger" role="alert">
+                      {{loginError}}
+                    </div>
                     <div class="form-group">
                       <input type="text" id="inputUsername" name="userName" [(ngModel)]="userName" class="form-control" placeholder="Enter username..." required autofocus>
                     </div>

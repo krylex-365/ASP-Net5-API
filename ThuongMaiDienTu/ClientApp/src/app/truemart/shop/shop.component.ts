@@ -13,6 +13,7 @@ import jwt_decode from 'jwt-decode';
 import { Card } from '../../../models/card';
 import { CustomerService } from '../../../services/customer.service';
 import { Customer } from '../../../models/customer';
+import { max } from 'rxjs/operators';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -34,6 +35,17 @@ export class ShopComponent implements OnInit {
   customer: Customer;
 
   bool: boolean;
+
+  //error
+  reponse: any;
+
+  //page
+  allProducts: Array<Product>
+  indexPage: number;
+  maxPage: number;
+  sizePage: number;
+  modPage: number;
+  arNum: Array<Number>;
 
   constructor(private categoryService: CategoriesService,
     private productService: ProductService,
@@ -68,27 +80,52 @@ export class ShopComponent implements OnInit {
             })
             this.products = this.prods;
           } else {
-            this.subcates = Array<Subcategories>();
-            this.subcategories.forEach(sub => {
-              if (sub.categoryId == id.substring(1)) {
-                this.subcates.push(sub);
-              }
-            });
-            this.products.forEach(pro => {
-              this.bool = false;
-              this.subcates.forEach(sub => {
-                if (pro.subcategoryId == sub.subcategoryId) {
-                  this.bool = true;
+            if (id.substring(0, 1) == "c") {
+              this.subcates = Array<Subcategories>();
+              this.subcategories.forEach(sub => {
+                if (sub.categoryId == id.substring(1)) {
+                  this.subcates.push(sub);
+                }
+              });
+              this.products.forEach(pro => {
+                this.bool = false;
+                this.subcates.forEach(sub => {
+                  if (pro.subcategoryId == sub.subcategoryId) {
+                    this.bool = true;
+                  }
+                })
+                if (this.bool) {
+                  this.prods.push(pro);
+                }
+              });
+              this.products = this.prods;
+            } else {
+              var name = id.substring(1);
+              this.products.forEach(pro => {
+                if (pro.name.indexOf(name) != -1) {
+                  this.prods.push(pro);
                 }
               })
-              if (this.bool) {
-                this.prods.push(pro);
-              }
-            });
-            this.products = this.prods;
+              this.products = this.prods;
+            }
           }
         }
         console.log(this.products);
+
+        //Lay 12 product dau tien
+        this.allProducts = this.products;
+        this.sizePage = 12;
+        this.maxPage = Number.parseInt((this.allProducts.length / this.sizePage) + "");
+        this.modPage = this.allProducts.length % this.sizePage;
+        if (this.modPage != 0) {
+          this.maxPage++;
+        }
+        this.arNum = Array<Number>();
+        for (var i = 0; i < this.maxPage; i++) {
+          this.arNum.push(i);
+        }
+        
+        this.setPage(0);
       });
 
     this.currentUser = JSON.parse(localStorage.getItem('user'));
@@ -112,6 +149,36 @@ export class ShopComponent implements OnInit {
 
   }
 
+  setPage(index: number) {
+    this.indexPage = index;
+    this.products = Array<Product>();
+    if (this.indexPage == this.maxPage && this.modPage != 0) {
+      for (var i = (this.indexPage + 1) * this.sizePage - this.sizePage; i < (this.indexPage + 1) * this.sizePage - (this.sizePage - this.modPage); i++) {
+        this.products.push(this.allProducts[i]);
+      }
+    } else {
+      for (var i = (this.indexPage + 1) * this.sizePage - this.sizePage; i < (this.indexPage + 1) * this.sizePage; i++) {
+        this.products.push(this.allProducts[i]);
+      }
+    }
+  }
+
+  setIndexPage(index: number) {
+    if (index < 0) {
+      this.indexPage = 0;
+      this.setPage(this.indexPage);
+      return;
+    }
+    if (index == this.maxPage) {
+      this.indexPage = this.maxPage - 1;
+      this.setPage(this.indexPage);
+      return;
+    }
+    this.indexPage = index;
+    this.setPage(this.indexPage);
+    return;
+  }
+
   addToCard(id) {
     console.log(id);
     const card = new Card;
@@ -121,8 +188,11 @@ export class ShopComponent implements OnInit {
     this.cardService.add(card).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
           this.refresh();
+        } else {
+          alert('Không thể thêm nữa!');
         }
       });
   }

@@ -38,6 +38,9 @@ export class TruemartFormComponent implements OnInit {
 
   subTotal: number;
 
+  //Search
+  nameProduct;
+
   constructor(private categoryService: CategoriesService,
     private subcategoryService: SubcategoriesService,
     private router: Router,

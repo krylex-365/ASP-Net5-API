@@ -54,7 +54,7 @@ namespace TMDT.Controllers
             //Tu dong tao khoa chinh
             List<Account> accounts = context.Accounts.ToList();
 
-            //Check
+            //Check name
             List<Account> ac = accounts.FindAll(acc => acc.UserName == account.UserName);
             if(ac.Count != 0)
             {
@@ -92,6 +92,14 @@ namespace TMDT.Controllers
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 /*return "RoleId does not exist";*/
+            }
+
+            //Check name
+            List<Account> accounts = context.Accounts.ToList();
+            List<Account> ac = accounts.FindAll(acc => acc.UserName == account.UserName);
+            if (ac.Count != 0)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
             context.Entry(account1).State = EntityState.Detached;

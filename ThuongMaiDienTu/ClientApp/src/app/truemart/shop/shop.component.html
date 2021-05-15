@@ -101,7 +101,7 @@ session_start();
               <div id="grid-view" class="tab-pane fade show active" *ngIf="products">
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-6 col-6" *ngFor="let prod of products">
-                    <div class="single-product">
+                    <div *ngIf="prod" class="single-product">
                       <form action="#" method="POST">
                         <!-- Product Image Start -->
                         <div class="pro-img">
@@ -122,102 +122,32 @@ session_start();
                           <div class="pro-actions">
                             <div class="actions-primary">
                               <input *ngIf="customer" (click)="addToCard(prod.productId)" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
-                             
+
                               <input *ngIf="!customer" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart" style="margin-top: 35px;">
-                              
+
                             </div>
                           </div>
                         </div>
                       </form>
                     </div>
                   </div>
-                  <!-- <?php
-                  }
-                  } else {
-                    echo "<div class='col-lg-4 col-md-4 col-sm-6 col-6'><span style='color:red;'>No Products Found</span></div>";
-                  }
-                  ?> -->
                 </div>
                 <!-- Row End -->
+                <nav *ngIf="arNum" class="float-right" aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li (click)="setIndexPage(indexPage - 1)" class="page-item"><a class="page-link">Previous</a></li>
+                    <li *ngIf="indexPage > 1 && maxPage > 3" class="page-item"><a class="page-link">...</a></li>
+                    <li *ngIf="indexPage == maxPage - 1 && indexPage > 1" class="page-item"><a class="page-link">{{indexPage - 1}}</a></li>
+                    <li *ngIf="indexPage != 0" class="page-item"><a class="page-link">{{indexPage}}</a></li>
+                    <li class="page-item"><a class="page-link alert-primary">{{indexPage + 1}}</a></li>
+                    <li *ngIf="indexPage != maxPage - 1 && maxPage > 1" class="page-item"><a class="page-link">{{indexPage + 2}}</a></li>
+                    <li *ngIf="indexPage == 0 && maxPage > 2" class="page-item"><a class="page-link">{{indexPage + 3}}</a></li>
+                    <li *ngIf="indexPage < maxPage - 2 && maxPage > 3" class="page-item"><a class="page-link">...</a></li>
+                    <li (click)="setIndexPage(indexPage + 1)" class="page-item"><a class="page-link">Next</a></li>
+                  </ul>
+                </nav>
               </div>
-              <div class="pro-pagination">
-                <ul class="blog-pagination">
-                  <!-- <?php
-                  if ( isset( $_GET[ 'cat' ] ) ) {
-                    if ( $current_page > 1 && $total_page > 1 ) {
-                      echo '<li>
-                                <a href="shop.php?cat=' . $cat_id_pro . '&page=' . ( $current_page - 1 ) . '" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>';
-                    }
-                    for ( $i = 1; $i <= $total_page; $i++ ) {
-                      if ( $i == $current_page )
-                        echo '<li class="active"><a href="shop.php?cat=' . $cat_id_pro . '&page=' . ( $current_page ) . '">' . $i . '</a></li>';
-                      else
-                        echo '<li><a href="shop.php?cat=' . $cat_id_pro . '&page=' . $i . '">' . $i . '</a></li>';
-                    }
-                    if ( $current_page < $total_page && $total_page > 1 ) {
-                      echo '<li>
-                                <a href="shop.php?cat=' . $cat_id_pro . '&page=' . ( $current_page + 1 ) . '" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>';
-                    }
-                  } else if ( isset( $_GET[ 'subcat' ] ) ) {
-                    if ( $current_page > 1 && $total_page > 1 ) {
-                      echo '<li>
-                                <a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . ( $current_page - 1 ) . '" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>';
-                    }
-                    for ( $i = 1; $i <= $total_page; $i++ ) {
-                      if ( $i == $current_page )
-                        echo '<li class="active"><a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . ( $current_page ) . '">' . $i . '</a></li>';
-                      else
-                        echo '<li><a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . $i . '">' . $i . '</a></li>';
-                    }
-                    if ( $current_page < $total_page && $total_page > 1 ) {
-                      echo '<li>
-                                <a href="shop.php?subcat=' . $subcat_id_pro . '&page=' . ( $current_page + 1 ) . '" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>';
-                    }
-                  } else {
-                    if ( $current_page > 1 && $total_page > 1 ) {
-                      echo '<li>
-                                <a href="shop.php?page=' . ( $current_page - 1 ) . '" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>';
-                    }
-                    for ( $i = 1; $i <= $total_page; $i++ ) {
-                      if ( $i == $current_page )
-                        echo '<li class="active"><a href="shop.php?page=' . ( $current_page ) . '">' . $i . '</a></li>';
-                      else
-                        echo '<li><a href="shop.php?page=' . $i . '">' . $i . '</a></li>';
-                    }
-                    if ( $current_page < $total_page && $total_page > 1 ) {
-                      echo '<li>
-                                <a href="shop.php?page=' . ( $current_page + 1 ) . '" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>';
-                    }
-                  }
-                  ?> -->
-                </ul>
-                <!--<div class="product-pagination"> <span class="grid-item-list">Showing <?php echo $start+1?> to <?php echo $start+$pro_in_page?> of <?php echo $count?> (<?php echo $i-1?> Pages)</span> </div>-->
-              </div>
-              <!-- Product Pagination Info -->
+              
             </div>
             <!-- Grid & List Main Area End -->
           </div>

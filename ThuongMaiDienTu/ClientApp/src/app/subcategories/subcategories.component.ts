@@ -20,6 +20,12 @@ export class SubcategoriesComponent implements OnInit {
   subcategoryUp: Subcategories;
   categoryId = '1';
   nameUp = '';
+
+  //error
+  reponse: any;
+  subcategoryDelError;
+
+
   /** subcategories ctor */
   constructor(private subcategoriesSevice: SubcategoriesService,
     private categoriesService: CategoriesService,
@@ -40,12 +46,8 @@ export class SubcategoriesComponent implements OnInit {
       });
   }
 
-  getSubcategoryDel(id: string) {
-    this.subcategories.forEach(subcate => {
-      if (subcate.subcategoryId == id) {
-        this.subcategoryDel = subcate;
-      }
-    })
+  getSubcategoryDel(subcate) {
+    this.subcategoryDel = subcate;
   }
 
   getSubcategoryById(id: string) {
@@ -93,8 +95,11 @@ export class SubcategoriesComponent implements OnInit {
     this.subcategoriesSevice.delete(id).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
           this.refresh();
+        } else {
+          this.subcategoryDelError = "Không thể xóa subcategory " + id + " do còn product";
         }
       });
   }

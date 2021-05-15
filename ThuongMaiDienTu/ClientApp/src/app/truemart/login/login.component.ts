@@ -19,6 +19,9 @@ export class LoginTruemartComponent {
   errorMsg = '';
   dashboard: DashboardComponent;
 
+  //error
+  loginError;
+
   constructor(private loginService: LoginService,
     private router: Router,
     private route: ActivatedRoute,
@@ -32,8 +35,10 @@ export class LoginTruemartComponent {
     this.loginService.login(this.account).subscribe(
       () => {
         console.log(this.loginService.getuser())
-        if (this.loginService.getuser().UserName != "") {
+        if (this.loginService.getuser() && this.loginService.getuser().UserName != "") {
           this.redirectShop();
+        } else {
+          this.loginError = "Sai thông tin đăng nhập";
         }
       }
     )

@@ -19,6 +19,9 @@ export class LoginComponent {
   errorMsg = '';
   dashboard: DashboardComponent;
 
+  //error
+  loginError;
+
   constructor(private loginService: LoginService,
     private router: Router,
     private route: ActivatedRoute,
@@ -34,10 +37,10 @@ export class LoginComponent {
     this.loginService.login(this.account).subscribe(
       () => {
         console.log(this.loginService.getuser())
-        if (this.loginService.getuser().UserName == "admin") {
+        if (this.loginService.getuser() && this.loginService.getuser().UserName == "admin") {
           this.redirectAdmin();
         } else {
-          this.redirectUser();
+          this.loginError = "Sai thông tin đăng nhập";
         }
       }
     )
