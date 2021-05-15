@@ -281,9 +281,11 @@ export class CartComponent implements OnInit {
       key: 'pk_test_51IpYAAFHJwvecwZid8EIfhwSEEKe6N3O12NpIGrbCr4T1YSIkwEOGuubH3xzjOBifbd2GcKTfsangLi9IEKaKOQj008aRf6g42',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken)
-        alert('Stripe token generated!');
-        this.refresh();
+        console.log(stripeToken);
+        $(document).ready(function () {
+          alert('Stripe token generated! Your payment successfull!');
+          window.location.reload();
+        });
       }
     });
 

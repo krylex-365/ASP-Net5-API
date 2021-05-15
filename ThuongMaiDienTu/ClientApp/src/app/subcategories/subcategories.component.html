@@ -71,7 +71,7 @@ if (isset($_GET['del']) and isset($_SESSION['usernameadmin'])) {
               <div class="card-title">
                 <h4>Edit Sub-Category</h4>
               </div>
-              <form #categoryUpdate="ngForm" (ngSubmit)="update(subcategoryUp.subcategoryId, subcategoryUpdate.value)">
+              <form #subcategoryUpdate="ngForm" (ngSubmit)="update(subcategoryUp.subcategoryId, subcategoryUpdate.value)">
                 <div class="form-group">
                   <label for="category">Edit Category Name:*</label>
                   <div class="box">

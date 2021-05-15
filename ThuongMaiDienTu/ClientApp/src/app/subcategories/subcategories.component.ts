@@ -67,12 +67,20 @@ export class SubcategoriesComponent implements OnInit {
 
   update(id: string, value: Subcategories) {
     this.subcategory = value;
-    this.subcategory.categoryId = id;
+    this.subcategory.subcategoryId = id;
     this.subcategoriesSevice.update(this.subcategory).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Update subcategory successfully!');
+          });
           this.refresh();
+        } else {
+          $(document).ready(function () {
+            alert('Update subcategory fail! Some error has occurred.');
+          });
         }
       });
   }
@@ -85,8 +93,16 @@ export class SubcategoriesComponent implements OnInit {
     this.subcategoriesSevice.add(this.subcategory).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Add subcategory successfully!');
+          });
           this.refresh();
+        } else {
+          $(document).ready(function () {
+            alert('Add subcategory fail! Some error has occurred.');
+          });
         }
       });
   }
@@ -97,9 +113,12 @@ export class SubcategoriesComponent implements OnInit {
         console.log(result);
         this.reponse = result.valueOf()
         if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Delete subcategory successfully!');
+          });
           this.refresh();
         } else {
-          this.subcategoryDelError = "Không thể xóa subcategory " + id + " do còn product";
+          this.subcategoryDelError = "Can not delete subcategory " + id + " because it still have products!";
         }
       });
   }

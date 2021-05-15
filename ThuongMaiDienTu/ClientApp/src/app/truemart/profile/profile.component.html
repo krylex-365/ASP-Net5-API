@@ -1,28 +1,3 @@
-<!--<?php
-require_once( 'inc/top.php' );
-session_start();
-if ( !isset( $_SESSION[ 'username' ] ) ) {
-  header( 'location: login.php' );
-}
-
-if ( isset( $_SESSION[ 'username' ] ) ) {
-  $info_username_customer = $_SESSION[ 'username' ];
-  $info_query_customer = "select * from account left join customer on accID = accountID where username = '$info_username_customer'";
-  $info_run_customer = mysqli_query( $conn, $info_query_customer );
-
-  if ( mysqli_num_rows( $info_run_customer ) > 0 ) {
-    $info_row_customer = mysqli_fetch_array( $info_run_customer );
-    $info_password_customer = $info_row_customer[ 'password' ];
-    $info_name_customer = $info_row_customer[ 'cusName' ];
-    $info_email_customer = $info_row_customer[ 'cusEmail' ];
-    $info_phonenumber_customer = $info_row_customer[ 'cusPhoneNumber' ];
-    $info_address_customer = $info_row_customer[ 'cusAddress' ];
-    $info_id_customer = $info_row_customer[ 'accID' ];
-  }
-}
-?>
-<title>Profile</title>
-</head><body>-->
 <!-- Main Wrapper Start Here -->
 <div class="wrapper">
   <!-- <?php require_once('inc/header.php');?>-->
@@ -32,8 +7,8 @@ if ( isset( $_SESSION[ 'username' ] ) ) {
     <div class="container">
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
-          <li><a href="#">Home</a></li>
-          <li class="active"><a href="profileshop">Profile</a></li>
+          <li><a href="shop">Shop</a></li>
+          <li class="active"><a>Profile</a></li>
         </ul>
       </div>
     </div>

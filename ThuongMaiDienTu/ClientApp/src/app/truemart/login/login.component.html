@@ -58,8 +58,8 @@ else if(isset($_POST['login'])){
     <div class="container">
       <div class="breadcrumb">
         <ul class="d-flex align-items-center">
-          <li><a href="index">Home</a></li>
-          <li class="active"><a href="login">Login</a></li>
+          <li><a href="shop">Shop</a></li>
+          <li class="active">Login</li>
         </ul>
       </div>
     </div>
@@ -87,13 +87,6 @@ else if(isset($_POST['login'])){
           <div class="well">
             <div class="return-customer">
               <h3 class="mb-10 custom-title">returning customer</h3>
-              <h6 class="mb-10">
-                <!-- <?php
-                 if(isset($error)){
-                 echo "<span style='color:red;'>$error</span>";
-                 }
-                 ?>-->
-              </h6>
               <form #account="ngForm" (ngSubmit)="onSubmit(account.value)">
                 <div *ngIf="loginError" class="alert alert-danger" role="alert">
                   {{loginError}}
@@ -106,8 +99,7 @@ else if(isset($_POST['login'])){
                   <label>Password</label>
                   <input type="password" name="password" [(ngModel)]="password" placeholder="Password" id="input-password" class="form-control">
                 </div>
-                <p class="lost-password"><a href="forgot-password.php">Forgot password?</a></p>
-                <input type="submit" name="login" class="return-customer-btn">
+                <input type="submit" name="login" class="return-customer-btn" value="Login">
               </form>
             </div>
           </div>

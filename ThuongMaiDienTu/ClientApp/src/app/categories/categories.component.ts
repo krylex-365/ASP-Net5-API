@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Categories } from '../../models/Categories';
 import { CategoriesService } from '../../services/categories.service';
 import { Page404Service } from '../../services/page404.service';
-
+declare var $: any;
 @Component({
     selector: 'app-categories',
     templateUrl: './categories.component.html',
@@ -66,8 +66,16 @@ export class CategoriesComponent implements OnInit {
     this.categoriesSevice.update(this.category).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Update category successfully!');
+          });
           this.refresh();
+        } else {
+          $(document).ready(function () {
+            alert('Update category fail! Some error has occurred.');
+          });
         }
       });
   }
@@ -78,8 +86,16 @@ export class CategoriesComponent implements OnInit {
     this.categoriesSevice.add(this.category).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function (){
+            alert('Add category successfully!');
+          });
           this.refresh();
+        } else {
+          $(document).ready(function (){
+            alert('Add category fail! Some error has occurred.');
+          });
         }
       });
   }
@@ -90,9 +106,12 @@ export class CategoriesComponent implements OnInit {
         console.log(result);
         this.reponse = result.valueOf()
         if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Delete category successfully!');
+          });
           this.refresh();
         } else {
-          this.categoryDelError = "Không thể xóa category " + id + " do còn subcategory";
+          this.categoryDelError = "Can not delete category " + id + " because it still have subcategories!";
         }
       });
   }

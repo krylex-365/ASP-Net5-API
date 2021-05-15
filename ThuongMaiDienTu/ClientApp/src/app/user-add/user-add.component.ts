@@ -21,6 +21,7 @@ export class UserAddComponent implements OnInit{
   roleId: string;
   account: Account;
   customer: Customer;
+  reponse: any;
 
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
@@ -70,8 +71,16 @@ export class UserAddComponent implements OnInit{
           this.customerService.add(this.customer).subscribe(
             result => {
               console.log(result);
-              if (result.status == 200) {
+              this.reponse = result.valueOf()
+              if (this.reponse.body.statusCode == 200) {
+                $(document).ready(function () {
+                  alert('Add user successfully!');
+                });
                 this.redirectUsers();
+              } else {
+                $(document).ready(function () {
+                  alert('Add user fail! Some error has occurred.');
+                });
               }
             });
         }

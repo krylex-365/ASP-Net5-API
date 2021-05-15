@@ -15,6 +15,8 @@ export class ProductComponent implements OnInit {
   /** product ctor */
   products: Array<Product>;
   delProductId: string;
+  //error
+  reponse: any;
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
@@ -42,8 +44,16 @@ export class ProductComponent implements OnInit {
     this.productService.delete(this.delProductId).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Delete product successfully!');
+          });
           this.refresh();
+        } else {
+          $(document).ready(function () {
+            alert('Delete product fail! Some error has occurred.');
+          });
         }
       });
   }

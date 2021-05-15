@@ -29,6 +29,7 @@ export class EditproductComponent {
   status: string;
   quantity: string;
   subcategoryId: string;
+  reponse: any;
 
   constructor(private prodcutService: ProductService,
     private subcategoryService: SubcategoriesService,
@@ -82,8 +83,16 @@ export class EditproductComponent {
     this.prodcutService.update(product).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Update product successfully!');
+          });
           this.redirectProducts();
+        } else {
+          $(document).ready(function () {
+            alert('Update product fail! Some error has occurred.');
+          });
         }
       });
   }

@@ -109,7 +109,14 @@ export class UserEditComponent implements OnInit {
       });
 
     if (this.bool) {
+      $(document).ready(function () {
+        alert('Update user successfully!');
+      });
       this.redirectUsers();
+    } else {
+      $(document).ready(function () {
+        alert('Update user fail! Some error has occurred.');
+      });
     }
   }
 
