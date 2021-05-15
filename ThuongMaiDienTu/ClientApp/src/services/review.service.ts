@@ -14,6 +14,11 @@ export class ReviewService {
   getReview() {
     return this.http.get<Review[]>(this.url + 'api/Review');
   }
+
+  getReviewByProductId(id: string) {
+    return this.http.get<Review>(this.url + 'api/Review' + id);
+  }
+
   add(review: Review) {
     return this.http.post<HttpResponse<Review>>(this.url + 'api/Review', review, { observe: 'response' });
   }

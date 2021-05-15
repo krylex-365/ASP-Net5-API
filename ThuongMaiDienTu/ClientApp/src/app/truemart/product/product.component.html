@@ -148,12 +148,12 @@
                 <div class="group-title">
                   <h2>customers review</h2>
                 </div>
-                <div class="review border-default universal-padding mt-30">
+                <div class="review border-default universal-padding mt-30" *ngFor="let review of reviews">
                   <h2 class="review-title">
-                    User 1
+                    {{review.customerId}}
                   </h2>
                   <!-- Reviews Field Start -->
-                  <div class="riview-field">
+                  <div class="riview-field" >
                     <div class="form-group">
                       <label class="req" for="date">{{review.reviewDate}}</label>
                     </div>
@@ -161,35 +161,7 @@
                       <label class="req" for="comments">{{review.comment}}</label>
                     </div>
                   </div>
-                </div>
-                <div class="review border-default universal-padding mt-30">
-                  <h2 class="review-title">
-                    User 2
-                  </h2>
-                  <!-- Reviews Field Start -->
-                  <div class="riview-field">
-                    <div class="form-group">
-                      <label class="req" for="date">2/4/2021</label>
-                    </div>
-                    <div class="form-group">
-                      <label class="req" for="comments">KEY SPORT POLO SHIRT\r\nSPORT-INSPIRED STYLE FOR THE GOLF COURSE.\r\nBring fresh, classic style to your golf game. Every drive comes alive when you feel good. The adidas Key Sport Polo Shirt offers lightweight comfort for blue-sky days on the links.</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="review border-default universal-padding mt-30">
-                  <h2 class="review-title">
-                    User 3
-                  </h2>
-                  <!-- Reviews Field Start -->
-                  <div class="riview-field">
-                    <div class="form-group">
-                      <label class="req" for="date">2/4/2021</label>
-                    </div>
-                    <div class="form-group">
-                      <label class="req" for="comments">ADIDAS PANTS\r\nWIDE-LEG PANTS WITH UTILITY-INSPIRED DETAILS.\r\nWhen you think of Copenhagen, what comes to mind? The adidas Bellista collection looked to the streets of one of the world\'s most exciting fashion capitols to bring that image and feeling to the body. The roomy drape of the adidas Pants elicits a sense of movement as you wander your own city. Snap buttons on the cuffs add an unexpected touch, nodding to Copenhagen\'s high attention to detail. Because no detail is too small to make a difference.</label>
-                    </div>
-                  </div>
-                </div>
+                </div> 
               </div>
               <!-- Reviews End -->
             </div>

@@ -20,7 +20,7 @@ export class ProductShopComponent implements OnInit {
   product: Product;
   products: Array<Product>;
   pros: Array<Product>;
-
+  
   //Login
   currentUser;
   token;
@@ -40,11 +40,11 @@ export class ProductShopComponent implements OnInit {
 
         console.log(this.product);
       });
-    await this.reviewService.getReview().subscribe(
-      result => {
-        console.log(result);
-        this.reviews = result;        
-      });
+    await this.reviewService.getReviewByProductId(productId).subscribe(result => {
+      this.review = result;
+      console.log(this.review);
+    })
+      
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
