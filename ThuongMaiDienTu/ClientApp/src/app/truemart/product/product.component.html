@@ -127,7 +127,7 @@
                   You're reviewing:
                 </h2>
                 <!-- Reviews Field Start -->
-                <form #reviewAdd="ngForm" (ngSubmit)="add(reviewAdd.value)">
+                <form #reviewAdd="ngForm" (ngSubmit)="addReview(reviewAdd.value)">
                   <div class="riview-field">
                     <div class="form-group">
                       <label class="req" for="sure-name">Nickname</label>
@@ -153,12 +153,15 @@
                     {{review.customerId}}
                   </h2>
                   <!-- Reviews Field Start -->
-                  <div class="riview-field" >
+                  <div class="riview-field">
                     <div class="form-group">
                       <label class="req" for="date">{{review.reviewDate}}</label>
                     </div>
                     <div class="form-group">
                       <label class="req" for="comments">{{review.comment}}</label>
+                    </div>
+                    <div class="form-group">
+                      <label class="req" for="comments">Product Id: {{review.productId}}</label>
                     </div>
                   </div>
                 </div> 

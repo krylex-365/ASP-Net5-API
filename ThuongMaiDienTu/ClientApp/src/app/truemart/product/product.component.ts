@@ -20,7 +20,7 @@ export class ProductShopComponent implements OnInit {
   product: Product;
   products: Array<Product>;
   pros: Array<Product>;
-  
+  reviewss: Array<Review>;
   //Login
   currentUser;
   token;
@@ -37,24 +37,21 @@ export class ProductShopComponent implements OnInit {
     await this.productService.getProductById(productId).subscribe(
       result => {
         this.product = result;
-
         console.log(this.product);
-      });
-    await this.reviewService.getReviewByProductId(productId).subscribe(result => {
-      this.review = result;
-      console.log(this.review);
-    })
-      
+      });  
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
     }
-
+    await this.reviewService.getReview().subscribe(result => {
+      this.reviews = result;
+      console.log(this.review);
+      this.getReviewByProductId();
+    });
     await this.productService.getProducts().subscribe(
       result => {
         this.products = result;
         console.log(this.products);
-
         this.realtedProducts();
       });
   }
@@ -83,7 +80,22 @@ export class ProductShopComponent implements OnInit {
     })
     console.log(this.pros);
   }
-
+  getReviewByProductId() {
+    this.reviews = Array<Review>();
+    this.reviewss.forEach(res => {
+      if (res.productId = this.product.productId)
+        return this.reviews;
+    })
+    console.log(this.reviews);
+  }
+  /*addReview(value: Review) {
+    this.review.reviewId = "1";
+    this.review = value;
+    this.reviewService.add(this.review).subscribe(
+      result => console.log(result),
+      error => console.log(error)
+    )
+  }*/
   refresh(): void {
     window.location.reload();
   }

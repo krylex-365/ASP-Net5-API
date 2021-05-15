@@ -15,8 +15,8 @@ export class ReviewService {
     return this.http.get<Review[]>(this.url + 'api/Review');
   }
 
-  getReviewByProductId(id: string) {
-    return this.http.get<Review>(this.url + 'api/Review' + id);
+  getReviewByProductId(productId) {
+    return this.http.get<Review>(this.url + 'api/Review/' + productId);
   }
 
   add(review: Review) {
