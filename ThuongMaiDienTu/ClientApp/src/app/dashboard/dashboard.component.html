@@ -64,7 +64,7 @@
         <div class="col-lg-3 col-sm-6">
           <div class="card gradient-4">
             <div class="card-body">
-              <h3 class="card-title text-white">All Customers</h3>
+              <h3 class="card-title text-white">All Users</h3>
               <div class="d-inline-block">
 
                 <h2 class="text-white">{{allCustomer}}</h2>
@@ -78,16 +78,43 @@
         </div>
       </div>
 
-      <div *ngIf="orders && orderDetails">
-        <input name="year" [(ngModel)]="year" />
-        <input name="month" [(ngModel)]="month"/>
-
-        <button (click)="revenue(year, month)">click</button>
-        <div *ngIf="reven">
-          {{reven.toFixed(2)}}
+      <div class="row" *ngIf="orders && orderDetails">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h3>Revenue</h3>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Year <span class="text-danger">*</span></label>
+                    <input type="number" name="year" [(ngModel)]="year" class="form-control" placeholder="Enter number of year..." min="0" max="9999" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Month <span class="text-danger">*</span></label>
+                    <input type="number" name="month" [(ngModel)]="month" class="form-control" placeholder="Enter number of month..." min="1" max="12" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Revenue (Taxes are not included):</label>
+                    <h4 *ngIf="reven">$ {{reven.toFixed(2)}}</h4>
+                    <h4 *ngIf="reven==0">No data</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button (click)="revenue(year, month)" class="btn btn-primary">Calculate Revenue</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      
 
       <div class="row">
         <div class="col-md-12">

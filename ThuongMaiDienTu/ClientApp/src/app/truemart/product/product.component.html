@@ -1,9 +1,5 @@
-<!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
 <!-- Main Wrapper Start Here -->
 <div class="wrapper">
-  <!-- <?php require_once('inc/header.php');?> -->
   <app-truemart-form></app-truemart-form>
   <!-- Breadcrumb Start -->
   <div class="breadcrumb-area mt-30">
@@ -21,21 +17,6 @@
   <!-- Product Thumbnail Start -->
   <div class="main-product-thumbnail ptb-100 ptb-sm-60">
     <div class="container">
-      <!-- <?php
-      $id = $_GET[ 'id' ];
-      $query = "select * from `product` where pid ='$id'";
-      $run = mysqli_query( $conn, $query );
-      if ( mysqli_num_rows( $run ) > 0 ) {
-        while ( $row = mysqli_fetch_array( $run ) ) {
-          $pro_id = $row[ 'pid' ];
-          $pro_name = $row[ 'pname' ];
-          $pro_sale = $row[ 'sale' ];
-          $pro_price = $row[ 'price' ];
-          $pro_newprice = $row[ 'new_price' ];
-          $pro_subcate = $row[ 'subcate_id' ];
-          $pro_des = $row[ 'descr' ];
-          $pro_image = $row[ 'img' ];
-          ?> -->
       <form>
         <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
         <div *ngIf="product" class="thumb-bg">
@@ -53,26 +34,12 @@
             <div class="col-lg-7">
               <div class="thubnail-desc fix">
                 <h3 class="product-header">{{product.name}}</h3>
-                <div class="rating-summary fix mtb-10">
-                  <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                  <div class="rating-feedback"> <a href="#">(1 review)</a><br /><a href="#">add to your review</a> </div>
-                </div>
                 <div class="pro-price mtb-30">
                   <p class="d-flex align-items-center">
-                    <!-- <?php
-  if ( $pro_sale > 0 ) {
-    ?> -->
                     <span *ngIf="product.sale != 0" class="prev-price">$ {{product.price}}</span>
                     <span *ngIf="product.sale != 0" class="price">$ {{product.price - (product.price/product.sale)}}</span>
                     <span *ngIf="product.sale == 0" class="price">$ {{product.price}}</span>
                     <span *ngIf="product.sale != 0" class="saving-price">save {{product.sale}}%</span>
-                    <!-- <?php
-  } else {
-    ?> -->
-                    <!--<span class="price">$<?php echo $pro_newprice?></span>-->
-                    <!-- <?php
-  }
-  ?> -->
                   </p>
                 </div>
                 <div class="box-quantity d-flex hot-product2">
@@ -116,7 +83,7 @@
           <!-- Product Thumbnail Tab Content Start -->
           <div class="tab-content thumb-content border-default">
             <div id="dtail" class="tab-pane fade show active">
-              <p><?php echo $pro_des?></p>
+              <p>{{product.description}} </p>
             </div>
             <div id="review" class="tab-pane fade">
               <!-- Reviews Start -->
@@ -125,17 +92,16 @@
                   You're reviewing:
                 </h2>
                 <!-- Reviews Field Start -->
-                <div class="riview-field">
-                  <div class="form-group">
-                    <label class="req" for="sure-name">Nickname</label>
-                    <input type="text" class="form-control" id="sure-name" required>
+                <form #reviewAdd="ngForm" (ngSubmit)="addReview(reviewAdd.value)">
+                  <div class="riview-field">
+                    <div class="form-group">
+                      <label class="req" for="comments">Review</label>
+                      <textarea class="form-control" rows="5" id="comment" name="comment" [(ngModel)]="comment" required></textarea>
+                    </div>
+                    <button type="submit" class="customer-btn" *ngIf="customer">Submit Review</button>
+                    <button class="customer-btn" *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop">Login to submit review</button>
                   </div>
-                  <div class="form-group">
-                    <label class="req" for="comments">Review</label>
-                    <textarea class="form-control" rows="5" id="comments" required></textarea>
-                  </div>
-                  <button class="customer-btn" onClick="submit_review()">Submit Review</button> 
-                </div>
+                </form>
                 <!-- Reviews Field Start -->
               </div>
               <!-- Reviews End -->
@@ -144,45 +110,21 @@
                 <div class="group-title">
                   <h2>customers review</h2>
                 </div>
-                <div class="review border-default universal-padding mt-30">
-                  <h2 class="review-title">
-                    User 1
+                <div class="review border-default universal-padding mt-30" *ngFor="let review of getReviewByProductId()">
+                  {{getCustomerById(review.customerId)}}
+                  <h2 class="review-title" *ngIf="custname != '' ">
+                    {{custname}}
+                  </h2>
+                  <h2 class="review-title" *ngIf="custname == '' ">
+                    Anonymous
                   </h2>
                   <!-- Reviews Field Start -->
                   <div class="riview-field">
                     <div class="form-group">
-                      <label class="req" for="date">2/4/2021</label>
+                      <label class="req" for="date">{{review.reviewDate}}</label>
                     </div>
                     <div class="form-group">
-                      <label class="req" for="comments">BIG TREFOIL TEE\r\nA COTTON GRAPHIC TEE CELEBRATING THE TREFOIL.\r\nGet into a \'70s groove. Pulled from the archives, this adidas Trefoil tee keeps your t-shirt game fresh and clean. All-cotton jersey feels soft to the touch.</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="review border-default universal-padding mt-30">
-                  <h2 class="review-title">
-                    User 2
-                  </h2>
-                  <!-- Reviews Field Start -->
-                  <div class="riview-field">
-                    <div class="form-group">
-                      <label class="req" for="date">2/4/2021</label>
-                    </div>
-                    <div class="form-group">
-                      <label class="req" for="comments">KEY SPORT POLO SHIRT\r\nSPORT-INSPIRED STYLE FOR THE GOLF COURSE.\r\nBring fresh, classic style to your golf game. Every drive comes alive when you feel good. The adidas Key Sport Polo Shirt offers lightweight comfort for blue-sky days on the links.</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="review border-default universal-padding mt-30">
-                  <h2 class="review-title">
-                    User 3
-                  </h2>
-                  <!-- Reviews Field Start -->
-                  <div class="riview-field">
-                    <div class="form-group">
-                      <label class="req" for="date">2/4/2021</label>
-                    </div>
-                    <div class="form-group">
-                      <label class="req" for="comments">ADIDAS PANTS\r\nWIDE-LEG PANTS WITH UTILITY-INSPIRED DETAILS.\r\nWhen you think of Copenhagen, what comes to mind? The adidas Bellista collection looked to the streets of one of the world\'s most exciting fashion capitols to bring that image and feeling to the body. The roomy drape of the adidas Pants elicits a sense of movement as you wander your own city. Snap buttons on the cuffs add an unexpected touch, nodding to Copenhagen\'s high attention to detail. Because no detail is too small to make a difference.</label>
+                      <label class="req" for="comments">{{review.comment}}</label>
                     </div>
                   </div>
                 </div>
@@ -197,56 +139,7 @@
     </div>
     <!-- Container End -->
   </div>
-  <!-- <?php
-  }
-  } else {
-    echo "No Product Found";
-  }
-  ?> -->
   <!-- Product Thumbnail Description End -->
-  <!-- Realted Products Start Here -->
-  <div class="hot-deal-products off-white-bg pt-100 pb-90 pt-sm-60 pb-sm-50">
-    <div class="container">
-      <!-- Product Title Start -->
-      <div class="post-title pb-30">
-        <h2>Realted Products</h2>
-      </div>
-      <!-- Product Title End -->
-      <!-- Hot Deal Product Activation Start -->
-      <div class="hot-deal-active owl-carousel">
-        <!-- Single Product Start -->
-        <div class="single-product" *ngFor="let pro of pros">
-            <!-- Product Image Start -->
-            <div class="pro-img"> <a href="productshop/{{pro.productId}}"> <img class="primary-img" src="./product-img/{{pro.image}}" alt="single-product"></a></div>
-            <!-- Product Image End -->
-            <!-- Product Content Start -->
-            <div class="pro-content">
-              <div class="pro-info">
-                <input type="hidden" name="pro_id" value="1">
-                <h4><a href="productshop/{{pro.productId}}">{{pro.name}}</a></h4>
-                <p>
-                  <span *ngIf="pro.sale == 0" class="price">${{pro.price}}</span>
-                  <span *ngIf="pro.sale != 0" class="price">${{(pro.price - (pro.price / pro.sale)).toFixed(2)}}</span>
-                  <del *ngIf="pro.sale != 0" class="prev-price">${{pro.price}}</del>
-                </p>
-                <div *ngIf="pro.sale != 0" class="label-product l_sale">{{pro.sale}}<span class="symbol-percent">%</span></div>
-              </div>
-              <div class="pro-actions">
-                <div class="actions-primary">
-                  <input *ngIf="currentUser != null && currentUser.name != ''" (click)="addToCard(pro.productId)" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
-                  <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
-                </div>
-              </div>
-            </div>
-        </div>
-        <!-- Single Product End -->
-        <!-- Hot Deal Product Active End -->
-      </div>
-      <!-- Product Content End -->
-    </div>
-    <!-- Container End -->
-  </div>
-  <!-- Realated Products End Here -->
   <!-- Support Area Start Here -->
   <div class="support-area bdr-top">
     <div class="container">

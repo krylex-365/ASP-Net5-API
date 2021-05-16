@@ -5,6 +5,10 @@ import { Product } from '../../../models/Product';
 import { ProductService } from '../../../services/product.service';
 import jwt_decode from 'jwt-decode';
 import { CardService } from '../../../services/card.service';
+import { Review } from '../../../models/review';
+import { ReviewService } from '../../../services/review.service';
+import { CustomerService } from '../../../services/customer.service';
+import { Customer } from '../../../models/customer';
 declare var $: any;
 
 @Component({
@@ -13,42 +17,56 @@ declare var $: any;
   styleUrls: ['./product.component.css']
 })
 export class ProductShopComponent implements OnInit {
-
+  review: Review;
+  reviews: Array<Review>;
   product: Product;
   products: Array<Product>;
   pros: Array<Product>;
-
+  reviewss: Array<Review>;
+  customer: Customer;
+  customers: Array<Customer>;
+  custname: string;
   //Login
   currentUser;
+  reponse: any;
   token;
+  
 
   constructor(private productService: ProductService,
+    private customerService: CustomerService,
+    private reviewService: ReviewService,
     private route: ActivatedRoute,
     private cardService: CardService,  ) { }
 
   async ngOnInit() {
-
-    const productId = String(this.route.snapshot.paramMap.get('id'));
-
-    await this.productService.getProductById(productId).subscribe(
-      result => {
-        this.product = result;
-
-        console.log(this.product);
-      });
-
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
     }
-
-    await this.productService.getProducts().subscribe(
+    var customerId = this.token.CustomerId;
+    await this.customerService.getCustomerById(customerId).subscribe(
       result => {
-        this.products = result;
-        console.log(this.products);
-
-        this.realtedProducts();
+        this.customer = result;
+        console.log(this.customer);
+        
       });
+  
+    const productId = String(this.route.snapshot.paramMap.get('id'));
+    await this.customerService.getCustomers().subscribe(
+      result => {
+        this.customers = result;
+        console.log(this.customers);
+      });
+    await this.productService.getProductById(productId).subscribe(
+      result => {
+        this.product = result;
+        console.log(this.product);
+      });  
+    
+    await this.reviewService.getReview().subscribe(result => {
+      this.reviews = result;
+      console.log(this.reviews);     
+    });    
   }
 
   addToCard(id) {
@@ -65,18 +83,47 @@ export class ProductShopComponent implements OnInit {
         }
       });
   }
-
-  realtedProducts() {
-    this.pros = Array<Product>();
-    this.products.forEach(pro => {
-      if (pro.subcategoryId == this.product.subcategoryId && pro.productId != this.product.productId) {
-        this.pros.push(pro);
+  getCustomerById(id) {
+   this.custname="";
+    for (var i = 0; i < this.customers.length; i++) {
+      if (this.customers[i].customerId == id) {
+        this.custname = this.customers[i].name;
+        break;
+      }
+    }
+  }
+  getReviewByProductId(): Array<Review> {
+    this.reviewss = Array<Review>();
+    this.reviews.forEach(res => {
+      if (res.productId == this.product.productId) {
+        this.reviewss.push(res);
       }
     })
-    console.log(this.pros);
+    return this.reviewss;
   }
-
+  
+  addReview(value) {
+    this.review = new Review;
+    this.review.reviewId = "1";
+    this.review.comment = value.comment;
+    this.review.customerId = this.token.CustomerId;
+    this.review.productId = this.product.productId;
+    this.review.reviewDate = new Date;
+    this.reviewService.add(this.review).subscribe(
+      result => {
+        console.log(result)
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Thank you for review.');
+          });
+          this.refresh();
+        }
+      }
+    )
+  }
   refresh(): void {
     window.location.reload();
   }
+  
 }

@@ -22,7 +22,7 @@ namespace TMDT.Controllers
         {
             this.context = context;
         }
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         [HttpGet]
         public List<Customer> GetList()
         {

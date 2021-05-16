@@ -47,6 +47,7 @@
     <None Remove="ClientApp\src\models\orderDetail.ts" />
     <None Remove="ClientApp\src\models\product.ts" />
     <None Remove="ClientApp\src\models\quantity.ts" />
+    <None Remove="ClientApp\src\models\review.ts" />
     <None Remove="ClientApp\src\models\role.ts" />
     <None Remove="ClientApp\src\models\subcategories.ts" />
     <None Remove="ClientApp\src\models\user.ts" />
@@ -74,6 +75,7 @@
     <TypeScriptCompile Remove="ClientApp\src\services\page404.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\product.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\reload.service.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\services\review.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\subcategories.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\user-account.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\user-profile.service.ts" />

@@ -54,6 +54,7 @@ import { CartComponent } from './truemart/cart/cart.component';
 import { RegisterService } from '../services/register.service';
 import { Page404Service } from '../services/page404.service';
 import { CardService } from '../services/card.service';
+import { ReviewService } from '../services/review.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,7 @@ import { CardService } from '../services/card.service';
     ProfileComponent,
     IndexComponent,
     CartComponent,
-    RegisterComponent,
+    RegisterComponent,    
     /*
     CheckoutComponent,*/
 
@@ -145,6 +146,7 @@ import { CardService } from '../services/card.service';
     RegisterService,
     Page404Service,
     CardService,
+    ReviewService,
     //ProductShopService,
     //UserProfileService,
 
