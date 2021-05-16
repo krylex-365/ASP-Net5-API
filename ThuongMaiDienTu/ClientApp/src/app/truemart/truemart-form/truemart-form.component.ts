@@ -175,7 +175,11 @@ export class TruemartFormComponent implements OnInit {
   subtotal() {
     var total = 0;
     this.pros.forEach(pro => {
-      total += Number.parseFloat(pro.price);
+      if (pro.sale != "0") {
+        total += (Number.parseFloat(pro.price) - ((Number.parseFloat(pro.price) * Number.parseFloat(pro.sale)) / 100));
+      } else{
+        total += Number.parseFloat(pro.price);
+      }
     })
     this.subTotal = total;
   }

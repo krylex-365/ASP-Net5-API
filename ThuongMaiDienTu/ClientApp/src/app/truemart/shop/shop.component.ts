@@ -102,7 +102,7 @@ export class ShopComponent implements OnInit {
             } else {
               var name = id.substring(1);
               this.products.forEach(pro => {
-                if (pro.name.indexOf(name) != -1) {
+                if (pro.name.toLowerCase().indexOf(name.toLowerCase()) != -1) {
                   this.prods.push(pro);
                 }
               })

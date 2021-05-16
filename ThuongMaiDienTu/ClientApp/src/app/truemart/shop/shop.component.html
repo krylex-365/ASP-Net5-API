@@ -72,7 +72,7 @@
                             <h4><a href="productshop/{{prod.productId}}">{{prod.name}}</a></h4>
                             <p><span *ngIf="prod.sale == 0" class="price">$ {{prod.price}}</span><del *ngIf="prod.sale != 0" class="prev-price">$ {{prod.price}}</del></p>
                             <div *ngIf="prod.sale != 0" class="label-product l_sale">{{prod.sale}}<span class="symbol-percent">%</span></div>
-                            <p *ngIf="prod.sale != 0"><span class="price">$ {{1*prod.price - (1*prod.price*30/100)}}</span></p>
+                            <p *ngIf="prod.sale != 0"><span class="price">$ {{(prod.price - (prod.price * prod.sale / 100)).toFixed(2)}}</span></p>
                           </div>
                           <div class="pro-actions">
                             <div class="actions-primary">
@@ -92,11 +92,11 @@
                   <ul class="pagination">
                     <li (click)="setIndexPage(indexPage - 1)" class="page-item"><a class="page-link">Previous</a></li>
                     <li *ngIf="indexPage > 1 && maxPage > 3" class="page-item"><a class="page-link">...</a></li>
-                    <li *ngIf="indexPage == maxPage - 1 && indexPage > 1" class="page-item"><a class="page-link">{{indexPage - 1}}</a></li>
-                    <li *ngIf="indexPage != 0" class="page-item"><a class="page-link">{{indexPage}}</a></li>
+                    <li *ngIf="indexPage == maxPage - 1 && indexPage > 1" (click)="setIndexPage(indexPage - 2)" class="page-item"><a class="page-link">{{indexPage - 1}}</a></li>
+                    <li *ngIf="indexPage != 0" (click)="setIndexPage(indexPage - 1)" class="page-item"><a class="page-link">{{indexPage}}</a></li>
                     <li class="page-item"><a class="page-link alert-primary">{{indexPage + 1}}</a></li>
-                    <li *ngIf="indexPage != maxPage - 1 && maxPage > 1" class="page-item"><a class="page-link">{{indexPage + 2}}</a></li>
-                    <li *ngIf="indexPage == 0 && maxPage > 2" class="page-item"><a class="page-link">{{indexPage + 3}}</a></li>
+                    <li *ngIf="indexPage != maxPage - 1 && maxPage > 1" (click)="setIndexPage(indexPage + 1)" class="page-item"><a class="page-link">{{indexPage + 2}}</a></li>
+                    <li *ngIf="indexPage == 0 && maxPage > 2" (click)="setIndexPage(indexPage + 2)" class="page-item"><a class="page-link">{{indexPage + 3}}</a></li>
                     <li *ngIf="indexPage < maxPage - 2 && maxPage > 3" class="page-item"><a class="page-link">...</a></li>
                     <li (click)="setIndexPage(indexPage + 1)" class="page-item"><a class="page-link">Next</a></li>
                   </ul>

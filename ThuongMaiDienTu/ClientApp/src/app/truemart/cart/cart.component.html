@@ -56,28 +56,12 @@
                   <tr *ngFor="let quan of quantitys" class="product">
                     <td class="product-thumbnail"><input type="hidden" name="pro_id" value="id"><a href="#"><img src="./product-img/{{quan.product.image}}" alt="cart-image" /></a></td>
                     <td class="product-name"><a href='productshop/quan.product.productId'>{{quan.product.name}}</a></td>
-                    <td class="product-price">{{quan.product.price}}</td>
+                    <td class="product-price">{{(quan.product.price * 1).toFixed(2)}}</td>
                     <td class="product-quantity"><input (click)="checkQuantity()" type="number" name="pro_quantity" [(ngModel)]="quan.quantity" min="1" max="99" id="pr"></td>
-                    <td class="product-subtotal">{{quan.quantity * quan.product.price}}</td>
+                    <td *ngIf="quan.product.sale != 0" class="product-subtotal">{{(quan.quantity * quan.product.price - (quan.quantity * quan.product.price * quan.product.sale / 100)).toFixed(2)}}</td>
+                    <td *ngIf="quan.product.sale == 0" class="product-subtotal">{{(quan.quantity * quan.product.price).toFixed(2)}}</td>
                     <td class="product-remove"><button type="button" (click)="deleteCard(quan.product.productId)" class="btn btn-cart mx-2" name="remove"><i class="fa fa-times" aria-hidden="true"></i></button></td>
                   </tr>
-                  <!-- <?php
-                  }
-                  }
-                  } else {
-                    $totalprice = 0;
-                    $VAT = 0;
-                    $carttotal = 0;
-                    echo "<tr><td colspan='6' align='center'>No items in cart</td</tr>";
-                    unset( $_SESSION[ 'cart' ] );
-                    break;
-                  }
-                  }
-                  }
-                  } else {
-                    echo "<tr><td colspan='6' align='center'>No items in cart</td</tr>";
-                  }
-                  ?> -->
                 </tbody>
               </table>
             </div>
@@ -98,8 +82,7 @@
                       <tr>
                         <th>Subtotal</th>
                         <td>
-                          $<span class="amount cart-subtotal">{{subtotal().toFixed(2)}}
-                            <!-- <?php if(isset($_SESSION['cart'])){echo $totalprice;}else{ echo "0";} ?> -->
+                          $<span class="amount cart-subtotal">{{Total().toFixed(2)}}
                           </span>
                         </td>
                       </tr>
@@ -107,7 +90,6 @@
                         <th>Taxes</th>
                         <td>
                           $<span class="amount vat">{{(total * 0.05).toFixed(2)}}
-                            <!-- <?php if(isset($_SESSION['cart'])){echo $VAT;}else{ echo "0";} ?> -->
                           </span>
                         </td>
                       </tr>
@@ -116,7 +98,6 @@
                         <td>
                           <strong>
                             $<span class="amount cart-total">{{(total + total * 0.05).toFixed(2)}}
-                              <!-- <?php if(isset($_SESSION['cart'])){echo $carttotal;}else{ echo "0";} ?> -->
                             </span>
                           </strong>
                         </td>
@@ -127,11 +108,6 @@
                     <p *ngIf="Notenoughquantity != null">{{Notenoughquantity}}</p>
                     <p *ngIf="Notenoughquantity == null" class="btn btn-cart" data-toggle="modal" data-target="#exampleModalCheckout">CHECKOUT</p>
 
-                    <!--Payment-->
-                    <!--<h1>Custom Stripe Form</h1>
-
-                    <button (click)="makePayment(20)">pay 20$</button>-->
-                    <!--Payment-->
 
                     <div class="modal fade" id="exampleModalCheckout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -170,7 +146,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-cart" data-dismiss="modal">CLOSE</button>
-                            <button *ngIf="quantitys.length > 0" (click)="CheckOut()" type="button" name="checkout" class="btn btn-cart">CHECKOUT</button>
+                            <button *ngIf="quantitys.length > 0" (click)="checkOut()" type="button" name="checkout" class="btn btn-cart">CHECKOUT</button>
                           </div>
                         </div>
                       </div>

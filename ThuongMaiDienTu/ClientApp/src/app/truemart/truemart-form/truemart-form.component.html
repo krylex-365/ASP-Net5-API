@@ -52,7 +52,7 @@
             <ul class="d-flex justify-content-lg-end justify-content-center align-items-center">
               <li>
                 <a>
-                  <i class="lnr lnr-cart"></i><span class="my-cart"><span *ngIf="customer && pros != null" class="total-pro">1</span><span>cart</span>
+                  <i class="lnr lnr-cart"></i><span class="my-cart"><span *ngIf="customer && pros != null" class="total-pro">{{pros.length}}</span><span>cart</span>
                   </span>
                 </a>
                 <ul *ngIf="customer && pros" class="ht-dropdown cart-box-width">
@@ -132,7 +132,8 @@
             <ul class="header-bottom-list d-flex">
               <li class="active"><a href="shop">Home</a> </li>
               <!--<li><a href="shop">Shop</a></li>-->
-              <li><a href="cart">Cart</a></li>
+              <li *ngIf="!custonmer"><a href="loginshop">Cart</a></li>
+              <li *ngIf="custonmer"><a href="cart">Cart</a></li>
             </ul>
           </nav>
         </div>

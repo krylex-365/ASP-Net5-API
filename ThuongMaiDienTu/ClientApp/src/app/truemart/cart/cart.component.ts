@@ -51,6 +51,9 @@ export class CartComponent implements OnInit {
   //Payment
   strikeCheckout: any = null;
 
+  //error
+  reponse: any;
+
 
   constructor(private page404: Page404Service,
     private cardService: CardService,
@@ -199,10 +202,14 @@ export class CartComponent implements OnInit {
       });
   }
 
-  subtotal() {
+  Total() {
     var total = 0;
     this.quantitys.forEach(quan => {
-      total += Number.parseFloat(quan.product.price) * quan.quantity;
+      if (Number.parseInt(quan.product.sale) != 0) {
+        total += (Number.parseFloat(quan.product.price) * quan.quantity) - (Number.parseFloat(quan.product.price) * quan.quantity * Number.parseFloat(quan.product.sale) / 100);
+      } else {
+        total += Number.parseFloat(quan.product.price) * quan.quantity;
+      }
     })
     this.total = total;
     return total;
@@ -224,7 +231,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  CheckOut() {
+  checkOut() {
     var order: Order;
     var orderDetail: OrderDetail;
     
@@ -246,14 +253,18 @@ export class CartComponent implements OnInit {
 
     this.checkt.order = order;
 
-    for (var i = 0; i < this.quantitys.length; i++) { 
+    for (var i = 0; i < this.quantitys.length; i++) {
       orderDetail = new OrderDetail;
 
       orderDetail.orderDetailId = "1" // C# xu ly
       orderDetail.orderId = "1" //C# xu ly
       orderDetail.productId = this.quantitys[i].product.productId;
       orderDetail.quantity = "" + this.quantitys[i].quantity;
-      orderDetail.totalPrice = "" + (Number.parseFloat(this.quantitys[i].product.price) * this.quantitys[i].quantity);
+      if (this.quantitys[i].product.sale != "0") {
+        orderDetail.totalPrice = "" + (Number.parseFloat(this.quantitys[i].product.price) * this.quantitys[i].quantity - (Number.parseFloat(this.quantitys[i].product.price) * this.quantitys[i].quantity * Number.parseFloat(this.quantitys[i].product.sale) / 100)).toFixed(2);
+      } else {
+        orderDetail.totalPrice = "" + (Number.parseFloat(this.quantitys[i].product.price) * this.quantitys[i].quantity);
+      }
 
       this.checkt.orderDetails.push(orderDetail);
     }
@@ -262,10 +273,11 @@ export class CartComponent implements OnInit {
       this.checkoutService.add(this.checkt).subscribe(
         result => {
           console.log(result);
-          if (result.status == 200) {
+          this.reponse = result.valueOf()
+          if (this.reponse.body.statusCode == 200) {
             //C# Update quantity product trong CheckoutController
             //C# delete cart trong CheckoutController
-            this.makePayment(this.total + this.total * 0.05);
+            this.makePayment(Number.parseFloat(this.total + (this.total * 0.05).toFixed(2)));
           }
         });
     }
