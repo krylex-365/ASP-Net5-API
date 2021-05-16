@@ -41,6 +41,11 @@ export class DashboardComponent implements OnInit{
   idDel: string;
   total: number;
 
+  //
+  reven: number;
+  year;
+  month;
+
   constructor(private dashboardService: DashboardService,
     private productService: ProductService,
     private categoryService: CategoriesService,
@@ -163,6 +168,27 @@ export class DashboardComponent implements OnInit{
 
   caculatorTotal(num: string) {
     this.total += Number.parseFloat(num);
+  }
+
+  revenue(year: string, month: string) {
+    this.reven = 0;
+    var revenue = 0;
+
+    for (var i = 0; i < this.orders.length; i++) {
+      var y = this.orders[i].date.toString().substr(0, 4);
+      var m = this.orders[i].date.toString().substr(5, 2);
+      if (year == y && Number.parseFloat(month) == Number.parseFloat(m)) {
+        for (var j = 0; j < this.orderDetails.length; j++) {
+          if (this.orderDetails[j].orderId == this.orders[i].orderId) {
+            revenue += Number.parseFloat(this.orderDetails[j].totalPrice);
+            //Neu co tinh thue
+            //revenue += Number.parseFloat(this.orderDetails[j].totalPrice) * 0.05;
+          }
+        }
+      }
+    }
+
+    this.reven = revenue;
   }
 
 }

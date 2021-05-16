@@ -77,6 +77,18 @@
           </div>
         </div>
       </div>
+
+      <div *ngIf="orders && orderDetails">
+        <input name="year" [(ngModel)]="year" />
+        <input name="month" [(ngModel)]="month"/>
+
+        <button (click)="revenue(year, month)">click</button>
+        <div *ngIf="reven">
+          {{reven.toFixed(2)}}
+        </div>
+      </div>
+      
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">
