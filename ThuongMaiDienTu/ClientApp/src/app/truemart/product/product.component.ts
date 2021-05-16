@@ -7,6 +7,8 @@ import jwt_decode from 'jwt-decode';
 import { CardService } from '../../../services/card.service';
 import { Review } from '../../../models/review';
 import { ReviewService } from '../../../services/review.service';
+import { CustomerService } from '../../../services/customer.service';
+import { Customer } from '../../../models/customer';
 declare var $: any;
 
 @Component({
@@ -21,39 +23,50 @@ export class ProductShopComponent implements OnInit {
   products: Array<Product>;
   pros: Array<Product>;
   reviewss: Array<Review>;
+  customer: Customer;
+  customers: Array<Customer>;
+  custname: string;
   //Login
   currentUser;
+  reponse: any;
   token;
+  
 
   constructor(private productService: ProductService,
+    private customerService: CustomerService,
     private reviewService: ReviewService,
     private route: ActivatedRoute,
     private cardService: CardService,  ) { }
 
   async ngOnInit() {
-
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    if (this.currentUser != null) {
+      this.token = jwt_decode(this.currentUser.token);
+    }
+    var customerId = this.token.CustomerId;
+    await this.customerService.getCustomerById(customerId).subscribe(
+      result => {
+        this.customer = result;
+        console.log(this.customer);
+        
+      });
+  
     const productId = String(this.route.snapshot.paramMap.get('id'));
-
+    await this.customerService.getCustomers().subscribe(
+      result => {
+        this.customers = result;
+        console.log(this.customers);
+      });
     await this.productService.getProductById(productId).subscribe(
       result => {
         this.product = result;
         console.log(this.product);
       });  
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
-    if (this.currentUser != null) {
-      this.token = jwt_decode(this.currentUser.token);
-    }
+    
     await this.reviewService.getReview().subscribe(result => {
       this.reviews = result;
-      console.log(this.review);
-      this.getReviewByProductId();
-    });
-    await this.productService.getProducts().subscribe(
-      result => {
-        this.products = result;
-        console.log(this.products);
-        this.realtedProducts();
-      });
+      console.log(this.reviews);     
+    });    
   }
 
   addToCard(id) {
@@ -70,33 +83,47 @@ export class ProductShopComponent implements OnInit {
         }
       });
   }
-
-  realtedProducts() {
-    this.pros = Array<Product>();
-    this.products.forEach(pro => {
-      if (pro.subcategoryId == this.product.subcategoryId && pro.productId != this.product.productId) {
-        this.pros.push(pro);
+  getCustomerById(id) {
+   this.custname="";
+    for (var i = 0; i < this.customers.length; i++) {
+      if (this.customers[i].customerId == id) {
+        this.custname = this.customers[i].name;
+        break;
+      }
+    }
+  }
+  getReviewByProductId(): Array<Review> {
+    this.reviewss = Array<Review>();
+    this.reviews.forEach(res => {
+      if (res.productId == this.product.productId) {
+        this.reviewss.push(res);
       }
     })
-    console.log(this.pros);
+    return this.reviewss;
   }
-  getReviewByProductId() {
-    this.reviews = Array<Review>();
-    this.reviewss.forEach(res => {
-      if (res.productId = this.product.productId)
-        return this.reviews;
-    })
-    console.log(this.reviews);
-  }
-  /*addReview(value: Review) {
+  
+  addReview(value) {
+    this.review = new Review;
     this.review.reviewId = "1";
-    this.review = value;
+    this.review.comment = value.comment;
+    this.review.customerId = this.token.CustomerId;
+    this.review.productId = this.product.productId;
+    this.review.reviewDate = new Date;
     this.reviewService.add(this.review).subscribe(
-      result => console.log(result),
-      error => console.log(error)
+      result => {
+        console.log(result)
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
+          $(document).ready(function () {
+            alert('Thanks for comment');
+          });
+          this.refresh();
+        }
+      }
     )
-  }*/
+  }
   refresh(): void {
     window.location.reload();
   }
+  
 }

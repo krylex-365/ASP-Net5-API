@@ -35,25 +35,33 @@ namespace TMDT.Controllers
         [HttpPost]
         public HttpResponseMessage Add(Review review)
         {
-            Review review1 = context.Reviews.Find(review.ReviewId);
-            if (review1 != null)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                //return "Duplicate primary key";
-            }
+            
             Customer customer = context.Customers.Find(review.CustomerId);
             if (customer == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "CustomerId does not exist";
             }
+
+            List<Review> reviews = context.Reviews.ToList();
+            string key = "0";
+            foreach (Review review2 in reviews)
+            {
+                if (int.Parse(review2.ReviewId) > int.Parse(key))
+                {
+                    key = review2.ReviewId;
+                }
+            }
+            key = "" + (int.Parse(key) + 1);
+            review.ReviewId = key;
+
             Product product = context.Products.Find(review.ProductId);
             if (product == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 //return "ProductId does not exist";
             }
-
+           
             context.Reviews.Add(review);
             context.SaveChanges();
 

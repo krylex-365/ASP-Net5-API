@@ -128,16 +128,12 @@
                 </h2>
                 <!-- Reviews Field Start -->
                 <form #reviewAdd="ngForm" (ngSubmit)="addReview(reviewAdd.value)">
-                  <div class="riview-field">
-                    <div class="form-group">
-                      <label class="req" for="sure-name">Nickname</label>
-                      <input type="text" class="form-control" id="sure-name" required>
-                    </div>
+                  <div class="riview-field">                    
                     <div class="form-group">
                       <label class="req" for="comments">Review</label>
-                      <textarea class="form-control" rows="5" id="comments" required></textarea>
+                      <textarea class="form-control" rows="5" id="comment" name="comment" [(ngModel)]="comment"required></textarea>
                     </div>
-                    <button type="submit" class="customer-btn" onClick="submit_review()">Submit Review</button>
+                    <button type="submit" class="customer-btn" *ngIf = "customer">Submit Review</button>
                   </div>
                 </form>
                 <!-- Reviews Field Start -->
@@ -148,10 +144,15 @@
                 <div class="group-title">
                   <h2>customers review</h2>
                 </div>
-                <div class="review border-default universal-padding mt-30" *ngFor="let review of reviews">
-                  <h2 class="review-title">
-                    {{review.customerId}}
-                  </h2>
+                <div class="review border-default universal-padding mt-30" *ngFor="let review of getReviewByProductId()">
+                  {{getCustomerById(review.customerId)}}
+                  
+                    <h2 class="review-title" *ngIf="custname != '' ">
+                      {{custname}}
+                    </h2>
+                    <h2 class="review-title" *ngIf="custname == '' ">
+                      Anonymous
+                    </h2>
                   <!-- Reviews Field Start -->
                   <div class="riview-field">
                     <div class="form-group">
@@ -159,9 +160,6 @@
                     </div>
                     <div class="form-group">
                       <label class="req" for="comments">{{review.comment}}</label>
-                    </div>
-                    <div class="form-group">
-                      <label class="req" for="comments">Product Id: {{review.productId}}</label>
                     </div>
                   </div>
                 </div> 
@@ -183,48 +181,7 @@
   }
   ?> -->
   <!-- Product Thumbnail Description End -->
-  <!-- Realted Products Start Here -->
-  <div class="hot-deal-products off-white-bg pt-100 pb-90 pt-sm-60 pb-sm-50">
-    <div class="container">
-      <!-- Product Title Start -->
-      <div class="post-title pb-30">
-        <h2>Realted Products</h2>
-      </div>
-      <!-- Product Title End -->
-      <!-- Hot Deal Product Activation Start -->
-      <div class="hot-deal-active owl-carousel">
-        <!-- Single Product Start -->
-        <div class="single-product" *ngFor="let pro of pros">
-            <!-- Product Image Start -->
-            <div class="pro-img"> <a href="productshop/{{pro.productId}}"> <img class="primary-img" src="./product-img/{{pro.image}}" alt="single-product"></a></div>
-            <!-- Product Image End -->
-            <!-- Product Content Start -->
-            <div class="pro-content">
-              <div class="pro-info">
-                <input type="hidden" name="pro_id" value="1">
-                <h4><a href="productshop/{{pro.productId}}">{{pro.name}}</a></h4>
-                <p>
-                  <span *ngIf="pro.sale == 0" class="price">${{pro.price}}</span>
-                  <span *ngIf="pro.sale != 0" class="price">${{(pro.price - (pro.price / pro.sale)).toFixed(2)}}</span>
-                  <del *ngIf="pro.sale != 0" class="prev-price">${{pro.price}}</del>
-                </p>
-                <div *ngIf="pro.sale != 0" class="label-product l_sale">{{pro.sale}}<span class="symbol-percent">%</span></div>
-              </div>
-              <div class="pro-actions">
-                <div class="actions-primary">
-                  <input *ngIf="currentUser != null && currentUser.name != ''" (click)="addToCard(pro.productId)" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
-                  <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="+ Add To Cart">
-                </div>
-              </div>
-            </div>
-        </div>
-        <!-- Single Product End -->
-        <!-- Hot Deal Product Active End -->
-      </div>
-      <!-- Product Content End -->
-    </div>
-    <!-- Container End -->
-  </div>
+  <!-- Realted Products Start Here -->  <
   <!-- Realated Products End Here -->
   <!-- Support Area Start Here -->
   <div class="support-area bdr-top">
