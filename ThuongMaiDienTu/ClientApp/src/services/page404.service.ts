@@ -30,6 +30,6 @@ export class Page404Service {
 
   redirect404() {
     this.reload.reload = "1";
-    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'role');
+    this.router.navigateByUrl(this.route.snapshot.queryParams.returnUrl || 'admin/login');
   }
 }

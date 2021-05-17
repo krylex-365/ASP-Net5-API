@@ -38,7 +38,7 @@ export class LoginTruemartComponent {
         if (this.loginService.getuser() && this.loginService.getuser().UserName != "") {
           this.redirectShop();
         } else {
-          this.loginError = "Sai thông tin đăng nhập";
+          this.loginError = "Username or password not correct!";
         }
       }
     )

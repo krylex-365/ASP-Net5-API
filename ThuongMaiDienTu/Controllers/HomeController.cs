@@ -42,6 +42,7 @@ namespace WebApplication1.Controllers
                     new Claim("AccountId", ac.AccountId),
                     new Claim("CustomerId", customer.CustomerId),
                     new Claim("UserName", ac.UserName),
+                    new Claim("RoleId", role.RoleId),
                     new Claim(ClaimTypes.Role, role.Name)
                 };
                 var tokenString = GenerateJSONWebToken(claims);

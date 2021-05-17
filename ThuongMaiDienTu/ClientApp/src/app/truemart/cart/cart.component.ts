@@ -62,7 +62,6 @@ export class CartComponent implements OnInit {
     private checkoutService: CheckoutService  ) { }
 
   async ngOnInit() {
-    this.page404.go();
 
     this.Notenoughquantity = null;
 

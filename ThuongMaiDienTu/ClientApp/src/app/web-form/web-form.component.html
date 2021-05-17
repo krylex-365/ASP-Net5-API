@@ -29,17 +29,7 @@
       <ul class="clearfix">
         <li class="icons dropdown">Hi, Admin</li>
         <li class="icons dropdown">
-          <div class="user-img c-pointer position-relative" data-toggle="dropdown">
-            <span class="activity active"></span>
-            <img src="images/user/1.png" height="40" width="40" alt="">
-          </div>
-          <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
-            <div class="dropdown-content-body">
-              <ul>
-                <li><a><i class="icon-key"></i> <span>Logout</span></a></li>
-              </ul>
-            </div>
-          </div>
+          <button class="btn btn-danger" (click)="logout()"><span>Logout <i class="icon-logout"></i></span></button>
         </li>
       </ul>
     </div>

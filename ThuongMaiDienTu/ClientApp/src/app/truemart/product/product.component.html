@@ -46,19 +46,10 @@
                   <input type="hidden" name="pro_qty" value="1">
                   <div class="pro-actions">
                     <div class="actions-primary">
-                      <input *ngIf="currentUser != null && currentUser.name != ''" (click)="addToCard(product.productId)" type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
-                      <input *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
+                      <input *ngIf="customer" (click)="addToCard(product.productId)" type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
+                      <input *ngIf="!customer" routerLink="/loginshop" type="submit" title="Add to Cart" name="p_add" value="Add To Cart">
                     </div>
                   </div>
-                </div>
-                <div class="socila-sharing mt-25">
-                  <ul class="d-flex">
-                    <li>share</li>
-                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                  </ul>
                 </div>
               </div>
             </div>

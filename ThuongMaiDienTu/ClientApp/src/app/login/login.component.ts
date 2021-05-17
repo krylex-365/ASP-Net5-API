@@ -37,10 +37,14 @@ export class LoginComponent {
     this.loginService.login(this.account).subscribe(
       () => {
         console.log(this.loginService.getuser())
-        if (this.loginService.getuser() && this.loginService.getuser().UserName == "admin") {
-          this.redirectAdmin();
+        if (this.loginService.getuser()) {
+          if (this.loginService.getuser().RoleId == 1) {
+            this.redirectAdmin();
+          } else {
+            this.loginError = "You don't have permission to login!";
+          }
         } else {
-          this.loginError = "Sai thông tin đăng nhập";
+          this.loginError = "Username or password not correct!";
         }
       }
     )
