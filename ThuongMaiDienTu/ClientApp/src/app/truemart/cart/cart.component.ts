@@ -276,7 +276,7 @@ export class CartComponent implements OnInit {
           if (this.reponse.body.statusCode == 200) {
             //C# Update quantity product trong CheckoutController
             //C# delete cart trong CheckoutController
-            this.makePayment(Number.parseFloat(this.total + (this.total * 0.05).toFixed(2)));
+            this.makePayment(Number.parseFloat((this.total + (this.total * 0.05)).toFixed(2)));
           }
         });
     }

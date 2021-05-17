@@ -219,21 +219,21 @@
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Sub Total:</th>
-                          <th style="color: #ea5774;">$ {{total}}</th>
+                          <th style="color: #ea5774;">$ {{(1 * total).toFixed(2)}}</th>
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Taxes:</th>
-                          <th style="color: #ea5774;">$ {{total * 0.05}}</th>
+                          <th style="color: #ea5774;">$ {{(total * 0.05).toFixed(2)}}</th>
                         </tr>
                         <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th style="color: #ea5774;">Total:</th>
-                          <th style="color: #ea5774;">$ {{total * 0.05 + total}}</th>
+                          <th style="color: #ea5774;">$ {{(total * 0.05 + total).toFixed(2)}}</th>
                         </tr>
                       </table>
                     </div>

@@ -115,6 +115,9 @@ export class DashboardComponent implements OnInit{
         this.order = or;
       }
     })
+
+    //total
+    this.total = 0;
   }
 
   getOrderDetailsByOrderId(orderId: string): Array<OrderDetail> {
