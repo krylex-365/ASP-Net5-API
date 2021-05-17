@@ -52,6 +52,15 @@ export class ProductShopComponent implements OnInit {
       });
   
     const productId = String(this.route.snapshot.paramMap.get('id'));
+
+    await this.reviewService.getReview().subscribe(result => {
+      this.reviews = result;
+      console.log(this.reviews);
+
+      this.reviewss = Array<Review>();
+      this.getReviewByProductId(productId);
+    });
+
     await this.customerService.getCustomers().subscribe(
       result => {
         this.customers = result;
@@ -61,12 +70,10 @@ export class ProductShopComponent implements OnInit {
       result => {
         this.product = result;
         console.log(this.product);
-      });  
-    
-    await this.reviewService.getReview().subscribe(result => {
-      this.reviews = result;
-      console.log(this.reviews);     
-    });    
+
+      });
+
+    this.custname = '';
   }
 
   addToCard(id) {
@@ -84,22 +91,21 @@ export class ProductShopComponent implements OnInit {
       });
   }
   getCustomerById(id) {
-   this.custname="";
+   this.custname = "";
     for (var i = 0; i < this.customers.length; i++) {
       if (this.customers[i].customerId == id) {
         this.custname = this.customers[i].name;
-        break;
+        return this.customers[i].name;
       }
     }
   }
-  getReviewByProductId(): Array<Review> {
+  getReviewByProductId(id) {
     this.reviewss = Array<Review>();
     this.reviews.forEach(res => {
-      if (res.productId == this.product.productId) {
+      if (res.productId == id) {
         this.reviewss.push(res);
       }
     })
-    return this.reviewss;
   }
   
   addReview(value) {

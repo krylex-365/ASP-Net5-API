@@ -82,7 +82,7 @@
           </ul>
           <!-- Product Thumbnail Tab Content Start -->
           <div class="tab-content thumb-content border-default">
-            <div id="dtail" class="tab-pane fade show active">
+            <div *ngIf="product" id="dtail" class="tab-pane fade show active">
               <p>{{product.description}} </p>
             </div>
             <div id="review" class="tab-pane fade">
@@ -99,7 +99,7 @@
                       <textarea class="form-control" rows="5" id="comment" name="comment" [(ngModel)]="comment" required></textarea>
                     </div>
                     <button type="submit" class="customer-btn" *ngIf="customer">Submit Review</button>
-                    <button class="customer-btn" *ngIf="currentUser == null || currentUser.name == ''" routerLink="/loginshop">Login to submit review</button>
+                    <button class="customer-btn" *ngIf="!customer" routerLink="/loginshop">Login to submit review</button>
                   </div>
                 </form>
                 <!-- Reviews Field Start -->
@@ -110,21 +110,24 @@
                 <div class="group-title">
                   <h2>customers review</h2>
                 </div>
-                <div class="review border-default universal-padding mt-30" *ngFor="let review of getReviewByProductId()">
-                  {{getCustomerById(review.customerId)}}
-                  <h2 class="review-title" *ngIf="custname != '' ">
-                    {{custname}}
-                  </h2>
-                  <h2 class="review-title" *ngIf="custname == '' ">
-                    Anonymous
-                  </h2>
-                  <!-- Reviews Field Start -->
-                  <div class="riview-field">
-                    <div class="form-group">
-                      <label class="req" for="date">{{review.reviewDate}}</label>
-                    </div>
-                    <div class="form-group">
-                      <label class="req" for="comments">{{review.comment}}</label>
+                <div *ngIf="product && reviews">
+                  <div *ngIf="reviewss">
+                    <div class="review border-default universal-padding mt-30" *ngFor="let review of reviewss">
+                      <h2 class="review-title" *ngIf="getCustomerById(review.customerId) != '' ">
+                        {{getCustomerById(review.customerId)}}
+                      </h2>
+                      <h2 class="review-title" *ngIf="getCustomerById(review.customerId) == '' ">
+                        Anonymous
+                      </h2>
+                      <!-- Reviews Field Start -->
+                      <div class="riview-field">
+                        <div class="form-group">
+                          <label class="req" for="date">{{review.reviewDate}}</label>
+                        </div>
+                        <div class="form-group">
+                          <label class="req" for="comments">{{review.comment}}</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
