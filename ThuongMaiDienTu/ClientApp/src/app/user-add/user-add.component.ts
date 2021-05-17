@@ -67,7 +67,8 @@ export class UserAddComponent implements OnInit{
     await this.accountService.add(this.account).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
           this.customerService.add(this.customer).subscribe(
             result => {
               console.log(result);

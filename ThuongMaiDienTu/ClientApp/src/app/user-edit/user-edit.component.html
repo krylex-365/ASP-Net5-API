@@ -76,7 +76,7 @@
                           <div class="form-group">
                             <label for="birthday">Birthday <span class="text-danger">*</span></label>
                             <div class="input-group">
-                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" [(ngModel)]="birthday" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                              <input id="datepickerBirthday" type="date" class="form-control mydatepicker" name="birthday" [(ngModel)]="birthday" placeholder="mm-dd-yyyy" required>
                             </div>
                           </div>
                         </div>
@@ -85,8 +85,8 @@
                             <label for="sex">Sex <span class="text-danger">*</span></label>
                             <select class="form-control" name="sex" [(ngModel)]="sex" required>
                               <option value="">-- Choose Sex --</option>
-                              <option value="Nam">Female</option>
-                              <option value="Nữ">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Male">Male</option>
                             </select>
                           </div>
                         </div>

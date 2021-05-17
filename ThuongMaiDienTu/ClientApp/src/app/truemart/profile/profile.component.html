@@ -64,7 +64,7 @@
                           <div class="form-group">
                             <label for="birthday">Birthday <span class="text-danger">*</span></label>
                             <div class="input-group">
-                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" value="{{customer.birthday}}" placeholder="mm/DD/yyyy" disabled> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                              <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" value="{{customer.birthday}}" placeholder="mm-DD-yyyy" disabled>
                             </div>
                           </div>
                         </div>
@@ -153,7 +153,7 @@
                               <div class="form-group">
                                 <label for="birthday">Birthday <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                  <input id="datepickerBirthday" type="text" class="form-control mydatepicker" name="birthday" [(ngModel)]="birthday" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                                  <input id="datepickerBirthday" type="date" class="form-control mydatepicker" name="birthday" [(ngModel)]="birthday" placeholder="mm-dd-yyyy" required>
                                 </div>
                               </div>
                             </div>

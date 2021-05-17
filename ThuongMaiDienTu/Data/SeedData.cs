@@ -40,15 +40,6 @@ namespace TMDT.Data
                     Avatar = "default.jpg",
                     RoleId = "1",
                     Status = "0",
-                },
-                new Account
-                {
-                    AccountId = "2",
-                    UserName = "user",
-                    Password = "123",
-                    Avatar = "default.jpg",
-                    RoleId = "2",
-                    Status = "0",
                 }
             });
 
@@ -58,11 +49,11 @@ namespace TMDT.Data
                 {
                     CustomerId = "1",
                     Name = "admin",
-                    PhoneNumber = "000000000",
+                    PhoneNumber = "01219470121",
                     Mail = "admin@gmail.com",
                     Address = "000/aaa",
                     Birthday = new DateTime(2000,1,1),
-                    Sex = "Nam",
+                    Sex = "Male",
                     AccountId = "1",
                     Status = "0",
                 }
@@ -72,10 +63,10 @@ namespace TMDT.Data
             {
                 new Order
                 {
-                    OrderId = "1",
+                    OrderId = "0",
                     Date = new DateTime(2000,1,1),
-                    Note = "NNN",
-                    Payment = "1234567890",
+                    Note = "Test Ship",
+                    Payment = "NNN",
                     Status = "1",
                     CustomerId = "1"
                 }
@@ -85,21 +76,9 @@ namespace TMDT.Data
             {
                 new Category
                 {
-                    CategoryId = "1",
-                    Name = "Clothes",
-                    Status = "0",
-                },
-                new Category
-                {
-                    CategoryId = "2",
-                    Name = "Ruby",
-                    Status = "0",
-                },
-                new Category
-                {
-                    CategoryId = "3",
-                    Name = "Toys",
-                    Status = "0",
+                    CategoryId = "0",
+                    Name = "Test Cate",
+                    Status = "-1",
                 }
             });
 
@@ -107,17 +86,10 @@ namespace TMDT.Data
             {
                 new Subcategory
                 {
-                    SubcategoryId = "1",
-                    Name = "Toys 1",
-                    CategoryId = "3",
-                    Status = "0",
-                },
-                new Subcategory
-                {
-                    SubcategoryId = "4",
-                    Name = "Man Clothes 1",
-                    CategoryId = "1",
-                    Status = "0",
+                    SubcategoryId = "0",
+                    Name = "Test Subcate",
+                    CategoryId = "0",
+                    Status = "-1",
                 }
             });
 
@@ -125,15 +97,15 @@ namespace TMDT.Data
             {
                 new Product
                 {
-                    ProductId = "1",
-                    Name = "Roll Underarm Male",
-                    Price = "300000",
-                    Image = "1.jpg",
+                    ProductId = "0",
+                    Name = "Test Product",
+                    Price = "300",
+                    Image = "default.jpg",
                     Description = "San pham thu nhat",
-                    Sale = "30",
-                    Status = "1",
+                    Sale = "0",
+                    Status = "-1",
                     Quantity = "34",
-                    SubcategoryId = "4"
+                    SubcategoryId = "0"
                 }
             });
 
@@ -141,11 +113,11 @@ namespace TMDT.Data
             {
                 new OrderDetail
                 {
-                    OrderDetailId = "1",
+                    OrderDetailId = "0",
                     Quantity = "1",
-                    TotalPrice = "30",
-                    OrderId = "1",
-                    ProductId = "1"
+                    TotalPrice = "300",
+                    OrderId = "0",
+                    ProductId = "0"
                 }
             });
 
@@ -153,11 +125,11 @@ namespace TMDT.Data
             {
                 new Review
                 {
-                    ReviewId = "1",
+                    ReviewId = "0",
                     Comment = "NNN",
                     ReviewDate = new DateTime(2000,1,1),
                     CustomerId = "1",
-                    ProductId = "1"
+                    ProductId = "0"
                 }
             });
 
@@ -165,9 +137,9 @@ namespace TMDT.Data
             {
                 new Card
                 {
-                    CardId = "1",
+                    CardId = "0",
                     CustomerId = "1",
-                    ProductId = "1"
+                    ProductId = "0"
                 }
             });
 

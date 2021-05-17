@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit{
   customerId: string;
   customer: Customer;
   account: Account;
+  reponse: any;
 
   //ngModel
   avatar: string;
@@ -133,7 +134,8 @@ export class ProfileComponent implements OnInit{
     await this.accountService.update(this.account).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode != 200) {
           this.bool = false;
         }
       });
@@ -141,13 +143,21 @@ export class ProfileComponent implements OnInit{
     this.customerService.update(this.customer).subscribe(
       result => {
         console.log(result);
-        if (result.status != 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode != 200) {
           this.bool = false;
         }
       });
 
     if (this.bool) {
+      $(document).ready(function () {
+        alert('Update user successfully!');
+      });
       this.refresh();
+    } else {
+      $(document).ready(function () {
+        alert('Update user fail! Some error has occurred.');
+      });
     }
   }
 

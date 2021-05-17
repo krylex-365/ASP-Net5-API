@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   sex: string;
   account: Account;
   customer: Customer;
+  reponse: any;
 
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
@@ -61,11 +62,13 @@ export class RegisterComponent implements OnInit {
     await this.accountService.add(this.account).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode == 200) {
           this.customerService.add(this.customer).subscribe(
             result => {
               console.log(result);
-              if (result.status == 200) {
+              this.reponse = result.valueOf()
+              if (this.reponse.body.statusCode == 200) {
                 this.redirectLogin();
               }
             });

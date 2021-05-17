@@ -37,7 +37,6 @@ import { UserAddComponent } from './user-add/user-add.component';
 import { UserAddService } from '../services/user-add.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserEditService } from '../services/user-edit.service';
-import { IndexComponent } from './truemart/index/index.component';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { ReloadService } from '../services/reload.service';
 import { TruemartFormComponent } from './truemart/truemart-form/truemart-form.component';
@@ -48,7 +47,6 @@ import { LoginTruemartComponent } from './truemart/login/login.component';
 import { ProfileComponent } from './truemart/profile/profile.component';
 import { UserProfileService } from '../services/user-profile.service';
 import { OrderDetailService } from '../services/order-detail.service';
-import { CheckoutComponent } from './truemart/checkout/checkout.component';
 import { RegisterComponent } from './truemart/register/register.component';
 import { CartComponent } from './truemart/cart/cart.component';
 import { RegisterService } from '../services/register.service';
@@ -83,7 +81,6 @@ import { ReviewService } from '../services/review.service';
     ProductShopComponent,
     LoginTruemartComponent,
     ProfileComponent,
-    IndexComponent,
     CartComponent,
     RegisterComponent,    
     /*
@@ -113,7 +110,6 @@ import { ReviewService } from '../services/review.service';
       { path: 'admin/profile', component: AccountProfileComponent },
       { path: 'admin/user-add', component: UserAddComponent },
       { path: 'admin/user-edit/:id', component: UserEditComponent },
-      { path: 'indexshop', component: IndexComponent },
       { path: 'shop', component: ShopComponent },
       { path: 'shop/:id', component: ShopComponent },
       { path: 'productshop/:id', component: ProductShopComponent },

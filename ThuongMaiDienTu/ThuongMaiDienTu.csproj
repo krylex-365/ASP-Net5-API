@@ -62,7 +62,6 @@
     <TypeScriptCompile Remove="ClientApp\src\app\order\order.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\product\product.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\subcategories\subcategories.component.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\app\truemart\index\index.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\user-account\user-account.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\account.service.ts" />
     <TypeScriptCompile Remove="ClientApp\src\services\card.service.ts" />

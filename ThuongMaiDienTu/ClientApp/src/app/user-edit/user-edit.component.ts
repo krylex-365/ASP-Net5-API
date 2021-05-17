@@ -30,6 +30,7 @@ export class UserEditComponent implements OnInit {
   phoneNumber: string;
   sex: string;
   bool: boolean;
+  reponse: any;
 
   constructor(private customerService: CustomerService,
     private accountService: AccountService,
@@ -95,7 +96,8 @@ export class UserEditComponent implements OnInit {
     await this.accountService.update(this.account).subscribe(
       result => {
         console.log(result);
-        if (result.status == 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode != 200) {
           this.bool = false;
         }
       });
@@ -103,7 +105,8 @@ export class UserEditComponent implements OnInit {
     this.customerService.update(this.customer).subscribe(
       result => {
         console.log(result);
-        if (result.status != 200) {
+        this.reponse = result.valueOf()
+        if (this.reponse.body.statusCode != 200) {
           this.bool = false;
         }
       });
