@@ -207,11 +207,11 @@
                         </tr>
                         <tr *ngFor="let detail of getOrderDetailsByOrderId(order.orderId)">
                           {{getProductById(detail.productId)}}
-                          <td><img src="product-img/{{product.image}}" width="50%"></td>
+                          <td><img src="product-img/{{product.image}}" style="width:100%;"></td>
                           <td>{{product.name}}</td>
-                          <td>{{product.price}}$</td>
+                          <td>$ {{(product.price*1).toFixed(2)}}</td>
                           <td>{{detail.quantity}}</td>
-                          <td>{{detail.totalPrice}}$</td>
+                          <td>$ {{(detail.totalPrice*1).toFixed(2)}}</td>
                           {{caculatorTotal(detail.totalPrice)}}
                         </tr>
                         <tr>

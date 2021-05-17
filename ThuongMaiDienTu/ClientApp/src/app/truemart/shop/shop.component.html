@@ -70,7 +70,7 @@
                           <div class="pro-info">
                             <input type="hidden" name="pro_id" value="<?php echo $pro_id?>">
                             <h4><a href="productshop/{{prod.productId}}">{{prod.name}}</a></h4>
-                            <p><span *ngIf="prod.sale == 0" class="price">$ {{prod.price}}</span><del *ngIf="prod.sale != 0" class="prev-price">$ {{(prod.price*1).toFixed(2)}}</del></p>
+                            <p><span *ngIf="prod.sale == 0" class="price">$ {{(prod.price*1).toFixed(2)}}</span><del *ngIf="prod.sale != 0" class="prev-price">$ {{(prod.price*1).toFixed(2)}}</del></p>
                             <div *ngIf="prod.sale != 0" class="label-product l_sale">{{prod.sale}}<span class="symbol-percent">%</span></div>
                             <p *ngIf="prod.sale != 0"><span class="price">$ {{(prod.price - (prod.price * prod.sale / 100)).toFixed(2)}}</span></p>
                           </div>

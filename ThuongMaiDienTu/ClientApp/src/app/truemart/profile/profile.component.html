@@ -293,9 +293,9 @@
                                   {{getProductByOrderDetailId(orde.productId)}}
                                   <td><img src="./product-img/{{product.image}}" style="width: 100%;"></td>
                                   <td>{{product.name}}</td>
-                                  <td>$ {{product.price}}</td>
+                                  <td>$ {{(product.price*1).toFixed(2)}}</td>
                                   <td>{{orde.quantity}}</td>
-                                  <td>$ {{orde.totalPrice}}</td>
+                                  <td>$ {{(orde.totalPrice*1).toFixed(2)}}</td>
                                 </tr>
                                 {{caculatorSubTotal()}}
                                 <tr>
