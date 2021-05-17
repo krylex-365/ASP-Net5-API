@@ -1,0 +1,12 @@
+- Hướng dẫn thiết lập dữ liệu:
+
+1. Vào Microsoft SQL Server, tạo Database mới có tên "TMDT". 
+
+2. Sau đó thiết lập kết nối project với database "TMDT". 
+
+3. Chạy project lần đầu, code C# sẽ tạo ra các bảng trong database với dữ liệu ban đầu có trạng thái ẩn.
+
+4. Dừng chạy project, mở file cate-subcate-product-data.sql trong Microsoft SQL Server để tiến hành INSERT dữ liệu vào Categories - Subcategories - Products.
+
+*. Tài khoản: admin, mật khẩu: 123 để đăng nhập trang Admin.
+*. Tài khoản Stripe: leabc123abc@gmail.com - mothaiba123
