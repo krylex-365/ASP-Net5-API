@@ -42,15 +42,15 @@ export class ProductShopComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
     if (this.currentUser != null) {
       this.token = jwt_decode(this.currentUser.token);
-    }
-    var customerId = this.token.CustomerId;
-    await this.customerService.getCustomerById(customerId).subscribe(
-      result => {
-        this.customer = result;
-        console.log(this.customer);
+    
+      var customerId = this.token.CustomerId;
+      await this.customerService.getCustomerById(customerId).subscribe(
+        result => {
+          this.customer = result;
+          console.log(this.customer);
         
-      });
-  
+        });
+    }
     const productId = String(this.route.snapshot.paramMap.get('id'));
 
     await this.reviewService.getReview().subscribe(result => {

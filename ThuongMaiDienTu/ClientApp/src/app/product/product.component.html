@@ -71,9 +71,9 @@ if ( isset( $_GET[ 'del' ] ) and isset($_SESSION['usernameadmin']) ) {
                     <tr *ngFor="let product of products">
                       <td>{{product.productId}}</td>
                       <td>{{product.name}}</td>
-                      <td>{{product.price}}</td>
+                      <td>$ {{(product.price*1).toFixed(2)}}</td>
                       <td>{{product.sale}}%</td>
-                      <td>{{1*product.price - (1*product.price*30/100)}}</td>
+                      <td>$ {{( product.price - product.price * product.sale / 100 ).toFixed(2)}}</td>
                       <td>{{product.quantity}}</td>
                       <td>{{product.subcategoryId}}</td>
                       <td><p>{{product.description}}</p></td>

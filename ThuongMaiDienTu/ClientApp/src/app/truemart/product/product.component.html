@@ -36,9 +36,9 @@
                 <h3 class="product-header">{{product.name}}</h3>
                 <div class="pro-price mtb-30">
                   <p class="d-flex align-items-center">
-                    <span *ngIf="product.sale != 0" class="prev-price">$ {{product.price}}</span>
-                    <span *ngIf="product.sale != 0" class="price">$ {{product.price - (product.price/product.sale)}}</span>
-                    <span *ngIf="product.sale == 0" class="price">$ {{product.price}}</span>
+                    <span *ngIf="product.sale != 0" class="prev-price">$ {{(product.price*1).toFixed(2)}}</span>
+                    <span *ngIf="product.sale != 0" class="price">$ {{(product.price - product.price*product.sale/100).toFixed(2)}}</span>
+                    <span *ngIf="product.sale == 0" class="price">$ {{(product.price*1).toFixed(2)}}</span>
                     <span *ngIf="product.sale != 0" class="saving-price">save {{product.sale}}%</span>
                   </p>
                 </div>
@@ -72,13 +72,13 @@
             <li><a data-toggle="tab" href="#review">Reviews</a></li>
           </ul>
           <!-- Product Thumbnail Tab Content Start -->
-          <div class="tab-content thumb-content border-default">
+          <div class="tab-content thumb-content border-default" style="border: 1px solid #afafaf !important;">
             <div *ngIf="product" id="dtail" class="tab-pane fade show active">
               <p>{{product.description}} </p>
             </div>
             <div id="review" class="tab-pane fade">
               <!-- Reviews Start -->
-              <div class="review border-default universal-padding">
+              <div class="review border-default universal-padding" style="border: 1px solid #afafaf !important;">
                 <h2 class="review-title mb-20">
                   You're reviewing:
                 </h2>
@@ -97,13 +97,13 @@
               </div>
               <!-- Reviews End -->
               <!-- Reviews Start -->
-              <div class="review border-default universal-padding mt-30">
+              <div class="review border-default universal-padding mt-30" style="border: 1px solid #afafaf !important;">
                 <div class="group-title">
-                  <h2>customers review</h2>
+                  <h2>customer reviews</h2>
                 </div>
                 <div *ngIf="product && reviews">
                   <div *ngIf="reviewss">
-                    <div class="review border-default universal-padding mt-30" *ngFor="let review of reviewss">
+                    <div class="review border-default universal-padding mt-30" style="border: 1px solid #afafaf !important;" *ngFor="let review of reviewss">
                       <h2 class="review-title" *ngIf="getCustomerById(review.customerId) != '' ">
                         {{getCustomerById(review.customerId)}}
                       </h2>
